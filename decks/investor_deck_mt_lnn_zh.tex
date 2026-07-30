@@ -13,8 +13,9 @@
 \title{MT-LNN: 受微管启发的液态神经网络}
 \subtitle{打破内存墙的下一代长文本架构 \\ \textit{商业计划书 / Investor Pitch Deck}}
 \author{\Huge \aeonik{Awareness}}
-\date{2026年5月 \\[1em]
+\date{2026年7月 \\[1em]
 \footnotesize
+\textbf{官网:} \url{https://awareliquid.ai} \\
 \textbf{Paper:} \url{https://huggingface.co/EverestAn/MT-LNN} \\
 \textbf{GitHub:} \url{https://github.com/everest-an/M1}
 }
@@ -127,6 +128,7 @@
 \begin{itemize}
     \item \textbf{重构前馈与缓存墙：} 抛弃标准 Transformer 中耗费显存的静态 FFN 和 $O(T)$ KV 缓存，替换为 13 个平行的多尺度连续时间网络以及 \textbf{$O(1)$ 工作记忆衰减矩阵}。
     \item \textbf{内置解释性与跳过机制：} 引入动态计算跳过（Endogenous Compute Skipping）指数级节省显存算力。内置因果链与自我监控提取头，打破大模型黑盒困境。
+    \item \textbf{一整套认知栈，而非单个混合器：} \textbf{GWT 全局工作区瓶颈}（专家通道竞争共享广播）、\textbf{睡眠周期巩固}（NREM 式合成把短期痕迹压缩为持久结构）、以及跨窗口/跨会话携带 key$\to$value 绑定的\textbf{快权重记忆}。
 \end{itemize}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -134,6 +136,30 @@
 \includegraphics[width=\textwidth]{fig_architecture.pdf}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{双产品线：认知慢思维 + 边缘快思维}
+\small
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{M 系列 (M1/M2) —— 认知慢思维}
+\begin{itemize}\itemsep=0.3em
+    \item 混合架构：冻结的开源基座（如 TinyLlama-1.1B）+ 我们训练的 MT 液态适配器，参数开销仅 $\sim$1\%。
+    \item 在保留基座全部质量的同时叠加 \textbf{GWT 工作区 + 睡眠巩固 + EWC 持续学习}。
+    \item 独有优势：\textbf{跨窗口 / 跨会话联想召回} —— 0.56，而冻结注意力 / LoRA 结构性为 \textbf{0.000}。
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{O 系列 (O1) —— 边缘快思维}
+\begin{itemize}\itemsep=0.3em
+    \item 无注意力、从零训练（48M--125M），液态 ODE 动力学，毫秒级延迟。
+    \item \textbf{真正的 O(1) 推理内存：} 携带状态从 512 到 1{,}048{,}576 tokens 恒定 \textbf{0.381 MB}，同级 KV 缓存则涨到 \textbf{3{,}072 MB}（相差 8{,}063 倍）。
+    \item 目标场景：智能穿戴、车载、工业流式传感器。
+\end{itemize}
+\end{column}
+\end{columns}
+\vspace{0.4em}
+{\footnotesize 两条产品线共享同一套认知栈 —— GWT 工作区、预测编码、液态时间常数。在线演示：\url{https://awareliquid.ai}}
 \end{frame}
 
 
@@ -157,7 +183,7 @@
 \begin{itemize}
     \item \textbf{打破注意力上下文瓶颈：} MT-LNN 引入指数衰减的全局工作记忆（Decay Working Memory）。新 Token 的整合开销为极其严格的常量 $O(1)$，彻底消灭了 GPU 推理时的内存刺客。
     \item \textbf{动态算力跳过 (Compute Skipping)：} 仿生大脑，在面对高度冗余或简单的上下文区间时，休眠的原丝通道会被原生覆盖掩码跳过计算（Masked out），直接实现云计算算力的指数级成本节约。
-    \item \textbf{量子启发耦合：} 创新性引入类似量子物理的隐状态交互，使不同频段通道之间在时间流中实现信息平稳交换过渡。
+    \item \textbf{快权重跨会话记忆：} 内置快权重矩阵把关键 key$\to$value 绑定写入 $O(1)$ 状态，在整个上下文窗口被丢弃后仍可召回（0.56，注意力/LoRA 结构性为 0）；状态落盘快照跨进程恢复\textbf{逐位无损}。
 \end{itemize}
 \end{frame}
 
@@ -226,7 +252,7 @@
 \begin{itemize}\itemsep=0.3em
     \item \textbf{可信 = 护城河。}金融、法律、医疗、政企最怕"说不清为什么"——我们的每一步都能被第三方逐条核对。
     \item 相比黑箱大模型，我们能给出\textbf{行为保证}，而不是"大概率没问题"。
-    \item \textbf{967 项自动测试常驻绿灯}、CPU 两分钟全过，每条能力主张都有脚本和产物背书。
+    \item \textbf{1232 项自动测试常驻绿灯}、CPU 全过，每条能力主张都有脚本和产物背书。
 \end{itemize}
 \end{column}
 \end{columns}
@@ -313,11 +339,25 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}{核心验证 2：128K 长上下文“大海捞针”}
+\begin{frame}{核心验证 2：上下文窗口被丢弃后仍然记得}
 \begin{itemize}
-    \item \textbf{攻克 "Lost in the middle" 痛点：} 传统 Transformer 等架构在处理长文本大纲时，极易遗忘处于中间位置的关键信息事实。
-    \item \textbf{全文本一致的提取精度：} 无论金线索信息是被随机掩埋在文首、文中或文末，MT-LNN 的动态扫描都能实现无遗漏的精确捞取，长范围检索准确度平稳保持在 $99\%+$。
+    \item \textbf{一个注意力机制在结构上做不到的任务：} 先存入 key$\to$value 事实，\emph{把整个 KV 缓存 / 上下文窗口丢掉}，再提问。冻结注意力与 LoRA 得分 \textbf{0.000} —— 信息彻底消失。
+    \item \textbf{MT-LNN 快权重记忆：跨窗口平均召回 0.56}（3 随机种子）。消融掉快权重矩阵后召回塌到 0.008 —— 状态\emph{就是}记忆本体。
+    \item \textbf{跨会话持久化：} $(F, z)$ 状态落盘快照、在全新进程中恢复，\textbf{逐位无损} —— “跨会话记住你”是架构属性，不是外挂 RAG 数据库。
+    \item \textbf{诚实边界：} 这是情景式 key$\to$value 记忆，而非长上下文语言建模增益（窗口外语言建模为实测零收益）—— 我们明确说清它是什么、不是什么。
 \end{itemize}
+\end{frame}
+
+\begin{frame}{已验证的落地场景（已发布或已实测）}
+\small
+\begin{itemize}\itemsep=0.45em
+    \item \textbf{电池管理（NASA PCoE 数据集）：} 流式电芯健康度回归，携带状态仅 \textbf{2.6 KB}；在 \textbf{80\% 样本缺失下精度 +7.7\%} —— 对非均匀采样的鲁棒性是液态 ODE 的原生属性，不是补丁。
+    \item \textbf{智能穿戴 —— 开源唤醒词（O1-Sound）：} 常开关键词识别，\textbf{5.12 KB 恒定状态}；无云端依赖，MCU 级硬件毫秒响应。
+    \item \textbf{金融文档（M2 适配器）：} 文档抽取问答 \textbf{91.7\% 准确率（44/48）}，全程本地私有化。
+    \item \textbf{规划中（情景，非承诺）：} 车载座舱系统、端侧个人助手、工业哨兵机器人（DualSpeedSentry 服务栈已容器化）。
+\end{itemize}
+\vspace{0.3em}
+{\footnotesize 在线演示与复现脚本：\url{https://awareliquid.ai} · GitHub \texttt{everest-an/M1}}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{从产品与商业化看 AwareLiquid 的降维打击}
@@ -325,7 +365,7 @@
 \begin{itemize}\itemsep=0.4em
     \item \textbf{极低门槛（告别天价显卡）：} 无需 H800/A100 等昂贵硬件。得益于 $O(1)$ 算子压缩，AwareLiquid 处理超长文本的缓存恒定在 \textbf{4.1 KB}。这使得百亿/千亿级别的模型能力，能被无缝下放到普通轻薄本、智能终端和局域网服务器中。
     \item \textbf{算力降本（引擎的“智能启停”）：} 传统模型应对哪怕是一句简单问候都会拉满所有算力。AwareLiquid 的\textbf{“稀疏共振”}机制允许系统在处理简单逻辑时瞬间休眠 80\% 的冗余计算通道，在没有专用加速卡的情况下仍实现 \textbf{13\%+} 的原生计算提速。
-    \item \textbf{长线体验（攻克“中间遗忘”痛点）：} 类似 Mamba 的传统线性模型随文本无限变长会不可避免地产生衰减。AwareLiquid 通过底层的门控调度锁住信息，即便在极高噪声打断和 128K 超长闭环盲测中，依然实现了 $>99\%$ 的无死角提取精度。
+    \item \textbf{长线体验（跨窗口/跨会话记忆）：} 类似 Mamba 的传统线性模型没有可持久化的联想记忆。AwareLiquid 的快权重状态在\textbf{整个上下文窗口被丢弃后}仍能召回关键绑定（0.56 vs 注意力/LoRA 的 0.000），且状态快照跨进程恢复逐位无损 —— 长期陪伴式体验的架构基础。
     \item \textbf{私有化落地（行业刚需避风港）：} 金融、法律和国家机构等对数据极端敏感领域无法将材料上传给云端 API。AwareLiquid 由于对算力和内存的极低索求，成为完美契合局域网、可完全断网离线流式运作的 AI 强隐私解决方案。
 \end{itemize}
 \end{frame}
@@ -497,7 +537,9 @@
     \item \textbf{数据强敏感行业（如金融、法律、医疗）：} 
         在此类无法接入云端大模型 API 的闭源局域网场景下。MT-LNN 可以直接部署于办公笔记本等普通终端设备上，实现安全、合规且成本极低的本地长文本分析。
     \item \textbf{对比现有的高效线性架构（如 Mamba / RWKV 等）：}
-        此类架构面临着拉长文本即产生“记忆退化衰减”的困境。MT-LNN 借助门控以及动态路由调度专利，从底层机制上克服了长期维持多向特征的衰减问题。
+        此类架构面临着拉长文本即产生“记忆退化衰减”的困境，且没有可跨会话持久化的联想记忆。MT-LNN 借助门控与动态路由调度，从底层机制上克服了长期维持多向特征的衰减问题。
+    \item \textbf{对比 Liquid AI（LFM 系列）：}
+        Liquid AI 做的是商用推理效率优化；AwareLiquid 聚焦\textbf{认知连续性与终身学习} —— 在线权重更新 + 跨会话持久状态，而非仅靠上下文内学习。两者同源液态架构，但赛道错位。
 \end{itemize}
 \end{frame}
 
@@ -581,13 +623,18 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}{核心团队：Awareness}
-\begin{itemize}
-    \item \textbf{Everest An -- 创始人} (前沿计算系统与神经网络架构师)
-    \vspace{0.5em}
-    \item \textbf{去中心化基建经验：} 前 \textbf{IPFS Athna} 核心成员，曾主导并全面负责中国地区企业级分布式数据库的底层架构建设。
-    \item \textbf{头部资本与生态视角：} 曾任出海顶级基金 \textbf{Outliers Fund} 投资管理经理。重点参与投资顶尖公链体系 (\textbf{Dfinity}、\textbf{Harmony})、前沿基础设施 (\textbf{Analog})，及区块链核心代码安全审计机构 (\textbf{Quantstamp})。
-    \item \textbf{顶级开发者底色：} 具备全球顶尖的工程技术实力，在竞争最激烈的全球以太坊 (\textbf{Ethereum}) 黑客马拉松大赛中多次斩获冠军。
+\begin{frame}{核心团队：AwareLiquid}
+\small
+\begin{itemize}\itemsep=0.4em
+    \item \textbf{Everest An —— 创始人 / 核心架构师}（AI 记忆系统专家）。前 \textbf{IPFS Athna} 核心成员，主导企业级分布式数据库底层架构；曾任 \textbf{Outliers Fund} 投资管理经理（主投 \textbf{Dfinity}、\textbf{Harmony}、\textbf{Analog}、\textbf{Quantstamp}）；多次斩获全球以太坊黑客马拉松冠军。
+    \item \textbf{Eric —— CTO。} \textbf{NEMO protocol} 与 \textbf{STABLE} 架构师，统筹 M 系列 / O 系列模型与服务栈全线工程。
+    \item \textbf{博士研究团队 —— 香港理工大学 (PolyU)：} \textbf{Wang Yuxiang、Huang Xinhui、Kenser、Gloria} —— 方向覆盖连续时间动力学、记忆巩固与评测体系。
+    \vspace{0.3em}
+    \item \textbf{顾问：}
+    \begin{itemize}
+        \item \textbf{Pan Kai 教授} —— 香港理工大学教授。
+        \item \textbf{Yi Zhou} —— Stable Diffusion 架构师。
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -622,6 +669,7 @@
     \textbf{WeChat / Telegram:} EverestAn \\
     \vspace{1.5em}
     \small
+    \textbf{官网 (Website):} \url{https://awareliquid.ai} \\
     \textbf{论文 (Paper):} \url{https://huggingface.co/EverestAn/MT-LNN} \\
     \textbf{代码 (GitHub):} \url{https://github.com/everest-an/M1} \\
     \textbf{在线演示 (Demo):} \url{https://huggingface.co/spaces/EverestAn/AwarenessO1} \\

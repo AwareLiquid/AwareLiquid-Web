@@ -11,8 +11,9 @@
 \title{MT-LNN: Microtubule-Inspired Liquid Neural Network}
 \subtitle{Shattering the Memory Wall for the Next Generation of Long-Context AI \\ \textit{Investor Pitch Deck}}
 \author{\Huge \aeonik{Awareness}}
-\date{May 2026 \\[1em]
+\date{July 2026 \\[1em]
 \footnotesize
+\textbf{Website:} \url{https://awareliquid.ai} \\
 \textbf{Paper:} \url{https://huggingface.co/EverestAn/MT-LNN} \\
 \textbf{GitHub:} \url{https://github.com/everest-an/M1}
 }
@@ -151,7 +152,7 @@
 \begin{itemize}
     \item \textbf{Replacing the Cache Wall:} We completely discard the traditional $O(T)$ KV Cache, introducing an \textbf{$O(1)$ Working Memory Decay} matrix. Context size scales infinitely with zero added memory footprint.
     \item \textbf{Replacing Static FFNs:} The architecture integrates 13 parallel, continuous-time liquid network pathways equipped with \textit{endogenous compute skipping}.
-    \item \textbf{Native Conscious Computing:} The world's first AI architecture to break the "Anesthesia Benchmark," capable of generating language while tracking an inherent cognitive collapse metric ($\hat{\Phi}$).
+    \item \textbf{A Cognitive Stack, Not Just a Mixer:} a \textbf{GWT global-workspace bottleneck} (expert channels compete for a shared broadcast), \textbf{sleep-cycle consolidation} (NREM-style synthesis compresses short-term traces into durable structure), and a \textbf{fast-weight memory} that carries key$\to$value bindings across windows and sessions.
 \end{itemize}
 \end{column}
 \begin{column}{0.4\textwidth}
@@ -159,6 +160,30 @@
 \includegraphics[width=\textwidth]{fig_architecture.pdf}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Two Product Lines: Cognitive Slow Thinking + Edge Fast Thinking}
+\small
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\textbf{M-series (M1/M2) --- Cognitive Slow Thinking}
+\begin{itemize}\itemsep=0.3em
+    \item Hybrid: a frozen open-weight base (e.g.\ TinyLlama-1.1B) + our trained MT liquid adapter at $\sim$1\% parameter overhead.
+    \item Ships \textbf{GWT workspace + sleep consolidation + EWC continual learning} on top of full base quality.
+    \item Unique edge: \textbf{cross-window / cross-session associative recall} --- 0.56 where frozen attention and LoRA are structurally \textbf{0.000}.
+\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+\textbf{O-series (O1) --- Edge Fast Thinking}
+\begin{itemize}\itemsep=0.3em
+    \item Attention-free, trained from scratch (48M--125M), liquid ODE dynamics, millisecond latency.
+    \item \textbf{Genuine O(1) inference memory:} carried state flat at \textbf{0.381 MB} from 512 to 1{,}048{,}576 tokens, where a matched KV cache grows to \textbf{3{,}072 MB} (8{,}063$\times$).
+    \item Targets: wearables, automotive, industrial streaming sensors.
+\end{itemize}
+\end{column}
+\end{columns}
+\vspace{0.4em}
+{\footnotesize Both lines share one cognitive stack --- GWT workspace, predictive coding, liquid time constants. Live demos: \url{https://awareliquid.ai}}
 \end{frame}
 
 \begin{frame}{Deep Dive: Shattering the Next-Token Paradigm}
@@ -210,7 +235,7 @@
 \begin{itemize}\itemsep=0.3em
     \item \textbf{Trust = the moat.} Finance, legal, medical and government fear ``can't explain why'' most --- every step here can be checked by a third party.
     \item Versus black-box LLMs, we give \textbf{behaviour guarantees}, not ``probably fine''.
-    \item \textbf{967 automated tests permanently green}, all passing on CPU in under 2 min --- every claim backed by a script and an artefact.
+    \item \textbf{1232 automated tests permanently green} on CPU --- every claim backed by a script and an artefact.
 \end{itemize}
 \end{column}
 \end{columns}
@@ -297,11 +322,25 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}{Core Performance 2: 128K Needle in a Haystack}
+\begin{frame}{Core Performance 2: Memory That Survives a Dropped Context Window}
 \begin{itemize}
-    \item \textbf{Solving the Focal Illusion Crisis:} We eradicate the "Lost in the Middle" syndrome that routinely cripples the industry. Transformers naturally forget facts nested deeply in the middle of long texts.
-    \item \textbf{Penetrating the 128,000-Word Ocean:} Drop a microscopic piece of data into a boundless sea of tokens. Whether parked at the beginning, the deepest core, or the very end, MT-LNN retrieves it with a linear \textbf{99\%+ accuracy}.
+    \item \textbf{A task attention cannot do by construction:} store key$\to$value facts, then \emph{drop the entire KV cache / context window}, then ask again. Frozen attention and LoRA score \textbf{0.000} --- the information is simply gone.
+    \item \textbf{MT-LNN fast-weight memory: 0.56 mean recall} (3 seeds) across the dropped window. Ablate the fast-weight matrix and recall collapses to 0.008 --- the state \emph{is} the memory.
+    \item \textbf{Cross-session persistence:} snapshotting the $(F, z)$ state to disk and restoring it in a fresh process is \textbf{bit-exact lossless} --- ``remembers you across sessions'' as an architectural property, not an external RAG database.
+    \item \textbf{Honest boundary:} this is episodic key$\to$value memory, not a long-context language-modeling gain (a measured null out-of-window) --- we state exactly what it is and is not.
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Validated Use Cases (Shipped or Benchmarked)}
+\small
+\begin{itemize}\itemsep=0.45em
+    \item \textbf{Battery management (NASA PCoE):} streaming cell state-of-health regression with a \textbf{2.6 KB} carried state; \textbf{+7.7\% accuracy at 80\% missing samples} --- robustness to irregular sampling is native to liquid ODEs, not a patch.
+    \item \textbf{Wearables --- open-source wake word (O1-Sound):} always-on keyword spotting with a \textbf{5.12 KB constant state}; no cloud, millisecond-class latency on MCU-grade hardware.
+    \item \textbf{Financial documents (M2 adapter):} \textbf{91.7\% accuracy (44/48)} on document-extraction QA, fully on-prem.
+    \item \textbf{Pipeline (scenario, not commitment):} automotive cabin systems, on-device assistants, industrial sentry robots (DualSpeedSentry serving stack already containerized).
+\end{itemize}
+\vspace{0.3em}
+{\footnotesize Live demos and reproduction scripts: \url{https://awareliquid.ai} · GitHub \texttt{everest-an/M1}}
 \end{frame}
 
 \begin{frame}
@@ -466,19 +505,22 @@
 \begin{frame}{Competitive Landscape Matrix}
 \begin{table}[]
 \resizebox{\textwidth}{!}{
-\begin{tabular}{lcccc}
+\begin{tabular}{lccccc}
 \toprule
-\textbf{Features} & \textbf{MT-LNN} & \textbf{GPT-4/Claude} & \textbf{Mamba/RWKV} & \textbf{Local Llama} \\ 
+\textbf{Features} & \textbf{MT-LNN} & \textbf{GPT-4/Claude} & \textbf{Mamba/RWKV} & \textbf{Liquid AI (LFM)} & \textbf{Local Llama} \\
 \midrule
-Ultra-Long Context & \textcolor{green}{Yes} & \textcolor{green}{Yes} & \textcolor{orange}{Degrades} & \textcolor{red}{Fails (OOM)} \\
-Privacy / On-Prem & \textcolor{green}{Yes} & \textcolor{red}{No (Cloud)} & \textcolor{green}{Yes} & \textcolor{green}{Yes} \\
-Low Hardware Req. & \textcolor{green}{Yes (MacBook)} & \textcolor{red}{No (A100)} & \textcolor{green}{Yes} & \textcolor{red}{No} \\
-Constant Memory $O(1)$ & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{green}{Yes} & \textcolor{red}{No} \\
-Conscious Core Eval & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{red}{No} & \textcolor{red}{No} \\
+Ultra-Long Context & \textcolor{green}{Yes} & \textcolor{green}{Yes} & \textcolor{orange}{Degrades} & \textcolor{green}{Yes} & \textcolor{red}{Fails (OOM)} \\
+Privacy / On-Prem & \textcolor{green}{Yes} & \textcolor{red}{No (Cloud)} & \textcolor{green}{Yes} & \textcolor{orange}{Partial} & \textcolor{green}{Yes} \\
+Low Hardware Req. & \textcolor{green}{Yes (MacBook)} & \textcolor{red}{No (A100)} & \textcolor{green}{Yes} & \textcolor{green}{Yes} & \textcolor{red}{No} \\
+Constant Memory $O(1)$ & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{green}{Yes} & \textcolor{green}{Yes} & \textcolor{red}{No} \\
+Cross-Session Native Memory & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{red}{No} & \textcolor{red}{No} & \textcolor{red}{No} \\
+On-Device Continual Learning & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{red}{No} & \textcolor{red}{No} & \textcolor{orange}{LoRA only} \\
 \bottomrule
 \end{tabular}
 }
 \end{table}
+\vspace{0.3em}
+{\footnotesize \textbf{vs.\ Liquid AI:} they optimize commercial inference efficiency; AwareLiquid targets \textbf{cognitive continuity and lifelong learning} --- online weight updates and persistent state, not just in-context learning.}
 \end{frame}
 
 \begin{frame}{Market Positioning \& Concurrency Competitiveness}
@@ -525,13 +567,18 @@ Conscious Core Eval & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{
 \end{enumerate}
 \end{frame}
 
-\begin{frame}{Team: The Architects Behind Awareness}
-\begin{itemize}
-    \item \textbf{Everest An -- Founder \& Core Architect} (AI Memory Expert)
-    \vspace{0.5em}
-    \item \textbf{Decentralized Infra \& Cryptography:} Former member of IPFS Athna, leading enterprise database construction deployment.
-    \item \textbf{Top-Tier Investment \& Ecosystem:} Former Investment Manager at Outliers Fund. Led investments in L1 Chains (Dfinity, Harmony), Infra (Analog), and Smart Contract Audits (Quantstamp).
-    \item \textbf{Global Engineering Prowess:} Multiple-time Champion at Global Ethereum Hackathons.
+\begin{frame}{Team: The Architects Behind AwareLiquid}
+\small
+\begin{itemize}\itemsep=0.4em
+    \item \textbf{Everest An --- Founder \& Core Architect} (AI memory-systems expert). Former IPFS Athna member leading enterprise distributed-database deployment; ex-Investment Manager at Outliers Fund (led investments in Dfinity, Harmony, Analog, Quantstamp); multiple-time global Ethereum hackathon champion.
+    \item \textbf{Eric --- CTO.} Architect of the \textbf{NEMO protocol} and \textbf{STABLE}; leads engineering across the M-series / O-series model and serving stack.
+    \item \textbf{PhD Research Team --- The Hong Kong Polytechnic University (PolyU):} \textbf{Wang Yuxiang, Huang Xinhui, Kenser, Gloria} --- continuous-time dynamics, memory consolidation, and evaluation.
+    \vspace{0.3em}
+    \item \textbf{Advisors:}
+    \begin{itemize}
+        \item \textbf{Prof.\ Pan Kai} --- Professor, The Hong Kong Polytechnic University.
+        \item \textbf{Yi Zhou} --- Stable Diffusion architect.
+    \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -603,6 +650,7 @@ Conscious Core Eval & \textcolor{green}{Yes} & \textcolor{red}{No} & \textcolor{
     \textbf{WeChat / Telegram:} EverestAn \\
     \vspace{1.5em}
     \small
+    \textbf{Website:} \url{https://awareliquid.ai} \\
     \textbf{Paper:} \url{https://huggingface.co/EverestAn/MT-LNN} \\
     \textbf{GitHub:} \url{https://github.com/everest-an/M1} \\
     \textbf{MT-LNN Demo:} \url{https://huggingface.co/spaces/EverestAn/AwarenessO1} \\
