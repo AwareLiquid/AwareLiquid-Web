@@ -15,6 +15,7 @@ AwareLiquid / MT-LNN 的**非模型资产仓库**（内部私有）：投资人 
 | `fonts/` | Noto Sans SC 字体（LaTeX 中文编译用；deck 的 Manrope 在 `decks/` 内）| 根目录 |
 | `tools/` | LaTeX 工具链：`tectonic_bin/tectonic.exe`（Windows 本地编译）、`tectonic.zip`、`pdfminer.zip`、deck 批量编辑脚本 `deck-scripts/` | 根目录、`scripts/deck/` |
 | `archive/latex-scratch/` | 历史 LaTeX 调试产物（test_font / test_zh / hello 等），仅存档 | 根目录 |
+| `reports/` | 跨仓库开发进展报告（[DEV_PROGRESS_2026-08.md](reports/DEV_PROGRESS_2026-08.md)：M1 / M2 / O1 / O1-Anti 四条线现状、架构问题、短中长期行动清单） | 新建 |
 
 ## 常用操作
 
