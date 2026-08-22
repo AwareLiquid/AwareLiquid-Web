@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/static/favicon-dark.png" type="image/png">
+<title>Model Downloads — AwareLiquid</title>
+<meta name="description" content="Download AwareLiquid model weights — M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge. Open weights on GitHub Releases.">
+<meta property="og:title" content="Model Downloads — AwareLiquid">
+<meta property="og:description" content="Open model weights: M1-128M, TinyLlama + MT adapter, O1-48M. Download and run on your own hardware.">
+<meta property="og:site_name" content="AwareLiquid">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<style>
+  :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  a { color:inherit; text-decoration:none; }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; font-size:14px; }
+  .nav .brand { font-weight:700; letter-spacing:.5px; color:var(--fg); }
+  .nav .brand span { color:var(--muted); font-weight:400; }
+  .nav a { color:var(--muted); margin-left:22px; }
+  .nav a:hover { color:var(--fg); }
+  .nav a.active { color:var(--fg); }
+  .lang-btn { background:var(--bg2); color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:4px 12px; font-size:12.5px; cursor:pointer; margin-left:18px; }
+  .lang-btn:hover { color:var(--fg); border-color:var(--muted); }
+  .page-hero { text-align:center; padding:48px 0 8px; }
+  .page-hero .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .page-hero h1 { font-size:38px; font-weight:800; letter-spacing:-1px; }
+  .page-hero .sub { font-size:16px; color:var(--muted); margin-top:12px; max-width:620px; margin-left:auto; margin-right:auto; }
+  section { padding:44px 0; }
+  .models-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:16px; }
+  .model-card { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px; display:flex; flex-direction:column; }
+  .mc-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:14px; }
+  .mc-series { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .mc-status { font-size:10.5px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border:1px solid var(--line); border-radius:999px; }
+  .s-live { color:#10a37f; border-color:#10a37f; }
+  .s-dl { color:var(--fg); border-color:var(--fg); }
+  .s-tr { color:#d97706; border-color:#d97706; }
+  .mc-name { font-size:22px; font-weight:700; margin-bottom:8px; }
+  .mc-desc { font-size:14px; color:var(--muted); margin-bottom:16px; flex:1; }
+  .mc-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+  .mc-meta span { font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:3px 10px; }
+  .mc-cta { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:10px 22px; border-radius:9px; font-weight:600; font-size:14px; border:1px solid var(--line); transition:.15s; }
+  .btn:hover { border-color:var(--muted); }
+  .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  .btn.primary:hover { opacity:.88; }
+  .mc-note { font-size:11.5px; color:var(--muted); width:100%; }
+  .quickstart { max-width:720px; margin:0 auto; background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px 30px; }
+  .quickstart h2 { font-size:20px; margin-bottom:14px; }
+  .quickstart code { display:block; background:#000; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-family:ui-monospace,Consolas,monospace; font-size:13px; line-height:1.7; overflow-x:auto; color:#e8e8ee; margin-bottom:10px; }
+  .quickstart p { color:var(--muted); font-size:13.5px; }
+  footer { border-top:1px solid var(--line); padding:28px 0 44px; text-align:center; color:var(--muted); font-size:13px; margin-top:20px; }
+  footer a { color:var(--fg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="/">AwareLiquid <span>· Models</span></a>
+    <div>
+      <a href="/hypercode" data-i18n="nav.hc">HyperCode</a>
+      <a href="/models" class="active" data-i18n="nav.models">Models</a>
+      <a href="/#demo" data-i18n="nav.demo">Demo</a>
+      <a href="/research" data-i18n="nav.research">Research</a>
+      <a href="/api" data-i18n="nav.api">API</a>
+      <a href="/about" data-i18n="nav.about">About</a>
+      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="nav.gh">GitHub</a>
+      <button id="langBtn" class="lang-btn">中文</button>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="eyebrow" data-i18n="hero.eyebrow">Open Weights</div>
+    <h1 data-i18n="hero.h1">Model Downloads</h1>
+    <p class="sub" data-i18n="hero.sub">Every released model, with its exact parameters and download link. Run them on your own hardware — CPU-friendly, no GPU required.</p>
+  </header>
+
+  <section>
+    <div class="models-grid">
+      <article class="model-card" data-status="live">
+        <div class="mc-head">
+          <span class="mc-series">M-Series</span>
+          <span class="mc-status s-live" data-i18n="m1.status">● Live on site</span>
+        </div>
+        <h3 class="mc-name">M1-128M</h3>
+        <p class="mc-desc" data-i18n="m1.desc">From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.</p>
+        <div class="mc-meta"><span>128.6M params</span><span>12 layers · 832d</span><span>512-token window</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/m1-128m-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dl">Download weights ↓</a>
+          <a class="btn" href="/#demo" data-i18n="btn.try">Try it live →</a>
+          <span class="mc-note" data-i18n="m1.note">514MB serve checkpoint · gpt2 tokenizer</span>
+        </div>
+      </article>
+      <article class="model-card" data-status="live">
+        <div class="mc-head">
+          <span class="mc-series">M-Series</span>
+          <span class="mc-status s-live" data-i18n="m2.status">● Live on site</span>
+        </div>
+        <h3 class="mc-name">M1 · TinyLlama-1.1B + MT v2s</h3>
+        <p class="mc-desc" data-i18n="m2.desc">Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.</p>
+        <div class="mc-meta"><span>1.1B base + 2.3M adapter</span><span>chat-capable</span><span>bilingual EN/ZH</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/mt-adapter-v2s-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dlAdapter">Download adapter ↓</a>
+          <a class="btn" href="/#demo" data-i18n="btn.try">Try it live →</a>
+          <span class="mc-note" data-i18n="m2.note">24.8MB checkpoint · replicate the live demo</span>
+        </div>
+      </article>
+      <article class="model-card" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series">O-Series</span>
+          <span class="mc-status s-dl" data-i18n="m3.status">↓ Download</span>
+        </div>
+        <h3 class="mc-name">O1-48M</h3>
+        <p class="mc-desc" data-i18n="m3.desc">Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.</p>
+        <div class="mc-meta"><span>48M params</span><span>attention-free</span><span>CPU-friendly</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/o1-48m-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dl">Download weights ↓</a>
+          <span class="mc-note" data-i18n="m3.note">194MB checkpoint · gpt2 tokenizer</span>
+        </div>
+      </article>
+      <article class="model-card" data-status="training">
+        <div class="mc-head">
+          <span class="mc-series">M-Series</span>
+          <span class="mc-status s-tr" data-i18n="m4.status">◐ Training</span>
+        </div>
+        <h3 class="mc-name">M1-2B</h3>
+        <p class="mc-desc" data-i18n="m4.desc">1.9B-parameter hybrid (2912d × 35L) in training. Checkpoint exists, run not finished — listed so the roadmap is visible.</p>
+        <div class="mc-meta"><span>1.9B params</span><span>35 layers · 2912d</span><span>early steps</span></div>
+        <div class="mc-cta">
+          <span class="btn" style="cursor:default" data-i18n="m4.cta">Weights when it converges</span>
+          <span class="mc-note" data-i18n="m4.note">Training on rented A100</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="quickstart">
+      <h2 data-i18n="qs.h2">Quick start</h2>
+      <code data-i18n="qs.cmd">git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \<br>  python -m uvicorn serve.server:app --port 8000</code>
+      <p data-i18n="qs.note">All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="/">← AwareLiquid</a> · <a href="/research" data-i18n="foot.research">Research</a></p>
+    <p style="margin-top:10px;" data-i18n="foot.copy">© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd</p>
+  </footer>
+</div>
+
+<script>
+// ── i18n (en default, zh toggle) ──
+var I18N = {
+  en: {
+    "nav.hc":"HyperCode","nav.models":"Models","nav.demo":"Demo","nav.research":"Research","nav.api":"API","nav.about":"About","nav.gh":"GitHub",
+    "hero.eyebrow":"Open Weights","hero.h1":"Model Downloads",
+    "hero.sub":"Every released model, with its exact parameters and download link. Run them on your own hardware — CPU-friendly, no GPU required.",
+    "m1.status":"● Live on site","m1.desc":"From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.","m1.note":"514MB serve checkpoint · gpt2 tokenizer",
+    "m2.status":"● Live on site","m2.desc":"Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.","m2.note":"24.8MB checkpoint · replicate the live demo",
+    "m3.status":"↓ Download","m3.desc":"Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.","m3.note":"194MB checkpoint · gpt2 tokenizer",
+    "m4.status":"◐ Training","m4.desc":"1.9B-parameter hybrid (2912d × 35L) in training. Checkpoint exists, run not finished — listed so the roadmap is visible.","m4.cta":"Weights when it converges","m4.note":"Training on rented A100",
+    "btn.dl":"Download weights ↓","btn.dlAdapter":"Download adapter ↓","btn.try":"Try it live →",
+    "qs.h2":"Quick start","qs.note":"All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.",
+    "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
+  },
+  zh: {
+    "nav.hc":"HyperCode","nav.models":"模型","nav.demo":"演示","nav.research":"研究","nav.api":"API","nav.about":"关于","nav.gh":"GitHub",
+    "hero.eyebrow":"开放权重","hero.h1":"模型下载",
+    "hero.sub":"每个已发布模型,附精确参数与下载链接。在自己的硬件上运行 —— CPU 友好,无需 GPU。",
+    "m1.status":"● 官网在线","m1.desc":"从零训练的混合模型 —— 每层同时含注意力与液态核心。WikiText-103 上 50K 步。英文文本续写。","m1.note":"514MB 推理 checkpoint · gpt2 分词器",
+    "m2.status":"● 官网在线","m2.desc":"冻结的 TinyLlama-1.1B-Chat 基座 + 训练的液态核心残差适配器 + LoRA。对话模型 —— 中英双语。","m2.note":"24.8MB checkpoint · 复现线上 demo",
+    "m3.status":"↓ 可下载","m3.desc":"注意力自由的 O 系列边缘模型。0.381MB 恒定携带状态,与上下文长度无关 —— O(1) 内存路线。CPU 可跑。","m3.note":"194MB checkpoint · gpt2 分词器",
+    "m4.status":"◐ 训练中","m4.desc":"1.9B 参数混合模型 (2912d × 35L) 训练中。checkpoint 已存在,训练未完成 —— 列出以保持路线图透明。","m4.cta":"收敛后发布权重","m4.note":"租用 A100 训练中",
+    "btn.dl":"下载权重 ↓","btn.dlAdapter":"下载适配器 ↓","btn.try":"在线体验 →",
+    "qs.h2":"快速开始","qs.note":"所有模型纯 CPU 可跑。128M 混合模型约需 1GB 内存;TinyLlama 适配器约需 5GB。完整说明见仓库 README。",
+    "foot.research":"研究","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司"
+  }
+};
+function applyLang(lang){
+  var dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if (dict[k]) el.innerHTML = dict[k];
+  });
+  var code = document.querySelector('.quickstart code');
+  if (code) {
+    code.innerHTML = lang === 'zh'
+      ? 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># 把下载的 .pt 放进 checkpoints/,然后:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000'
+      : 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000';
+  }
+  document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
+  localStorage.setItem('models_lang', lang);
+}
+document.getElementById('langBtn').addEventListener('click', function(){
+  var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+  applyLang(cur === 'zh' ? 'en' : 'zh');
+});
+(function(){ var saved = localStorage.getItem('models_lang') || 'en'; applyLang(saved); })();
+</script>
+</body>
+</html>

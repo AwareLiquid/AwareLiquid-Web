@@ -243,8 +243,8 @@ html[data-theme="dark"] .hov::before{background-image:linear-gradient(transparen
 .hero{padding:clamp(72px,8vw,96px) 0 var(--section-gap);position:relative}
 .hero-grid{display:grid;gap:0}
 .hero-visual{display:none}
-.hero-anim{width:100%;height:420px}
-.hero-anim video{width:100%;height:100%;object-fit:cover;display:block;border:0}
+.hero-anim{width:100%;height:420px;overflow:hidden}
+.hero-anim video{width:100%;height:100%;object-fit:cover;display:block;border:0;transform:scale(1.04)}
 @media(min-width:1000px){
   .hero-grid{grid-template-columns:1.4fr 1fr}
   .hero-visual{display:block;border-left:1px solid var(--rule);padding-left:32px;margin-left:32px;align-self:center}
@@ -657,6 +657,8 @@ html[data-theme="light"] .chart-fig img{background:#fff}
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
       <a href="/hypercode">HyperCode</a>
+      <a href="/models">Models</a>
+      <a href="#industries">Use Cases</a>
       <a href="#demo" aria-current="page">Demo</a>
       <a href="/research">Research</a>
       <a href="/api">API</a>
@@ -716,7 +718,7 @@ html[data-theme="light"] .chart-fig img{background:#fff}
 <section class="section hc-section">
   <div class="container hc-inner">
     <div class="hc-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M4 8h8M4 12h8M4 16h8M14 9l4 2-4 2M14 15l4 2-4 2"/></svg>
+      <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 Q14 5 22 8 L22 20 Q14 23 6 20 Z"/><path d="M6 11.3 Q14 8.3 22 11.3"/><path d="M6 14.6 Q14 11.6 22 14.6"/><path d="M6 17.9 Q14 14.9 22 17.9"/></svg>
     </div>
     <div class="hc-copy">
       <span class="label">Product</span>
@@ -774,6 +776,217 @@ html[data-theme="light"] .chart-fig img{background:#fff}
 </section>
 
 </main><!-- /#main-content -->
+
+<!-- ── INDUSTRIES (use cases) ── -->
+<!-- ── INDUSTRIES ── -->
+<section class="section industries-section" id="industries">
+  <div class="container">
+    <div class="ind-head">
+      <span class="label"><span class="label-sq"></span>Where it fits</span>
+      <h2 class="h2">Built for streams that never stop, on hardware that <em class="em-italic">cannot grow</em>.</h2>
+      <p class="ind-lead">Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.</p>
+    </div>
+
+    <div class="ind-grid">
+      <a class="ind-cell hov" href="/research#battery">
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M22 11v3"/><path d="M6 11v3M10 11v3"/></svg></span>
+        <h3 class="ind-t">Battery management</h3>
+        <p class="ind-d">State-of-health regression on voltage/current/temperature streams, on the pack controller itself.</p>
+        <span class="ind-s ind-s-on">Measured — NASA PCoE cells</span>
+        <span class="ind-m">+7.7% at 80% sample loss vs +31% LSTM/GRU · 2.6 KB streaming state. 10 seeds, whole cell held out.</span>
+      </a>
+
+      <a class="ind-cell hov" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2" y="13" width="4.5" height="7" rx="2"/><rect x="17.5" y="13" width="4.5" height="7" rx="2"/></svg></span>
+        <h3 class="ind-t">Hearables</h3>
+        <p class="ind-d">Always-on wake-word spotting where the microphone never closes — one keyword, measured in English. Open source as <strong>O1-Sound</strong>.</p>
+        <span class="ind-s">Measured — single keyword only</span>
+        <span class="ind-m">English &ldquo;hello&rdquo;: FRR 0.14 &plusmn; 0.05 at FAR 0.05 across 3 seeds. 5.03 MB fp32 / 1.27 MB int8, 5,120 B constant state. <strong>Not production grade</strong>: seed-to-seed spread is wider than any change we have tried, and the multilingual version measured worse than never firing — one binary class cannot span greetings that share no phonetics.</span>
+      </a>
+
+      <a class="ind-cell hov" href="/research">
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18"/><path d="M6 20V9M11 20V5M16 20v-7M21 20V11"/></svg></span>
+        <h3 class="ind-t">Financial documents</h3>
+        <p class="ind-d">QA over filings far longer than the context window, with the base model frozen behind an API.</p>
+        <span class="ind-s ind-s-on">Measured — M2 adapter</span>
+        <span class="ind-m">44/48 (91.7%) across five financial-document domains · ~2.8k tokens per question. A regression baseline, not a leaderboard.</span>
+      </a>
+    </div>
+    <p class="ind-also"><span class="label"><span class="label-sq"></span>Also targeting</span>
+      In-vehicle systems · On-device assistants · Industrial robotics — architectural fit
+      (bounded state over an unbounded session, native Δt), <strong>no pilot data yet</strong>.</p>
+  </div>
+</section>
+
+<!-- ── MODELS (model family) ── -->
+<!-- ── MODELS ── -->
+<section class="section models-section" id="models">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Model Lineup</span>
+      <h2>Every Release, One Place</h2>
+      <p class="section-lead">Each AwareLiquid release states its status plainly: <strong>live</strong> (served on this site, try it now), <strong>download</strong> (weights published, run it yourself), or <strong>training</strong> (checkpoint exists, run not finished). No version is silently half-shipped.</p>
+    </div>
+    <div class="models-grid">
+      <article class="model-card hov" data-status="live">
+        <div class="mc-head">
+          <span class="mc-series label">M-Series</span>
+          <span class="mc-status s-live">● Live on site</span>
+        </div>
+        <h3 class="mc-name">M1-128M</h3>
+        <p class="mc-desc">From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.</p>
+        <div class="mc-meta">
+          <span>128.6M params</span><span>12 layers · 832d</span><span>512-token window</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-primary" href="#demo" href="#demo">Try it live →</a>
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/m1-128m-v1" target="_blank" rel="noopener noreferrer">Download weights ↓</a>
+          <span class="mc-note label">Served by the native decoder on this site</span>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="live">
+        <div class="mc-head">
+          <span class="mc-series label">M-Series</span>
+          <span class="mc-status s-live">● Live on site</span>
+        </div>
+        <h3 class="mc-name">M1 · TinyLlama-1.1B + MT v2s</h3>
+        <p class="mc-desc">Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese, with fast-weight memory across turns.</p>
+        <div class="mc-meta">
+          <span>1.1B base + 2.3M adapter</span><span>chat-capable</span><span>bilingual EN/ZH</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-primary" href="#demo" href="#demo">Try it live &rarr;</a>
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/mt-adapter-v2s-v1" target="_blank" rel="noopener noreferrer">Download adapter &darr;</a>
+          <span class="mc-note label">24.8 MB checkpoint · replicate the live demo</span>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">↓ Download</span>
+        </div>
+        <h3 class="mc-name">O1-48M</h3>
+        <p class="mc-desc">Attention-free O-series edge model, trained from scratch. Constant 0.381 MB carried state regardless of context — the O(1) memory line. Run it on CPU.</p>
+        <div class="mc-meta">
+          <span>48M params</span><span>attention-free</span><span>CPU-friendly</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/o1-48m-v1" target="_blank" rel="noopener noreferrer">Download weights ↓</a>
+          <span class="mc-note label">GitHub release · serve with server.py</span>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="training">
+        <div class="mc-head">
+          <span class="mc-series label">M-Series</span>
+          <span class="mc-status s-tr">◐ Training</span>
+        </div>
+        <h3 class="mc-name">M1-2B</h3>
+        <p class="mc-desc">1.9B-parameter hybrid (2912d × 35L) on the A100. Currently training on A100. Weights will be published when the run converges.</p>
+        <div class="mc-meta">
+          <span>1.9B params</span><span>35 layers · 2912d</span><span>early steps</span>
+        </div>
+        <div class="mc-cta">
+          <span class="btn btn-ghost" style="cursor:default">Weights when it converges</span>
+          <span class="mc-note label">Training on rented A100</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="section-header" style="margin-top:64px">
+      <span class="eyebrow">Research Family</span>
+      <h2>Clone &amp; Reproduce</h2>
+      <p class="section-lead">The wider family beyond the served models — each repository ships real code and a measured test suite. License: MIT.</p>
+    </div>
+    <div class="models-grid">
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">O1-Anti — The Anti-Transformer</h3>
+        <p class="mc-desc">Three pillars against Transformer costs: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.</p>
+        <div class="mc-meta">
+          <span>efficiency line</span><span>22 tests</span><span>pip install torch</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Anti" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">AwareLiquid-Physic</h3>
+        <p class="mc-desc">Physics written into the architecture: liquid (LTC) substrate + hard-constraint Hamiltonian head + symplectic integration. 13/13 tests.</p>
+        <div class="mc-meta">
+          <span>physics-native</span><span>13 tests</span><span>MIT</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">Cortex</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">C1 — Five-Layer Cognition Stack</h3>
+        <p class="mc-desc">Sensory stream &rarr; O(1) memory &rarr; sparse temporal routing &rarr; predictive coding &rarr; liquid GRPO + System 1/2. E1 liquid GRPO first run (supervised arm): extrapolation 1.0&rarr;0.56 (seed0). E1&ndash;E3 auto-bootstrap dependencies from the public M1 mirror.</p>
+        <div class="mc-meta">
+          <span>pure-liquid vision</span><span>E1&ndash;E3 experiments</span><span>MIT</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/C1" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">O1-Sound — Wake-Word Spotter</h3>
+        <p class="mc-desc">Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.</p>
+        <div class="mc-meta">
+          <span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound/releases/tag/research-2026-08-18" target="_blank" rel="noopener noreferrer">Checkpoint &darr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">Research</span>
+          <span class="mc-status s-dl">&#8595; Read</span>
+        </div>
+        <h3 class="mc-name">MT-LNN Technical Paper</h3>
+        <p class="mc-desc">English + 中文. Microtubule-inspired liquid network: O(1) working memory, multi-scale predictive coding, compute skipping. Empirical tables are canonical — honest verdicts included.</p>
+        <div class="mc-meta">
+          <span>EN / 中文</span><span>PDF</span><span>open science</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M/resolve/main/mt_lnn_arxiv.pdf" target="_blank" rel="noopener noreferrer">PDF (EN) &rarr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M/resolve/main/mt_lnn_arxiv_zh.pdf" target="_blank" rel="noopener noreferrer">PDF (中文) &rarr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">Research</span>
+          <span class="mc-status s-dl">&#8595; Explore</span>
+        </div>
+        <h3 class="mc-name">LLM-Visualization</h3>
+        <p class="mc-desc">Interactive 3D visualization of the MT-LNN architecture (extended from bbycroft/llm-viz).</p>
+        <div class="mc-meta">
+          <span>3D explorer</span><span>web</span><span>MIT</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/LLM-Visualization" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
 
 <!-- ── FOOTER ── -->
 <footer class="footer">
