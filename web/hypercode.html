@@ -34,6 +34,8 @@
   .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
   .btn.primary:hover { opacity:.88; }
   .platform-note { color:var(--muted); font-size:13px; margin-top:16px; }
+  .smartscreen-note { max-width:640px; margin:18px auto 0; padding:14px 18px; border:1px solid var(--line); border-radius:10px; background:var(--bg2); color:var(--muted); font-size:13px; line-height:1.6; text-align:left; }
+  .smartscreen-note strong { color:var(--fg); }
   section { padding:56px 0; border-top:1px solid var(--line); }
   h2 { font-size:28px; font-weight:700; text-align:center; letter-spacing:-.5px; margin-bottom:12px; }
   .sec-sub { text-align:center; color:var(--muted); margin-bottom:40px; font-size:15px; }
@@ -175,6 +177,9 @@
       <a class="btn" href="https://github.com/AwareLiquid/HyperCode/releases/download/v0.1.1/hypercode-macos-x64.zip">macOS · Intel</a>
     </div>
     <p class="platform-note">全部下载 → <a href="https://github.com/AwareLiquid/HyperCode/releases" style="color:var(--fg)">GitHub Releases</a></p>
+    <div class="smartscreen-note">
+      <strong>Windows 提示</strong>：首次运行若出现「Microsoft Defender SmartScreen 已阻止无法识别的应用」，请点击「更多信息」→「仍要运行」。这是未签名应用的标准提示；我们正在申请代码签名证书，后续版本将不再触发。
+    </div>
   </section>
 
   <section id="pricing">
@@ -228,7 +233,7 @@
 
   <footer>
     <p><a class="backhome" href="/">← 返回 AwareLiquid</a></p>
-    <p style="margin-top:14px;">© 2026 AwareLiquid · 深圳三体安远科技有限公司 · HyperCode 预览版,功能可能变化</p>
+    <p style="margin-top:14px;">© 2026 AwareLiquid · 深圳三体暗源科技有限公司 · HyperCode 预览版,功能可能变化</p>
   </footer>
 </div>
 </body>
