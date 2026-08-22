@@ -252,6 +252,19 @@ html[data-theme="dark"] .hov::before{background-image:linear-gradient(transparen
 .hero-metrics .m-v{display:block;font-size:20px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:6px}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
 
+/* ── HYPERCODE (product strip) ── */
+.hc-section{padding:64px 0;border-top:1px solid var(--rule)}
+.hc-inner{display:flex;align-items:center;gap:32px}
+.hc-mark{width:56px;height:56px;flex:none;color:var(--fg);display:flex;align-items:center;justify-content:center;border:1px solid var(--rule);border-radius:14px}
+.hc-mark svg{width:30px;height:30px}
+.hc-copy{flex:1;min-width:0}
+.hc-copy .label{margin-bottom:10px;display:inline-block}
+.hc-copy h2{margin-bottom:10px}
+.hc-copy p{font-size:15px;line-height:1.6;color:var(--muted);max-width:60ch}
+.hc-cta{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+.hc-note{font-size:12px;color:var(--muted)}
+@media(max-width:860px){.hc-inner{flex-direction:column;align-items:flex-start;gap:20px}}
+
 /* News rail — dated, hairline-divided, serif headline per row. */
 .rail-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:14px}
 .rail{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
@@ -639,6 +652,7 @@ html[data-theme="light"] .chart-fig img{background:#fff}
       AwareLiquid
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="/hypercode">HyperCode</a>
       <a href="#demo" aria-current="page">Demo</a>
       <a href="/research">Research</a>
       <a href="/api">API</a>
@@ -679,10 +693,28 @@ html[data-theme="light"] .chart-fig img{background:#fff}
           <div><span class="label"><span class="label-sq"></span>vs KV-cache</span><span class="m-v">8063× smaller</span></div>
         </div>
         <div class="hero-ctas">
-          <a class="btn btn-primary btn-lg" href="#demo">Try the live demo</a>
-          <a class="btn btn-ghost btn-lg" href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Read the paper →</a>
+          <a class="btn btn-primary btn-lg" href="/hypercode">Get HyperCode</a>
+          <a class="btn btn-ghost btn-lg" href="#demo">Try the live demo</a>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HYPERCODE ── -->
+<section class="section hc-section">
+  <div class="container hc-inner">
+    <div class="hc-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4v16M4 8h8M4 12h8M4 16h8M14 9l4 2-4 2M14 15l4 2-4 2"/></svg>
+    </div>
+    <div class="hc-copy">
+      <span class="label">Product</span>
+      <h2 class="h2">HyperCode — an AI that finishes the work.</h2>
+      <p>Give it one clear instruction and it works for hours until everything is done. 228+ built-in domain skills across finance, law, academia and private equity. No VPN, no setup — one-click install on Windows and macOS.</p>
+    </div>
+    <div class="hc-cta">
+      <a class="btn btn-primary btn-lg" href="/hypercode">Download HyperCode</a>
+      <span class="hc-note">v0.1.1 · Free trial</span>
     </div>
   </div>
 </section>
@@ -847,7 +879,11 @@ const I18N={
     'hero.accent':'lightweight',
     'hero.title2':'for the edge.',
     'hero.sub':'AwareLiquid is a bio-inspired cognitive AI framework. The attention-free O-Series carries a fixed-size state instead of a growing KV-cache — 0.381 MB at any context length, running CPU-only. Built for lightweight edge deployment, not for the data center.',
-    'hero.cta1':'Try the live demo','hero.cta2':'Read the paper →',
+    'hero.cta1':'Get HyperCode','hero.cta2':'Try the live demo',
+    'hc.label':'Product','hc.h2':'HyperCode — an AI that finishes the work.',
+    'hc.lead':'Give it one clear instruction and it works for hours until everything is done. 228+ built-in domain skills across finance, law, academia and private equity. No VPN, no setup — one-click install on Windows and macOS.',
+    'hc.cta':'Download HyperCode','hc.note':'v0.1.1 · Free trial',
+    'nav.hypercode':'HyperCode',
     'hero.m1':'Carried state','hero.m2':'Context','hero.m3':'vs KV-cache',
     'rail.latest':'Latest','rail.more':'Read more →',
     'ind.eyebrow':'Where it runs',
@@ -993,7 +1029,11 @@ const I18N={
     'hero.accent':'轻量化',
     'hero.title2':'部署。',
     'hero.sub':'AwareLiquid 是一个仿生认知 AI 框架。无注意力的 O 系列用固定大小的状态替代不断膨胀的 KV 缓存——任意上下文长度下恒为 0.381 MB，纯 CPU 运行。为轻量化端侧部署而生，不为数据中心而生。',
-    'hero.cta1':'立即试用','hero.cta2':'阅读论文 →',
+    'hero.cta1':'获取 HyperCode','hero.cta2':'在线体验',
+    'hc.label':'产品','hc.h2':'HyperCode — 把活干完的 AI。',
+    'hc.lead':'给它一条清晰指令，连续工作数小时，直到全部做完。内置 228+ 领域技能，覆盖金融、法律、学术与私募。免 VPN、免配置 —— Windows 与 macOS 一键安装。',
+    'hc.cta':'下载 HyperCode','hc.note':'v0.1.1 · 免费试用',
+    'nav.hypercode':'HyperCode',
     'hero.m1':'携带状态','hero.m2':'上下文','hero.m3':'对比 KV 缓存',
     'rail.latest':'最新','rail.more':'查看更多 →',
     'ind.eyebrow':'落地场景',
@@ -1153,6 +1193,12 @@ const I18N_MAP=[
   ['.hero-sub','hero.sub','text'],
   ['.hero-ctas .btn-primary','hero.cta1','text'],
   ['.hero-ctas .btn-ghost','hero.cta2','text'],
+  ['.hc-copy .label','hc.label','text'],
+  ['.hc-copy h2','hc.h2','text'],
+  ['.hc-copy p','hc.lead','text'],
+  ['.hc-cta .btn','hc.cta','text'],
+  ['.hc-note','hc.note','text'],
+  ['.nav-links a[href="/hypercode"]','nav.hypercode','text'],
   ['.rail-head a.label','rail.more','text'],
   ['.ind-lead','ind.lead','text'],
   ['.features-section .eyebrow','arch.eyebrow','text'],
