@@ -242,8 +242,11 @@ html[data-theme="dark"] .hov::before{background-image:linear-gradient(transparen
    stats strip, so the full --section-pad would leave the rule stranded. */
 .hero{padding:clamp(72px,8vw,96px) 0 var(--section-gap);position:relative}
 .hero-grid{display:grid;gap:0}
+.hero-visual{display:none}
+.unicorn-scene{width:100%;height:420px}
 @media(min-width:1000px){
-  .hero-grid{grid-template-columns:2fr 1fr}
+  .hero-grid{grid-template-columns:1.4fr 1fr}
+  .hero-visual{display:block;border-left:1px solid var(--rule);padding-left:32px;margin-left:32px;align-self:center}
   .hero-aside{border-left:1px solid var(--rule);padding-left:32px;margin-left:32px}
 }
 @media(max-width:999px){.hero-aside{border-top:1px solid var(--rule);margin-top:48px;padding-top:8px}}
@@ -697,6 +700,9 @@ html[data-theme="light"] .chart-fig img{background:#fff}
           <a class="btn btn-ghost btn-lg" href="#demo">Try the live demo</a>
         </div>
       </div>
+      <aside class="hero-visual" aria-hidden="true">
+        <div id="unicorn-scene" class="unicorn-scene"></div>
+      </aside>
     </div>
   </div>
 </section>
@@ -1720,6 +1726,38 @@ refresh();
       history.replaceState(null,'',location.pathname+location.hash);
     }
   }catch(e){}
+})();
+</script>
+
+<!-- ── Unicorn Studio hero scene ── -->
+<script async src="https://www.unicorn.studio/static/unicornStudio.umd.js"></script>
+<script>
+// Load the hero motion scene if the Unicorn loader arrived. Fails silently
+// (hero stays text-only) when the CDN is blocked or slow — never blocks the page.
+(function(){
+  var el = document.getElementById('unicorn-scene');
+  if (!el) return;
+  function mount(){
+    if (typeof UnicornStudio === 'undefined') return;
+    UnicornStudio.addScene({
+      elementId: 'unicorn-scene',
+      projectId: 'J9hKoEakmhv3vmLvNb45',
+      production: true,
+      fps: 30,
+      dpi: 1.5,
+      lazyLoad: true
+    }).catch(function(e){ console.warn('[unicorn] scene failed:', e); });
+  }
+  if (typeof UnicornStudio !== 'undefined') { mount(); }
+  else {
+    window.addEventListener('unicornStudioReady', mount);
+    var tries = 0;
+    var t = setInterval(function(){
+      tries++;
+      if (typeof UnicornStudio !== 'undefined') { clearInterval(t); mount(); }
+      else if (tries > 30) { clearInterval(t); }
+    }, 1000);
+  }
 })();
 </script>
 </body>
