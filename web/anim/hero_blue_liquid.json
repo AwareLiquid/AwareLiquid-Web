@@ -359,22 +359,6 @@
                 "k": 100
               },
               "nm": "gradient_fill_blue"
-            },
-            {
-              "ty": "no",
-              "a": {
-                "a": 0,
-                "k": 18
-              },
-              "nm": "fine_grain_noise"
-            },
-            {
-              "ty": "ds",
-              "a": {
-                "a": 0,
-                "k": 12
-              },
-              "nm": "gaussian_blur"
             }
           ],
           "nm": "group_liquid"
