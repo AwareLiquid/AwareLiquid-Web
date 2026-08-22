@@ -1420,11 +1420,10 @@ function applyPageLang(lang){
 
 const langBtn=document.getElementById('langBtn');
 langBtn.addEventListener('click',()=>applyPageLang(PAGE_LANG==='zh'?'en':'zh'));
-// init lang on load
-(function(){
-  const l=localStorage.getItem('lang');
-  if(l&&l!=='en'){langBtn.textContent='EN';applyPageLang(l);}
-})();
+// init lang on load — deferred to AFTER CONTENT/renderWelcome are declared
+// (applyPageLang re-renders the demo welcome, which reads CONTENT; calling it
+// earlier hits the let/const temporal dead zone).
+let _langInitPending=true;
 
 // ── stats count-up animation ──
 const STAT_RE=/^([^0-9\-]*)([0-9]+(?:\.[0-9]+)?)(%|[A-Z]*)(.*)$/;
@@ -1482,6 +1481,14 @@ const CONTENT={
       examples:[['Once upon a time, there was a little cat named Lily.','续写故事'],['The sun was shining and Tom wanted to play outside.','续写故事'],['One day, a girl found a big red box under the tree.','续写故事'],['There was a happy dog who liked to run very fast.','续写故事']]},
   },
 };
+
+// Deferred initial language application — runs after CONTENT and renderWelcome
+// exist (avoids the TDZ crash the eager call caused).
+if (_langInitPending){
+  const l=localStorage.getItem('lang');
+  if(l&&l!=='en'){langBtn.textContent='EN';applyPageLang(l);}
+  _langInitPending=false;
+}
 
 function renderWelcome(kind){
   const src=CONTENT[kind]||CONTENT.scratch;
