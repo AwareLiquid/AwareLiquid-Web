@@ -701,7 +701,30 @@ html[data-theme="light"] .chart-fig img{background:#fff}
         </div>
       </div>
       <aside class="hero-visual" aria-hidden="true">
-        <div id="hero-anim" class="hero-anim"></div>
+        <div id="hero-anim" class="hero-anim">
+          <svg viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" role="presentation">
+            <defs>
+              <linearGradient id="heroLiquidGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#0d154f" stop-opacity="0.85"/>
+                <stop offset="0.35" stop-color="#3340d9" stop-opacity="0.7"/>
+                <stop offset="0.65" stop-color="#b8c0fa" stop-opacity="0.65"/>
+                <stop offset="1" stop-color="#fafaff" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="heroLiquidBlur" x="-20%" y="-50%" width="140%" height="200%">
+                <feGaussianBlur stdDeviation="12"/>
+              </filter>
+            </defs>
+            <path fill="none" stroke="url(#heroLiquidGrad)" stroke-width="26" stroke-linecap="round" filter="url(#heroLiquidBlur)">
+              <animate attributeName="d" dur="7.5s" repeatCount="indefinite" calcMode="spline"
+                keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1"
+                keyTimes="0;0.333;0.666;1"
+                values="M 0 570 C 480 370 980 510 1600 410;
+                        M 0 430 C 540 640 1180 330 1600 480;
+                        M 0 490 C 450 340 1160 530 1600 440;
+                        M 0 570 C 480 370 980 510 1600 410"/>
+            </path>
+          </svg>
+        </div>
       </aside>
     </div>
   </div>
@@ -1735,22 +1758,6 @@ refresh();
       history.replaceState(null,'',location.pathname+location.hash);
     }
   }catch(e){}
-})();
-</script>
-
-<!-- ── Lottie hero scene ── -->
-<script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
-<script>
-(function(){
-  var el = document.getElementById('hero-anim');
-  if (!el || typeof lottie === 'undefined') return;
-  var anim = lottie.loadAnimation({
-    container: el,
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: '/static/anim/hero_blue_liquid.json'
-  });
 })();
 </script>
 </body>
