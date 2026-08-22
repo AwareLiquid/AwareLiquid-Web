@@ -265,10 +265,14 @@ function applyHC(lang){
   if (langBtn) langBtn.textContent = lang === 'en' ? '中文' : 'EN';
   localStorage.setItem('hc_lang', lang);
 }
-(function(){
+(function(){{
   var saved = localStorage.getItem('hc_lang') || 'zh';
   applyHC(saved);
-})();
+}})();
+document.getElementById('hcLangBtn').addEventListener('click', function(){{
+  var cur = document.documentElement.lang === 'en' ? 'en' : 'zh-CN';
+  applyHC(cur === 'en' ? 'zh' : 'en');
+}});
 </script>
 
 </body>
