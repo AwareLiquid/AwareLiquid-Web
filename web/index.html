@@ -881,9 +881,9 @@ html[data-theme="light"] .chart-fig img{background:#fff}
           <span class="mc-status s-tr">◐ Training</span>
         </div>
         <h3 class="mc-name">M1-2B</h3>
-        <p class="mc-desc">1.9B-parameter hybrid (2912d × 35L) on the A100. Currently training on A100. Weights will be published when the run converges.</p>
+        <p class="mc-desc">1.9B-parameter hybrid (2912d × 35L) training on A100. A learning-rate scheduling bug that stalled convergence is fixed — validation PPL is now falling steadily (107 → 74.75, -30%). Weights will be published when the run converges.</p>
         <div class="mc-meta">
-          <span>1.9B params</span><span>35 layers · 2912d</span><span>early steps</span>
+          <span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span>
         </div>
         <div class="mc-cta">
           <span class="btn btn-ghost" style="cursor:default">Weights when it converges</span>
@@ -1216,8 +1216,8 @@ const I18N={
     'mc.2.meta':'<span>48M params</span><span>attention-free</span><span>CPU-friendly</span>',
     'mc.2.cta1':'Download weights ↓','mc.2.note':'GitHub release · serve with server.py',
     'mc.3.series':'M-Series','mc.3.status':'◐ Training','mc.3.name':'M1-2B',
-    'mc.3.desc':'1.9B-parameter hybrid (2912d × 35L) currently training on A100. Weights will be published when the run converges.',
-    'mc.3.meta':'<span>1.9B params</span><span>35 layers · 2912d</span><span>early steps</span>',
+    'mc.3.desc':'1.9B-parameter hybrid (2912d × 35L) training on A100. A learning-rate scheduling bug that stalled convergence is fixed — validation PPL is now falling steadily (107 → 74.75, -30%). Weights will be published when the run converges.',
+    'mc.3.meta':'<span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span>',
     'mc.3.cta1':'Weights when it converges','mc.3.note':'Training on rented A100',
     'mc.4.series':'O-Series','mc.4.status':'↓ Clone & run','mc.4.name':'O1-Anti — The Anti-Transformer',
     'mc.4.desc':'Three pillars against Transformer costs: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.',
@@ -1365,8 +1365,8 @@ const I18N={
     'mc.2.meta':'<span>4800 万参数</span><span>无注意力</span><span>CPU 友好</span>',
     'mc.2.cta1':'下载权重 ↓','mc.2.note':'GitHub Release · 用 server.py 起服务',
     'mc.3.series':'M 系列','mc.3.status':'◐ 训练中','mc.3.name':'M1-2B',
-    'mc.3.desc':'19 亿参数混合模型（2912d × 35 层），A100 训练中。收敛后发布权重。',
-    'mc.3.meta':'<span>19 亿参数</span><span>35 层 · 2912d</span><span>早期步骤</span>',
+    'mc.3.desc':'19 亿参数混合模型（2912d × 35 层），A100 训练中。已修复学习率调度问题，验证 PPL 稳步下降（107 → 74.75，-30%）。收敛后发布权重。',
+    'mc.3.meta':'<span>19 亿参数</span><span>35 层 · 2912d</span><span>收敛中 · PPL -30%</span>',
     'mc.3.cta1':'收敛后发布权重','mc.3.note':'租用 A100 训练中',
     'mc.4.series':'O 系列','mc.4.status':'↓ 克隆运行','mc.4.name':'O1-Anti — 反 Transformer',
     'mc.4.desc':'三支柱对抗 Transformer 成本：神经液态邻接（缓存小 8&times;）、稀疏模块图（27% 激活）、非自回归解码（前向少 3.4&times;）。MQAR 召回（wd=0.1）：与注意力同为 1.000；Mamba 0.07-0.10。22/22 测试。',

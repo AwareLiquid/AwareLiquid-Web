@@ -128,8 +128,8 @@
           <span class="mc-status s-tr" data-i18n="m4.status">◐ Training</span>
         </div>
         <h3 class="mc-name">M1-2B</h3>
-        <p class="mc-desc" data-i18n="m4.desc">1.9B-parameter hybrid (2912d × 35L) in training. Checkpoint exists, run not finished — listed so the roadmap is visible.</p>
-        <div class="mc-meta"><span>1.9B params</span><span>35 layers · 2912d</span><span>early steps</span></div>
+        <p class="mc-desc" data-i18n="m4.desc">1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.</p>
+        <div class="mc-meta"><span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span></div>
         <div class="mc-cta">
           <span class="btn" style="cursor:default" data-i18n="m4.cta">Weights when it converges</span>
           <span class="mc-note" data-i18n="m4.note">Training on rented A100</span>
@@ -162,7 +162,7 @@ var I18N = {
     "m1.status":"● Live on site","m1.desc":"From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.","m1.note":"514MB serve checkpoint · gpt2 tokenizer",
     "m2.status":"● Live on site","m2.desc":"Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.","m2.note":"24.8MB checkpoint · replicate the live demo",
     "m3.status":"↓ Download","m3.desc":"Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.","m3.note":"194MB checkpoint · gpt2 tokenizer",
-    "m4.status":"◐ Training","m4.desc":"1.9B-parameter hybrid (2912d × 35L) in training. Checkpoint exists, run not finished — listed so the roadmap is visible.","m4.cta":"Weights when it converges","m4.note":"Training on rented A100",
+    "m4.status":"◐ Training","m4.desc":"1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.","m4.cta":"Weights when it converges","m4.note":"Training on rented A100",
     "btn.dl":"Download weights ↓","btn.dlAdapter":"Download adapter ↓","btn.try":"Try it live →",
     "qs.h2":"Quick start","qs.note":"All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.",
     "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
@@ -174,7 +174,7 @@ var I18N = {
     "m1.status":"● 官网在线","m1.desc":"从零训练的混合模型 —— 每层同时含注意力与液态核心。WikiText-103 上 50K 步。英文文本续写。","m1.note":"514MB 推理 checkpoint · gpt2 分词器",
     "m2.status":"● 官网在线","m2.desc":"冻结的 TinyLlama-1.1B-Chat 基座 + 训练的液态核心残差适配器 + LoRA。对话模型 —— 中英双语。","m2.note":"24.8MB checkpoint · 复现线上 demo",
     "m3.status":"↓ 可下载","m3.desc":"注意力自由的 O 系列边缘模型。0.381MB 恒定携带状态,与上下文长度无关 —— O(1) 内存路线。CPU 可跑。","m3.note":"194MB checkpoint · gpt2 分词器",
-    "m4.status":"◐ 训练中","m4.desc":"1.9B 参数混合模型 (2912d × 35L) 训练中。checkpoint 已存在,训练未完成 —— 列出以保持路线图透明。","m4.cta":"收敛后发布权重","m4.note":"租用 A100 训练中",
+    "m4.status":"◐ 训练中","m4.desc":"1.9B 参数混合模型 (2912d × 35L) 训练中。已修复学习率调度问题，验证 PPL 稳步下降（107 → 74.75，-30%）。收敛后发布权重。","m4.cta":"收敛后发布权重","m4.note":"租用 A100 训练中",
     "btn.dl":"下载权重 ↓","btn.dlAdapter":"下载适配器 ↓","btn.try":"在线体验 →",
     "qs.h2":"快速开始","qs.note":"所有模型纯 CPU 可跑。128M 混合模型约需 1GB 内存;TinyLlama 适配器约需 5GB。完整说明见仓库 README。",
     "foot.research":"研究","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司"

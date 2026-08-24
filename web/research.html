@@ -789,6 +789,10 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <figcaption>Fig. 6c — Selective Copy, matched 200K params, equal 1500-step budget, fair full-sequence decode (BENCHMARKS.md). MT-LNN leads at every length; the ratio widens to ×2.0 at T=229. Boundary: toy-scale task — most of the gain is the liquid recurrence; the microtubule machinery adds a smaller increment.</figcaption>
       </figure>
 
+      <h3>Length Curriculum on the Native 126M — ×8 Extrapolation, Two Runs Consistent</h3>
+      <p>The native 126M MT-LNN (d=832, 12 layers) trained with a staged length curriculum (512 → 1024 → 2048 → 4096 tokens; 8192 under AMP). After each stage, extrapolation probes at ×2/×4/×8 the trained length: <strong>probe loss at 8× context stays in the 1× context range</strong> — at 2K training, 559 (8× → 16K) vs 587 (1×); at 4K training, 414 (4× → 16K) vs 424 (1×) — no explosion. The same regularity reproduces across two independent runs (fp32 and AMP).</p>
+      <p><strong>Numerical-precision lesson:</strong> AMP (bf16) degrades MT-LNN training loss 3–7.5× at equal stage — the exp/tanh closed-form LTC recurrence and parallel scan are numerically sensitive in bf16. Long-sequence MT-LNN training therefore runs in <strong>fp32 with gradient checkpointing</strong>, not AMP. Current boundary: 32K+ probes still OOM (explicit attention bias B×H×T²) — the next step is chunked attention.</p>
+
       <h3>Selective-Decay Parameterization — Extrapolation Decided by exp vs tanh</h3>
       <p>Length extrapolation on parity is decided by the transition parameterization. The exp form (&lambda;<sub>t</sub> = 2&middot;exp(&minus;softplus(&middot;)/&tau;) &minus; 1, which reaches &plusmn;1 exactly) extrapolates at <strong>0.956</strong> (3 seeds: 0.869 / 1.000 / 1.000); the saturating tanh form collapses to <strong>0.034</strong>. Derivation and recipe: ABLATIONS.md (E5d/E5e).</p>
 
