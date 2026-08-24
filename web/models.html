@@ -48,6 +48,19 @@
   .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
   .btn.primary:hover { opacity:.88; }
   .mc-note { font-size:11.5px; color:var(--muted); width:100%; }
+  .mc-use { font-size:13px; color:var(--fg); margin-bottom:14px; }
+  .mc-use .u-label { font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); margin-right:6px; }
+  .compare-sec h2 { font-size:24px; margin-bottom:8px; }
+  .cmp-lead { color:var(--muted); font-size:14px; margin-bottom:24px; }
+  .cmp-scroll { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--bg2); }
+  .compare-table { width:100%; border-collapse:collapse; font-size:13.5px; min-width:640px; }
+  .compare-table th { text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:12px 16px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  .compare-table td { padding:14px 16px; border-bottom:1px solid var(--line); }
+  .compare-table tbody tr:last-child td { border-bottom:none; }
+  .compare-table .cmp-name { font-weight:700; white-space:nowrap; }
+  .compare-table td.num { color:var(--muted); white-space:nowrap; }
+  .cmp-note { font-size:12.5px; color:var(--muted); margin-top:14px; }
+  .cmp-note a { color:var(--accent); }
   .quickstart { max-width:720px; margin:0 auto; background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px 30px; }
   .quickstart h2 { font-size:20px; margin-bottom:14px; }
   .quickstart code { display:block; background:#000; border:1px solid var(--line); border-radius:10px; padding:16px 18px; font-family:ui-monospace,Consolas,monospace; font-size:13px; line-height:1.7; overflow-x:auto; color:#e8e8ee; margin-bottom:10px; }
@@ -88,6 +101,7 @@
         </div>
         <h3 class="mc-name">M1-128M</h3>
         <p class="mc-desc" data-i18n="m1.desc">From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.</p>
+        <p class="mc-use" data-i18n="m1.use"><span class="u-label">Best for</span> English text continuation &amp; inference-cost demos.</p>
         <div class="mc-meta"><span>128.6M params</span><span>12 layers · 832d</span><span>512-token window</span></div>
         <div class="mc-cta">
           <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/m1-128m-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dl">Download weights ↓</a>
@@ -102,6 +116,7 @@
         </div>
         <h3 class="mc-name">M1 · TinyLlama-1.1B + MT v2s</h3>
         <p class="mc-desc" data-i18n="m2.desc">Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.</p>
+        <p class="mc-use" data-i18n="m2.use"><span class="u-label">Best for</span> Bilingual conversation with cross-turn memory.</p>
         <div class="mc-meta"><span>1.1B base + 2.3M adapter</span><span>chat-capable</span><span>bilingual EN/ZH</span></div>
         <div class="mc-cta">
           <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/mt-adapter-v2s-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dlAdapter">Download adapter ↓</a>
@@ -116,6 +131,7 @@
         </div>
         <h3 class="mc-name">O1-48M</h3>
         <p class="mc-desc" data-i18n="m3.desc">Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.</p>
+        <p class="mc-use" data-i18n="m3.use"><span class="u-label">Best for</span> Always-on edge streaming, CPU-only inference.</p>
         <div class="mc-meta"><span>48M params</span><span>attention-free</span><span>CPU-friendly</span></div>
         <div class="mc-cta">
           <a class="btn primary" href="https://github.com/AwareLiquid/M1/releases/tag/o1-48m-v1" target="_blank" rel="noopener noreferrer" data-i18n="btn.dl">Download weights ↓</a>
@@ -129,6 +145,7 @@
         </div>
         <h3 class="mc-name">M1-2B</h3>
         <p class="mc-desc" data-i18n="m4.desc">1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.</p>
+        <p class="mc-use" data-i18n="m4.use"><span class="u-label">Best for</span> Stronger capability once training converges.</p>
         <div class="mc-meta"><span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span></div>
         <div class="mc-cta">
           <span class="btn" style="cursor:default" data-i18n="m4.cta">Weights when it converges</span>
@@ -136,6 +153,60 @@
         </div>
       </article>
     </div>
+  </section>
+
+  <section class="compare-sec">
+    <h2 data-i18n="cmp.h2">Family comparison</h2>
+    <p class="cmp-lead" data-i18n="cmp.lead">One glance: what each model is for, how big it is, and where to get it.</p>
+    <div class="cmp-scroll">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th data-i18n="cmp.c1">Model</th>
+            <th data-i18n="cmp.c2">Best for</th>
+            <th data-i18n="cmp.c3">Params</th>
+            <th data-i18n="cmp.c4">Window</th>
+            <th data-i18n="cmp.c5">Carried state</th>
+            <th data-i18n="cmp.c6">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="cmp-name">M1-128M</td>
+            <td data-i18n="cmp.r1.best">English text continuation</td>
+            <td class="num">128.6M</td>
+            <td class="num">512 tokens</td>
+            <td class="num">0.381 MB (O(1))</td>
+            <td><span class="s-live" data-i18n="cmp.r1.status">● Live on site</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">M1 · TinyLlama adapter</td>
+            <td data-i18n="cmp.r2.best">Bilingual conversation, cross-turn memory</td>
+            <td class="num">1.1B + 2.3M</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="s-live" data-i18n="cmp.r2.status">● Live on site</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">O1-48M</td>
+            <td data-i18n="cmp.r3.best">Always-on edge streaming, CPU-only</td>
+            <td class="num">48M</td>
+            <td class="num">—</td>
+            <td class="num">0.381 MB (O(1))</td>
+            <td><span class="s-dl" data-i18n="cmp.r3.status">↓ Download</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">M1-2B</td>
+            <td data-i18n="cmp.r4.best">Stronger capability — training in progress</td>
+            <td class="num">1.9B</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="s-tr" data-i18n="cmp.r4.status">◐ Training</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note" data-i18n="cmp.note">Research family (O1-Anti, C1, O1-Sound, AwareLiquid-Physic): clone &amp; run from <a href="https://github.com/AwareLiquid" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid</a>.</p>
   </section>
 
   <section>
@@ -163,6 +234,17 @@ var I18N = {
     "m2.status":"● Live on site","m2.desc":"Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.","m2.note":"24.8MB checkpoint · replicate the live demo",
     "m3.status":"↓ Download","m3.desc":"Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.","m3.note":"194MB checkpoint · gpt2 tokenizer",
     "m4.status":"◐ Training","m4.desc":"1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.","m4.cta":"Weights when it converges","m4.note":"Training on rented A100",
+    "m1.use":"<span class='u-label'>Best for</span> English text continuation &amp; inference-cost demos.",
+    "m2.use":"<span class='u-label'>Best for</span> Bilingual conversation with cross-turn memory.",
+    "m3.use":"<span class='u-label'>Best for</span> Always-on edge streaming, CPU-only inference.",
+    "m4.use":"<span class='u-label'>Best for</span> Stronger capability once training converges.",
+    "cmp.h2":"Family comparison","cmp.lead":"One glance: what each model is for, how big it is, and where to get it.",
+    "cmp.c1":"Model","cmp.c2":"Best for","cmp.c3":"Params","cmp.c4":"Window","cmp.c5":"Carried state","cmp.c6":"Status",
+    "cmp.r1.best":"English text continuation","cmp.r1.status":"● Live on site",
+    "cmp.r2.best":"Bilingual conversation, cross-turn memory","cmp.r2.status":"● Live on site",
+    "cmp.r3.best":"Always-on edge streaming, CPU-only","cmp.r3.status":"↓ Download",
+    "cmp.r4.best":"Stronger capability — training in progress","cmp.r4.status":"◐ Training",
+    "cmp.note":"Research family (O1-Anti, C1, O1-Sound, AwareLiquid-Physic): clone &amp; run from <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a>.",
     "btn.dl":"Download weights ↓","btn.dlAdapter":"Download adapter ↓","btn.try":"Try it live →",
     "qs.h2":"Quick start","qs.note":"All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.",
     "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
@@ -175,6 +257,17 @@ var I18N = {
     "m2.status":"● 官网在线","m2.desc":"冻结的 TinyLlama-1.1B-Chat 基座 + 训练的液态核心残差适配器 + LoRA。对话模型 —— 中英双语。","m2.note":"24.8MB checkpoint · 复现线上 demo",
     "m3.status":"↓ 可下载","m3.desc":"注意力自由的 O 系列边缘模型。0.381MB 恒定携带状态,与上下文长度无关 —— O(1) 内存路线。CPU 可跑。","m3.note":"194MB checkpoint · gpt2 分词器",
     "m4.status":"◐ 训练中","m4.desc":"1.9B 参数混合模型 (2912d × 35L) 训练中。已修复学习率调度问题，验证 PPL 稳步下降（107 → 74.75，-30%）。收敛后发布权重。","m4.cta":"收敛后发布权重","m4.note":"租用 A100 训练中",
+    "m1.use":"<span class='u-label'>适用场景</span> 英文文本续写与推理成本演示。",
+    "m2.use":"<span class='u-label'>适用场景</span> 带跨轮记忆的中英双语对话。",
+    "m3.use":"<span class='u-label'>适用场景</span> 常开端侧流式处理，纯 CPU 推理。",
+    "m4.use":"<span class='u-label'>适用场景</span> 收敛后提供更强能力（训练中）。",
+    "cmp.h2":"家族对比","cmp.lead":"一眼看清每个模型的定位、规模与获取方式。",
+    "cmp.c1":"模型","cmp.c2":"适用场景","cmp.c3":"参数","cmp.c4":"上下文窗口","cmp.c5":"携带状态","cmp.c6":"状态",
+    "cmp.r1.best":"英文文本续写","cmp.r1.status":"● 官网在线",
+    "cmp.r2.best":"中英对话、跨轮记忆","cmp.r2.status":"● 官网在线",
+    "cmp.r3.best":"常开端侧流式、纯 CPU","cmp.r3.status":"↓ 可下载",
+    "cmp.r4.best":"更强能力——训练中","cmp.r4.status":"◐ 训练中",
+    "cmp.note":"研究系列（O1-Anti、C1、O1-Sound、AwareLiquid-Physic）：从 <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a> 克隆运行。",
     "btn.dl":"下载权重 ↓","btn.dlAdapter":"下载适配器 ↓","btn.try":"在线体验 →",
     "qs.h2":"快速开始","qs.note":"所有模型纯 CPU 可跑。128M 混合模型约需 1GB 内存;TinyLlama 适配器约需 5GB。完整说明见仓库 README。",
     "foot.research":"研究","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司"
