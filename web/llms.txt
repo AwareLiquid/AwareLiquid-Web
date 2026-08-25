@@ -8,9 +8,9 @@
 - **Tagline (zh)**: 最强大的 AI 编程软件与工作助手 —— 一个清晰的任务指令,连续工作数小时,直到全部做完
 - **Tagline (en)**: The most powerful AI coding software & work assistant — one clear instruction, it works for hours until everything is done.
 - **Page**: https://awareliquid.ai/hypercode
-- **Downloads (public repo)**: https://github.com/AwareLiquid/HyperCode (v0.1.4)
+- **Downloads (public repo)**: https://github.com/AwareLiquid/HyperCode (latest: https://github.com/AwareLiquid/HyperCode/releases/latest)
 - **Windows**: NSIS one-click installer (.exe)
-- **macOS**: dmg (Apple Silicon; Intel via CLI zip)
+- **macOS**: dmg (Apple Silicon and Intel)
 - **Closed-source repo**: https://github.com/everest-an/hypercode
 - **Price**: free trial (7 days × ¥30 credits, no auto-charge) / BYOK free / subscription from ¥59/month
 - **Model**: DeepSeek (bring your own key; one key shared across all agents)
@@ -18,7 +18,7 @@
 ### Key capabilities
 
 - Autonomous long-running tasks: checkpoint recovery + background compaction + verification loops; multi-hour tasks don't crash or degrade
-- 228+ built-in domain skills (financial research 55, legal 152, academic 20, PE fundraising) — triggered by keywords in Chinese or English
+- 229 built-in domain skills (financial research 55, legal 152, academic 20, PE fundraising) — triggered by keywords in Chinese or English
 - Cross-session memory: decisions, pitfalls and preferences accumulate; it learns your project
 - One-click install, no VPN, no key setup, no plugin hassle
 - Obsidian-style knowledge vault GUI: file tree, wiki-link preview, knowledge graph, task panel
