@@ -14,7 +14,7 @@ AwareLiquid / MT-LNN 的**非模型资产仓库**（内部私有）：投资人 
 
 | 目录 | 内容 | 原 M1 路径 |
 |---|---|---|
-| `web/` | **线上官网 awareliquid.ai 的源码**：`index.html`、`hypercode.html`（产品下载页）、`api`/`models`/`demo`/`about`/`research`/`privacy`/`terms`、`sitemap.xml`、`robots.txt`、`llms.txt` | 新建 |
+| `web/` | **线上官网 awareliquid.ai 的源码**：`index.html`、`hypercode.html`（产品下载页）、`api`/`models`/`demo`/`about`/`research`/`privacy`/`terms`、`sitemap.xml`、`robots.txt`、`llms.txt` 、`check.mjs`（站点自检） | 新建 |
 | `decks/` | 投资人 deck（HTML/PDF/PPTX/LaTeX 源码 + 构建脚本 + arXiv 论文 tex/pdf 副本）| `assets/decks/`、根目录 `AwareLiquid Investor Deck Light.md` |
 | `papers/` | 论文成品：MT-LNN docx、v2 预训练论文 PDF（中英）、中文 tex 源 | 根目录 |
 | `blog/` | 技术博客与成本分析文章（`TECH_BLOG.md`、`CSDN_BLOG_COST_ANALYSIS.md`）| 根目录 |
@@ -29,4 +29,5 @@ AwareLiquid / MT-LNN 的**非模型资产仓库**（内部私有）：投资人 
 
 - **编译 deck / 论文（Windows）**：`tools/tectonic_bin/tectonic.exe decks/investor_deck_mt_lnn.tex`（中文文档需要 `fonts/` 下的 NotoSC 字体已安装）
 - **重新生成 figures**：在 M1 仓库运行 `python scripts/plots/plot_microtubules.py` 等（输出到运行目录）
+- **改完官网后自检**：`node web/check.mjs`（加 `--live` 会顺带抓线上比对）。检查 sitemap 与页面是否对得上、每页有没有 canonical、IndexNow 密钥文件是否与文件名逐字节相等 —— 这几样出问题时文件都还在、都还返回 200,只有搜索引擎看得见
 - **Deck 内容修改**：`tools/deck-scripts/` 是历史一次性编辑脚本，仅供参考；直接改 `decks/*.tex` 后重编译即可
