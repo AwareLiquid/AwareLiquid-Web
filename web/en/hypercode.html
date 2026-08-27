@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/static/favicon-dark.png" type="image/png">
+<title>HyperCode — The Most Powerful AI Coding Software & Work Assistant | AwareLiquid</title>
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/en/hypercode">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/hypercode">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/hypercode">
+<link rel="canonical" href="https://awareliquid.ai/en/hypercode">
+<meta name="description" content="HyperCode 是 AwareLiquid 出品的 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。免 VPN、一键安装、内置 228+ 领域技能(金融/法律/学术),支持 Windows 与 macOS。">
+<link rel="canonical" href="https://awareliquid.ai/hypercode">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://awareliquid.ai/hypercode">
+<meta property="og:title" content="HyperCode — 写代码,干工作,同一个大脑">
+<meta property="og:description" content="最强大的 AI 编程软件与工作助手。一个清晰的任务指令,连续工作数小时,直到全部做完。">
+<meta property="og:site_name" content="AwareLiquid">
+<meta property="og:image" content="https://awareliquid.ai/static/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="HyperCode AI coding software">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="HyperCode">
+<meta name="twitter:description" content="AI coding software and work assistant">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<style>
+  :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  a { color:inherit; text-decoration:none; }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:12px 0; font-size:14px; }
+  .nav .brand { font-weight:700; letter-spacing:.5px; color:var(--fg); }
+  .nav .brand span { color:var(--muted); font-weight:400; }
+  .nav a { color:var(--muted); margin-left:24px; }
+  .nav a:hover { color:var(--fg); }
+.hero { text-align:center; padding:6px 0 32px; }
+.hc-anim { width:min(560px,92%); aspect-ratio:8/5; margin:0 auto 12px; overflow:hidden; border-radius:14px; background:#000; }
+.hc-anim video { width:100%; height:100%; object-fit:cover; display:block; }
+.hero .mark { width:56px; height:56px; margin:0 auto 18px; display:block; }
+.hero h1 { font-size:40px; font-weight:800; letter-spacing:-1px; }
+.hero .sub { font-size:18px; color:var(--muted); margin-top:10px; max-width:640px; margin-left:auto; margin-right:auto; }
+.cta { display:flex; gap:14px; justify-content:center; margin-top:26px; flex-wrap:wrap; }
+  .btn { display:inline-block; padding:13px 30px; border-radius:10px; font-weight:600; font-size:15px; border:1px solid var(--line); transition:.15s; }
+  .btn:hover { border-color:var(--muted); }
+  .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  .btn.primary:hover { opacity:.88; }
+  .platform-note { color:var(--muted); font-size:13px; margin-top:16px; }
+  .smartscreen-note { max-width:640px; margin:18px auto 0; padding:14px 18px; border:1px solid var(--line); border-radius:10px; background:var(--bg2); color:var(--muted); font-size:13px; line-height:1.6; text-align:left; }
+  .smartscreen-note strong { color:var(--fg); }
+  section { padding:56px 0; border-top:1px solid var(--line); }
+  h2 { font-size:28px; font-weight:700; text-align:center; letter-spacing:-.5px; margin-bottom:12px; }
+  .sec-sub { text-align:center; color:var(--muted); margin-bottom:40px; font-size:15px; }
+  .grid { display:grid; gap:18px; }
+  .grid.cols2 { grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); }
+  .grid.cols3 { grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); }
+  .grid.cols4 { grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+  .card { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px; }
+  .card h3 { font-size:17px; margin-bottom:8px; }
+.card h3 .ic { width:17px; height:17px; vertical-align:-3px; margin-right:8px; color:var(--accent); }
+.skill-tag .ic { width:14px; height:14px; vertical-align:-2px; margin-right:6px; color:var(--accent); }
+  .card p { color:var(--muted); font-size:14px; }
+  .card .icon { width:44px; height:44px; margin-bottom:14px; }
+  .dual { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:720px){ .dual { grid-template-columns:1fr; } }
+  .dual .card { text-align:center; padding:36px 26px; }
+  .dual .mark { width:64px; height:64px; margin:0 auto 16px; display:block; }
+  .dual .name { font-size:20px; font-weight:700; margin-bottom:6px; }
+  .price-table { max-width:760px; margin:0 auto; display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+  .price-table .card p { margin-top:6px; }
+  .price-table .tag { display:inline-block; font-size:12px; border:1px solid var(--line); border-radius:999px; padding:2px 10px; color:var(--muted); margin-bottom:10px; }
+  .skills-list { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+  .skill-tag { border:1px solid var(--line); border-radius:999px; padding:7px 16px; font-size:13px; color:var(--fg); background:var(--bg2); }
+  .dl { text-align:center; }
+  .dl .btn { min-width:200px; }
+  .faq { max-width:720px; margin:0 auto; }
+  .faq details { border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin-bottom:12px; background:var(--bg2); }
+  .faq summary { font-weight:600; cursor:pointer; font-size:15px; }
+  .faq p { color:var(--muted); font-size:14px; margin-top:10px; }
+  footer { border-top:1px solid var(--line); padding:32px 0 48px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--fg); }
+  .backhome { color:var(--muted); font-size:13px; }
+  .lang-btn { background:var(--bg2); color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:4px 12px; font-size:12.5px; cursor:pointer; margin-left:18px; }
+  .lang-btn:hover { color:var(--fg); border-color:var(--muted); }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HyperCode",
+  "alternateName": ["HyperWork", "HyperCode 桌面版"],
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Windows 10, Windows 11, macOS",
+  "description": "HyperCode 是 AwareLiquid 出品的最强大的 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。内置 228+ 领域技能(金融投研/法律实务/学术科研/私募基金),关键词自动触发。免 VPN、一键安装、自带 DeepSeek 接入,支持 Windows 与 macOS。",
+  "inLanguage": ["zh-CN", "en"],
+  "softwareVersion": "0.1.17",
+  "downloadUrl": "https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-win-x64.exe",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "CNY",
+    "description": "7 天 × ¥30 点数免费试用,到期绝不自动扣费;BYOK 自带 key 免费档;订阅 ¥59/月起"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "AwareLiquid",
+    "url": "https://awareliquid.ai"
+  },
+  "keywords": "AI编程,AI coding,自主软件工程师,autonomous coding agent,编程智能体,金融投研,法律实务,学术论文,DeepSeek,HyperWork",
+  "featureList": [
+    "一个任务指令连续自主工作数小时,直到全部做完",
+    "228+ 内置领域技能(金融/法律/学术/私募),中英文关键词自动触发",
+    "跨会话记忆,越用越懂你的项目",
+    "免 VPN,一键安装,自带 DeepSeek,一个 key 全体代理共用",
+    "Obsidian 式知识库界面:文件树、双链笔记、知识图谱"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "HyperCode 和 HyperWork 是什么关系?",
+      "acceptedAnswer": { "@type": "Answer", "text": "同一个产品、同一个大脑。HyperCode 是产品总名,HyperWork 是它的工作助手模式——写代码用它,做估值、审合同、写论文也用同一个它,记忆与配置完全共享。" }
+    },
+    {
+      "@type": "Question",
+      "name": "需要 VPN 或海外信用卡吗?",
+      "acceptedAnswer": { "@type": "Answer", "text": "不需要。HyperCode 面向中国大陆开发者设计,所有依赖国内可达,算力默认接入国产 DeepSeek 模型,一个 API key 全体代理共用。" }
+    },
+    {
+      "@type": "Question",
+      "name": "一个任务能连续跑多久?",
+      "acceptedAnswer": { "@type": "Answer", "text": "支持数小时自主任务:检查点保证崩溃不重来,后台压缩保证上下文不退化。" }
+    },
+    {
+      "@type": "Question",
+      "name": "内置技能怎么触发?",
+      "acceptedAnswer": { "@type": "Answer", "text": "无需记忆命令,用中文或英文描述需求(如\"帮我做一份融资 PPT\"),系统自动匹配并调用对应专业工作流。" }
+    },
+    {
+      "@type": "Question",
+      "name": "代码和数据安全吗?",
+      "acceptedAnswer": { "@type": "Answer", "text": "HyperCode 全部本地运行,代码与文档不上传云端,API key 只存在你自己的环境变量里。" }
+    }
+  ]
+}
+</script>
+
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="/">AwareLiquid <span>· HyperCode</span></a>
+    <div>
+      <a href="/"><span data-i18n="nav.home">AwareLiquid Home</span></a>
+      <a href="#download"><span data-i18n="nav.dl">Download</span></a>
+      <a href="#pricing"><span data-i18n="nav.price">Pricing</span></a>
+      <a href="#faq"><span data-i18n="faq.h2">FAQ</span></a>
+      <button id="hcLangBtn" class="lang-btn" aria-label="切换语言 / Switch language">EN</button>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div id="hc-anim" class="hc-anim" aria-hidden="true">
+      <video autoplay muted loop playsinline preload="auto">
+        <source src="/static/video/hypercode_rigel.webm" type="video/webm">
+      </video>
+    </div>
+    <svg class="mark" viewBox="0 0 250 250" fill="#f5f5f7" shape-rendering="crispEdges" aria-label="HyperCode 徽记">
+      <rect x="60" y="70" width="20" height="10"/><rect x="50" y="80" width="20" height="10"/><rect x="40" y="90" width="20" height="10"/><rect x="30" y="100" width="20" height="10"/><rect x="20" y="110" width="20" height="10"/><rect x="10" y="120" width="20" height="10"/><rect x="20" y="130" width="20" height="10"/><rect x="30" y="140" width="20" height="10"/><rect x="40" y="150" width="20" height="10"/><rect x="50" y="160" width="20" height="10"/><rect x="60" y="170" width="20" height="10"/>
+      <rect x="120" y="90" width="10" height="10"/><rect x="120" y="100" width="10" height="10"/><rect x="120" y="140" width="10" height="10"/><rect x="120" y="150" width="10" height="10"/>
+      <rect x="110" y="100" width="10" height="10"/><rect x="110" y="110" width="10" height="10"/><rect x="110" y="130" width="10" height="10"/><rect x="110" y="140" width="10" height="10"/>
+      <rect x="130" y="100" width="10" height="10"/><rect x="130" y="110" width="10" height="10"/><rect x="130" y="130" width="10" height="10"/><rect x="130" y="140" width="10" height="10"/>
+      <rect x="100" y="110" width="10" height="10"/><rect x="100" y="120" width="10" height="10"/><rect x="100" y="130" width="10" height="10"/>
+      <rect x="140" y="110" width="10" height="10"/><rect x="140" y="120" width="10" height="10"/><rect x="140" y="130" width="10" height="10"/>
+      <rect x="90" y="120" width="10" height="10"/><rect x="150" y="120" width="10" height="10"/>
+      <rect x="170" y="70" width="20" height="10"/><rect x="180" y="80" width="20" height="10"/><rect x="190" y="90" width="20" height="10"/><rect x="200" y="100" width="20" height="10"/><rect x="210" y="110" width="20" height="10"/><rect x="220" y="120" width="20" height="10"/><rect x="210" y="130" width="20" height="10"/><rect x="200" y="140" width="20" height="10"/><rect x="190" y="150" width="20" height="10"/><rect x="180" y="160" width="20" height="10"/><rect x="170" y="170" width="20" height="10"/>
+    </svg>
+    <h1>HyperCode</h1>
+    <p class="sub"><span data-i18n="hero.sub">The most powerful AI coding software & work assistant.<br>One clear instruction — it works for hours until everything is done.</span></p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-win-x64.exe"><span data-i18n="hero.dlwin">Download Windows Desktop</span></a>
+      <a class="btn" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-mac-arm64.dmg"><span data-i18n="hero.dlmac">Download macOS Desktop</span></a>
+    </div>
+    <p class="platform-note"><span data-i18n="hero.note">Works on Windows 10/11 and macOS (Apple Silicon / Intel — see <a href="#download" style="color:var(--fg)">downloads</a>). No VPN · no setup · install and go.</span></p>
+  </header>
+
+  <section>
+    <h2><span data-i18n="s1.h2">Code. Work. One brain.</span></h2>
+    <p class="sec-sub"><span data-i18n="s1.sub">One product, two faces — HyperCode for coding, HyperWork for work. Memory and configuration fully shared.</span></p>
+    <div class="dual">
+      <div class="card">
+        <svg class="mark" viewBox="0 0 250 250" fill="#f5f5f7" shape-rendering="crispEdges" aria-label="HyperCode 徽记">
+          <rect x="60" y="70" width="20" height="10"/><rect x="50" y="80" width="20" height="10"/><rect x="40" y="90" width="20" height="10"/><rect x="30" y="100" width="20" height="10"/><rect x="20" y="110" width="20" height="10"/><rect x="10" y="120" width="20" height="10"/><rect x="20" y="130" width="20" height="10"/><rect x="30" y="140" width="20" height="10"/><rect x="40" y="150" width="20" height="10"/><rect x="50" y="160" width="20" height="10"/><rect x="60" y="170" width="20" height="10"/>
+          <rect x="120" y="90" width="10" height="10"/><rect x="120" y="100" width="10" height="10"/><rect x="120" y="140" width="10" height="10"/><rect x="120" y="150" width="10" height="10"/>
+          <rect x="110" y="100" width="10" height="10"/><rect x="110" y="110" width="10" height="10"/><rect x="110" y="130" width="10" height="10"/><rect x="110" y="140" width="10" height="10"/>
+          <rect x="130" y="100" width="10" height="10"/><rect x="130" y="110" width="10" height="10"/><rect x="130" y="130" width="10" height="10"/><rect x="130" y="140" width="10" height="10"/>
+          <rect x="100" y="110" width="10" height="10"/><rect x="100" y="120" width="10" height="10"/><rect x="100" y="130" width="10" height="10"/>
+          <rect x="140" y="110" width="10" height="10"/><rect x="140" y="120" width="10" height="10"/><rect x="140" y="130" width="10" height="10"/>
+          <rect x="90" y="120" width="10" height="10"/><rect x="150" y="120" width="10" height="10"/>
+          <rect x="170" y="70" width="20" height="10"/><rect x="180" y="80" width="20" height="10"/><rect x="190" y="90" width="20" height="10"/><rect x="200" y="100" width="20" height="10"/><rect x="210" y="110" width="20" height="10"/><rect x="220" y="120" width="20" height="10"/><rect x="210" y="130" width="20" height="10"/><rect x="200" y="140" width="20" height="10"/><rect x="190" y="150" width="20" height="10"/><rect x="180" y="160" width="20" height="10"/><rect x="170" y="170" width="20" height="10"/>
+        </svg>
+        <div class="name">HyperCode</div>
+        <p><span data-i18n="s1.code">Hand it the PRD: it decomposes tasks, develops in parallel, writes tests, drives them green, and ships runnable code. Crashes never restart from zero — it learns your project over time.</span></p>
+      </div>
+      <div class="card">
+        <svg class="mark" viewBox="0 0 250 250" fill="#f5f5f7" shape-rendering="crispEdges" aria-label="HyperWork 徽记">
+          <rect x="60" y="160" width="130" height="10"/>
+          <rect x="70" y="130" width="30" height="30"/>
+          <rect x="110" y="110" width="30" height="50"/>
+          <rect x="150" y="90" width="30" height="70"/>
+        </svg>
+        <div class="name">HyperWork</div>
+        <p><span data-i18n="s1.work">Mention a need and it switches automatically: valuation models, fundraising decks, contract review, litigation research, paper polishing, PE fund setup — one instruction, professional output.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span data-i18n="s2.h2">Why HyperCode</span></h2>
+    <p class="sec-sub"><span data-i18n="s2.sub">Good technology baked in. You just use it.</span></p>
+    <div class="grid cols4">
+      <div class="card">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H13L13 2z"/></svg> <span data-i18n="s2.c1">Autonomous long-running work</span></h3>
+        <p><span data-i18n="s2.c1p">Checkpoint recovery + background compaction + verification loops. Multi-hour tasks don't crash, don't degrade, and the UI never freezes.</span></p>
+      </div>
+      <div class="card">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 3.5a2.5 2.5 0 0 0-2.5 2.5c-1.8.3-3 1.9-3 3.8 0 1 .4 1.9 1 2.6-.2 2.4 1 4.6 3 6.1 1.2-1.6 3.2-2.7 4-2.7s2.8 1.1 4 2.7c2-1.5 3.2-3.7 3-6.1.6-.7 1-1.6 1-2.6 0-1.9-1.2-3.5-3-3.8A2.5 2.5 0 0 0 14.5 3.5h-5z"/><path d="M9.5 7.5h.01M14.5 7.5h.01M8 11c.6 1 1.5 1.6 4 1.6s3.4-.6 4-1.6"/></svg> <span data-i18n="s2.c2">Memory that grows smarter</span></h3>
+        <p><span data-i18n="s2.c2p">Decisions, pitfalls and preferences accumulate across sessions. The second time you start, it already knows your project.</span></p>
+      </div>
+      <div class="card">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 1 5.5-1l-4.5 4.5.5 2 2 .5 4.5-4.5a4 4 0 0 1-1 5.5l-8 8a2 2 0 0 1-2.8-2.8l8-8z"/><path d="M8.5 15.5 4 20a1.4 1.4 0 0 0 2 2l4.5-4.5"/></svg> <span data-i18n="s2.c3">228+ built-in skills</span></h3>
+        <p><span data-i18n="s2.c3p">Academia, finance, law and private equity. Mention a need in Chinese or English and the matching professional workflow runs automatically.</span></p>
+      </div>
+      <div class="card">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 15.5c-1.5 1-2 3-2 3s2-1 3-2.5c1.5 1.5 3 3.5 3 3.5L17 12c-3.5-4-9-6-13-5.5C3 7.5 3 12 4.5 15.5z"/><path d="M7 13.5 10.5 17M12 8.5 8 7M11.5 12.5l-4-2"/></svg> <span data-i18n="s2.c4">One-click, zero hassle</span></h3>
+        <p><span data-i18n="s2.c4p">No VPN, no key setup, no plugins. DeepSeek built in — one key shared across all agents.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span data-i18n="s3.h2">Built-in professional domains</span></h2>
+    <p class="sec-sub"><span data-i18n="s3.sub">Triggered by keywords, invisibly — say "help me value this" and it runs the DCF workflow.</span></p>
+    <div class="skills-list">
+      <span class="skill-tag"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg> <span data-i18n="s3.k1">Financial research · 55 skills (DCF / comps / LBO / fundraising decks)</span></span>
+      <span class="skill-tag"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M7 20h10M5 7h14M12 4 9 7h6l-3-3z"/><path d="M5 7l-1.5 5a3 3 0 0 0 3 3 3 3 0 0 0 3-3L8 7M19 7l-1.5 5a3 3 0 0 1-3 3 3 3 0 0 1-3-3L13 7"/></svg> <span data-i18n="s3.k2">Legal practice · 152 skills (contract review / litigation / IP / compliance)</span></span>
+      <span class="skill-tag"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6.5C10 5 7.5 4.5 4 5v13c3.5-.5 6 0 8 1.5 2-1.5 4.5-2 8-1.5V5c-3.5-.5-6 0-8 1.5z"/><path d="M12 6.5V19"/></svg> <span data-i18n="s3.k3">Academic research · 20 skills (Nature-grade writing / review / paper decks)</span></span>
+      <span class="skill-tag"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9.5 12 4l9 5.5M5 9.5V20M9.5 9.5V20M14.5 9.5V20M19 9.5V20M3 20h18"/><path d="M7 13h2M7 16.5h2M15 13h2M15 16.5h2"/></svg> <span data-i18n="s3.k4">Private equity · full LPA fundraising preparation</span></span>
+    </div>
+  </section>
+
+  <section id="download" class="dl">
+    <h2><span data-i18n="dl.h2">Download HyperCode</span></h2>
+    <p class="sec-sub"><span data-i18n="dl.sub">Double-click the installer — graphical app, no terminal needed</span></p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-win-x64.exe">Windows 桌面版(.exe)</a>
+      <a class="btn" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-mac-arm64.dmg">macOS · Apple 芯片(.dmg)</a>
+      <a class="btn" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-mac-x64.dmg">macOS · Intel(.dmg)</a>
+    </div>
+    <p class="platform-note"><span data-i18n="dl.all">All downloads →</span> <a href="https://github.com/AwareLiquid/HyperCode/releases" style="color:var(--fg)">GitHub Releases</a></p>
+    <div class="smartscreen-note">
+      <span data-i18n="dl.ss"><strong>Windows note</strong>: if SmartScreen warns on first launch, click "More info" → "Run anyway". This is standard for unsigned apps; we are applying for a code-signing certificate and future versions will no longer trigger it.</span>
+      <span data-i18n="dl.mac"><strong>macOS note</strong>: the first launch needs a one-time authorization — see the <a href="https://github.com/AwareLiquid/HyperCode/releases/latest" style="color:var(--fg)">install notes</a>. We are applying for Apple developer signing; future versions will not need this step.</span>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2><span data-i18n="pr.h2">Pricing</span></h2>
+    <p class="sec-sub"><span data-i18n="pr.sub">Run first, pay later. The trial never auto-charges.</span>期绝不自动扣费。</span></p>
+    <div class="price-table">
+      <div class="card">
+        <span class="tag">试用</span>
+        <h3>¥0</h3>
+        <p><span data-i18n="pr.p1">7-day × ¥30 credit dual-limit trial. At expiry pick one: subscribe / BYOK / free tier.</span> / 自带 key / 免费档。</span></p>
+      </div>
+      <div class="card">
+        <span class="tag"><span data-i18n="pr.t2">BYOK free</span></span>
+        <h3>¥0</h3>
+        <p><span data-i18n="pr.p2">Bring your own DeepSeek key: engine + core features at zero cost.</span></p>
+      </div>
+      <div class="card">
+        <span class="tag">订阅</span>
+        <h3><span data-i18n="pr.h3">¥59 / month</span></h3>
+        <p><span data-i18n="pr.p3">¥80 credits, no key management, multi-upstream failover. Pro ¥99 with ¥180 credits.</span></p>
+      </div>
+    </div>
+    <p class="platform-note" style="text-align:center; margin-top:18px;"><span data-i18n="pr.note">Currently BYOK-first; subscriptions launch soon.</span></p>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <div class="faq">
+      <details open>
+        <summary><span data-i18n="faq.q1">What is the relationship between HyperCode and HyperWork?</span></summary>
+        <p><span data-i18n="faq.a1">One product, one brain. HyperCode is the product name; HyperWork is its work-assistant mode — you code with it, and you build valuations, review contracts and write papers with the same it. Memory and configuration are fully shared.</span></p>
+      </details>
+      <details>
+        <summary><span data-i18n="faq.q2">Do I need a VPN or an overseas credit card?</span></summary>
+        <p><span data-i18n="faq.a2">No. HyperCode is built for mainland-China developers; every dependency is reachable domestically. Compute defaults to the DeepSeek model, with one API key shared across all agents.</span></p>
+      </details>
+      <details>
+        <summary><span data-i18n="faq.q3">How long can one task run continuously?</span></summary>
+        <p><span data-i18n="faq.a3">The current version supports multi-hour autonomous tasks: checkpoints mean crashes never restart from zero, and background compaction keeps context from degrading. Continuous working time is our core metric.</span></p>
+      </details>
+      <details>
+        <summary><span data-i18n="faq.q4">How are built-in skills triggered?</span></summary>
+        <p><span data-i18n="faq.a4">No commands to memorize. Describe your need in Chinese or English (e.g. "make me a fundraising deck", "polish this paper") and the system matches and runs the right professional workflow.</span></p>
+      </details>
+      <details>
+        <summary><span data-i18n="faq.q5">Is my code and data safe?</span></summary>
+        <p><span data-i18n="faq.a5">HyperCode runs fully locally — code and documents never upload to the cloud. API calls go directly to the model provider, and your key lives only in your own environment variables.</span></p>
+      </details>
+    </div>
+  </section>
+
+  <footer>
+    <p><a class="backhome" href="/"><span data-i18n="foot.back">← Back to AwareLiquid</span></a></p>
+    <p style="margin-top:14px;"><span data-i18n="foot.copy">© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd · HyperCode preview — features may change</span></p>
+    <p style="margin-top:8px;"><a href="mailto:anmuning@awareliquid.ai" style="color:var(--muted)"><span data-i18n="foot.contact">Feedback: anmuning@awareliquid.ai</span></a></p>
+  </footer>
+</div>
+
+<script>
+// ── i18n (en/zh) ──
+var I18N = {"zh": {"meta.title": "HyperCode — 最强大的 AI 编程软件与工作助手 | AwareLiquid", "meta.desc": "HyperCode 是 AwareLiquid 出品的 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。免 VPN、一键安装、内置 228+ 领域技能(金融/法律/学术),支持 Windows 与 macOS。", "nav.home": "AwareLiquid 首页", "nav.dl": "下载", "nav.price": "定价", "hero.sub": "最强大的 AI 编程软件与工作助手。<br>一个清晰的任务指令,连续工作数小时,直到全部做完。", "hero.dlwin": "下载 Windows 桌面版", "hero.dlmac": "下载 macOS 桌面版", "hero.note": "支持 Windows 10/11 与 macOS(Apple Silicon / Intel,见 <a href=\"#download\" style=\"color:var(--fg)\">下载区</a>)。免 VPN · 免配置 · 开箱即用。", "s1.h2": "写代码,干工作,同一个大脑", "s1.sub": "一个产品,两个面 —— HyperCode 编程,HyperWork 干活,记忆与配置完全共享。", "s1.code": "把 PRD 交给它:自动分解任务、并行开发、写测试、跑到绿、交付可运行代码。崩溃不重来,越用越懂你的项目。", "s1.work": "提到相关需求自动切换:估值建模、融资 PPT、合同审查、诉讼研究、论文润色、私募基金筹备 —— 一个指令,专业产出。", "s2.h2": "为什么是 HyperCode", "s2.sub": "把好技术集成在里面,用户无感一键使用。", "s2.c1": "自主连续工作", "s2.c1p": "检查点恢复 + 后台压缩 + 验证闭环。长任务数小时不崩、不退化、UI 不冻结。", "s2.c2": "记忆越用越懂", "s2.c2p": "决策、踩坑、偏好跨会话累积。第二次开工,它已经认识你的项目。", "s2.c3": "228+ 内置技能", "s2.c3p": "学术、金融、法律、私募四大域。中英文提到相关需求,自动调用对应专业工作流。", "s2.c4": "一键式零折腾", "s2.c4p": "免 VPN、免配 key、免装插件。自带 DeepSeek 接入,一个 key 全体代理共用。", "s3.h2": "内置专业能力域", "s3.sub": "关键词无感触发 —— 你说\"帮我做估值\",它就走 DCF 工作流。", "s3.k1": "金融投研 · 55 项(DCF / 可比公司 / LBO / 融资 PPT)", "s3.k2": "法律实务 · 152 项(合同审查 / 诉讼 / 知识产权 / 合规)", "s3.k3": "学术科研 · 20 项(Nature 级写作 / 审稿 / 论文 PPT)", "s3.k4": "私募基金 · LPA 募资全流程筹备", "dl.h2": "下载 HyperCode", "dl.sub": "双击安装器即用 · 图形界面,无需命令行", "dl.all": "全部下载 →", "dl.ss": "<strong>Windows 提示</strong>：首次运行若出现「Microsoft Defender SmartScreen 已阻止无法识别的应用」，请点击「更多信息」→「仍要运行」。这是未签名应用的标准提示；我们正在申请代码签名证书，后续版本将不再触发。", "dl.mac": "<strong>macOS 提示</strong>：首次打开需要一次性授权，方法见 <a href=\"https://github.com/AwareLiquid/HyperCode/releases/latest\" style=\"color:var(--fg)\">安装说明</a>。我们正在申请 Apple 开发者签名，后续版本将不再需要这一步。", "pr.h2": "定价", "pr.sub": "先跑起来,再谈钱。试用期绝不自动扣费。", "pr.t1": "试用", "pr.p1": "7 天 × ¥30 点数双限体验。到期三选一:订阅 / 自带 key / 免费档。", "pr.t2": "BYOK 免费", "pr.p2": "自带 DeepSeek key,引擎 + 基础能力。零成本留存。", "pr.t3": "订阅", "pr.h3": "¥59 / 月", "pr.p3": "含 ¥80 点数、免管 key、多上游故障转移。Pro ¥99 含 ¥180 点数。", "pr.note": "当前阶段以 BYOK(自带 key)为主,订阅服务即将上线。", "faq.h2": "FAQ", "faq.q1": "HyperCode 和 HyperWork 是什么关系?", "faq.a1": "同一个产品、同一个大脑。HyperCode 是产品总名,HyperWork 是它的工作助手模式 —— 写代码用它,做估值、审合同、写论文也用同一个它。记忆与配置完全共享。", "faq.q2": "需要 VPN 或海外信用卡吗?", "faq.a2": "不需要。HyperCode 面向中国大陆开发者设计,所有依赖国内可达。算力默认接入国产 DeepSeek 模型,一个 API key 全体代理共用。", "faq.q3": "一个任务能连续跑多久?", "faq.a3": "当前版本支持数小时的自主任务:检查点保证崩溃不重来,后台压缩保证上下文不退化。我们持续把\"连续工作时长\"作为核心指标打磨。", "faq.q4": "内置技能怎么触发?", "faq.a4": "无需记忆命令。你用中文或英文描述需求(如\"帮我做一份融资 PPT\"、\"润色这篇论文\"),系统自动匹配并调用对应专业工作流。", "faq.q5": "我的代码和数据安全吗?", "faq.a5": "HyperCode 全部本地运行,代码与文档不上传云端。API 调用直连模型服务商,key 只存在你自己的环境变量里。", "foot.back": "← 返回 AwareLiquid", "foot.copy": "© 2026 AwareLiquid · 深圳三体暗源科技有限公司 · HyperCode 预览版,功能可能变化", "foot.contact": "反馈与支持: anmuning@awareliquid.ai"}, "en": {"meta.title": "HyperCode — The Most Powerful AI Coding Software & Work Assistant | AwareLiquid", "meta.desc": "HyperCode is AwareLiquid's AI coding software & work assistant: one clear instruction, it works for hours until everything is done. No VPN, one-click install, 228+ built-in domain skills (finance/law/academia) for Windows & macOS.", "nav.home": "AwareLiquid Home", "nav.dl": "Download", "nav.price": "Pricing", "hero.sub": "The most powerful AI coding software & work assistant.<br>One clear instruction — it works for hours until everything is done.", "hero.dlwin": "Download Windows Desktop", "hero.dlmac": "Download macOS Desktop", "hero.note": "Works on Windows 10/11 and macOS (Apple Silicon / Intel — see <a href=\"#download\" style=\"color:var(--fg)\">downloads</a>). No VPN · no setup · install and go.", "s1.h2": "Code. Work. One brain.", "s1.sub": "One product, two faces — HyperCode for coding, HyperWork for work. Memory and configuration fully shared.", "s1.code": "Hand it the PRD: it decomposes tasks, develops in parallel, writes tests, drives them green, and ships runnable code. Crashes never restart from zero — it learns your project over time.", "s1.work": "Mention a need and it switches automatically: valuation models, fundraising decks, contract review, litigation research, paper polishing, PE fund setup — one instruction, professional output.", "s2.h2": "Why HyperCode", "s2.sub": "Good technology baked in. You just use it.", "s2.c1": "Autonomous long-running work", "s2.c1p": "Checkpoint recovery + background compaction + verification loops. Multi-hour tasks don't crash, don't degrade, and the UI never freezes.", "s2.c2": "Memory that grows smarter", "s2.c2p": "Decisions, pitfalls and preferences accumulate across sessions. The second time you start, it already knows your project.", "s2.c3": "228+ built-in skills", "s2.c3p": "Academia, finance, law and private equity. Mention a need in Chinese or English and the matching professional workflow runs automatically.", "s2.c4": "One-click, zero hassle", "s2.c4p": "No VPN, no key setup, no plugins. DeepSeek built in — one key shared across all agents.", "s3.h2": "Built-in professional domains", "s3.sub": "Triggered by keywords, invisibly — say \"help me value this\" and it runs the DCF workflow.", "s3.k1": "Financial research · 55 skills (DCF / comps / LBO / fundraising decks)", "s3.k2": "Legal practice · 152 skills (contract review / litigation / IP / compliance)", "s3.k3": "Academic research · 20 skills (Nature-grade writing / review / paper decks)", "s3.k4": "Private equity · full LPA fundraising preparation", "dl.h2": "Download HyperCode", "dl.sub": "Double-click the installer — graphical app, no terminal needed", "dl.all": "All downloads →", "dl.ss": "<strong>Windows note</strong>: if SmartScreen warns on first launch, click \"More info\" → \"Run anyway\". This is standard for unsigned apps; we are applying for a code-signing certificate and future versions will no longer trigger it.", "dl.mac": "<strong>macOS note</strong>: the first launch needs a one-time authorization — see the <a href=\"https://github.com/AwareLiquid/HyperCode/releases/latest\" style=\"color:var(--fg)\">install notes</a>. We are applying for Apple developer signing; future versions will not need this step.", "pr.h2": "Pricing", "pr.sub": "Run first, pay later. The trial never auto-charges.", "pr.t1": "Trial", "pr.p1": "7-day × ¥30 credit dual-limit trial. At expiry pick one: subscribe / BYOK / free tier.", "pr.t2": "BYOK free", "pr.p2": "Bring your own DeepSeek key: engine + core features at zero cost.", "pr.t3": "Subscription", "pr.h3": "¥59 / month", "pr.p3": "¥80 credits, no key management, multi-upstream failover. Pro ¥99 with ¥180 credits.", "pr.note": "Currently BYOK-first; subscriptions launch soon.", "faq.h2": "FAQ", "faq.q1": "What is the relationship between HyperCode and HyperWork?", "faq.a1": "One product, one brain. HyperCode is the product name; HyperWork is its work-assistant mode — you code with it, and you build valuations, review contracts and write papers with the same it. Memory and configuration are fully shared.", "faq.q2": "Do I need a VPN or an overseas credit card?", "faq.a2": "No. HyperCode is built for mainland-China developers; every dependency is reachable domestically. Compute defaults to the DeepSeek model, with one API key shared across all agents.", "faq.q3": "How long can one task run continuously?", "faq.a3": "The current version supports multi-hour autonomous tasks: checkpoints mean crashes never restart from zero, and background compaction keeps context from degrading. Continuous working time is our core metric.", "faq.q4": "How are built-in skills triggered?", "faq.a4": "No commands to memorize. Describe your need in Chinese or English (e.g. \"make me a fundraising deck\", \"polish this paper\") and the system matches and runs the right professional workflow.", "faq.q5": "Is my code and data safe?", "faq.a5": "HyperCode runs fully locally — code and documents never upload to the cloud. API calls go directly to the model provider, and your key lives only in your own environment variables.", "foot.back": "← Back to AwareLiquid", "foot.copy": "© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd · HyperCode preview — features may change", "foot.contact": "Feedback: anmuning@awareliquid.ai"}};
+function applyHC(lang){
+  var dict = I18N[lang] || I18N.zh;
+  document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if (dict[k]) el.innerHTML = dict[k];
+  });
+  document.title = lang === 'en'
+    ? 'HyperCode — The Most Powerful AI Coding Software & Work Assistant | AwareLiquid'
+    : 'HyperCode — 最强大的 AI 编程软件与工作助手 | AwareLiquid';
+  var langBtn = document.getElementById('hcLangBtn');
+  if (langBtn) langBtn.textContent = lang === 'en' ? '中文' : 'EN';
+  localStorage.setItem('hc_lang', lang);
+}
+(function(){{
+  var saved = localStorage.getItem('hc_lang') || 'en';
+  applyHC(saved);
+}})();
+document.getElementById('hcLangBtn').addEventListener('click', function(){{
+  var cur = document.documentElement.lang === 'en' ? 'en' : 'zh-CN';
+  applyHC(cur === 'en' ? 'zh' : 'en');
+}});
+</script>
+
+</body>
+</html>
