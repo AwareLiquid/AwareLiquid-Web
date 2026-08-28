@@ -808,7 +808,30 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
-      <h2 id="reproduce">7 · How to Reproduce</h2>
+      <h2 id="landscape">7 · Architecture Landscape Survey (Aug 2026)</h2>
+      <p>We periodically survey the sub-quadratic architecture literature and check our own trajectory against it. This is the August 2026 pass — the honest findings that changed our training recipe.</p>
+
+      <h3>What the liquid-architecture field itself concluded</h3>
+      <ul>
+        <li><strong>LFM2 (Liquid AI, 2025–2026)</strong> — the liquid-network origin team's production models use gated short convolutions + a minority of grouped-query attention blocks, not liquid recurrences as the language backbone. Their hardware-in-the-loop search found that, under on-device budgets, most of the gains attributed to SSM/linear-attention hybrids are captured by short convolutions plus a few global-attention layers. Quality comes from 10–12T tokens, distillation, and curriculum learning.</li>
+        <li><strong>LrcSSM (NeurIPS 2025)</strong> — diagonalizing the liquid Jacobian by design gives exact parallel prefix-scans with a formal gradient-stability guarantee; validated on long-horizon sequence tasks.</li>
+        <li><strong>HOLA (2026)</strong> — a fixed delta-rule state plus a surprise-selected exact KV cache reaches lower Wikitext perplexity than a full-attention Transformer++ at 340M (−15%). This is external evidence for the hybrid "compressed state + exact recall" design family we build in.</li>
+      </ul>
+
+      <h3>What we changed as a result (training recipe, five items)</h3>
+      <ul>
+        <li><strong>Distillation-first for the 2B line</strong> — Gemma 2's controlled study: a 2B student distilled from a larger teacher scores 67.7 vs 60.3 from scratch at 500B tokens. Our 2B now trains with teacher logits, not raw next-token.</li>
+        <li><strong>One to two epochs, never multi-epoch repetition</strong> — recent scaling-law work (2026) shows internal data repetition is systematically damaging; rephrasing the same corpus (SYNPRO: 5.2× effective tokens) beats re-reading it.</li>
+        <li><strong>Weight decay λ = 1.0</strong> — data-constrained prescriptive scaling laws: strong weight decay cuts the overfitting coefficient ~70%.</li>
+        <li><strong>Decay path forced to fp32</strong> — PyTorch's autocast marks softplus/exp as bf16-unstable; our liquid decay computation now runs fp32 under mixed precision (measured: bf16 training degraded PPL 3–7.5×, forward-only divergence was 0.37% — the damage is in training dynamics).</li>
+        <li><strong>Curriculum learning</strong> — difficulty-ordered data, matching LFM2 and our own length-curriculum results (×8 extrapolation stable to 16K).</li>
+      </ul>
+
+      <p class="note">Survey references: LFM2 technical report (arXiv 2511.23404), LrcSSM (arXiv 2505.21717), HOLA (arXiv 2607.02303), Gemma 2 (arXiv 2408.00118), Titans (arXiv 2501.00663), SYNPRO (arXiv 2605.17849), prescriptive scaling laws (arXiv 2605.01640), DroPE (arXiv 2512.12167).</p>
+
+      <hr class="divider">
+
+      <h2 id="reproduce">8 · How to Reproduce</h2>
       <ul>
         <li>All code, experiment scripts, and reproducible configs: <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/M1</a></li>
         <li>Architecture and pre-training details: <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a></li>
@@ -817,7 +840,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
-      <h2 id="citation">8 · Cite This Work</h2>
+      <h2 id="citation">9 · Cite This Work</h2>
       <p>If you use this work or build on it, please cite as follows:</p>
 
       <h3>BibTeX</h3>
@@ -848,7 +871,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
-      <h2 id="changelog">9 · Changelog</h2>
+      <h2 id="changelog">10 · Changelog</h2>
       <div class="changelog">
         <div class="cl-entry">
           <span class="cl-version">v2.2</span>
@@ -889,7 +912,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
-      <h2 id="faq">10 · FAQ</h2>
+      <h2 id="faq">11 · FAQ</h2>
 
       <h3>What is the difference between M1 and O1?</h3>
       <p><strong>M1 (M-Series)</strong> is the cognitive slow-thinking engine — it layers GWT competitive broadcast, NREM sleep consolidation with SHY synaptic downscaling, and EWC continual learning on the LTC backbone. It targets episodic memory, agent cognition, and catastrophic forgetting research. <strong>O1 (O-Series)</strong> is the edge fast-thinking engine — pure continuous-time liquid ODE, constant 4 KB memory state regardless of context length, no KV-cache growth, targets CPU/edge deployment at millisecond latency. Both share the MT-LNN backbone; full cognitive module integration into O1 is in progress.</p>
