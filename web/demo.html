@@ -216,6 +216,18 @@ textarea::placeholder{color:#b4b4c0}
 .retry-wrap{display:flex;justify-content:center;margin-top:14px}
 .retry-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:1px solid var(--line);border-radius:8px;cursor:pointer;color:var(--muted);font:inherit;font-size:13px;padding:8px 16px;transition:all .15s}
 .retry-btn:hover{border-color:var(--fg);color:var(--fg)}
+
+/* ── HYPERCODE CTA ──
+   Editorial system applied: serif 400, hairline rule, uppercase mono label.
+   One button, monochrome — the same .btn language as index.html. */
+.hc-cta{margin-top:52px;text-align:center;border-top:1px solid var(--rule);padding-top:34px;width:100%;max-width:560px}
+.hc-cta .label{display:block;margin-bottom:12px}
+.hc-cta h3{font-size:22px;letter-spacing:var(--tracking-h3);margin-bottom:8px}
+.hc-cta .p{font-size:14px;color:var(--muted);line-height:1.6;max-width:44ch;margin:0 auto 20px}
+.hc-btn{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:14px;font-weight:500;border-radius:4px;cursor:pointer;transition:all .3s ease-out;border:1px solid transparent;text-decoration:none;letter-spacing:0;background:var(--fg);color:var(--bg);padding:9px 20px}
+.hc-btn:hover{opacity:.85}
+.hc-btn-ghost{background:transparent;color:var(--fg);border-color:var(--line)}
+.hc-btn-ghost:hover{background:var(--card)}
 </style>
 <link rel="icon" href="/static/favicon-dark.png?v=2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/static/favicon-light.png?v=2" media="(prefers-color-scheme: dark)">
@@ -264,6 +276,12 @@ textarea::placeholder{color:#b4b4c0}
     <h2 id="welcomeTitle">AwareLiquid M1</h2>
     <p class="welcome-lead" id="welcomeLead">Connecting…</p>
     <div class="examples" id="examples"></div>
+    <div class="hc-cta" id="hcCta" hidden>
+      <span class="label" id="hcCtaLabel"></span>
+      <h3 id="hcCtaTitle"></h3>
+      <p class="p" id="hcCtaDesc"></p>
+      <a class="hc-btn" id="hcCtaBtn" href="/hypercode"></a>
+    </div>
   </div>
   <div class="thread" id="thread" style="display:none"></div>
 </main>
@@ -315,6 +333,10 @@ const LANGS={
     placeholder:'Ask in English or Chinese…',
     retryBtn:'↺ Retry connection',
     note:'AwareLiquid · research prototype · ',
+    hc_cta_label:'CONTINUE',
+    hc_cta_title:'These models, on your desktop',
+    hc_cta_desc:'HyperCode is the production app — the same liquid-core brain with 228+ built-in domain skills, on-device, one-click install.',
+    hc_cta_btn:'Get HyperCode',
     opt_adapter:'M1 · TinyLlama-1.1B + MT adapter',
     opt_scratch:'128M · from-scratch hybrid',
     w_adapter_title:'M1',
@@ -341,6 +363,10 @@ const LANGS={
     placeholder:'用中文或英文提问…',
     retryBtn:'↺ 重试连接',
     note:'AwareLiquid · 研究原型 · ',
+    hc_cta_label:'继续探索',
+    hc_cta_title:'这些模型,装进你的电脑',
+    hc_cta_desc:'HyperCode 是正式产品——同样的液态核心大脑,内置 228+ 领域技能,本地运行,一键安装。',
+    hc_cta_btn:'获取 HyperCode',
     opt_adapter:'M1 · TinyLlama-1.1B + MT 适配器',
     opt_scratch:'1.28亿参数 · 从零训练',
     w_adapter_title:'M1',
@@ -377,7 +403,15 @@ function applyLang(l){
   document.getElementById('optScratch').textContent=t('opt_scratch');
   const ftrNote=document.getElementById('ftrNote');
   ftrNote.innerHTML=t('note')+'<a href="/privacy">'+(l==='zh'?'隐私政策':'Privacy')+'</a> · <a href="/terms">'+(l==='zh'?'使用条款':'Terms')+'</a>'
+    +' · <a href="/hypercode">'+(l==='zh'?'获取 HyperCode':'Get HyperCode')+'</a>'
     +'<br><span class="ftr-entity">'+(l==='zh'?'深圳三体暗源科技有限公司':'Shenzhen Santi Anyuan Technology Co., Ltd')+'</span>';
+  // HyperCode CTA (welcome screen only — hidden once the thread starts)
+  document.getElementById('hcCtaLabel').textContent=t('hc_cta_label');
+  document.getElementById('hcCtaTitle').textContent=t('hc_cta_title');
+  document.getElementById('hcCtaDesc').textContent=t('hc_cta_desc');
+  document.getElementById('hcCtaBtn').textContent=t('hc_cta_btn');
+  const hcCta=document.getElementById('hcCta');
+  if(document.getElementById('welcome').style.display!=='none')hcCta.hidden=false;
   // re-render welcome if visible
   const kind=API_BASE==='/adapter'?'adapter':'scratch';
   if(document.getElementById('welcome').style.display!=='none')renderWelcome(kind);
@@ -504,12 +538,14 @@ function startThread(){
   if(welcome.style.display!=='none'){
     welcome.style.display='none';thread.style.display='flex';thread.style.flexDirection='column';thread.style.gap='20px';
     clearBtn.classList.add('visible');
+    document.getElementById('hcCta').hidden=true;
   }
 }
 clearBtn.addEventListener('click',()=>{
   thread.innerHTML='';thread.style.display='none';
   welcome.style.display='';clearBtn.classList.remove('visible');
   input.value='';refresh();
+  document.getElementById('hcCta').hidden=false;
 });
 
 function addUser(text){
