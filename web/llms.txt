@@ -1,32 +1,38 @@
+# HyperCode
 
+> HyperCode is AwareLiquid's flagship AI coding software & work assistant: one clear instruction, it works autonomously for hours until everything is done. Built-in domain skills for financial research, legal and academic work. Closed-source core, open downloads.
+> HyperCode 是 AwareLiquid 的旗舰 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。内置金融研究、法律、学术等专业技能。核心闭源,下载开放。
 
-## HyperCode — AI Coding Software & Work Assistant (Product)
+## Contact
+- Website: https://awareliquid.ai/hypercode
+- Email: everest9812@gmail.com
+- GitHub: https://github.com/AwareLiquid/HyperCode
+- Community: https://awareliquid.ai
 
-> HyperCode is AwareLiquid's flagship software product: the most powerful AI coding software and work assistant. One clear instruction — it works continuously for hours until everything is done. Closed-source core, open downloads.
+## Product
+- [HyperCode — AI coding & work assistant](https://awareliquid.ai/hypercode): The most powerful AI coding software and work assistant. DeepSeek-powered, 229 built-in skills, autonomous long-running tasks, cross-session memory.
+- [Valuation Tool — AI A-share stock valuation](https://awareliquid.ai/valuation): Free AI stock valuation tool. Enter a ticker to get real-time quote + DCF + Comps snapshot. Built on HyperCode.
 
-- **Product name**: HyperCode (work-assistant mode: HyperWork)
-- **Tagline (zh)**: 最强大的 AI 编程软件与工作助手 —— 一个清晰的任务指令,连续工作数小时,直到全部做完
-- **Tagline (en)**: The most powerful AI coding software & work assistant — one clear instruction, it works for hours until everything is done.
-- **Page**: https://awareliquid.ai/hypercode
-- **Downloads (public repo)**: https://github.com/AwareLiquid/HyperCode (latest: https://github.com/AwareLiquid/HyperCode/releases/latest)
-- **Windows**: NSIS one-click installer (.exe)
-- **macOS**: dmg (Apple Silicon and Intel)
-- **Closed-source repo**: https://github.com/everest-an/hypercode
-- **Price**: free trial (7 days × ¥30 credits, no auto-charge) / BYOK free / subscription from ¥59/month
-- **Model**: DeepSeek (bring your own key; one key shared across all agents)
+## English
+- [HyperCode](https://awareliquid.ai/hypercode): The most powerful AI coding software & work assistant — one clear instruction, it works for hours until everything is done.
+- [AI Valuation Tool](https://awareliquid.ai/valuation): Free AI-powered stock valuation. Enter a ticker, get DCF + Comps in seconds.
+- [Demo](https://awareliquid.ai/demo): See HyperCode in action.
+- [Research](https://awareliquid.ai/research): Financial research use cases.
+- [API](https://awareliquid.ai/api): Developer API.
+- [Models](https://awareliquid.ai/models): Model and provider info.
+- [About](https://awareliquid.ai/about): About AwareLiquid.
+- [Privacy](https://awareliquid.ai/privacy) · [Terms](https://awareliquid.ai/terms)
 
-### Key capabilities
+## 中文 (zh-CN)
+- [HyperCode — AI 编程软件与工作助手](https://awareliquid.ai/hypercode): 最强大的 AI 编程软件与工作助手。一个清晰的任务指令,连续工作数小时,直到全部做完。内置 229 个专业技能,DeepSeek 驱动。
+- [AI 估值速查工具](https://awareliquid.ai/valuation): 免费 AI 股票估值工具。输入 A股代码,实时行情 + DCF + Comps 快照秒出。由 HyperCode 驱动。
+- [每日 AI 晨报](https://awareliquid.ai/morning-notes/): 每个交易日 AI 生成的 A股晨报。
+- [估值快照](https://awareliquid.ai/snapshots/000001.html): A股个股估值快照示例(平安银行)。
+- [研究](https://awareliquid.ai/research) · [演示](https://awareliquid.ai/demo) · [关于](https://awareliquid.ai/about)
+- [隐私](https://awareliquid.ai/privacy) · [条款](https://awareliquid.ai/terms)
 
-- Autonomous long-running tasks: checkpoint recovery + background compaction + verification loops; multi-hour tasks don't crash or degrade
-- 229 built-in domain skills (financial research 55, legal 152, academic 20, PE fundraising) — triggered by keywords in Chinese or English
-- Cross-session memory: decisions, pitfalls and preferences accumulate; it learns your project
-- One-click install, no VPN, no key setup, no plugin hassle
-- Obsidian-style knowledge vault GUI: file tree, wiki-link preview, knowledge graph, task panel
-- Contract deliverables pass source-tracing verification (hc-verify)
-
-### Installation
-
-1. Download the desktop installer from https://github.com/AwareLiquid/HyperCode/releases
-2. Double-click to install (Windows) or drag to Applications (macOS)
-3. Launch HyperCode; configure your DeepSeek API key in the provider dialog
-4. Describe a task in Chinese or English; built-in skills trigger automatically
+## Technology
+- DeepSeek-powered; bring your own API key
+- 229 built-in domain skills (financial research 55, legal 152, academic 20, PE fundraising), triggered by Chinese or English keywords
+- Cross-session memory; checkpoint recovery; background compaction; verification loops
+- Windows NSIS installer, macOS dmg (Apple Silicon + Intel)

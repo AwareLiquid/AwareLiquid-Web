@@ -6,16 +6,17 @@
 <link rel="icon" href="/static/favicon-dark.png" type="image/png">
 <title>HyperCode — 最强大的 AI 编程软件与工作助手 | AwareLiquid</title>
 <link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/hypercode">
-<link rel="alternate" hreflang="en" href="https://awareliquid.ai/en/hypercode.html">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/en/hypercode">
 <link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/hypercode">
 <link rel="canonical" href="https://awareliquid.ai/hypercode">
 <meta name="description" content="HyperCode 是 AwareLiquid 出品的 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。免 VPN、一键安装、内置 228+ 领域技能(金融/法律/学术),支持 Windows 与 macOS。">
-<link rel="canonical" href="https://awareliquid.ai/hypercode">
+
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://awareliquid.ai/hypercode">
 <meta property="og:title" content="HyperCode — 写代码,干工作,同一个大脑">
 <meta property="og:description" content="最强大的 AI 编程软件与工作助手。一个清晰的任务指令,连续工作数小时,直到全部做完。">
 <meta property="og:site_name" content="AwareLiquid">
+<meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://awareliquid.ai/static/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -85,6 +86,15 @@
   .backhome { color:var(--muted); font-size:13px; }
   .lang-btn { background:var(--bg2); color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:4px 12px; font-size:12.5px; cursor:pointer; margin-left:18px; }
   .lang-btn:hover { color:var(--fg); border-color:var(--muted); }
+
+  .tldr { max-width:760px; margin:-8px auto 0; padding:22px 26px; border:1px solid var(--line); border-radius:14px; background:var(--bg2); }
+  .tldr .tldr-q { font-weight:700; font-size:17px; color:var(--fg); margin-bottom:8px; }
+  .tldr .tldr-a { color:var(--muted); font-size:15px; line-height:1.7; }
+  table.compare { width:100%; max-width:860px; margin:0 auto; border-collapse:collapse; font-size:14px; }
+  table.compare th, table.compare td { padding:12px 14px; border:1px solid var(--line); text-align:left; vertical-align:top; }
+  table.compare th { background:var(--bg2); font-weight:600; color:var(--fg); }
+  table.compare td { color:var(--muted); }
+  table.compare tr.hc td { background:rgba(79,157,255,.06); color:var(--fg); }
 </style>
 <script type="application/ld+json">
 {
@@ -96,6 +106,7 @@
   "operatingSystem": "Windows 10, Windows 11, macOS",
   "description": "HyperCode 是 AwareLiquid 出品的最强大的 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。内置 228+ 领域技能(金融投研/法律实务/学术科研/私募基金),关键词自动触发。免 VPN、一键安装、自带 DeepSeek 接入,支持 Windows 与 macOS。",
   "inLanguage": ["zh-CN", "en"],
+  "dateModified": "2026-09-01",
   "softwareVersion": "0.1.17",
   "downloadUrl": "https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-win-x64.exe",
   "offers": {
@@ -192,9 +203,17 @@
     </div>
     <p class="platform-note"><span data-i18n="hero.note">支持 Windows 10/11 与 macOS(Apple Silicon / Intel,见 <a href="#download" style="color:var(--fg)">下载区</a>)。免 VPN · 免配置 · 开箱即用。</span></p>
   </header>
+  <p class="platform-note" style="text-align:center">最后更新: 2026年9月1日 · <a href="https://awareliquid.ai" style="color:var(--fg)">AwareLiquid</a></p>
+
+
+  <div class="tldr">
+    <p class="tldr-q"><span data-i18n="tldr.q">HyperCode 是什么?</span></p>
+    <p class="tldr-a"><span data-i18n="tldr.a">HyperCode 是一款 AI 编程软件与工作助手:给它一个清晰的任务指令,它能连续自主工作数小时,直到全部做完——写代码、做估值建模、审合同、润色论文都可以。内置 228+ 专业技能,完全本地运行,免 VPN,支持 Windows 与 macOS。</span></p>
+  </div>
+
 
   <section>
-    <h2><span data-i18n="s1.h2">写代码,干工作,同一个大脑</span></h2>
+    <h2><span data-i18n="s1.h2">HyperCode 能帮编程和工作做什么?</span></h2>
     <p class="sec-sub"><span data-i18n="s1.sub">一个产品,两个面 —— HyperCode 编程,HyperWork 干活,记忆与配置完全共享。</span></p>
     <div class="dual">
       <div class="card">
@@ -225,7 +244,7 @@
   </section>
 
   <section>
-    <h2><span data-i18n="s2.h2">为什么是 HyperCode</span></h2>
+    <h2><span data-i18n="s2.h2">HyperCode 和其他 AI 编程工具有什么不同?</span></h2>
     <p class="sec-sub"><span data-i18n="s2.sub">把好技术集成在里面,用户无感一键使用。</span></p>
     <div class="grid cols4">
       <div class="card">
@@ -247,8 +266,22 @@
     </div>
   </section>
 
-  <section>
-    <h2><span data-i18n="s3.h2">内置专业能力域</span></h2>
+    <section>
+    <h2><span data-i18n="cmp.h2">HyperCode 和 Cursor、Copilot、ChatGPT 相比怎么样?</span></h2>
+    <p class="sec-sub"><span data-i18n="cmp.sub">直接对比功能差异,看 HyperCode 适合做什么、强在哪。</span></p>
+    <table class="compare">
+      <tr class="hc"><th></th><th>HyperCode</th><th>Cursor</th><th>GitHub Copilot</th><th>ChatGPT</th></tr>
+      <tr class="hc"><td>自主连续工作数小时</td><td>✓ 检查点恢复 + 验证闭环</td><td>✗</td><td>✗</td><td>部分</td></tr>
+      <tr><td>内置专业技能(金融/法律/学术)</td><td class="hc">✓ 228+</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>跨会话记忆项目</td><td class="hc">✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>非编程工作(估值/合同/论文)</td><td class="hc">✓</td><td>✗</td><td>✗</td><td>部分</td></tr>
+      <tr><td>完全本地运行,免 VPN</td><td class="hc">✓</td><td>✗</td><td>✗</td><td>✗</td></tr>
+      <tr><td>一键安装,零配置</td><td class="hc">✓</td><td>部分</td><td>部分</td><td>—</td></tr>
+    </table>
+  </section>
+
+<section>
+    <h2><span data-i18n="s3.h2">HyperCode 内置了哪些专业技能?</span></h2>
     <p class="sec-sub"><span data-i18n="s3.sub">关键词无感触发 —— 你说"帮我做估值",它就走 DCF 工作流。</span></p>
     <div class="skills-list">
       <span class="skill-tag"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg> <span data-i18n="s3.k1">金融投研 · 55 项(DCF / 可比公司 / LBO / 融资 PPT)</span></span>
@@ -259,7 +292,7 @@
   </section>
 
   <section id="download" class="dl">
-    <h2><span data-i18n="dl.h2">下载 HyperCode</span></h2>
+    <h2><span data-i18n="dl.h2">如何下载安装 HyperCode?</span></h2>
     <p class="sec-sub"><span data-i18n="dl.sub">双击安装器即用 · 图形界面,无需命令行</span></p>
     <div class="cta">
       <a class="btn primary" href="https://github.com/AwareLiquid/HyperCode/releases/latest/download/hypercode-desktop-win-x64.exe">Windows 桌面版(.exe)</a>
@@ -274,7 +307,7 @@
   </section>
 
   <section id="pricing">
-    <h2><span data-i18n="pr.h2">定价</span></h2>
+    <h2><span data-i18n="pr.h2">HyperCode 怎么收费?</span></h2>
     <p class="sec-sub"><span data-i18n="pr.sub">先跑起来,再谈钱。<span data-i18n="pr.t1">试用</span>期绝不自动扣费。</span></p>
     <div class="price-table">
       <div class="card">
@@ -297,7 +330,7 @@
   </section>
 
   <section id="faq">
-    <h2>FAQ</h2>
+    <h2>HyperCode 常见问题</h2>
     <div class="faq">
       <details open>
         <summary><span data-i18n="faq.q1">HyperCode 和 HyperWork 是什么关系?</span></summary>
