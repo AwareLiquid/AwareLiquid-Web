@@ -808,6 +808,24 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
+      <h3>Physics Written Into the Architecture — AwareLiquid-Physic</h3>
+      <p>A sibling line: a liquid (LTC) substrate reads a trajectory prefix and conditions a <strong>hard-constraint Hamiltonian head</strong> (separable H(q,p) = T(p) + V(q|ctx), advanced by a symplectic velocity-Verlet integrator). Energy is conserved <em>by construction</em> — not bolted on as a loss term. The model adapts its energy landscape per trajectory via the liquid context, so one fixed potential fits an entire family of systems.</p>
+      <figure class="chart-fig">
+        <img src="/static/charts/spring_trajectory.svg"
+             alt="Spring trajectory: true position vs. Hamiltonian-predicted position over 200 rollout steps. The hard-constraint head tracks the ground truth closely."
+             loading="lazy">
+        <figcaption>Fig. 6e — Spring: true vs. predicted position, 200-step rollout. Because the model integrates a learned Hamiltonian symplectically, the trajectory stays on the energy shell.</figcaption>
+      </figure>
+      <figure class="chart-fig">
+        <img src="/static/charts/spring_energy.svg"
+             alt="Energy drift over rollout: the Hamiltonian head keeps relative energy drift near 0.005 while an unstructured MLP-field control drifts far more."
+             loading="lazy">
+        <figcaption>Fig. 6f — Energy drift (relative) over rollout. Hard-constraint head: ~0.005 final drift; unstructured MLP-field control: ~0.03 (3&times; worse on spring, up to 15&times; on orbit).</figcaption>
+      </figure>
+      <p><strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/AwareLiquid-Physic</a>.</p>
+
+      <hr class="divider">
+
       <h2 id="landscape">7 · Architecture Landscape Survey (Aug 2026)</h2>
       <p>We periodically survey the sub-quadratic architecture literature and check our own trajectory against it. This is the August 2026 pass — the honest findings that changed our training recipe.</p>
 
