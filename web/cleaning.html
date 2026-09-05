@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/static/favicon-dark.png" type="image/png">
+<title>Data Cleaning — AwareLiquid</title>
+<meta name="description" content="AwareLiquid data cleaning service: scanned archives, handwritten tables and blurry reports converted into clean structured data. Verified accuracy: 100% on table digits, zero hallucination.">
+<link rel="canonical" href="https://awareliquid.ai/cleaning">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/cleaning">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/cleaning">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/cleaning">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Data Cleaning — AwareLiquid">
+<meta name="twitter:description" content="Scanned archives → clean structured data. 100% table-digit accuracy, zero hallucination, ~1h per 189-page report.">
+<meta name="twitter:image" content="https://awareliquid.ai/static/og-image.png">
+<meta property="og:title" content="Data Cleaning — AwareLiquid">
+<meta property="og:description" content="Scanned archives → clean structured data. Verified cell-by-cell: 100% table digits, zero hallucination.">
+<meta property="og:site_name" content="AwareLiquid">
+<meta name="theme-color" content="#0e0e10" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<style>
+  :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  a { color:inherit; text-decoration:none; }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; font-size:14px; }
+  .nav .brand { font-weight:700; letter-spacing:.5px; color:var(--fg); }
+  .nav .brand span { color:var(--muted); font-weight:400; }
+  .nav a { color:var(--muted); margin-left:22px; }
+  .nav a:hover { color:var(--fg); }
+  .nav a.active { color:var(--fg); }
+  .lang-btn { background:var(--bg2); color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:4px 12px; font-size:12.5px; cursor:pointer; margin-left:18px; }
+  .lang-btn:hover { color:var(--fg); border-color:var(--muted); }
+  .page-hero { text-align:center; padding:48px 0 8px; }
+  .page-hero .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:12px; }
+  .page-hero h1 { font-size:38px; font-weight:800; letter-spacing:-1px; }
+  .page-hero .sub { font-size:16px; color:var(--muted); margin-top:12px; max-width:640px; margin-left:auto; margin-right:auto; }
+  section { padding:44px 0; }
+  .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+  .stat { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:24px; text-align:center; }
+  .stat .n { font-size:34px; font-weight:800; letter-spacing:-1px; color:var(--fg); }
+  .stat .n small { font-size:16px; font-weight:600; color:var(--muted); }
+  .stat .l { font-size:13px; color:var(--muted); margin-top:6px; }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .lead { color:var(--muted); font-size:14px; margin-bottom:24px; max-width:64ch; }
+  .handles-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:12px; }
+  .handle { background:var(--bg2); border:1px solid var(--line); border-radius:12px; padding:18px; font-size:14px; }
+  .handle b { display:block; margin-bottom:4px; }
+  .handle span { color:var(--muted); font-size:12.5px; }
+  .case { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:26px; margin-bottom:20px; }
+  .case-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:16px; flex-wrap:wrap; }
+  .case-head h3 { font-size:18px; }
+  .case-head .tag { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:3px 10px; }
+  .case-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:start; }
+  @media (max-width:720px) { .case-grid { grid-template-columns:1fr; } }
+  .before, .after { border:1px solid var(--line); border-radius:10px; overflow:hidden; background:#000; }
+  .before img { width:100%; display:block; opacity:.92; }
+  .after { background:var(--bg); padding:16px 18px; }
+  .after .lbl, .before .lbl { font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
+  .before { padding:0 0 10px; }
+  .before .lbl { padding:10px 12px 0; }
+  .before img { border-top:1px solid var(--line); }
+  .after table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  .after th, .after td { padding:5px 8px; border-bottom:1px solid var(--line); text-align:right; }
+  .after th:first-child, .after td:first-child { text-align:left; }
+  .after th { color:var(--muted); font-weight:600; font-size:11px; }
+  .after .math { font-family:Georgia,serif; font-size:14px; }
+  .after .note { color:var(--muted); font-size:12px; margin-top:10px; }
+  .verify-table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--bg2); }
+  .verify-table { width:100%; border-collapse:collapse; font-size:13.5px; min-width:520px; }
+  .verify-table th { text-align:left; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:12px 16px; border-bottom:1px solid var(--line); }
+  .verify-table td { padding:14px 16px; border-bottom:1px solid var(--line); }
+  .verify-table tr:last-child td { border-bottom:none; }
+  .verify-table td.num { font-weight:700; }
+  .cmp-note { font-size:12.5px; color:var(--muted); margin-top:14px; max-width:70ch; }
+  .cta { text-align:center; padding:30px 0 10px; }
+  .cta .btn { display:inline-block; padding:12px 28px; border-radius:9px; font-weight:600; font-size:14px; background:var(--fg); color:var(--bg); }
+  .cta .btn:hover { opacity:.88; }
+  .cta .sub { color:var(--muted); font-size:13px; margin-top:12px; }
+  footer { border-top:1px solid var(--line); padding:28px 0 44px; text-align:center; color:var(--muted); font-size:13px; margin-top:20px; }
+  footer a { color:var(--fg); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="nav">
+    <a class="brand" href="/">AwareLiquid <span>· Cleaning</span></a>
+    <div>
+      <a href="/hypercode" data-i18n="nav.hc">HyperCode</a>
+      <a href="/models" data-i18n="nav.models">Models</a>
+      <a href="/cleaning" class="active" data-i18n="nav.cleaning">Data Cleaning</a>
+      <a href="/#demo" data-i18n="nav.demo">Demo</a>
+      <a href="/research" data-i18n="nav.research">Research</a>
+      <a href="/api" data-i18n="nav.api">API</a>
+      <a href="/about" data-i18n="nav.about">About</a>
+      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="nav.gh">GitHub</a>
+      <button id="langBtn" class="lang-btn">中文</button>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="eyebrow" data-i18n="hero.eyebrow">Proprietary Pipeline</div>
+    <h1 data-i18n="hero.h1">Data Cleaning</h1>
+    <p class="sub" data-i18n="hero.sub">Scanned archives, handwritten tables, blurry reports — into clean, structured data. Transparent performance, protected internals.</p>
+  </header>
+
+  <section>
+    <div class="stats-grid">
+      <div class="stat"><div class="n" data-i18n="s1.n">100%</div><div class="l" data-i18n="s1.l">table digits correct (120/120, cell-by-cell human audit)</div></div>
+      <div class="stat"><div class="n" data-i18n="s2.n">98.3%</div><div class="l" data-i18n="s2.l">independent second engine (118/120) — cross-checked, not self-checked</div></div>
+      <div class="stat"><div class="n" data-i18n="s3.n">0</div><div class="l" data-i18n="s3.l">known errors after merge across 5 page types</div></div>
+      <div class="stat"><div class="n"><span data-i18n="s4.n">~1h</span></div><div class="l" data-i18n="s4.l">per 189-page report, a few RMB in cost</div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="handles.h2">What it handles</h2>
+    <p class="lead" data-i18n="handles.lead">Pure scanned documents with no text layer — the hardest shape of archive data. Typewriter text mixed with handwriting, hand-drawn tables, formulas, drawings, stamps and signatures.</p>
+    <div class="handles-grid">
+      <div class="handle"><b data-i18n="h1.t">Typewriter text</b><span data-i18n="h1.d">normalised automatically — legacy notation (I for 1, comma decimals) fixed 100%</span></div>
+      <div class="handle"><b data-i18n="h2.t">Hand-drawn tables</b><span data-i18n="h2.d">dashed rules, rotated headers — read cell by cell into clean tables</span></div>
+      <div class="handle"><b data-i18n="h3.t">Handwritten formulas</b><span data-i18n="h3.d">chemistry &amp; math — converted, with uncertain terms flagged for review</span></div>
+      <div class="handle"><b data-i18n="h4.t">Geological profiles</b><span data-i18n="h4.d">landscape drawings — embedded, with searchable captions</span></div>
+      <div class="handle"><b data-i18n="h5.t">Stamps &amp; signatures</b><span data-i18n="h5.d">preserved as-is, no hallucinated reconstruction</span></div>
+      <div class="handle"><b data-i18n="h6.t">Blurry scans</b><span data-i18n="h6.d">no aggressive pre-processing — we never invent strokes that are not there</span></div>
+      <div class="handle"><b data-i18n="h7.t">Multiple languages</b><span data-i18n="h7.d">verified on Russian archives; per-language notation rules handled per archive type</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="flow.h2">How it works</h2>
+    <p class="lead" data-i18n="flow.lead">Three steps, one handoff. You never lose control of your documents — the conversion result belongs to you.</p>
+    <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      <div class="stat" style="text-align:left">
+        <div class="n" style="font-size:20px" data-i18n="flow.s1.t">1 · Send the scan</div>
+        <div class="l" data-i18n="flow.s1.d">drop a sample PDF — typewriter pages, tables, drawings, anything. Get a sample conversion back.</div>
+      </div>
+      <div class="stat" style="text-align:left">
+        <div class="n" style="font-size:20px" data-i18n="flow.s2.t">2 · Automatic conversion + cross-check</div>
+        <div class="l" data-i18n="flow.s2.d">every page is converted and cross-verified; anything uncertain is explicitly flagged — never guessed.</div>
+      </div>
+      <div class="stat" style="text-align:left">
+        <div class="n" style="font-size:20px" data-i18n="flow.s3.t">3 · Reviewed handoff</div>
+        <div class="l" data-i18n="flow.s3.d">flagged items get a quick human pass, then the full structured file is delivered. Yours to keep.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 data-i18n="cases.h2">Case studies</h2>
+    <p class="lead" data-i18n="cases.lead">A 1975 geological exploration report — 189 pages, 300 DPI scan, every digit verified by hand against the original.</p>
+
+    <article class="case">
+      <div class="case-head"><h3 data-i18n="c1.t">Chemical analysis table · 120 cells</h3><span class="tag" data-i18n="c1.tag">120/120 correct</span></div>
+      <div class="case-grid">
+        <div class="before"><div class="lbl" data-i18n="before">Scan (input)</div><img src="/static/gs_cases/chem_table.jpg" alt="Scanned chemical analysis table"></div>
+        <div class="after">
+          <div class="lbl" data-i18n="after">Structured output</div>
+          <table>
+            <thead><tr><th>%</th><th>15</th><th>699</th><th>59</th><th>14</th><th>1128</th><th>50</th><th>6</th><th>46</th><th>20</th></tr></thead>
+            <tbody>
+              <tr><td>SiO₂</td><td>55.82</td><td>68.56</td><td>63.11</td><td>53.69</td><td>68.50</td><td>57.50</td><td>72.90</td><td>65.68</td><td>63.91</td></tr>
+              <tr><td>TiO₂</td><td>0.90</td><td>0.45</td><td>0.80</td><td>0.80</td><td>0.55</td><td>0.79</td><td>0.48</td><td>0.57</td><td>0.59</td></tr>
+              <tr><td>Al₂O₃</td><td>16.09</td><td>15.63</td><td>15.63</td><td>18.76</td><td>14.80</td><td>17.33</td><td>14.18</td><td>16.25</td><td>15.88</td></tr>
+              <tr><td>Fe₂O₃</td><td>2.25</td><td>2.53</td><td>2.12</td><td>3.27</td><td>2.96</td><td>3.78</td><td>1.65</td><td>2.38</td><td>3.22</td></tr>
+            </tbody>
+          </table>
+          <p class="note" data-i18n="c1.note">Oxide column sums re-verified against geochemistry rules automatically. The hardest cell — Al₂O₃ 18.76 — was missed twice by the second engine and caught by the primary.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-head"><h3 data-i18n="c2.t">Handwritten formula page</h3><span class="tag" data-i18n="c2.tag">converted · uncertain terms flagged</span></div>
+      <div class="case-grid">
+        <div class="before"><div class="lbl" data-i18n="before">Scan (input)</div><img src="/static/gs_cases/handwritten.jpg" alt="Scanned handwritten formula page"></div>
+        <div class="after">
+          <div class="lbl" data-i18n="after">Structured output</div>
+          <p class="math">Δg = g·α²/2</p>
+          <p class="note" data-i18n="c2.note">Handwritten symbols converted to real math; anything the engine is unsure about is explicitly marked for human review instead of guessed.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div class="case-head"><h3 data-i18n="c3.t">Landscape geological profile</h3><span class="tag" data-i18n="c3.tag">embedded + searchable caption</span></div>
+      <div class="case-grid">
+        <div class="before"><div class="lbl" data-i18n="before">Scan (input)</div><img src="/static/gs_cases/profile.jpg" alt="Scanned geological profile drawing"></div>
+        <div class="after">
+          <div class="lbl" data-i18n="after">Structured output</div>
+          <p class="note" data-i18n="c3.note">Drawings stay as images inside the structured document, with a generated caption so they become searchable — no attempt to redraw what was drawn by hand.</p>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2 data-i18n="verify.h2">How it was verified</h2>
+    <p class="lead" data-i18n="verify.lead">300 DPI crops audited cell by cell by hand, on a real 1975 report — not a synthetic benchmark.</p>
+    <div class="verify-table-wrap">
+      <table class="verify-table">
+        <thead><tr><th data-i18n="v.c1">Engine</th><th data-i18n="v.c2">Table digits</th><th data-i18n="v.c3">Body text</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="v.r1.name">Primary engine</td><td class="num">100% (120/120)</td><td data-i18n="v.r1.body">zero hallucination; uncertain words marked (?)</td></tr>
+          <tr><td data-i18n="v.r2.name">Independent second engine</td><td class="num">98.3% (118/120)</td><td data-i18n="v.r2.body">1–3 rationalised errors per page — used only for cross-checking</td></tr>
+          <tr><td data-i18n="v.r3.name">Merged output</td><td class="num">0 known errors</td><td data-i18n="v.r3.body">across all 5 demo page types</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="cmp-note" data-i18n="verify.note">The pipeline also caught and corrected 7 pre-existing errors in the client's own manually-edited reference data — including a lost entire row (п.п.п) and a misread city name.</p>
+  </section>
+
+  <section>
+    <h2 data-i18n="cost.h2">Cost &amp; speed</h2>
+    <div class="handles-grid">
+      <div class="handle"><b data-i18n="cost1.t">Few RMB per report</b><span data-i18n="cost1.d">a 189-page, 96.9 MB scanned PDF converts for roughly the price of a cup of coffee</span></div>
+      <div class="handle"><b data-i18n="cost2.t">~1 hour wall time</b><span data-i18n="cost2.d">with concurrency; single-stream ≈ 1.5–2 min per page</span></div>
+      <div class="handle"><b data-i18n="cost3.t">1.5 MB self-contained HTML</b><span data-i18n="cost3.d">formulas as real math, one file, no viewer needed</span></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <a class="btn" href="mailto:anmuning@awareliquid.ai" data-i18n="cta.btn">Talk to us about your archives →</a>
+    <p class="sub" data-i18n="cta.sub">anmuning@awareliquid.ai · bring a sample document, get a sample conversion</p>
+  </section>
+
+  <footer>
+    <p><a href="/">← AwareLiquid</a> · <a href="mailto:anmuning@awareliquid.ai" style="color:var(--fg)">anmuning@awareliquid.ai</a> · <a href="/research" data-i18n="foot.research">Research</a></p>
+    <p style="margin-top:10px;" data-i18n="foot.copy">© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd</p>
+  </footer>
+</div>
+
+<script>
+var I18N = {
+  en: {
+    "nav.hc":"HyperCode","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.demo":"Demo","nav.research":"Research","nav.api":"API","nav.about":"About","nav.gh":"GitHub",
+    "hero.eyebrow":"Proprietary Pipeline","hero.h1":"Data Cleaning",
+    "hero.sub":"Scanned archives, handwritten tables, blurry reports — into clean, structured data. Transparent performance, protected internals.",
+    "s1.n":"100%","s1.l":"table digits correct (120/120, cell-by-cell human audit)",
+    "s2.n":"98.3%","s2.l":"independent second engine (118/120) — cross-checked, not self-checked",
+    "s3.n":"0","s3.l":"known errors after merge across 5 page types",
+    "s4.n":"~1h","s4.l":"per 189-page report, a few RMB in cost",
+    "handles.h2":"What it handles","handles.lead":"Pure scanned documents with no text layer — the hardest shape of archive data. Typewriter text mixed with handwriting, hand-drawn tables, formulas, drawings, stamps and signatures.",
+    "h1.t":"Typewriter text","h1.d":"normalised automatically — legacy notation (I for 1, comma decimals) fixed 100%",
+    "h2.t":"Hand-drawn tables","h2.d":"dashed rules, rotated headers — read cell by cell into clean tables",
+    "h3.t":"Handwritten formulas","h3.d":"chemistry &amp; math — converted, with uncertain terms flagged for review",
+    "h4.t":"Geological profiles","h4.d":"landscape drawings — embedded, with searchable captions",
+    "h5.t":"Stamps &amp; signatures","h5.d":"preserved as-is, no hallucinated reconstruction",
+    "h6.t":"Blurry scans","h6.d":"no aggressive pre-processing — we never invent strokes that are not there",
+    "h7.t":"Multiple languages","h7.d":"verified on Russian archives; per-language notation rules handled per archive type",
+    "flow.h2":"How it works","flow.lead":"Three steps, one handoff. You never lose control of your documents — the conversion result belongs to you.",
+    "flow.s1.t":"1 · Send the scan","flow.s1.d":"drop a sample PDF — typewriter pages, tables, drawings, anything. Get a sample conversion back.",
+    "flow.s2.t":"2 · Automatic conversion + cross-check","flow.s2.d":"every page is converted and cross-verified; anything uncertain is explicitly flagged — never guessed.",
+    "flow.s3.t":"3 · Reviewed handoff","flow.s3.d":"flagged items get a quick human pass, then the full structured file is delivered. Yours to keep.",
+    "cases.h2":"Case studies","cases.lead":"A 1975 geological exploration report — 189 pages, 300 DPI scan, every digit verified by hand against the original.",
+    "c1.t":"Chemical analysis table · 120 cells","c1.tag":"120/120 correct",
+    "c1.note":"Oxide column sums re-verified against geochemistry rules automatically. The hardest cell — Al₂O₃ 18.76 — was missed twice by the second engine and caught by the primary.",
+    "c2.t":"Handwritten formula page","c2.tag":"converted · uncertain terms flagged",
+    "c2.note":"Handwritten symbols converted to real math; anything the engine is unsure about is explicitly marked for human review instead of guessed.",
+    "c3.t":"Landscape geological profile","c3.tag":"embedded + searchable caption",
+    "c3.note":"Drawings stay as images inside the structured document, with a generated caption so they become searchable — no attempt to redraw what was drawn by hand.",
+    "before":"Scan (input)","after":"Structured output",
+    "verify.h2":"How it was verified","verify.lead":"300 DPI crops audited cell by cell by hand, on a real 1975 report — not a synthetic benchmark.",
+    "v.c1":"Engine","v.c2":"Table digits","v.c3":"Body text",
+    "v.r1.name":"Primary engine","v.r1.body":"zero hallucination; uncertain words marked (?)",
+    "v.r2.name":"Independent second engine","v.r2.body":"1–3 rationalised errors per page — used only for cross-checking",
+    "v.r3.name":"Merged output","v.r3.body":"across all 5 demo page types",
+    "verify.note":"The pipeline also caught and corrected 7 pre-existing errors in the client's own manually-edited reference data — including a lost entire row (п.п.п) and a misread city name.",
+    "cost.h2":"Cost &amp; speed",
+    "cost1.t":"Few RMB per report","cost1.d":"a 189-page, 96.9 MB scanned PDF converts for roughly the price of a cup of coffee",
+    "cost2.t":"~1 hour wall time","cost2.d":"with concurrency; single-stream ≈ 1.5–2 min per page",
+    "cost3.t":"1.5 MB self-contained HTML","cost3.d":"formulas as real math, one file, no viewer needed",
+    "cta.btn":"Talk to us about your archives →","cta.sub":"anmuning@awareliquid.ai · bring a sample document, get a sample conversion",
+    "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
+  },
+  zh: {
+    "nav.hc":"HyperCode","nav.models":"模型","nav.cleaning":"数据清洗","nav.demo":"演示","nav.research":"研究","nav.api":"API","nav.about":"关于","nav.gh":"GitHub",
+    "hero.eyebrow":"自研管线","hero.h1":"数据清洗",
+    "hero.sub":"扫描档案、手写表格、模糊报告 —— 变成干净的结构化数据。性能透明，内部机制保密。",
+    "s1.n":"100%","s1.l":"表格数字正确率（120/120，逐格人工核验）",
+    "s2.n":"98.3%","s2.l":"独立第二引擎（118/120）—— 交叉核验，不是自检",
+    "s3.n":"0","s3.l":"双引擎合并后已知错误（5 种页型）",
+    "s4.n":"约 1 小时","s4.l":"每份 189 页报告，成本仅数元",
+    "handles.h2":"能处理什么","handles.lead":"无文字层的纯扫描件 —— 档案数据里最难的一种。打字机正文与手写混排、手画虚线表格、手写公式、手绘图纸、公章与签名。",
+    "h1.t":"打字机正文","h1.d":"自动归一化 —— 旧式记法（I 代 1、逗号小数）100% 修正",
+    "h2.t":"手画表格","h2.d":"虚线框、旋转表头 —— 逐格读入干净表格",
+    "h3.t":"手写公式","h3.d":"化学式与数学公式 —— 转换后不确定项主动标注待复核",
+    "h4.t":"地质剖面图","h4.d":"横版手绘图 —— 内嵌保留，附可检索图注",
+    "h5.t":"公章与签名","h5.d":"原样保留，不脑补重建",
+    "h6.t":"模糊扫描件","h6.d":"不做激进预处理 —— 绝不臆造不存在的笔画",
+    "h7.t":"多语言档案","h7.d":"已实测俄文档案；不同语言的旧式记法按档案类型逐类处理",
+    "flow.h2":"工作流程","flow.lead":"三步，一次交付。你的文档始终在你掌控之中 —— 转换结果归你所有。",
+    "flow.s1.t":"1 · 发送扫描件","flow.s1.d":"发一份样张 PDF —— 打字机页、表格、图纸，什么形态都行。先拿一份样转结果。",
+    "flow.s2.t":"2 · 自动转换 + 交叉校验","flow.s2.d":"每页自动转换并交叉核验；拿不准的内容明确标注 —— 绝不猜答案。",
+    "flow.s3.t":"3 · 复核交付","flow.s3.d":"标注项经过快速人工复核，完整结构化文件交付。归你所有。",
+    "cases.h2":"案例","cases.lead":"一份 1975 年地质勘探报告 —— 189 页、300 DPI 扫描件，每个数字都与原件逐格人工核对。",
+    "c1.t":"化学分析表 · 120 格","c1.tag":"120/120 全对",
+    "c1.note":"氧化物列加和经地球化学规则自动复核。最难的一格 —— Al₂O₃ 18.76 —— 第二引擎两遍都错，主引擎抓住。",
+    "c2.t":"手写公式页","c2.tag":"已转换 · 不确定项已标注",
+    "c2.note":"手写符号转成真正的数学公式；引擎拿不准的内容明确标注待人工，而不是猜一个答案。",
+    "c3.t":"横版地质剖面图","c3.tag":"内嵌 + 可检索图注",
+    "c3.note":"图纸作为图像保留在结构化文档内，自动生成图注使其可检索 —— 不试图重画手工画的东西。",
+    "before":"扫描件（输入）","after":"结构化输出",
+    "verify.h2":"如何验证的","verify.lead":"300 DPI 裁块逐格人工核验，对象是真实的 1975 年报告 —— 不是合成基准。",
+    "v.c1":"引擎","v.c2":"表格数字","v.c3":"正文",
+    "v.r1.name":"主引擎","v.r1.body":"零幻觉；不确定词主动标注 (?)",
+    "v.r2.name":"独立第二引擎","v.r2.body":"每页 1–3 处理性错误 —— 仅用于交叉核验",
+    "v.r3.name":"合并输出","v.r3.body":"5 种演示页型全部通过",
+    "verify.note":"管线还顺手修正了客户既有人工样板中的 7 处存量错误 —— 包括丢失的整行（п.п.п）和一个误读的城市名。",
+    "cost.h2":"成本与速度",
+    "cost1.t":"每份报告仅数元","cost1.d":"一份 189 页、96.9 MB 的扫描 PDF，转换成本约一杯咖啡",
+    "cost2.t":"约 1 小时","cost2.d":"并发处理；单流约 1.5–2 分钟/页",
+    "cost3.t":"1.5 MB 单文件 HTML","cost3.d":"公式是真正的数学公式，一个文件，无需专门查看器",
+    "cta.btn":"聊聊你的档案 →","cta.sub":"anmuning@awareliquid.ai · 带一份样张，拿一份样转",
+    "foot.research":"研究","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司"
+  }
+};
+function applyLang(lang){
+  var dict = I18N[lang] || I18N.en;
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n');
+    if (dict[k]) el.innerHTML = dict[k];
+  });
+  document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
+  localStorage.setItem('cleaning_lang', lang);
+}
+document.getElementById('langBtn').addEventListener('click', function(){
+  var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
+  applyLang(cur === 'zh' ? 'en' : 'zh');
+});
+(function(){ var saved = localStorage.getItem('cleaning_lang') || 'en'; applyLang(saved); })();
+</script>
+</body>
+</html>

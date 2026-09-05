@@ -12,10 +12,12 @@
 ## Product
 - [HyperCode — AI coding & work assistant](https://awareliquid.ai/hypercode): The most powerful AI coding software and work assistant. DeepSeek-powered, 229 built-in skills, autonomous long-running tasks, cross-session memory.
 - [Valuation Tool — AI A-share stock valuation](https://awareliquid.ai/valuation): Free AI stock valuation tool. Enter a ticker to get real-time quote + DCF + Comps snapshot. Built on HyperCode.
+- [Data Cleaning — scanned archive digitization](https://awareliquid.ai/cleaning): Pure scanned PDFs (typewriter text, handwritten tables, drawings) converted into clean structured HTML. Verified performance, protected internals.
 
 ## English
 - [HyperCode](https://awareliquid.ai/hypercode): The most powerful AI coding software & work assistant — one clear instruction, it works for hours until everything is done.
 - [AI Valuation Tool](https://awareliquid.ai/valuation): Free AI-powered stock valuation. Enter a ticker, get DCF + Comps in seconds.
+- [Data Cleaning](https://awareliquid.ai/cleaning): Scanned archives into clean structured data — verified 100% table-digit accuracy.
 - [Demo](https://awareliquid.ai/demo): See HyperCode in action.
 - [Research](https://awareliquid.ai/research): Financial research use cases.
 - [API](https://awareliquid.ai/api): Developer API.
@@ -26,6 +28,7 @@
 ## 中文 (zh-CN)
 - [HyperCode — AI 编程软件与工作助手](https://awareliquid.ai/hypercode): 最强大的 AI 编程软件与工作助手。一个清晰的任务指令,连续工作数小时,直到全部做完。内置 229 个专业技能,DeepSeek 驱动。
 - [AI 估值速查工具](https://awareliquid.ai/valuation): 免费 AI 股票估值工具。输入 A股代码,实时行情 + DCF + Comps 快照秒出。由 HyperCode 驱动。
+- [数据清洗](https://awareliquid.ai/cleaning): 扫描档案转结构化数据 —— 实测表格数字 100% 正确。
 - [每日 AI 晨报](https://awareliquid.ai/morning-notes/): 每个交易日 AI 生成的 A股晨报。
 - [估值快照](https://awareliquid.ai/snapshots/000001.html): A股个股估值快照示例(平安银行)。
 - [研究](https://awareliquid.ai/research) · [演示](https://awareliquid.ai/demo) · [关于](https://awareliquid.ai/about)
@@ -36,3 +39,14 @@
 - 229 built-in domain skills (financial research 55, legal 152, academic 20, PE fundraising), triggered by Chinese or English keywords
 - Cross-session memory; checkpoint recovery; background compaction; verification loops
 - Windows NSIS installer, macOS dmg (Apple Silicon + Intel)
+
+## Data Cleaning - Scanned Archive Digitization (Service)
+
+> AwareLiquid's document digitization service: pure scanned PDFs (no text layer) - typewriter text, handwritten tables and formulas, drawings, stamps - converted into clean structured HTML. Verified performance only; internals protected.
+
+- **Page**: https://awareliquid.ai/cleaning
+- **Verified accuracy** (1975 geological report, 300 DPI, cell-by-cell human audit): primary engine 100% table digits (120/120), independent second engine 98.3% (118/120), merged output 0 known errors across 5 page types
+- **Zero hallucination** on body text (primary); uncertain terms explicitly marked for review
+- **Cost/speed**: ~1 hour per 189-page report, a few RMB; 96.9 MB scan -> 1.5 MB self-contained HTML
+- **Cases**: cover, 120-cell chemical table, LOI table, handwritten formula page, landscape geological profile
+- **Contact**: anmuning@awareliquid.ai (bring a sample, get a sample conversion)
