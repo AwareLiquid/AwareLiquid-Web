@@ -649,6 +649,11 @@ html[data-theme="light"] .chart-fig img{background:#fff}
 .adv-card li strong{color:var(--fg);font-weight:650}
 .why-note{font-size:13px;color:var(--muted);margin-top:16px}
 @media(max-width:900px){.why-grid{grid-template-columns:1fr}}
+/* ── Arabic RTL ── */
+html[lang="ar"] body,html[lang="ar"]{font-family:"Noto Naskh Arabic","Segoe UI","Tahoma",sans-serif}
+html[dir="rtl"] .h-display,html[dir="rtl"] .em-italic{letter-spacing:0}
+html[dir="rtl"] .eyebrow,html[dir="rtl"] .stat-n,html[dir="rtl"] .adv-eyebrow,html[dir="rtl"] .model-tag,html[dir="rtl"] .rail-eyebrow{letter-spacing:0}
+html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
 </style>
 <link rel="icon" href="/static/favicon-dark.png?v=2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/static/favicon-light.png?v=2" media="(prefers-color-scheme: dark)">
@@ -1259,6 +1264,132 @@ const I18N={
     'why.c2':'<span class="adv-eyebrow">Advantage 2 · Capability</span><h3>What Attention Structurally Cannot Do</h3><ul><li><strong>0.56 vs 0.000</strong> cross-window recall — facts carried by fast-weight memory after their KV cache is gone</li><li><strong>+7.7% vs +31%</strong> degradation at 80% dropped samples on real NASA battery data (vs LSTM/GRU)</li><li><strong>EWC</strong> continual learning — online weight updates without catastrophic forgetting</li></ul>',
     'why.note':'All numbers measured on real runs — methodology and raw data: ',
   },
+  ar:{
+    'nav.demo':'العرض','nav.models':'النماذج','nav.research':'الأبحاث','nav.about':'عن الشركة','nav.paper':'الورقة','nav.github':'GitHub',
+    'nav.try':'جرّب العرض','nav.industries':'المجالات','nav.hypercode':'HyperCode','nav.cleaning':'تنظيف البيانات',
+    'hero.title':'نموذج شبيه بالدماغ،','hero.accent':'خفيف الوزن','hero.title2':'للحافة.',
+    'hero.sub':'AwareLiquid إطار ذكاء اصطناعي معرفي مستوحى من الأحياء. سلسلة O بلا انتباه تحمل حالة ثابتة الحجم بدل ذاكرة KV المتنامية — 0.381 ميجابايت مهما كان طول السياق، وتعمل على المعالج فقط. صُمم للنشر الحافّي الخفيف، لا لمراكز البيانات.',
+    'hero.cta1':'احصل على HyperCode','hero.cta2':'جرّب العرض المباشر',
+    'hc.label':'المنتج','hc.h2':'HyperCode — ذكاء اصطناعي يُنهي العمل.',
+    'hc.lead':'أعطه تعليمة واحدة واضحة فيعمل لساعات حتى يُنجز كل شيء. أكثر من 228 مهارة مدمجة في المالية والقانون والأكاديميا والاستثمار الخاص. بلا VPN وبلا إعداد — تثبيت بنقرة واحدة على ويندوز وماك.',
+    'hc.cta':'نزّل HyperCode','hc.note':'v0.1.8 · تجربة مجانية',
+    'hero.m1':'الحالة المحمولة','hero.m2':'السياق','hero.m3':'مقابل ذاكرة KV',
+    'rail.latest':'الأحدث','rail.more':'اقرأ المزيد →',
+    'ind.eyebrow':'أين يعمل','ind.h2a':'مبني لتيارات لا تتوقف، على عتاد ','ind.h2b':'لا يكبر','ind.h2c':'.',
+    'ind.lead':'ثلاثة نشرات خلفها شيء حقيقي — مُقاسة أو مشحونة أو كليهما. كل رقم مرتبط بكود مفتوح؛ وأي شيء بلا بيانات يقول ذلك صراحة.',
+    'm1.tag':'معرفي · GWT + نوم · تفكير بطيء','o1.tag':'حافة · ODE سائلة · تفكير سريع',
+    'arch.eyebrow':'بنية مستوحاة من الأحياء','arch.h2':'ثلاث آليات تجعل التفكير ممكناً',
+    'arch.lead':'يرص AwareLiquid ثلاثة أنظمة فرعية مشتقة من علوم الأعصاب فوق نواة سائلة زمنية مستمرة — كل واحد يحل مشكلة معرفية مميزة لا تستطيع المحولات وSSM معالجتها.',
+    'rh.eyebrow':'واقع هندسي','rh.h2':'مُقاس.\nقابل لإعادة الإنتاج.',
+    'rh.lead':'كل ادعاء أدناه مُقاس على تشغيلات حقيقية ومدعوم بكود وبيانات مفتوحة.',
+    'rh.full':'المنهجية والنتائج الكاملة →',
+    'models.eyebrow':'تشكيلة النماذج','models.h2':'كل إصدار، في مكان واحد',
+    'models.lead':'كل إصدار من AwareLiquid موسوم بحالته: <strong>مباشر</strong> (يُقدَّم على هذا الموقع)، أو <strong>تحميل</strong> (أوزان منشورة)، أو <strong>تدريب</strong> (جارٍ).',
+    'demo.eyebrow':'عرض مباشر','demo.h2':'جرّب النموذجين في متصفحك',
+    'demo.lead':'واجهتان مميزتان. <strong>أسئلة علمية</strong> تؤسس إجاباتها على قاعدة معرفة بأكثر من 1000 مصدر (أوراق بروابط DOI وعدد استشهادات) &mdash; تجيب فقط بما تدعمه المصادر، وتقول ذلك بصدق حين لا تدعم. <strong>M1-128M</strong> هو الهجين الأصلي 128M المدرَّب من الصفر، بلا نموذج أساسي. اسأل بالإنجليزية أو الصينية.',
+    'demo.fullpage':'افتح العرض الكامل →',
+    'demo.note':'عرض بمستوى بحثي — الجودة تجريبية. ',
+    'demo.notelink':'ماذا تتوقع →',
+    'demo.clear':'مسح','demo.placeholder':'اسأل بالإنجليزية أو الصينية…',
+    'future.eyebrow':'مستقبل الوكلاء المتعددين','future.h2':'ركيزة أصلية للوكلاء المعرفيين',
+    'future.lead':'تتفوق المحولات في الاسترجاع الساكن. بُني AwareLiquid لأصعب من ذلك: وكلاء يشكلون ذكريات عرضية عبر الجلسات، ويتنسقون عبر بث مساحة عمل عالمية مشتركة، ويدمجون المعرفة باستمرار بلا نسيان كارثي.',
+    'future.link':'انظر البنية الحالية →',
+    'vs.eyebrow':'التموضع','vs.h2':'نفس النسب. حدود مختلفة.',
+    'vs.lead':'يبني المشروعان على الشبكات العصبية السائلة من MIT. حلّت Liquid AI كفاءة الاستدلال بالأوزان الثابتة. يطرح AwareLiquid السؤال التالي: هل يستطيع النموذج اكتساب معرفة جديدة دون محو القديمة؟',
+    'footer.brand':'إطار ذكاء اصطناعي معرفي مستوحى من الأحياء. سلسلة M: تفكير بطيء معرفي مع GWT والنوم. سلسلة O: تفكير سريع بمعادلات سائلة للحافة. بحث مفتوح.',
+    'footer.research':'الأبحاث','footer.project':'المشروع','footer.legal':'قانوني',
+    'footer.privacy':'سياسة الخصوصية','footer.terms':'شروط الاستخدام',
+    'footer.bottom':'© 2026 AwareLiquid · عرض بحثي مفتوح','footer.entity':'Shenzhen Santi Anyuan Technology Co., Ltd',
+    'footer.built':'مبني على','skip.demo':'انتقل إلى العرض',
+    'rail.t1':'دليل الذاكرة الثابتة ممتد من 128 ألف إلى مليون رمز',
+    'rail.t2':'صحة بطارية على خلايا NASA حقيقية',
+    'rail.t3':'تشخيص جذري لانحراف تدريب خاص بـ fp16',
+    'rail.c1':'معيار','rail.c2':'تجربة حافة','rail.c3':'هندسة',
+    'lineup.s1':'سلسلة M','lineup.s2':'سلسلة O',
+    'stats.l1':'ذاكرة استدلال أقل عند مليون رمز<br>حالة سلسلة O مقابل ذاكرة KV',
+    'stats.l2':'حالة محمولة ثابتة<br>مسطحة من 512 إلى مليون رمز',
+    'stats.l3':'استدعاء عبر النوافذ<br>الوزن السريع مقابل الانتباه/LoRA',
+    'stats.l4':'نموذج حافة من الصفر<br>سلسلة O بلا انتباه',
+    'arch.figcap':'خط أنابيب AwareLiquid M1 الكامل — نواة LTC زمنية مستمرة + بث GWT تنافسي + دمج النوم + تعلم EWC مباشر',
+    'feat.tag1':'M1 · سلسلة M','feat.tag2':'M1 · سلسلة M','feat.tag3':'O1 · سلسلة O',
+    'feat.t1':'نظرية مساحة العمل العالمية (GWT)',
+    'feat.d1':'وحدات قشرية متخصصة تتنافس على قناة بث مشتركة — «مساحة العمل العالمية». الفائز ينشر تمثيله لكل الوحدات الأخرى، ما يتيح انتباهاً انتقائياً وتكاملاً ناشئاً وتوجيهاً للمعلومات شبيهاً بالوعي.',
+    'feat.t2':'دمج النوم (جسر NREM)',
+    'feat.d2':'دورات NREM اصطناعية تعيد تنشيطات الجلسة قصيرة المدى وتضغطها في بنية ذاكرة-رسم بياني دائمة. خفض الاستتباب التشابكي (SHY) يشذّب الاتصالات الزائدة فيرفع نسبة الإشارة إلى الضجيج. النموذج يصبح أذكى أثناء الراحة.',
+    'feat.t3':'ديناميكيات المعادلة السائلة',
+    'feat.d3':'تتطور الحالة الخفية كمعادلة تفاضلية زمنية مستمرة بثوابت زمنية قابلة للتعلم — مستوحاة من ديناميكيات الأنابيب الدقيقة. بلا تراص طبقي متقطع، بلا نمو لذاكرة KV. حالة الذاكرة الثابتة تتيح نشراً حافياً بزمن استجابة بالمللي ثانية.',
+    'ind.c1t':'إدارة البطاريات','ind.c1d':'انحدار صحة الحالة على تيارات الجهد/التيار/الحرارة، على وحدة التحكم نفسها.',
+    'ind.c1s':'مُقاس — خلايا NASA PCoE','ind.c1m':'‏+7.7% عند فقدان 80% من العينات مقابل +31% لـ LSTM/GRU · حالة بث 2.6 كيلوبايت. 10 بذور، خلية كاملة محجوزة.',
+    'ind.c2t':'السماعات الذكية','ind.c2d':'رصد كلمة استيقاظ دائم التشغيل حيث لا يغلق الميكروفون أبداً — كلمة واحدة، مُقاسة بالإنجليزية. مفتوح المصدر باسم <strong>O1-Sound</strong>.',
+    'ind.c2s':'مُقاس — كلمة واحدة فقط','ind.c2m':'الإنجليزية «hello»: FRR 0.14 ± 0.05 عند FAR 0.05 عبر 3 بذور. 5.03 ميجابايت fp32 / 1.27 int8، حالة ثابتة 5,120 بايت. <strong>غير جاهز للإنتاج</strong>: تباين بين البذور أوسع من أي تغيير جرّبناه، والنسخة متعددة اللغات قيست أسوأ من عدم الإطلاق إطلاقاً.',
+    'ind.c3t':'المستندات المالية','ind.c3d':'أسئلة وأجوبة على ملفات أطول بكثير من نافذة السياق، مع تجميد النموذج الأساسي خلف API.',
+    'ind.c3s':'مُقاس — محول M2','ind.c3m':'44/48 (91.7%) عبر خمسة مجالات مستندات مالية · ~2.8 ألف رمز لكل سؤال. خط أساس انحداري، لا متصدر قوائم.',
+    'ind.alsoLabel':'نستهدف أيضاً','ind.alsoText':'أنظمة داخل المركبات · مساعدو الأجهزة · الروبوتات الصناعية — ملاءمة معمارية (حالة محدودة على جلسة غير محدودة، Δt أصلي)، <strong>لا بيانات تجريبية بعد</strong>.',
+    'rh.th1':'القدرة','rh.th2':'النتيجة',
+    'rh.r1c':'ذاكرة استدلال O(1) (سلسلة O)','rh.r1v':'0.381 ميجابايت مسطحة → أصغر بـ 8063× عند مليون رمز',
+    'rh.r2c':'استدعاء ترابطي عبر النوافذ','rh.r2v':'0.56 مقابل 0.000 (انتباه/LoRA)',
+    'rh.r3c':'لقطة عبر الجلسات ← استعادة','rh.r3v':'تطابق بتاً ببت',
+    'rh.r4c':'تدريب مستقر بمقياس 125M','rh.r4v':'بلا NaN، 20 ألف خطوة، 3 بذور',
+    'rh.r5c':'متانة العينات غير المنتظمة (بطارية)','rh.r5v':'أثبت 4× من LSTM/GRU عند فقدان العينات',
+    'rh.note':'المنهجية الكاملة والبيانات الخام وسكربتات إعادة الإنتاج: <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>.',
+    'rh.chartcap':'ذاكرة الاستدلال مقابل طول السياق. تنمو ذاكرة KV بـ O(n)؛ حالة سلسلة O المحمولة مسطحة. مُقاسة حتى مليون رمز: حالة 0.381 ميجابايت مقابل ذاكرة KV سعة 3,072 ميجابايت — أصغر بـ 8063×. هذا يقيس بايتات حالة الاستدلال المحمولة فقط — وليس دليلاً على جودة النموذج أبعد من طول تدريب 512 رمزاً.',
+    'demo.opt1':'أسئلة علمية · Qwen 1.5B + مصدر معرفة','demo.opt2':'M1-128M · هجين من الصفر',
+    'vs.t1':'أقصى كفاءة<br>استدلال','vs.t2':'استمرارية معرفية<br>&amp; تعلم مدى الحياة',
+    'vs.o1':'هجين SSM + انتباه خطي + MoE','vs.o2':'350M – 24B معامل، نطاق تجاري','vs.o3':'أوزان مجمّدة بعد التدريب؛ داخل السياق فقط','vs.o4':'يستهدف سلاسل زمنية صناعية وأجهزة حافة',
+    'vs.u1':'RNN زمن مستمر + GWT + نوم + EWC','vs.u2':'48M – 128M، نموذج بحث مفتوح','vs.u3':'تحديث أوزان مباشر — يتعلم بلا نسيان','vs.u4':'يستهدف الذاكرة العرضية وإدراك الوكلاء والتكيف',
+    'footer.arch':'البنية','footer.ewc':'نتائج EWC','footer.hebbian':'استئصال Hebbian',
+    'footer.spatial':'الحوسبة المكانية','footer.paperpdf':'الورقة (PDF)',
+    'footer.about':'عن الشركة','footer.livedemo':'العرض المباشر',
+    'footer.modelapi':'واجهة النموذج','footer.health':'الصحة',
+    'footer.privacy2':'الخصوصية','footer.terms2':'الشروط',
+    'models.famEyebrow':'العائلة البحثية','models.famH2':'استنسخ وكرر',
+    'models.famLead':'العائلة الأوسع أبعد من النماذج المخدومة — كل مستودع يضم كوداً حقيقياً ومجموعة اختبارات مُقاسة. الترخيص: MIT.',
+    'mc.0.series':'سلسلة M','mc.0.status':'● متاح مباشرة','mc.0.name':'M1-128M',
+    'mc.0.desc':'هجين من الصفر — انتباه + نواة سائلة في كل طبقة. 50 ألف خطوة على WikiText-103، إكمال نصوص إنجليزية.',
+    'mc.0.meta':'<span>128.6M معامل</span><span>12 طبقة · 832d</span><span>نافذة 512 رمز</span>',
+    'mc.0.cta1':'جرّبه مباشرة →','mc.0.cta2':'نزّل الأوزان ↓','mc.0.note':'يُقدَّم بالمفكك الأصلي على هذا الموقع',
+    'mc.1.series':'سلسلة M','mc.1.status':'● متاح مباشرة','mc.1.name':'M1 · TinyLlama-1.1B + MT v2s',
+    'mc.1.desc':'قاعدة TinyLlama-1.1B-Chat مجمّدة مع محولات نواة سائلة مدربة + LoRA. النموذج المحادثي — إنجليزي وصيني، مع ذاكرة وزن سريع بين الأدوار.',
+    'mc.1.meta':'<span>قاعدة 1.1B + محول 2.3M</span><span>قادر على المحادثة</span><span>ثنائي اللغة</span>',
+    'mc.1.cta1':'جرّبه مباشرة →','mc.1.cta2':'نزّل المحول ↓','mc.1.note':'نقطة فحص 24.8 ميجابايت · كرر العرض المباشر',
+    'mc.2.series':'سلسلة O','mc.2.status':'↓ تحميل','mc.2.name':'O1-48M',
+    'mc.2.desc':'نموذج حافة من سلسلة O بلا انتباه، مدرَّب من الصفر. حالة محمولة ثابتة 0.381 ميجابايت مهما كان السياق — خط ذاكرة O(1). شغّله على المعالج.',
+    'mc.2.meta':'<span>48M معامل</span><span>بلا انتباه</span><span>صديق للمعالج</span>',
+    'mc.2.cta1':'نزّل الأوزان ↓','mc.2.note':'إصدار GitHub · شغّله بـ server.py',
+    'mc.3.series':'سلسلة M','mc.3.status':'◐ تدريب','mc.3.name':'M1-2B',
+    'mc.3.desc':'هجين بـ 1.9 مليار معامل (2912d × 35L) يتدرب على A100. أُصلح خطأ جدولة معدل التعلم — PPL التحقق ينخفض بثبات (107 → 74.75، -30%). الأوزان عند التقارب.',
+    'mc.3.meta':'<span>1.9B معامل</span><span>35 طبقة · 2912d</span><span>تقارب · PPL -30%</span>',
+    'mc.3.cta1':'الأوزان عند التقارب','mc.3.note':'تدريب على A100 مستأجرة',
+    'mc.4.series':'سلسلة O','mc.4.status':'↓ استنسخ وشغّل','mc.4.name':'O1-Anti — المحول المضاد',
+    'mc.4.desc':'ثلاث ركائز ضد تكاليف المحول: تجاور سائل عصبي (ذاكرة تخزين أصغر 8×)، رسم وحدات متفرق (27% تنشيط)، فك ترميز غير ذاتي (تمريرات أقل 3.4×). استدعاء MQAR: يتعادل مع الانتباه عند 1.000؛ Mamba 0.07-0.10. 22/22 اختباراً.',
+    'mc.4.meta':'<span>خط كفاءة</span><span>22 اختباراً</span><span>pip install torch</span>',
+    'mc.4.cta1':'GitHub →',
+    'mc.5.series':'سلسلة O','mc.5.status':'↓ استنسخ وشغّل','mc.5.name':'AwareLiquid-Physic',
+    'mc.5.desc':'فيزياء مكتوبة في البنية: ركيزة سائلة (LTC) + رأس هاميلتوني بقيود صلبة + تكامل تناظري. اكتمل المشروع — كل أهداف PRD تحققت: رفع تدريب أشباه الزمر ميزة السائل إلى 66%، تكيف قليل الأمثلة 3.24×، ورؤوس N-body وغير قابلة للفصل واحتمالية ومشروطة زمنياً. 43/43 اختباراً.',
+    'mc.5.meta':'<span>فيزياء أصلية</span><span>43 اختباراً</span><span>MIT</span>',
+    'mc.5.cta1':'GitHub →',
+    'mc.6.series':'Cortex','mc.6.status':'↓ استنسخ وشغّل','mc.6.name':'C1 — رصة إدراك خماسية الطبقات',
+    'mc.6.desc':'تيار حسي ← ذاكرة O(1) ← توجيه زمني متفرق ← ترميز تنبؤي ← GRPO سائل + نظام 1/2. أول تشغيل لـ E1: استقراء 1.0←0.56. تجارب E1–E3 تبني تبعياتها تلقائياً من مرآة M1 العامة.',
+    'mc.6.meta':'<span>رؤية سائلة نقية</span><span>تجارب E1–E3</span><span>MIT</span>',
+    'mc.6.cta1':'GitHub →',
+    'mc.7.series':'سلسلة O','mc.7.status':'↓ استنسخ وشغّل','mc.7.name':'O1-Sound — راصد كلمة الاستيقاظ',
+    'mc.7.desc':'رصد كلمات دائم التشغيل على النواة السائلة: حالة ثابتة 5,120 بايت، تصدير ONNX 5.03 ميجابايت fp32 / 1.27 int8. إنجليزية مُتحقق منها (FRR 0.146 @ FAR 0.046). 32/32 اختباراً.',
+    'mc.7.meta':'<span>حافة · دائم التشغيل</span><span>32 اختباراً</span><span>ONNX 5MB</span>',
+    'mc.7.cta1':'GitHub →','mc.7.cta2':'نقطة الفحص ↓',
+    'mc.8.series':'أبحاث','mc.8.status':'↓ اقرأ','mc.8.name':'الورقة التقنية MT-LNN',
+    'mc.8.desc':'إنجليزية + صينية. شبكة سائلة مستوحاة من الأنابيب الدقيقة: ذاكرة عمل O(1)، ترميز تنبؤي متعدد المقاييس، تخطي حوسبة. الجداول التجريبية قانونية — بأحكام صادقة.',
+    'mc.8.meta':'<span>EN / 中文</span><span>PDF</span><span>علم مفتوح</span>',
+    'mc.8.cta1':'PDF (EN) →','mc.8.cta2':'PDF (中文) →',
+    'mc.9.series':'أبحاث','mc.9.status':'↓ استكشف','mc.9.name':'تصور LLM',
+    'mc.9.desc':'تصور ثلاثي الأبعاد تفاعلي لبنية MT-LNN (ممتد من bbycroft/llm-viz).',
+    'mc.9.meta':'<span>مستكشف ثلاثي الأبعاد</span><span>ويب</span><span>MIT</span>',
+    'mc.9.cta1':'GitHub →',
+    'why.eyebrow':'لماذا AwareLiquid','why.h2':'ميزتان، مقاستان لا مسوَّقتان',
+    'why.lead':'للفرق التي تنشر نماذج على الحافة: ميزة تكلفة وميزة قدرة. كل رقم مرتبط بكود وبيانات مفتوحة.',
+    'why.c1':'<span class="adv-eyebrow">الميزة 1 · التكلفة والحجم</span><h3>خفيف بالبنية</h3><ul><li><strong>0.381 ميجابايت</strong> حالة محمولة ثابتة مهما كان السياق — <strong>أصغر بـ 8,063×</strong> من ذاكرة KV عند مليون رمز</li><li>نماذج حافة <strong>48M–128M</strong> على المعالج فقط — بلا فاتورة بطاقات</li><li>تصدير <strong>5 ميجابايت</strong> ONNX لكلمة استيقاظ دائمة التشغيل (O1-Sound)</li></ul>',
+    'why.c2':'<span class="adv-eyebrow">الميزة 2 · القدرة</span><h3>ما لا يستطيع الانتباه فعله بنيوياً</h3><ul><li><strong>0.56 مقابل 0.000</strong> استدعاء عبر النوافذ — حقائق تحملها ذاكرة الوزن السريع بعد اختفاء ذاكرة KV</li><li><strong>‏+7.7% مقابل +31%</strong> تدهور عند فقدان 80% من العينات على بيانات بطاريات NASA حقيقية (مقابل LSTM/GRU)</li><li><strong>EWC</strong> تعلم مستمر — تحديث أوزان مباشر بلا نسيان كارثي</li></ul>',
+    'why.note':'كل الأرقام مُقاسة على تشغيلات حقيقية — المنهجية والبيانات الخام: ',
+  },
   zh:{
     'nav.demo':'演示','nav.models':'模型','nav.research':'研究','nav.about':'关于','nav.paper':'论文','nav.github':'GitHub',
     'nav.try':'试用演示',
@@ -1485,8 +1616,9 @@ const I18N_MAP=[
 
 function applyPageLang(lang){
   PAGE_LANG=lang;localStorage.setItem('lang',lang);
-  document.documentElement.lang=lang==='zh'?'zh-CN':'en';
-  document.getElementById('langBtn').textContent=lang==='zh'?'EN':'中文';
+  document.documentElement.lang=lang==='zh'?'zh-CN':lang;
+  document.documentElement.dir=lang==='ar'?'rtl':'ltr';
+  document.getElementById('langBtn').textContent={en:'中文',zh:'العربية',ar:'EN'}[lang]||'中文';
 
   // Hero display line: roman + italic emphasis + roman. Built here rather than
   // via I18N_MAP because the <em> has to wrap a single translated phrase.
@@ -1647,7 +1779,7 @@ function applyPageLang(lang){
 }
 
 const langBtn=document.getElementById('langBtn');
-langBtn.addEventListener('click',()=>applyPageLang(PAGE_LANG==='zh'?'en':'zh'));
+langBtn.addEventListener('click',()=>applyPageLang({en:'zh',zh:'ar',ar:'en'}[PAGE_LANG]||'zh'));
 // init lang on load — deferred to AFTER CONTENT/renderWelcome are declared
 // (applyPageLang re-renders the demo welcome, which reads CONTENT; calling it
 // earlier hits the let/const temporal dead zone).
@@ -1714,7 +1846,7 @@ const CONTENT={
 // exist (avoids the TDZ crash the eager call caused).
 if (_langInitPending){
   const l=localStorage.getItem('lang');
-  if(l&&l!=='en'){langBtn.textContent='EN';applyPageLang(l);}
+  if(l&&l!=='en'){applyPageLang(l);}
   _langInitPending=false;
 }
 

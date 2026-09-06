@@ -20,6 +20,13 @@
   :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  html[lang="ar"] body, html[lang="ar"] { font-family:"Noto Naskh Arabic","Segoe UI","Tahoma",sans-serif; }
+  html[dir="rtl"] .nav a { margin-left:0; margin-right:22px; }
+  html[dir="rtl"] .lang-btn { margin-left:0; margin-right:18px; }
+  html[dir="rtl"] .nav .brand span { letter-spacing:0; }
+  html[dir="rtl"] .compare-table th, html[dir="rtl"] .compare-table td { text-align:right; }
+  html[dir="rtl"] .compare-table td.num, html[dir="rtl"] .compare-table th:first-child { text-align:left; }
+  html[dir="rtl"] .mc-meta span, html[dir="rtl"] .mc-status { letter-spacing:0; }
   .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
   a { color:inherit; text-decoration:none; }
   .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; font-size:14px; }
@@ -255,6 +262,29 @@ var I18N = {
     "qs.h2":"Quick start","qs.note":"All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.",
     "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
   },
+  ar: {
+    "nav.hc":"HyperCode","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.demo":"العرض","nav.research":"الأبحاث","nav.api":"API","nav.about":"عن الشركة","nav.gh":"GitHub",
+    "hero.eyebrow":"أوزان مفتوحة","hero.h1":"تنزيل النماذج",
+    "hero.sub":"كل نموذج مُصدر، بمعلماته الدقيقة ورابط تحميله. شغّلها على أجهزتك —— صديقة للمعالج المركزي، بلا حاجة لبطاقة رسوميات.",
+    "m1.status":"● متاح مباشرة","m1.desc":"نموذج هجين من الصفر —— انتباه + نواة سائلة في كل طبقة. 50 ألف خطوة على WikiText-103. إكمال نصوص إنجليزية.","m1.note":"نقطة فحص 514MB · مُرمّز gpt2",
+    "m2.status":"● متاح مباشرة","m2.desc":"قاعدة TinyLlama-1.1B-Chat مجمّدة + محولات نواة سائلة مدربة + LoRA. النموذج المحادثي —— إنجليزي وصيني.","m2.note":"نقطة فحص 24.8MB · كرر العرض المباشر",
+    "m3.status":"↓ تحميل","m3.desc":"نموذج حافة من سلسلة O بلا انتباه. حالة محمولة ثابتة 0.381MB بغض النظر عن طول السياق —— خط ذاكرة O(1). يعمل على المعالج.","m3.note":"نقطة فحص 194MB · مُرمّز gpt2",
+    "m4.status":"◐ قيد التدريب","m4.desc":"نموذج هجين بـ 1.9 مليار معامل (2912d × 35L) قيد التدريب. أُصلح خطأ جدولة معدل التعلم —— PPL التحقق ينخفض بثبات (107 → 74.75، -30%). الأوزان عند التقارب.","m4.cta":"الأوزان عند التقارب","m4.note":"تدريب على A100 مستأجرة",
+    "m1.use":"<span class='u-label'>الأنسب لـ</span> إكمال النصوص الإنجليزية وعروض كفاءة الاستدلال.",
+    "m2.use":"<span class='u-label'>الأنسب لـ</span> محادثة ثنائية اللغة مع ذاكرة بين الأدوار.",
+    "m3.use":"<span class='u-label'>الأنسب لـ</span> بث دائم على الحافة، استدلال على المعالج فقط.",
+    "m4.use":"<span class='u-label'>الأنسب لـ</span> قدرة أقوى بعد تقارب التدريب.",
+    "cmp.h2":"مقارنة العائلة","cmp.lead":"نظرة واحدة: لكل نموذج غرضه وحجمه ومكان الحصول عليه.",
+    "cmp.c1":"النموذج","cmp.c2":"الأنسب لـ","cmp.c3":"المعاملات","cmp.c4":"النافذة","cmp.c5":"الحالة المحمولة","cmp.c6":"الحالة",
+    "cmp.r1.best":"إكمال النصوص الإنجليزية","cmp.r1.status":"● متاح مباشرة",
+    "cmp.r2.best":"محادثة ثنائية اللغة، ذاكرة بين الأدوار","cmp.r2.status":"● متاح مباشرة",
+    "cmp.r3.best":"بث دائم على الحافة، معالج فقط","cmp.r3.status":"↓ تحميل",
+    "cmp.r4.best":"قدرة أقوى —— التدريب جارٍ","cmp.r4.status":"◐ قيد التدريب",
+    "cmp.note":"العائلة البحثية (O1-Anti، C1، O1-Sound، AwareLiquid-Physic): استنسخ وشغّل من <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a>.",
+    "btn.dl":"تنزيل الأوزان ↓","btn.dlAdapter":"تنزيل المحول ↓","btn.try":"جرّبه مباشرة →",
+    "qs.h2":"بداية سريعة","qs.note":"كل النماذج تعمل على المعالج فقط. الهجين 128M يحتاج ~1GB ذاكرة؛ محول TinyLlama يحتاج ~5GB. التعليمات الكاملة في README المستودع.",
+    "foot.research":"الأبحاث","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
+  },
   zh: {
     "nav.hc":"HyperCode","nav.models":"模型","nav.cleaning":"数据清洗","nav.demo":"演示","nav.research":"研究","nav.api":"API","nav.about":"关于","nav.gh":"GitHub",
     "hero.eyebrow":"开放权重","hero.h1":"模型下载",
@@ -281,7 +311,8 @@ var I18N = {
 };
 function applyLang(lang){
   var dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var k = el.getAttribute('data-i18n');
     if (dict[k]) el.innerHTML = dict[k];
@@ -290,14 +321,18 @@ function applyLang(lang){
   if (code) {
     code.innerHTML = lang === 'zh'
       ? 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># 把下载的 .pt 放进 checkpoints/,然后:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000'
-      : 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000';
+      : (lang === 'ar'
+        ? 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># ضع ملف .pt الذي نزّلته في checkpoints/، ثم:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000'
+        : 'git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000');
   }
-  document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
+  var next = {en:'中文', zh:'العربية', ar:'EN'}[lang] || '中文';
+  document.getElementById('langBtn').textContent = next;
   localStorage.setItem('models_lang', lang);
 }
 document.getElementById('langBtn').addEventListener('click', function(){
-  var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
-  applyLang(cur === 'zh' ? 'en' : 'zh');
+  var cur = document.documentElement.lang;
+  var order = {en:'zh', zh:'ar', ar:'en'};
+  applyLang(order[cur] || 'zh');
 });
 (function(){ var saved = localStorage.getItem('models_lang') || 'en'; applyLang(saved); })();
 </script>

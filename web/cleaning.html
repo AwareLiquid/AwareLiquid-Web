@@ -23,6 +23,13 @@
   :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; }
   * { margin:0; padding:0; box-sizing:border-box; }
   body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  html[lang="ar"] body, html[lang="ar"] { font-family:"Noto Naskh Arabic","Segoe UI","Tahoma",sans-serif; }
+  html[dir="rtl"] .nav a { margin-left:0; margin-right:22px; }
+  html[dir="rtl"] .lang-btn { margin-left:0; margin-right:18px; }
+  html[dir="rtl"] .page-hero .sub { margin-left:auto; margin-right:auto; }
+  html[dir="rtl"] .nav .brand span { letter-spacing:0; }
+  html[dir="rtl"] .mc-head, html[dir="rtl"] .mc-cta, html[dir="rtl"] .after th, html[dir="rtl"] .after td { direction:ltr; }
+  html[dir="rtl"] .stat .n small { letter-spacing:0; }
   .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
   a { color:inherit; text-decoration:none; }
   .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; font-size:14px; }
@@ -276,6 +283,47 @@ var I18N = {
     "cta.btn":"Talk to us about your archives →","cta.sub":"anmuning@awareliquid.ai · bring a sample document, get a sample conversion",
     "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
   },
+  ar: {
+    "nav.hc":"HyperCode","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.demo":"العرض","nav.research":"الأبحاث","nav.api":"API","nav.about":"عن الشركة","nav.gh":"GitHub",
+    "hero.eyebrow":"خط أنابيب خاص","hero.h1":"تنظيف البيانات",
+    "hero.sub":"الأرشيفات الممسوحة ضوئياً والجداول المكتوبة بخط اليد والتقارير الضبابية —— تتحول إلى بيانات منظمة ونظيفة. أداء شفاف، وآلية داخلية محمية.",
+    "s1.n":"100%","s1.l":"أرقام الجداول صحيحة (120/120، تدقيق يدوي خلية بخلية)",
+    "s2.n":"98.3%","s2.l":"محرك ثانٍ مستقل (118/120) —— تحقق متقاطع، لا تحقق ذاتي",
+    "s3.n":"0","s3.l":"أخطاء معروفة بعد الدمج عبر 5 أنواع صفحات",
+    "s4.n":"~1 ساعة","s4.l":"لكل تقرير من 189 صفحة، بتكلفة بضعة يوانات",
+    "handles.h2":"ما الذي يعالجه","handles.lead":"مستندات ممسوحة ضوئياً بالكامل بلا طبقة نصية —— أصعب أشكال بيانات الأرشيف. نص مطبوع على الآلة الكاتبة ممزوج بالكتابة اليدوية، وجداول مرسومة يدوياً، وصيغ، ورسومات، وأختام وتوقيعات.",
+    "h1.t":"نص الآلة الكاتبة","h1.d":"تطبيع تلقائي —— الرموز القديمة (I بدل 1، الفاصلة العشرية) تُصحح 100%",
+    "h2.t":"جداول مرسومة يدوياً","h2.d":"خطوط متقطعة وعناوين مائلة —— تُقرأ خلية بخلية إلى جداول نظيفة",
+    "h3.t":"صيغ مكتوبة بخط اليد","h3.d":"كيمياء ورياضيات —— تُحوَّل، مع وسم المصطلحات غير المؤكدة للمراجعة",
+    "h4.t":"مقاطع جيولوجية","h4.d":"رسومات أفقية —— مضمّنة، مع تعليقات قابلة للبحث",
+    "h5.t":"الأختام والتوقيعات","h5.d":"تُحفظ كما هي، بلا إعادة بناء متخيلة",
+    "h6.t":"مسح ضوئي ضبابي","h6.d":"بلا معالجة مسبقة عدوانية —— لا نختلق أبداً خطوطاً غير موجودة",
+    "h7.t":"لغات متعددة","h7.d":"مُتحقق منه على الأرشيفات الروسية؛ قواعد الرموز لكل لغة تُعالج حسب نوع الأرشيف",
+    "flow.h2":"كيف يعمل","flow.lead":"ثلاث خطوات وتسليم واحد. تبقى مستنداتك تحت سيطرتك دائماً —— نتيجة التحويل ملكك.",
+    "flow.s1.t":"1 · أرسل المسح الضوئي","flow.s1.d":"أرسل عينة PDF —— صفحات آلة كاتبة أو جداول أو رسومات، أي شكل كان. واحصل على تحويل تجريبي.",
+    "flow.s2.t":"2 · تحويل تلقائي + تحقق متقاطع","flow.s2.d":"كل صفحة تُحوَّل وتُتحقق منها تلقائياً؛ أي شيء غير مؤكد يُعلَّم بوضوح —— لا تخمين أبداً.",
+    "flow.s3.t":"3 · تسليم بعد المراجعة","flow.s3.d":"العناصر المعلَّمة تمر بمراجعة بشرية سريعة، ثم يُسلَّم الملف المنظم كاملاً. ملكك.",
+    "cases.h2":"دراسات حالة","cases.lead":"تقرير استكشاف جيولوجي من عام 1975 —— 189 صفحة، مسح 300 نقطة في البوصة، كل رقم دُقق يدوياً مقابل الأصل.",
+    "c1.t":"جدول التحليل الكيميائي · 120 خلية","c1.tag":"120/120 صحيحة",
+    "c1.note":"مجموع أعمدة الأكاسيد يُعاد التحقق منه تلقائياً بقواعد الجيوكيمياء. أصعب خلية —— Al₂O₃ 18.76 —— أخطأها المحرك الثاني مرتين والتقطها المحرك الأساسي.",
+    "c2.t":"صفحة صيغ مكتوبة بخط اليد","c2.tag":"محوَّلة · المصطلحات غير المؤكدة موسومة",
+    "c2.note":"الرموز اليدوية تتحول إلى رياضيات حقيقية؛ أي شيء غير متأكد منه المحرك يُعلَّم للمراجعة البشرية بدل التخمين.",
+    "c3.t":"مقطع جيولوجي أفقي","c3.tag":"مضمّن + تعليق قابل للبحث",
+    "c3.note":"الرسومات تبقى صوراً داخل المستند المنظم، مع تعليق مولّد تلقائياً يجعلها قابلة للبحث —— لا محاولة لإعادة رسم ما رُسم باليد.",
+    "before":"المسح الضوئي (الإدخال)","after":"المخرجات المنظمة",
+    "verify.h2":"كيف تم التحقق","verify.lead":"قصاصات 300 نقطة في البوصة دُققت خلية بخلية يدوياً، على تقرير حقيقي من 1975 —— لا معيار اصطناعي.",
+    "v.c1":"المحرك","v.c2":"أرقام الجداول","v.c3":"النص الأساسي",
+    "v.r1.name":"المحرك الأساسي","v.r1.body":"صفر هلاوس؛ الكلمات غير المؤكدة موسومة (?)",
+    "v.r2.name":"محرك ثانٍ مستقل","v.r2.body":"1–3 أخطاء منطقية لكل صفحة —— يُستخدم للتحقق المتقاطع فقط",
+    "v.r3.name":"المخرجات المدمجة","v.r3.body":"عبر جميع أنواع الصفحات الخمسة",
+    "verify.note":"صحح الخط أيضًا 7 أخطاء متراكمة في البيانات المرجعية المحررة يدوياً لدى العميل —— بما فيها صف كامل مفقود (п.п.п) واسم مدينة أُسيء قراءته.",
+    "cost.h2":"التكلفة والسرعة",
+    "cost1.t":"بضعة يوانات لكل تقرير","cost1.d":"ملف PDF ممسوح من 189 صفحة و96.9 ميجابايت يُحوَّل بتكلفة فنجان قهوة تقريباً",
+    "cost2.t":"~ساعة واحدة","cost2.d":"بالمعالجة المتوازية؛ أحادي الدفق ≈ 1.5–2 دقيقة لكل صفحة",
+    "cost3.t":"ملف HTML واحد 1.5 ميجابايت","cost3.d":"الصيغ كرياضيات حقيقية، ملف واحد، بلا عارض خاص",
+    "cta.btn":"تحدث إلينا عن أرشيفاتك →","cta.sub":"anmuning@awareliquid.ai · أحضر مستنداً عينة، واحصل على تحويل تجريبي",
+    "foot.research":"الأبحاث","foot.copy":"© 2026 AwareLiquid · Shenzhen Santi Anyuan Technology Co., Ltd"
+  },
   zh: {
     "nav.hc":"HyperCode","nav.models":"模型","nav.cleaning":"数据清洗","nav.demo":"演示","nav.research":"研究","nav.api":"API","nav.about":"关于","nav.gh":"GitHub",
     "hero.eyebrow":"自研管线","hero.h1":"数据清洗",
@@ -320,17 +368,20 @@ var I18N = {
 };
 function applyLang(lang){
   var dict = I18N[lang] || I18N.en;
-  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : lang;
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
   document.querySelectorAll('[data-i18n]').forEach(function(el){
     var k = el.getAttribute('data-i18n');
     if (dict[k]) el.innerHTML = dict[k];
   });
-  document.getElementById('langBtn').textContent = lang === 'zh' ? 'EN' : '中文';
+  var next = {en:'中文', zh:'العربية', ar:'EN'}[lang] || '中文';
+  document.getElementById('langBtn').textContent = next;
   localStorage.setItem('cleaning_lang', lang);
 }
 document.getElementById('langBtn').addEventListener('click', function(){
-  var cur = document.documentElement.lang === 'zh-CN' ? 'zh' : 'en';
-  applyLang(cur === 'zh' ? 'en' : 'zh');
+  var cur = document.documentElement.lang;
+  var order = {en:'zh', zh:'ar', ar:'en'};
+  applyLang(order[cur] || 'zh');
 });
 (function(){ var saved = localStorage.getItem('cleaning_lang') || 'en'; applyLang(saved); })();
 </script>
