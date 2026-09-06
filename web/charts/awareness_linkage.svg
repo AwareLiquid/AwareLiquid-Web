@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" font-family="-apple-system,'Segoe UI',sans-serif">
+  <rect width="640" height="400" fill="#16161a" rx="12"/>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9a9aa5"/>
+    </marker>
+    <marker id="arrB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4f9dff"/>
+    </marker>
+  </defs>
+
+  <!-- top row: input -> fast core -> salience -->
+  <rect x="20" y="30" width="120" height="52" rx="10" fill="#26262c"/>
+  <text x="80" y="52" text-anchor="middle" fill="#f5f5f7" font-size="12.5" font-weight="600">输入流 (continuous)</text>
+  <text x="80" y="69" text-anchor="middle" fill="#9a9aa5" font-size="10.5">传感器 / 对话流</text>
+
+  <rect x="200" y="30" width="150" height="52" rx="10" fill="#26262c" stroke="#4f9dff" stroke-width="1.5"/>
+  <text x="275" y="52" text-anchor="middle" fill="#f5f5f7" font-size="12.5" font-weight="600">液态核心 (fast · 常开)</text>
+  <text x="275" y="69" text-anchor="middle" fill="#9a9aa5" font-size="10.5">MT-LNN O(1) 状态 · 预测</text>
+
+  <rect x="410" y="30" width="210" height="52" rx="10" fill="#26262c"/>
+  <text x="515" y="52" text-anchor="middle" fill="#f5f5f7" font-size="12.5" font-weight="600">Salience 点火检测器</text>
+  <text x="515" y="69" text-anchor="middle" fill="#9a9aa5" font-size="10.5">意外度 z-score + 迟滞 (0 参数)</text>
+
+  <line x1="140" y1="56" x2="196" y2="56" stroke="#9a9aa5" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="350" y1="56" x2="406" y2="56" stroke="#9a9aa5" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- ignition edge down -->
+  <path d="M 515 82 L 515 118" fill="none" stroke="#4f9dff" stroke-width="2" marker-end="url(#arrB)"/>
+  <text x="528" y="104" fill="#4f9dff" font-size="10.5">ignition 唤醒</text>
+
+  <!-- slow layer -->
+  <rect x="410" y="122" width="210" height="56" rx="10" fill="#26262c" stroke="#4f9dff" stroke-width="1.5"/>
+  <text x="515" y="144" text-anchor="middle" fill="#f5f5f7" font-size="12.5" font-weight="600">慢层 DeliberationRouter</text>
+  <text x="515" y="162" text-anchor="middle" fill="#9a9aa5" font-size="10.5">熵三路决策 + 因果一致性底线</text>
+
+  <!-- three-way decision -->
+  <path d="M 410 150 L 290 150 L 290 235" fill="none" stroke="#9a9aa5" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="300" y="142" fill="#9a9aa5" font-size="10.5">正常 → 本机应答</text>
+
+  <path d="M 515 178 L 515 235" fill="none" stroke="#4f9dff" stroke-width="2" marker-end="url(#arrB)"/>
+  <text x="527" y="212" fill="#4f9dff" font-size="10.5">事实盲点</text>
+
+  <!-- awareness cloud -->
+  <rect x="410" y="239" width="210" height="62" rx="10" fill="#1c2333" stroke="#4f9dff" stroke-width="1.5"/>
+  <text x="515" y="263" text-anchor="middle" fill="#f5f5f7" font-size="12.5" font-weight="600">Awareness 云 (外部记忆)</text>
+  <text x="515" y="281" text-anchor="middle" fill="#9a9aa5" font-size="10.5">事实核查 / 知识回退 · cloud_client</text>
+
+  <!-- return edge -->
+  <path d="M 410 270 L 210 270 L 210 82" fill="none" stroke="#4f9dff" stroke-width="2" marker-end="url(#arrB)"/>
+  <text x="216" y="180" fill="#4f9dff" font-size="10.5">回注事实 → 继续本地推理</text>
+
+  <!-- local answer box -->
+  <rect x="190" y="239" width="160" height="46" rx="10" fill="#26262c"/>
+  <text x="270" y="259" text-anchor="middle" fill="#f5f5f7" font-size="11.5" font-weight="600">本机应答</text>
+  <text x="270" y="276" text-anchor="middle" fill="#9a9aa5" font-size="10.5">快路径,不打扰慢层</text>
+
+  <!-- footer caption -->
+  <text x="320" y="330" text-anchor="middle" fill="#f5f5f7" font-size="12" font-weight="600">双速引擎:快核常开省算力,慢层只在"意外点火"时醒来</text>
+  <text x="320" y="350" text-anchor="middle" fill="#9a9aa5" font-size="11">perceive → predict → ignite → assess (盲点 → Awareness 云回退) → act</text>
+  <text x="320" y="376" text-anchor="middle" fill="#9a9aa5" font-size="10.5">对应代码:mt_lnn/salience_events.py · pipeline.py · cloud_client.py · deliberation.py</text>
+</svg>
