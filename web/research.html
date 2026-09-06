@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MT-LNN Research: O(1) Constant-Memory Inference & Cross-Session Recall | AwareLiquid</title>
-<meta name="description" content="MT-LNN research results: O-series O(1) inference memory (0.381 MB flat state, 8063× smaller than a KV-cache at 1M tokens); cross-window/cross-session associative recall (0.56 vs 0.000) attention cannot express; stable 125M training. EWC continual-learning is an honestly-labelled early signal. Reproducible GPU experiments, reconciled against RESULTS.md.">
+<meta name="description" content="MT-LNN research: O(1) inference memory (8063× smaller than a KV-cache at 1M tokens), cross-window recall 0.56 vs 0.000. Honest, reproducible results — every claim linked to open code and data.">
 <!-- Open Graph -->
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://awareliquid.ai/research">
@@ -15,6 +15,9 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="AwareLiquid research: O(1) constant-memory inference (8063× vs KV-cache at 1M tokens) and cross-session recall attention cannot express">
 <meta property="og:site_name" content="AwareLiquid">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ar_SA">
 <meta property="og:article:published_time" content="2026-02-01T00:00:00Z">
 <meta property="og:article:modified_time" content="2026-06-22T00:00:00Z">
 <meta property="og:article:author" content="AwareLiquid Project">
@@ -78,6 +81,7 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
+  "inLanguage": "en",
   "mainEntity": [
     {
       "@type": "Question",
@@ -587,6 +591,10 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
     <div class="glance-item"><span class="glance-n">85%</span><span class="glance-l" data-i18n="g4">Forgetting reduction<br>with EWC (early signal)</span></div>
     <div class="glance-item"><span class="glance-n">+7.7%</span><span class="glance-l" data-i18n="g5">Degradation at 80%<br>dropped samples (battery)</span></div>
     </div>
+</div>
+
+<div class="container" style="padding-bottom:24px">
+    <div class="note" style="max-width:760px" data-i18n="tldr"><strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). The honest non-advantage: at convergence, perplexity trails a modern Transformer by 11.3%. Every number below links to open code and data.</div>
 </div>
 
 <!-- ── MAIN CONTENT ── -->
@@ -1345,6 +1353,7 @@ var I18N = {
     "hero.eyebrow":"M1 · Research","hero.h1":"Experiments &amp; Results",
     "hero.lead":"An honest record of what AwareLiquid M1 has built, what the data shows, and what remains open. Every claim is tagged, reproducible, and falsifiable.",
     "hero.built":"Code runs, results reproducible","hero.signal":"Preliminary evidence, stats not conclusive","hero.target":"Direction clear, not yet achieved",
+    "tldr":"<strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). The honest non-advantage: at convergence, perplexity trails a modern Transformer by 11.3%. Every number below links to open code and data.",
     "g1":"Constant carried state<br>at any context length","g2":"Smaller than a KV-cache<br>at 1M tokens","g3":"Cross-window recall<br>fast-weight vs attention","g4":"Forgetting reduction<br>with EWC (early signal)","g5":"Degradation at 80%<br>dropped samples (battery)",
     "sb.g1":"Architecture","sb.l1":"M1 Architecture","sb.l2":"Live Demo (M1)",
     "sb.g2":"Experiments","sb.l3":"Continual Learning","sb.l4":"Hebbian Ablation","sb.l5":"Spatial Computing",
@@ -1374,6 +1383,7 @@ var I18N = {
     "hero.eyebrow":"M1 · 研究","hero.h1":"实验与结果",
     "hero.lead":"一份诚实的记录：AwareLiquid M1 造了什么、数据说明了什么、还有什么悬而未决。每条结论都有标签、可复现、可证伪。",
     "hero.built":"代码可运行,结果可复现","hero.signal":"初步证据,统计尚不充分","hero.target":"方向明确,尚未达成",
+    "tldr":"<strong>TL;DR:</strong>MT-LNN 的实测立论是记忆与效率 —— O(1) 推理状态(0.381 MB,1M tokens 时比 KV 缓存小 8063×)与注意力无法表达的跨窗口回忆(0.56 vs 0.000)。诚实的非优势:收敛后困惑度比现代 Transformer 差 11.3%。以下每个数字都链接到开源代码与数据。",
     "g1":"恒定携带状态<br>与上下文长度无关","g2":"比 KV-cache 小 8,063 倍<br>(1M tokens)","g3":"跨窗口回忆<br>快权重 vs 注意力","g4":"EWC 遗忘降幅 85%<br>(早期信号)","g5":"80% 丢样本仅 +7.7% 劣化<br>(电池数据)",
     "sb.g1":"架构","sb.l1":"M1 架构","sb.l2":"在线演示 (M1)",
     "sb.g2":"实验","sb.l3":"持续学习","sb.l4":"Hebbian 消融","sb.l5":"空间计算",
@@ -1403,6 +1413,7 @@ var I18N = {
     "hero.eyebrow":"M1 · أبحاث","hero.h1":"التجارب والنتائج",
     "hero.lead":"سجل صادق لما بناه AwareLiquid M1، وما تظهره البيانات، وما يبقى مفتوحاً. كل ادعاء موسوم وقابل لإعادة الإنتاج وقابل للتفنيد.",
     "hero.built":"الكود يعمل والنتائج قابلة لإعادة الإنتاج","hero.signal":"دليل أولي، الإحصاءات غير حاسمة","hero.target":"الاتجاه واضح، لم يتحقق بعد",
+    "tldr":"<strong>TL;DR:</strong> حجة MT-LNN المقاسة هي الذاكرة والكفاءة — حالة استدلال O(1) (0.381 ميجابايت، أصغر بـ 8063× من ذاكرة KV عند مليون رمز) واستدعاء عبر النوافذ لا يعبّر عنه الانتباه (0.56 مقابل 0.000). غير الميزة الصادق: عند التقارب تتأخر الحيرة عن المحول الحديث بـ 11.3%. كل رقم أدناه مرتبط بكود وبيانات مفتوحة.",
     "g1":"حالة محمولة ثابتة<br>مهما كان طول السياق","g2":"أصغر من ذاكرة KV<br>بـ 8,063× عند مليون رمز","g3":"استدعاء عبر النوافذ<br>الوزن السريع مقابل الانتباه","g4":"خفض النسيان 85%<br>بـ EWC (إشارة مبكرة)","g5":"تدهور +7.7% فقط عند<br>فقدان 80% من العينات (بطارية)",
     "sb.g1":"البنية","sb.l1":"بنية M1","sb.l2":"العرض المباشر (M1)",
     "sb.g2":"التجارب","sb.l3":"التعلم المستمر","sb.l4":"استئصال Hebbian","sb.l5":"الحوسبة المكانية",
