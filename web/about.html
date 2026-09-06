@@ -294,13 +294,13 @@ a.text-link:hover{text-decoration-color:var(--fg)}
       AwareLiquid
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
-      <a href="/#demo">Demo</a>
-      <a href="/#models">Models</a>
-<a href="/cleaning">Data Cleaning</a>
-      <a href="/research">Research</a>
-      <a href="/about" class="active" aria-current="page">About</a>
-      <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Paper</a>
-      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="/#demo" data-i18n="nav.demo">Demo</a>
+      <a href="/#models" data-i18n="nav.models">Models</a>
+      <a href="/cleaning" data-i18n="nav.cleaning">Data Cleaning</a>
+      <a href="/research" data-i18n="nav.research">Research</a>
+      <a href="/about" class="active" aria-current="page" data-i18n="nav.about">About</a>
+      <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer" data-i18n="nav.paper">Paper</a>
+      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="nav.gh">GitHub</a>
     </nav>
     <div class="nav-actions">
       <button class="theme-btn lang-toggle" id="langBtn" title="切换语言 / Switch language">中文</button>
@@ -309,8 +309,8 @@ a.text-link:hover{text-decoration-color:var(--fg)}
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
-      <a class="btn btn-ghost" href="/#demo">Try Demo</a>
-      <a class="btn btn-primary" href="/research">Read Research</a>
+      <a class="btn btn-ghost" href="/#demo" data-i18n="nav.try">Try Demo</a>
+      <a class="btn btn-primary" href="/research" data-i18n="nav.read">Read Research</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
@@ -326,9 +326,9 @@ a.text-link:hover{text-decoration-color:var(--fg)}
 <!-- ── PAGE HERO ── -->
 <section class="page-hero">
   <div class="container">
-    <span class="eyebrow"><span class="label-sq"></span>About</span>
-    <h1>About AwareLiquid</h1>
-    <p class="lead">A bio-inspired cognitive AI framework — M-Series for slow, GWT-driven thinking; O-Series for fast, liquid-ODE edge inference. Open research exploring whether neural networks can learn continuously without forgetting.</p>
+    <span class="eyebrow"><span class="label-sq"></span><span data-i18n="hero.eyebrow">About</span></span>
+    <h1 data-i18n="hero.h1">About AwareLiquid</h1>
+    <p class="lead" data-i18n="hero.lead">A bio-inspired cognitive AI framework — M-Series for slow, GWT-driven thinking; O-Series for fast, liquid-ODE edge inference. Open research exploring whether neural networks can learn continuously without forgetting.</p>
   </div>
 </section>
 
@@ -339,13 +339,13 @@ a.text-link:hover{text-decoration-color:var(--fg)}
     <!-- LEFT: prose -->
     <div class="content-col">
 
-      <h2>What This Is</h2>
+      <h2 data-i18n="c1.h">What This Is</h2>
       <p>AwareLiquid is an <strong>open research framework</strong>, not a commercial product. It organises models into two series: <strong>M-Series</strong> (M1 — cognitive, slow-thinking, GWT + sleep consolidation + EWC) and <strong>O-Series</strong> (O1 — edge, fast-thinking, continuous-time liquid ODE with constant-memory state). Both series build on the MT-LNN backbone — a continuous-time recurrent network whose hidden state evolves according to learnable time constants — extended with neuroscience-inspired modules.</p>
       <div class="callout">
         <strong>The core research question:</strong> Can a model learn new domains sequentially without catastrophically forgetting prior ones? This is a direction structurally orthogonal to frozen-weight frontier models, including commercial LFM families.
       </div>
 
-      <h2>Research Focus</h2>
+      <h2 data-i18n="c2.h">Research Focus</h2>
       <p>AwareLiquid does <strong>not</strong> claim to match frontier models on general dialogue, reasoning, or benchmark scores. The live demo has two distinct models: <strong>M1</strong> (the large, cognitive model — a liquid-core adapter, a fraction of a percent of the weights) on a <strong>frozen TinyLlama-1.1B-Chat</strong> base for bilingual Q&amp;A — general language ability comes from the base, GWT + continual-learning mechanisms from the adapter — and <strong>O1</strong> (the small, edge model), a 48M from-scratch model with no base, the native architecture for hardware / always-on inference. Both are research artifacts, not general assistants. The project competes on a different axis:</p>
       <ul>
         <li><strong>Frontier LLMs</strong>: weights frozen after training; adapt via context or retrieval; the underlying model no longer learns.</li>
@@ -353,7 +353,7 @@ a.text-link:hover{text-decoration-color:var(--fg)}
       </ul>
       <div class="note">Same academic lineage as Liquid AI's LFM (MIT liquid neural networks), but on an orthogonal research axis: they scale LNN into efficient commercial models; we use LNN to study lifelong learning.</div>
 
-      <h2>Current Status (Honest)</h2>
+      <h2 data-i18n="c3.h">Current Status (Honest)</h2>
       <ul>
         <li><span class="tag built">Built</span> MT-LNN architecture, all liquid core modules, native inference server — this site's demo runs on it.</li>
         <li><span class="tag built">Built</span> Continual learning experiment framework + EWC consolidation mechanism, fully reproducible.</li>
@@ -367,60 +367,60 @@ a.text-link:hover{text-decoration-color:var(--fg)}
 
       <hr class="divider">
 
-      <h2>Intellectual Lineage</h2>
+      <h2 data-i18n="c4.h">Intellectual Lineage</h2>
       <p>MT-LNN builds on <a class="text-link" href="https://github.com/raminmh/liquid_time_constant_networks" target="_blank" rel="noopener noreferrer">liquid time-constant networks</a> (Hasani et al., MIT CSAIL / IST Austria), which showed that continuous-time RNNs with learnable time constants are expressive, stable, and interpretable. AwareLiquid extends this foundation with modules drawn from neuroscience — global workspace theory (Baars/Dehaene), predictive coding (Friston), and Hebbian plasticity — to explore whether such architectures can support lifelong learning.</p>
 
       <hr class="divider">
 
-      <h2>Open Science Commitment</h2>
+      <h2 data-i18n="c5.h">Open Science Commitment</h2>
       <p>All code, experiment scripts, and reproducible configurations are on GitHub. Every result on the Research page includes methodology, seed counts, statistical tests, and an honest verdict. Results that do not yet meet the threshold for "supported" are labeled accordingly — we do not round up preliminary trends into success claims.</p>
 
       <hr class="divider">
 
-      <h2>Author &amp; Contact</h2>
+      <h2 data-i18n="c6.h">Author &amp; Contact</h2>
       <p>AwareLiquid is an independent research project. The codebase, experiments, and this website were designed and built by a single researcher as an open-science contribution to the continual learning community.</p>
 
       <div class="contact-grid">
         <a class="contact-card" href="#brand-assets">
           <svg width="20" height="20" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8 Q14 5 22 8 L22 20 Q14 23 6 20 Z"/><path d="M6 11.3 Q14 8.3 22 11.3"/><path d="M6 14.6 Q14 11.6 22 14.6"/><path d="M6 17.9 Q14 14.9 22 17.9"/></svg>
           <span>
-            <strong>Brand Assets</strong>
-            <small>Logo downloads — SVG · PNG · ZIP</small>
+            <strong data-i18n="cc1.t">Brand Assets</strong>
+            <small data-i18n="cc1.d">Logo downloads — SVG · PNG · ZIP</small>
           </span>
         </a>
         <a class="contact-card" href="mailto:anmuning@awareliquid.ai">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
           <span>
-            <strong>Email</strong>
+            <strong data-i18n="cc2.t">Email</strong>
             <small>anmuning@awareliquid.ai</small>
           </span>
         </a>
         <a class="contact-card" href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
           <span>
-            <strong>GitHub</strong>
-            <small>AwareLiquid/M1</small>
+            <strong data-i18n="cc3.t">GitHub</strong>
+            <small data-i18n="cc3.d">AwareLiquid/M1</small>
           </span>
         </a>
         <a class="contact-card" href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
           <span>
-            <strong>Technical Paper</strong>
-            <small>ArXiv preprint (PDF)</small>
+            <strong data-i18n="cc4.t">Technical Paper</strong>
+            <small data-i18n="cc4.d">ArXiv preprint (PDF)</small>
           </span>
         </a>
         <a class="contact-card" href="https://github.com/AwareLiquid/M1/issues" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <span>
-            <strong>Issues &amp; Feedback</strong>
-            <small>GitHub Issues</small>
+            <strong data-i18n="cc5.t">Issues &amp; Feedback</strong>
+            <small data-i18n="cc5.d">GitHub Issues</small>
           </span>
         </a>
         <a class="contact-card" href="https://github.com/AwareLiquid/M1/discussions" target="_blank" rel="noopener noreferrer">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           <span>
-            <strong>Discussions</strong>
-            <small>GitHub Discussions</small>
+            <strong data-i18n="cc6.t">Discussions</strong>
+            <small data-i18n="cc6.d">GitHub Discussions</small>
           </span>
         </a>
       </div>
@@ -432,35 +432,35 @@ a.text-link:hover{text-decoration-color:var(--fg)}
     <div class="sidebar-cards">
 
       <div class="info-card">
-        <h4>Project Facts</h4>
-        <div class="row"><span class="label">Status</span><span class="val">Open research prototype</span></div>
-        <div class="row"><span class="label">M-Series</span><span class="val">M1 · GWT + Sleep · Slow Thinking</span></div>
-        <div class="row"><span class="label">O-Series</span><span class="val">O1 · Liquid ODE · Fast Thinking</span></div>
-        <div class="row"><span class="label">Model sizes</span><span class="val">48M – 60.7M params</span></div>
-        <div class="row"><span class="label">Key result</span><span class="val">O(1) memory — 8063× smaller @1M tokens</span></div>
-        <div class="row"><span class="label">License</span><span class="val">Open (see GitHub)</span></div>
-        <div class="row"><span class="label">Paper</span><span class="val">arXiv preprint (PDF)</span></div>
+        <h4 data-i18n="sb1.h">Project Facts</h4>
+        <div class="row"><span class="label" data-i18n="sb1.r1">Status</span><span class="val" data-i18n="sb1.v1">Open research prototype</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r2">M-Series</span><span class="val" data-i18n="sb1.v2">M1 · GWT + Sleep · Slow Thinking</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r3">O-Series</span><span class="val" data-i18n="sb1.v3">O1 · Liquid ODE · Fast Thinking</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r4">Model sizes</span><span class="val" data-i18n="sb1.v4">48M – 60.7M params</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r5">Key result</span><span class="val" data-i18n="sb1.v5">O(1) memory — 8063× smaller @1M tokens</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r6">License</span><span class="val" data-i18n="sb1.v6">Open (see GitHub)</span></div>
+        <div class="row"><span class="label" data-i18n="sb1.r7">Paper</span><span class="val" data-i18n="sb1.v7">arXiv preprint (PDF)</span></div>
       </div>
 
       <div class="info-card">
-        <h4>Links</h4>
+        <h4 data-i18n="sb2.h">Links</h4>
         <ul class="link-list">
-          <li><a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
-          <li><a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a></li>
-          <li><a href="/research">Research &amp; Results</a></li>
-          <li><a href="/#demo">Live Demo</a></li>
-          <li><a href="/v1/model" target="_blank">Model API</a></li>
-          <li><a href="/health" target="_blank">Health Status</a></li>
+          <li><a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="sb2.l1">GitHub Repository</a></li>
+          <li><a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer" data-i18n="sb2.l2">Technical Paper (PDF)</a></li>
+          <li><a href="/research" data-i18n="sb2.l3">Research &amp; Results</a></li>
+          <li><a href="/#demo" data-i18n="sb2.l4">Live Demo</a></li>
+          <li><a href="/v1/model" target="_blank" data-i18n="sb2.l5">Model API</a></li>
+          <li><a href="/health" target="_blank" data-i18n="sb2.l6">Health Status</a></li>
         </ul>
       </div>
 
       <div class="info-card">
-        <h4>vs. Liquid AI (LFM)</h4>
-        <div class="row"><span class="label">Common base</span><span class="val">MIT LNN lineage</span></div>
-        <div class="row"><span class="label">Their focus</span><span class="val">Efficiency at scale</span></div>
-        <div class="row"><span class="label">Our focus</span><span class="val">Continual learning</span></div>
-        <div class="row"><span class="label">Weight regime</span><span class="val">Frozen vs. online update</span></div>
-        <div class="row"><span class="label">Relationship</span><span class="val">Orthogonal, not competing</span></div>
+        <h4 data-i18n="sb3.h">vs. Liquid AI (LFM)</h4>
+        <div class="row"><span class="label" data-i18n="sb3.r1">Common base</span><span class="val" data-i18n="sb3.v1">MIT LNN lineage</span></div>
+        <div class="row"><span class="label" data-i18n="sb3.r2">Their focus</span><span class="val" data-i18n="sb3.v2">Efficiency at scale</span></div>
+        <div class="row"><span class="label" data-i18n="sb3.r3">Our focus</span><span class="val" data-i18n="sb3.v3">Continual learning</span></div>
+        <div class="row"><span class="label" data-i18n="sb3.r4">Weight regime</span><span class="val" data-i18n="sb3.v4">Frozen vs. online update</span></div>
+        <div class="row"><span class="label" data-i18n="sb3.r5">Relationship</span><span class="val" data-i18n="sb3.v5">Orthogonal, not competing</span></div>
       </div>
 
     </div>
@@ -470,30 +470,30 @@ a.text-link:hover{text-decoration-color:var(--fg)}
 <!-- ── VS COMPARISON ── -->
 <section class="vs-section">
   <div class="container">
-    <h2>Positioning vs. Liquid AI</h2>
-    <p class="lead">Same academic family. Entirely different research objectives.</p>
+    <h2 data-i18n="vs.h2">Positioning vs. Liquid AI</h2>
+    <p class="lead" data-i18n="vs.lead">Same academic family. Entirely different research objectives.</p>
     <div class="vs-grid">
       <div class="vs-card">
-        <div class="vs-label">Liquid AI · LFM2</div>
-        <div class="vs-title">Maximum Intelligence,<br>Minimum Compute</div>
+        <div class="vs-label" data-i18n="vs.l1">Liquid AI · LFM2</div>
+        <div class="vs-title" data-i18n="vs.t1">Maximum Intelligence,<br>Minimum Compute</div>
         <ul>
-          <li>SSM + linear attention + MoE hybrid</li>
-          <li>350M – 24B · commercial scale</li>
-          <li>Weights frozen post-training</li>
-          <li>Edge deployment: CPU / GPU / NPU</li>
-          <li>Partnerships: Shopify, AMD, Capgemini</li>
+          <li data-i18n="vs.i1">SSM + linear attention + MoE hybrid</li>
+          <li data-i18n="vs.i2">350M – 24B · commercial scale</li>
+          <li data-i18n="vs.i3">Weights frozen post-training</li>
+          <li data-i18n="vs.i4">Edge deployment: CPU / GPU / NPU</li>
+          <li data-i18n="vs.i5">Partnerships: Shopify, AMD, Capgemini</li>
         </ul>
       </div>
       <div class="vs-mid">vs</div>
       <div class="vs-card vs-us">
-        <div class="vs-label">AwareLiquid · M1 / O1</div>
-        <div class="vs-title">Cognitive Continuity<br>&amp; Lifelong Learning</div>
+        <div class="vs-label" data-i18n="vs.l2">AwareLiquid · M1 / O1</div>
+        <div class="vs-title" data-i18n="vs.t2">Cognitive Continuity<br>&amp; Lifelong Learning</div>
         <ul>
-          <li>Continuous-time RNN + GWT + Sleep + EWC</li>
-          <li>M-Series (cognitive) · O-Series (edge)</li>
-          <li>Online weight updates — learns without forgetting</li>
-          <li>Episodic memory, agent cognition, adaptation</li>
-          <li>Open science: all results reproducible</li>
+          <li data-i18n="vs.i6">Continuous-time RNN + GWT + Sleep + EWC</li>
+          <li data-i18n="vs.i7">M-Series (cognitive) · O-Series (edge)</li>
+          <li data-i18n="vs.i8">Online weight updates — learns without forgetting</li>
+          <li data-i18n="vs.i9">Episodic memory, agent cognition, adaptation</li>
+          <li data-i18n="vs.i10">Open science: all results reproducible</li>
         </ul>
       </div>
     </div>
@@ -503,10 +503,10 @@ a.text-link:hover{text-decoration-color:var(--fg)}
 <!-- ── BRAND ASSETS (merged from /brand) ── -->
 <section class="brand-section" id="brand-assets">
   <div class="container">
-    <h2 style="font-family:var(--font-serif);font-size:clamp(28px,3.4vw,32px);font-weight:400;letter-spacing:-.5px;margin-bottom:12px">Brand Assets</h2>
-    <p class="lead" style="margin-bottom:8px">For partners, press and co-marketing. Black and white, logomark and full wordmark, SVG and PNG — free to download.</p>
+    <h2 style="font-family:var(--font-serif);font-size:clamp(28px,3.4vw,32px);font-weight:400;letter-spacing:-.5px;margin-bottom:12px" data-i18n="ba.h2">Brand Assets</h2>
+    <p class="lead" style="margin-bottom:8px" data-i18n="ba.lead">For partners, press and co-marketing. Black and white, logomark and full wordmark, SVG and PNG — free to download.</p>
     <div class="brand-dl">
-      <a class="btn btn-primary" href="/static/brand/awareliquid-brand-kit.zip" download>Download all (ZIP) ↓</a>
+      <a class="btn btn-primary" href="/static/brand/awareliquid-brand-kit.zip" download data-i18n="ba.dl">Download all (ZIP) ↓</a>
     </div>
     <div class="brand-variant-grid">
       <div class="brand-v-card">
@@ -545,13 +545,13 @@ a.text-link:hover{text-decoration-color:var(--fg)}
       </div>
     </div>
     <div class="brand-usage">
-      <h2>Usage guidelines</h2>
+      <h2 data-i18n="ba.u.h2">Usage guidelines</h2>
       <ul>
-        <li>Do not stretch, rotate or recolor the logo beyond the black/white variants provided.</li>
-        <li>Keep clear space around the logo equal to the height of the mark.</li>
-        <li>Use black on light backgrounds, white on dark backgrounds.</li>
-        <li>Do not use the AwareLiquid logo in a way that implies endorsement without written permission.</li>
-        <li>For questions or special requests, contact anmuning@awareliquid.ai.</li>
+        <li data-i18n="ba.u1">Do not stretch, rotate or recolor the logo beyond the black/white variants provided.</li>
+        <li data-i18n="ba.u2">Keep clear space around the logo equal to the height of the mark.</li>
+        <li data-i18n="ba.u3">Use black on light backgrounds, white on dark backgrounds.</li>
+        <li data-i18n="ba.u4">Do not use the AwareLiquid logo in a way that implies endorsement without written permission.</li>
+        <li data-i18n="ba.u5">For questions or special requests, contact anmuning@awareliquid.ai.</li>
       </ul>
     </div>
   </div>
@@ -637,21 +637,56 @@ function applyThemeIcon(){themeIcon.innerHTML=isDark()?SUN:MOON;themeBtn.title=i
 (function(){const s=localStorage.getItem('theme');if(s)document.documentElement.dataset.theme=s;applyThemeIcon();})();
 themeBtn.addEventListener('click',()=>{const n=isDark()?'light':'dark';document.documentElement.dataset.theme=n;localStorage.setItem('theme',n);applyThemeIcon();});
 
-// ── lang toggle ──
-// This page has no translation table, so the toggle only records the
-// site-wide preference (index.html and demo.html read it). It must NOT touch
-// document.documentElement.lang: claiming lang="zh-CN" over English prose makes
-// Chrome offer to translate Chinese into Chinese and makes screen readers
-// switch to a Mandarin voice for English text.
+// ── lang toggle (real i18n: surface content; deep prose stays English) ──
+var I18N = {
+  en: {
+    "nav.demo":"Demo","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.research":"Research","nav.about":"About","nav.paper":"Paper","nav.gh":"GitHub","nav.try":"Try Demo","nav.read":"Read Research",
+    "hero.eyebrow":"About","hero.h1":"About AwareLiquid",
+    "hero.lead":"A bio-inspired cognitive AI framework — M-Series for slow, GWT-driven thinking; O-Series for fast, liquid-ODE edge inference. Open research exploring whether neural networks can learn continuously without forgetting.",
+    "c1.h":"What This Is","c2.h":"Research Focus","c3.h":"Current Status (Honest)","c4.h":"Intellectual Lineage","c5.h":"Open Science Commitment","c6.h":"Author &amp; Contact",
+    "sb1.h":"Project Facts","sb1.r1":"Status","sb1.v1":"Open research prototype","sb1.r2":"M-Series","sb1.v2":"M1 · GWT + Sleep · Slow Thinking","sb1.r3":"O-Series","sb1.v3":"O1 · Liquid ODE · Fast Thinking","sb1.r4":"Model sizes","sb1.v4":"48M – 60.7M params","sb1.r5":"Key result","sb1.v5":"O(1) memory — 8063× smaller @1M tokens","sb1.r6":"License","sb1.v6":"Open (see GitHub)","sb1.r7":"Paper","sb1.v7":"arXiv preprint (PDF)",
+    "sb2.h":"Links","sb2.l1":"GitHub Repository","sb2.l2":"Technical Paper (PDF)","sb2.l3":"Research &amp; Results","sb2.l4":"Live Demo","sb2.l5":"Model API","sb2.l6":"Health Status",
+    "sb3.h":"vs. Liquid AI (LFM)","sb3.r1":"Common base","sb3.v1":"MIT LNN lineage","sb3.r2":"Their focus","sb3.v2":"Efficiency at scale","sb3.r3":"Our focus","sb3.v3":"Continual learning","sb3.r4":"Weight regime","sb3.v4":"Frozen vs. online update","sb3.r5":"Relationship","sb3.v5":"Orthogonal, not competing",
+    "cc1.t":"Brand Assets","cc1.d":"Logo downloads — SVG · PNG · ZIP","cc2.t":"Email","cc3.t":"GitHub","cc3.d":"AwareLiquid/M1","cc4.t":"Technical Paper","cc4.d":"ArXiv preprint (PDF)","cc5.t":"Issues &amp; Feedback","cc5.d":"GitHub Issues","cc6.t":"Discussions","cc6.d":"GitHub Discussions",
+    "vs.h2":"Positioning vs. Liquid AI","vs.lead":"Same academic family. Entirely different research objectives.",
+    "vs.l1":"Liquid AI · LFM2","vs.t1":"Maximum Intelligence,<br>Minimum Compute","vs.i1":"SSM + linear attention + MoE hybrid","vs.i2":"350M – 24B · commercial scale","vs.i3":"Weights frozen post-training","vs.i4":"Edge deployment: CPU / GPU / NPU","vs.i5":"Partnerships: Shopify, AMD, Capgemini",
+    "vs.l2":"AwareLiquid · M1 / O1","vs.t2":"Cognitive Continuity<br>&amp; Lifelong Learning","vs.i6":"Continuous-time RNN + GWT + Sleep + EWC","vs.i7":"M-Series (cognitive) · O-Series (edge)","vs.i8":"Online weight updates — learns without forgetting","vs.i9":"Episodic memory, agent cognition, adaptation","vs.i10":"Open science: all results reproducible",
+    "ba.h2":"Brand Assets","ba.lead":"For partners, press and co-marketing. Black and white, logomark and full wordmark, SVG and PNG — free to download.","ba.dl":"Download all (ZIP) ↓",
+    "ba.u.h2":"Usage guidelines","ba.u1":"Do not stretch, rotate or recolor the logo beyond the black/white variants provided.","ba.u2":"Keep clear space around the logo equal to the height of the mark.","ba.u3":"Use black on light backgrounds, white on dark backgrounds.","ba.u4":"Do not use the AwareLiquid logo in a way that implies endorsement without written permission.","ba.u5":"For questions or special requests, contact anmuning@awareliquid.ai."
+  },
+  zh: {
+    "nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读研究",
+    "hero.eyebrow":"关于","hero.h1":"关于 AwareLiquid",
+    "hero.lead":"一个受生物启发的认知 AI 框架 —— M 系列负责 GWT 驱动的慢思考;O 系列负责液态 ODE 边缘快推理。开放研究课题:神经网络能否持续学习而不遗忘。",
+    "c1.h":"这是什么","c2.h":"研究焦点","c3.h":"当前状态(诚实版)","c4.h":"学术渊源","c5.h":"开放科学承诺","c6.h":"作者与联系",
+    "sb1.h":"项目事实","sb1.r1":"状态","sb1.v1":"开放研究原型","sb1.r2":"M 系列","sb1.v2":"M1 · GWT + Sleep · 慢思考","sb1.r3":"O 系列","sb1.v3":"O1 · 液态 ODE · 快思考","sb1.r4":"模型规模","sb1.v4":"48M – 60.7M 参数","sb1.r5":"关键结果","sb1.v5":"O(1) 内存 —— 1M tokens 时小 8063×","sb1.r6":"许可证","sb1.v6":"开放(见 GitHub)","sb1.r7":"论文","sb1.v7":"arXiv 预印本 (PDF)",
+    "sb2.h":"链接","sb2.l1":"GitHub 仓库","sb2.l2":"技术论文 (PDF)","sb2.l3":"研究与结果","sb2.l4":"在线演示","sb2.l5":"模型 API","sb2.l6":"健康状态",
+    "sb3.h":"对比 Liquid AI (LFM)","sb3.r1":"共同基础","sb3.v1":"MIT LNN 谱系","sb3.r2":"他们的焦点","sb3.v2":"规模化效率","sb3.r3":"我们的焦点","sb3.v3":"持续学习","sb3.r4":"权重模式","sb3.v4":"冻结 vs 在线更新","sb3.r5":"关系","sb3.v5":"正交,不竞争",
+    "cc1.t":"品牌资产","cc1.d":"Logo 下载 — SVG · PNG · ZIP","cc2.t":"邮箱","cc3.t":"GitHub","cc3.d":"AwareLiquid/M1","cc4.t":"技术论文","cc4.d":"ArXiv 预印本 (PDF)","cc5.t":"问题与反馈","cc5.d":"GitHub Issues","cc6.t":"讨论","cc6.d":"GitHub Discussions",
+    "vs.h2":"定位对比 Liquid AI","vs.lead":"同一学术家族,完全不同的研究目标。",
+    "vs.l1":"Liquid AI · LFM2","vs.t1":"极致智能,<br>最小算力","vs.i1":"SSM + 线性注意力 + MoE 混合","vs.i2":"350M – 24B · 商业规模","vs.i3":"训练后权重冻结","vs.i4":"边缘部署:CPU / GPU / NPU","vs.i5":"合作:Shopify、AMD、Capgemini",
+    "vs.l2":"AwareLiquid · M1 / O1","vs.t2":"认知连续性<br>&amp; 终身学习","vs.i6":"连续时间 RNN + GWT + Sleep + EWC","vs.i7":"M 系列(认知)· O 系列(边缘)","vs.i8":"在线权重更新 —— 学习而不遗忘","vs.i9":"情景记忆、智能体认知、适应","vs.i10":"开放科学:全部结果可复现",
+    "ba.h2":"品牌资产","ba.lead":"面向合作伙伴、媒体与联合营销。黑白两色、图形与完整字标、SVG 与 PNG —— 免费下载。","ba.dl":"全部打包下载 (ZIP) ↓",
+    "ba.u.h2":"使用规范","ba.u1":"除提供的黑白版本外,请勿拉伸、旋转或更改 logo 颜色。","ba.u2":"logo 四周保留与图形高度相等的安全留白。","ba.u3":"浅色背景用黑色版本,深色背景用白色版本。","ba.u4":"未经书面许可,请勿以暗示背书的方式使用 AwareLiquid logo。","ba.u5":"问题或特殊需求请联系 anmuning@awareliquid.ai。"
+  }
+};
 (function(){
   const lb=document.getElementById('langBtn');if(!lb)return;
+  function applyLang(lang){
+    const dict=I18N[lang]||I18N.en;
+    document.documentElement.lang=lang==='zh'?'zh-CN':'en';
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      const k=el.getAttribute('data-i18n');
+      if(dict[k])el.innerHTML=dict[k];
+    });
+    lb.textContent=lang==='zh'?'EN':'中文';
+    lb.title=lang==='zh'?'Switch language':'切换语言';
+    localStorage.setItem('lang',lang);
+  }
   const l=localStorage.getItem('lang')||'en';
-  lb.textContent=l==='zh'?'EN':'中文';
-  lb.title='Language applies to the homepage and demo / 语言设置对首页与演示页生效';
+  applyLang(l);
   lb.addEventListener('click',()=>{
-    const nl=lb.textContent==='中文'?'zh':'en';
-    localStorage.setItem('lang',nl);
-    lb.textContent=nl==='zh'?'EN':'中文';
+    applyLang(document.documentElement.lang==='zh-CN'?'en':'zh');
   });
 })();
 </script>
