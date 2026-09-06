@@ -65,9 +65,9 @@ a{color:var(--fg);text-decoration:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:rgba(255,255,255,.85);border-bottom:1px solid var(--line)}
 .nav-inner{height:64px;display:flex;align-items:center}
 .brand{display:flex;align-items:center;gap:8px;font-weight:650;font-size:15px;letter-spacing:.1px;flex:none;color:var(--fg)}
-.logo{width:28px;height:26px;background:url('/static/logo-dark.png?v=2') center/contain no-repeat;flex:none}
+.logo{width:28px;height:26px;background:url('/static/brand/mark-black.svg') center/contain no-repeat;flex:none}
 @media(prefers-color-scheme:dark){
-html:not([data-theme="light"]) .logo{background-image:url('/static/logo-light.png?v=2')}
+html:not([data-theme="light"]) .logo{background-image:url('/static/brand/mark-white.svg')}
 }
 .nav-links{display:flex;align-items:center;gap:2px;margin-left:32px;flex:1}
 .nav-links a{font-size:13.5px;color:var(--muted);padding:5px 10px;border-radius:4px;transition:color .15s,background .15s}

@@ -1,4 +1,4 @@
-# HyperCode
+﻿# HyperCode
 
 > HyperCode is AwareLiquid's flagship AI coding software & work assistant: one clear instruction, it works autonomously for hours until everything is done. Built-in domain skills for financial research, legal and academic work. Closed-source core, open downloads.
 > HyperCode 是 AwareLiquid 的旗舰 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。内置金融研究、法律、学术等专业技能。核心闭源,下载开放。
@@ -50,3 +50,15 @@
 - **Cost/speed**: ~1 hour per 189-page report, a few RMB; 96.9 MB scan -> 1.5 MB self-contained HTML
 - **Cases**: cover, 120-cell chemical table, LOI table, handwritten formula page, landscape geological profile
 - **Contact**: anmuning@awareliquid.ai (bring a sample, get a sample conversion)
+
+
+## العربية (Arabic)
+
+> AwareLiquid — إطار ذكاء اصطناعي معرفي مستوحى من الأحياء. سلسلة M للتفكير البطيء مع مساحة العمل العالمية، وسلسلة O للاستدلال الحافّي السريع بذاكرة ثابتة O(1).
+
+- [الرئيسية](https://awareliquid.ai/): نموذج شبيه بالدماغ خفيف الوزن للحافة — حالة محمولة 0.381 ميجابايت مهما كان طول السياق، تعمل على المعالج فقط.
+- [الأبحاث](https://awareliquid.ai/research): سجل صادق للنتائج — ذاكرة O(1) أصغر بـ 8063× عند مليون رمز، استدعاء عبر النوافذ 0.56 مقابل 0.000، وEWC (خفض النسيان 85%). كل ادعاء موسوم وقابل لإعادة الإنتاج.
+- [النماذج](https://awareliquid.ai/models): M1-128M، محول TinyLlama-1.1B، O1-48M، M1-2B قيد التدريب.
+- [تنظيف البيانات](https://awareliquid.ai/cleaning): الأرشيفات الممسوحة ضوئياً إلى بيانات منظمة — أرقام جداول 100% صحيحة (120/120)، صفر هلاوس، 189 صفحة في ~ساعة ببضعة يوانات.
+- [عن الشركة](https://awareliquid.ai/about): إطار بحثي مفتوح، موقع صادق مقابل Liquid AI — محاور متعامدة.
+- **البروز**: الاشتعال عبر مساحة العمل العالمية (كاشف صفري المعاملات) يوقظ الطبقة البطيئة؛ عند النقاط العمياء الواقعية يستعلم سحابة Awareness (KaaS، معرفة عامة مرساة على السلسلة عبر ERC-8350) ويعيد حقن الحقيقة.
