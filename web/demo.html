@@ -92,9 +92,9 @@ html{color-scheme:light dark}
   display:flex;align-items:center;padding:0 16px;gap:10px;
 }
 .hdr-brand{display:flex;align-items:center;gap:7px;font-weight:650;font-size:14px;letter-spacing:.1px;text-decoration:none;color:var(--fg);flex:none}
-.hdr-logo{width:24px;height:22px;background:url('/static/logo-dark.png?v=2') center/contain no-repeat;flex:none}
+.hdr-logo{width:24px;height:22px;background:url('/static/brand/mark-black.svg') center/contain no-repeat;flex:none}
 @media(prefers-color-scheme:dark){
-html:not([data-theme="light"]) .hdr-logo{background-image:url('/static/logo-light.png?v=2')}
+html:not([data-theme="light"]) .hdr-logo{background-image:url('/static/brand/mark-white.svg')}
 }
 /* Eyebrow, not a chip: mono uppercase on the bare surface (spec §6). */
 .hdr-badge{font-family:var(--font-label);font-size:10.5px;font-weight:500;letter-spacing:var(--tracking-label);text-transform:uppercase;color:var(--muted);background:transparent;border:0;border-radius:0;padding:0;flex:none}
@@ -400,16 +400,47 @@ const LANGS={
       ['One day, a girl found a big red box under the tree.','续写故事'],
       ['There was a happy dog who liked to run very fast.','续写故事'],
     ],
+  },
+  ar:{
+    badge:'عرض مباشر',back:'رجوع',clear:'مسح',
+    connecting:'جارٍ الاتصال…',offline:'العرض غير متصل',
+    offlineNote:'خادم النموذج التفاعلي غير متاح حالياً. باقي الموقع يعمل. العرض يعمل على خادم استدلال مستضاف ذاتياً (serve/server.py).',
+    placeholder:'اسأل بالإنجليزية أو الصينية…',
+    retryBtn:'↺ إعادة المحاولة',
+    note:'AwareLiquid · نموذج بحثي · ',
+    hc_cta_label:'تابع',
+    hc_cta_title:'هذه النماذج، على جهازك',
+    hc_cta_desc:'HyperCode هو التطبيق الإنتاجي — نفس الدماغ ذي النواة السائلة مع أكثر من 228 مهارة مدمجة، على جهازك، بتثبيت بنقرة واحدة.',
+    hc_cta_btn:'احصل على HyperCode',
+    opt_adapter:'M1 · TinyLlama-1.1B + محول MT',
+    opt_scratch:'128M · هجين من الصفر',
+    w_adapter_title:'M1',
+    w_adapter_lead:'<strong>AwareLiquid M1</strong> — محولات نواة سائلة مدرَّبة على قاعدة <strong>TinyLlama-1.1B-Chat</strong> مجمّدة. النموذج المعرفي الكبير. الذاكرة العرضية نشطة: يتذكر ما تخبره به عبر الأدوار. اسأل بالإنجليزية أو الصينية.',
+    w_adapter_examples:[
+      ['What is catastrophic forgetting, and how does EWC solve it?','أسئلة بحثية'],
+      ['How is AwareLiquid M1 different from Liquid AI?','مفهوم'],
+      ['My name is Alex and I\'m researching continual learning.','عرض الذاكرة'],
+      ['Write a short poem about neural networks that never forget.','إبداعي'],
+    ],
+    w_scratch_title:'128M',
+    w_scratch_lead:'<strong>AwareLiquid 128M</strong> — 128 مليون معامل مدرَّب من الصفر، بلا نموذج أساسي. عمود هجين ذو نواة سائلة (انتباه + طبقات سائلة). <strong>يكمل نصوصاً إنجليزية</strong> — نموذج بحثي خام، لا مساعد محادثة. أعطه افتتاحية قصة:',
+    w_scratch_examples:[
+      ['Once upon a time, there was a little cat named Lily.','أكمل القصة'],
+      ['The sun was shining and Tom wanted to play outside.','أكمل القصة'],
+      ['One day, a girl found a big red box under the tree.','أكمل القصة'],
+      ['There was a happy dog who liked to run very fast.','أكمل القصة'],
+    ],
   }
 };
 
-let LANG=localStorage.getItem('lang')||'en';
+let LANG=(function(){const s=localStorage.getItem('lang');if(s)return s;const n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})();
 function t(k){return(LANGS[LANG]||LANGS.en)[k]||(LANGS.en)[k]||k;}
 
 function applyLang(l){
   LANG=l;localStorage.setItem('lang',l);
-  document.documentElement.lang=l==='zh'?'zh-CN':'en';
-  langBtn.textContent=l==='zh'?'EN':'中文';
+  document.documentElement.lang=l==='zh'?'zh-CN':l;
+  document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  langBtn.textContent={en:'中文',zh:'العربية',ar:'EN'}[l]||'中文';
   document.getElementById('hdrBadge').textContent=t('badge');
   document.getElementById('backLabel').textContent=t('back');
   document.getElementById('clearLabel').textContent=t('clear');
@@ -417,9 +448,10 @@ function applyLang(l){
   document.getElementById('optAdapter').textContent=t('opt_adapter');
   document.getElementById('optScratch').textContent=t('opt_scratch');
   const ftrNote=document.getElementById('ftrNote');
-  ftrNote.innerHTML=t('note')+'<a href="/privacy">'+(l==='zh'?'隐私政策':'Privacy')+'</a> · <a href="/terms">'+(l==='zh'?'使用条款':'Terms')+'</a>'
-    +' · <a href="/hypercode">'+(l==='zh'?'获取 HyperCode':'Get HyperCode')+'</a>'
-    +'<br><span class="ftr-entity">'+(l==='zh'?'深圳三体暗源科技有限公司':'Shenzhen Santi Anyuan Technology Co., Ltd')+'</span>';
+  const lbl={en:{p:'Privacy',t:'Terms',h:'Get HyperCode'},zh:{p:'隐私政策',t:'使用条款',h:'获取 HyperCode'},ar:{p:'سياسة الخصوصية',t:'شروط الاستخدام',h:'احصل على HyperCode'}}[l]||{p:'Privacy',t:'Terms',h:'Get HyperCode'};
+  ftrNote.innerHTML=t('note')+'<a href="/privacy">'+lbl.p+'</a> · <a href="/terms">'+lbl.t+'</a>'
+    +' · <a href="/hypercode">'+lbl.h+'</a>'
+    +'<br><span class="ftr-entity">Shenzhen Santi Anyuan Technology Co., Ltd</span>';
   // HyperCode CTA (welcome screen only — hidden once the thread starts)
   document.getElementById('hcCtaLabel').textContent=t('hc_cta_label');
   document.getElementById('hcCtaTitle').textContent=t('hc_cta_title');
@@ -446,11 +478,12 @@ window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{
 
 // ── LANG INIT ──
 const langBtn=document.getElementById('langBtn');
-langBtn.addEventListener('click',()=>applyLang(LANG==='zh'?'en':'zh'));
-// apply stored lang on load (but don't override icons already set)
+langBtn.addEventListener('click',()=>applyLang({en:'zh',zh:'ar',ar:'en'}[LANG]||'zh'));
+// apply stored or detected lang on load (but don't override icons already set)
 (function(){
-  const l=localStorage.getItem('lang');
-  if(l&&l!=='en'){langBtn.textContent='EN';document.documentElement.lang='zh-CN';}
+  const l=(function(){const s=localStorage.getItem('lang');if(s)return s;const n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})();
+  if(l!=='en'){applyLang(l);}
+  else{document.documentElement.lang='en';langBtn.textContent='中文';}
 })();
 
 // ── CHAT CONSTANTS ──

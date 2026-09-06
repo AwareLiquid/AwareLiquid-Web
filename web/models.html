@@ -7,6 +7,11 @@
 <title>Model Downloads — AwareLiquid</title>
 <meta name="description" content="Download AwareLiquid model weights — M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge. Open weights on GitHub Releases.">
 <link rel="canonical" href="https://awareliquid.ai/models">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/models">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/models">
+<link rel="alternate" hreflang="ar" href="https://awareliquid.ai/models">
+<link rel="alternate" hreflang="ar-SA" href="https://awareliquid.ai/models">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/models">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Model Downloads — AwareLiquid">
 <meta name="twitter:description" content="Download AwareLiquid model weights — M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge. Open weights on GitHub Releases.">
@@ -334,7 +339,7 @@ document.getElementById('langBtn').addEventListener('click', function(){
   var order = {en:'zh', zh:'ar', ar:'en'};
   applyLang(order[cur] || 'zh');
 });
-(function(){ var saved = localStorage.getItem('models_lang') || 'en'; applyLang(saved); })();
+(function(){ var saved = (function(){var s=localStorage.getItem('models_lang');if(s)return s;var n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})(); applyLang(saved); })();
 </script>
 </body>
 </html>

@@ -26,6 +26,8 @@
 <!-- Canonical & crawl -->
 <link rel="canonical" href="https://awareliquid.ai/">
 <link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/" />
+<link rel="alternate" hreflang="ar" href="https://awareliquid.ai/" />
+<link rel="alternate" hreflang="ar-SA" href="https://awareliquid.ai/" />
 <link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
 <meta name="keywords" content="AwareLiquid, M1, O1, M-Series, O-Series, continual learning, liquid neural networks, MT-LNN, catastrophic forgetting, EWC, elastic weight consolidation, GWT, global workspace theory, sleep consolidation, cognitive AI, bio-inspired AI, lifelong learning, edge AI, on-device AI, lightweight deployment, constant memory, 端侧模型, 轻量化部署, 类脑模型">
@@ -196,9 +198,9 @@ a{color:inherit;text-decoration:none}
 }
 .nav-inner{height:64px;display:flex;align-items:center;gap:0}
 .brand{display:flex;align-items:center;gap:8px;font-weight:650;font-size:15px;letter-spacing:.1px;flex:none}
-.logo{width:28px;height:26px;background:url('/static/logo-dark.png?v=2') center/contain no-repeat;flex:none}
+.logo{width:28px;height:26px;background:url('/static/brand/mark-black.svg') center/contain no-repeat;flex:none}
 @media(prefers-color-scheme:dark){
-html:not([data-theme="light"]) .logo{background-image:url('/static/logo-light.png?v=2')}
+html:not([data-theme="light"]) .logo{background-image:url('/static/brand/mark-white.svg')}
 }
 .nav-links{display:flex;align-items:center;gap:2px;margin-left:32px;flex:1}
 .nav-links a{font-size:13.5px;color:var(--muted);padding:5px 10px;border-radius:4px;transition:color .15s,background .15s}
@@ -1541,7 +1543,7 @@ const I18N={
   }
 };
 
-let PAGE_LANG=localStorage.getItem('lang')||'en';
+let PAGE_LANG=(function(){const s=localStorage.getItem('lang');if(s)return s;const n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})();
 function ti(k){return(I18N[PAGE_LANG]||I18N.en)[k]||(I18N.en)[k]||k;}
 
 // selector → {key, attr} where attr is 'text' or 'html'
@@ -1845,8 +1847,8 @@ const CONTENT={
 // Deferred initial language application — runs after CONTENT and renderWelcome
 // exist (avoids the TDZ crash the eager call caused).
 if (_langInitPending){
-  const l=localStorage.getItem('lang');
-  if(l&&l!=='en'){applyPageLang(l);}
+  const l=(function(){const s=localStorage.getItem('lang');if(s)return s;const n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})();
+  if(l!=='en'){applyPageLang(l);}
   _langInitPending=false;
 }
 
