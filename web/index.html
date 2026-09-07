@@ -800,7 +800,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
     <div class="ind-head">
       <span class="label"><span class="label-sq"></span>Where it fits</span>
       <h2 class="h2">Built for streams that never stop, on hardware that <em class="em-italic">cannot grow</em>.</h2>
-      <p class="ind-lead">Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.</p>
+      <p class="ind-lead">Four deployments with something real behind them — measured, shipped, deployed, or all three. Every number links to open code; anything without data says so.</p>
     </div>
 
     <div class="ind-grid">
@@ -826,6 +826,14 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         <p class="ind-d">QA over filings far longer than the context window, with the base model frozen behind an API.</p>
         <span class="ind-s ind-s-on">Measured — M2 adapter</span>
         <span class="ind-m">44/48 (91.7%) across five financial-document domains · ~2.8k tokens per question. A regression baseline, not a leaderboard.</span>
+      </a>
+
+      <a class="ind-cell hov" href="https://www.acb.social/" target="_blank" rel="noopener noreferrer">
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3M9.5 9.5 7.4 7.4M14.5 9.5l2.1-2.1M9.5 14.5l-2.1 2.1M14.5 14.5l2.1 2.1"/></svg></span>
+        <h3 class="ind-t">Edge battery safety — in production</h3>
+        <p class="ind-d">Battery AI live at a commercial platform: the liquid core runs on the pack controller itself, alerting offline with no network round-trip.</p>
+        <span class="ind-s ind-s-on">Deployed — customer production</span>
+        <span class="ind-m">353-param on-device LTC · 1.3 ms inference · 48 B constant state · offline alerts. Customer-reported: 229 e-buses, 92% early-failure detection, 120.8-day warning lead time.</span>
       </a>
     </div>
     <p class="ind-also"><span class="label"><span class="label-sq"></span>Also targeting</span>
@@ -1132,7 +1140,7 @@ const I18N={
     'rail.latest':'Latest','rail.more':'Read more →',
     'ind.eyebrow':'Where it runs',
     'ind.h2a':'Built for streams that never stop, on hardware that ','ind.h2b':'cannot grow','ind.h2c':'.',
-    'ind.lead':'Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.',
+    'ind.lead':'Four deployments with something real behind them — measured, shipped, deployed, or all three. Every number links to open code; anything without data says so.',
     'm1.tag':'Cognitive · GWT + Sleep · Slow Thinking',
     'o1.tag':'Edge · Liquid ODE · Fast Thinking',
     'arch.eyebrow':'Bio-inspired Architecture',
@@ -1191,6 +1199,10 @@ const I18N={
     'ind.c3d':'QA over filings far longer than the context window, with the base model frozen behind an API.',
     'ind.c3s':'Measured — M2 adapter',
     'ind.c3m':'44/48 (91.7%) across five financial-document domains · ~2.8k tokens per question. A regression baseline, not a leaderboard.',
+    'ind.c4t':'Edge battery safety — in production',
+    'ind.c4d':'Battery AI live at a commercial platform: the liquid core runs on the pack controller itself, alerting offline with no network round-trip.',
+    'ind.c4s':'Deployed — customer production',
+    'ind.c4m':'353-param on-device LTC · 1.3 ms inference · 48 B constant state · offline alerts. Customer-reported: 229 e-buses, 92% early-failure detection, 120.8-day warning lead time.',
     'ind.alsoLabel':'Also targeting',
     'ind.alsoText':'In-vehicle systems · On-device assistants · Industrial robotics — architectural fit (bounded state over an unbounded session, native Δt), <strong>no pilot data yet</strong>.',
     'rh.th1':'Capability','rh.th2':'Result',
@@ -1278,7 +1290,7 @@ const I18N={
     'hero.m1':'الحالة المحمولة','hero.m2':'السياق','hero.m3':'مقابل ذاكرة KV',
     'rail.latest':'الأحدث','rail.more':'اقرأ المزيد →',
     'ind.eyebrow':'أين يعمل','ind.h2a':'مبني لتيارات لا تتوقف، على عتاد ','ind.h2b':'لا يكبر','ind.h2c':'.',
-    'ind.lead':'ثلاثة نشرات خلفها شيء حقيقي — مُقاسة أو مشحونة أو كليهما. كل رقم مرتبط بكود مفتوح؛ وأي شيء بلا بيانات يقول ذلك صراحة.',
+    'ind.lead':'أربعة نشرات خلفها شيء حقيقي — مُقاسة أو مشحونة أو منشورة أو كلها. كل رقم مرتبط بكود مفتوح؛ وأي شيء بلا بيانات يقول ذلك صراحة.',
     'm1.tag':'معرفي · GWT + نوم · تفكير بطيء','o1.tag':'حافة · ODE سائلة · تفكير سريع',
     'arch.eyebrow':'بنية مستوحاة من الأحياء','arch.h2':'ثلاث آليات تجعل التفكير ممكناً',
     'arch.lead':'يرص AwareLiquid ثلاثة أنظمة فرعية مشتقة من علوم الأعصاب فوق نواة سائلة زمنية مستمرة — كل واحد يحل مشكلة معرفية مميزة لا تستطيع المحولات وSSM معالجتها.',
@@ -1326,6 +1338,8 @@ const I18N={
     'ind.c2s':'مُقاس — كلمة واحدة فقط','ind.c2m':'الإنجليزية «hello»: FRR 0.14 ± 0.05 عند FAR 0.05 عبر 3 بذور. 5.03 ميجابايت fp32 / 1.27 int8، حالة ثابتة 5,120 بايت. <strong>غير جاهز للإنتاج</strong>: تباين بين البذور أوسع من أي تغيير جرّبناه، والنسخة متعددة اللغات قيست أسوأ من عدم الإطلاق إطلاقاً.',
     'ind.c3t':'المستندات المالية','ind.c3d':'أسئلة وأجوبة على ملفات أطول بكثير من نافذة السياق، مع تجميد النموذج الأساسي خلف API.',
     'ind.c3s':'مُقاس — محول M2','ind.c3m':'44/48 (91.7%) عبر خمسة مجالات مستندات مالية · ~2.8 ألف رمز لكل سؤال. خط أساس انحداري، لا متصدر قوائم.',
+    'ind.c4t':'سلامة البطاريات الطرفية — قيد الإنتاج','ind.c4d':'ذكاء بطاريات يعمل على منصة تجارية: النواة السائلة تعمل على وحدة تحكم الحزمة نفسها، وتُنذر دون اتصال بالشبكة.',
+    'ind.c4s':'منشور — إنتاج العميل','ind.c4m':'LTC طرفي بـ 353 معلمة · استدلال 1.3 مللي ثانية · حالة ثابتة 48 بايت · تنبيهات دون اتصال. أرقام العميل: 229 حافلة كهربائية، 92% كشف أعطال مبكر، 120.8 يوماً زمن الإنذار المبكر.',
     'ind.alsoLabel':'نستهدف أيضاً','ind.alsoText':'أنظمة داخل المركبات · مساعدو الأجهزة · الروبوتات الصناعية — ملاءمة معمارية (حالة محدودة على جلسة غير محدودة، Δt أصلي)، <strong>لا بيانات تجريبية بعد</strong>.',
     'rh.th1':'القدرة','rh.th2':'النتيجة',
     'rh.r1c':'ذاكرة استدلال O(1) (سلسلة O)','rh.r1v':'0.381 ميجابايت مسطحة → أصغر بـ 8063× عند مليون رمز',
@@ -1408,7 +1422,7 @@ const I18N={
     'rail.latest':'最新','rail.more':'查看更多 →',
     'ind.eyebrow':'落地场景',
     'ind.h2a':'为永不停止的数据流而生，跑在','ind.h2b':'无法扩容','ind.h2c':'的硬件上。',
-    'ind.lead':'三个有实底的部署方向——已实测、已开源、或两者兼有。每个数字都链接到公开代码；没有数据的地方会明说。',
+    'ind.lead':'四个有实底的部署方向——已实测、已开源、已生产部署、或兼而有之。每个数字都链接到公开代码；没有数据的地方会明说。',
     'm1.tag':'认知 · GWT + 睡眠 · 慢思考',
     'o1.tag':'边缘 · 液态 ODE · 快思考',
     'arch.eyebrow':'仿生架构',
@@ -1467,6 +1481,10 @@ const I18N={
     'ind.c3d':'对远超上下文窗口长度的申报文件做问答，基座模型冻结在 API 之后。',
     'ind.c3s':'已实测 — M2 适配器',
     'ind.c3m':'五个金融文档领域 44/48（91.7%）· 每题约 2.8k tokens。这是一条回归基线，不是排行榜。',
+    'ind.c4t':'端侧电池安全 — 生产部署中',
+    'ind.c4d':'电池 AI 已在商业平台上线：液态核心直接跑在电池包控制器上，离线告警，无需网络往返。',
+    'ind.c4s':'已部署 — 客户生产环境',
+    'ind.c4m':'353 参数端侧 LTC · 1.3 ms 推理 · 48 B 恒定状态 · 离线告警。客户口径：229 台电动公交，92% 早期失效检出，120.8 天预警提前量。',
     'ind.alsoLabel':'同时瞄准',
     'ind.alsoText':'车载系统 · 端侧助手 · 工业机器人——架构契合（无界会话下的有界状态、原生 Δt），<strong>尚无试点数据</strong>。',
     'rh.th1':'能力','rh.th2':'结果',
