@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250" fill="#ffffff" shape-rendering="crispEdges">
+  <!-- HyperWork pixel mark: 25x25 grid, 10px cells. Ascending bars on a baseline. -->
+  <!-- baseline -->
+  <rect x="60" y="160" width="130" height="10"/>
+  <!-- bar 1 (short) -->
+  <rect x="70" y="130" width="30" height="30"/>
+  <!-- bar 2 (medium) -->
+  <rect x="110" y="110" width="30" height="50"/>
+  <!-- bar 3 (tall) -->
+  <rect x="150" y="90" width="30" height="70"/>
+</svg>
