@@ -627,26 +627,26 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
     <div class="content-col">
 
       <h2 id="architecture" data-i18n="s1">1 · Architecture: AwareLiquid M1</h2>
-      <p>The backbone is the <abbr title="Multi-Timescale Liquid Neural Network">MT-LNN</abbr> (<abbr title="Liquid Time-Constant network">LTC</abbr> network) — a continuous-time recurrent architecture whose hidden state evolves according to learnable time constants, rather than discrete layer stacking. M1 (M-Series flagship) layers three cognitive subsystems on top of this core:</p>
+      <p data-i18n="a1.p1">The backbone is the <abbr title="Multi-Timescale Liquid Neural Network">MT-LNN</abbr> (<abbr title="Liquid Time-Constant network">LTC</abbr> network) — a continuous-time recurrent architecture whose hidden state evolves according to learnable time constants, rather than discrete layer stacking. M1 (M-Series flagship) layers three cognitive subsystems on top of this core:</p>
       <ul>
-        <li><strong>Competitive Global Workspace</strong> (<abbr title="Global Workspace Theory — Broadcast variant">GWT-B</abbr>) — selective broadcast of attended information;</li>
-        <li><strong>Predictive World Model</strong> — forward prediction of the next latent state;</li>
-        <li><strong>Hebbian Plasticity</strong> — co-activation-based weight modulation;</li>
-        <li><strong>Predictive Coding</strong> — error-driven representation learning;</li>
-        <li><strong>Rhythm Modulation</strong> — oscillatory gating of information flow.</li>
+        <li data-i18n="a1.li1"><strong>Competitive Global Workspace</strong> (<abbr title="Global Workspace Theory — Broadcast variant">GWT-B</abbr>) — selective broadcast of attended information;</li>
+        <li data-i18n="a1.li2"><strong>Predictive World Model</strong> — forward prediction of the next latent state;</li>
+        <li data-i18n="a1.li3"><strong>Hebbian Plasticity</strong> — co-activation-based weight modulation;</li>
+        <li data-i18n="a1.li4"><strong>Predictive Coding</strong> — error-driven representation learning;</li>
+        <li data-i18n="a1.li5"><strong>Rhythm Modulation</strong> — oscillatory gating of information flow.</li>
       </ul>
       <figure class="chart-fig wide">
         <img src="/static/charts/architecture_pipeline.svg"
              alt="MT-LNN architecture pipeline diagram: embedding → LTC core → liquid core modules (GWT-B, World Model, Hebbian, Predictive Coding) → output head → continual learning"
              loading="lazy">
-        <figcaption>MT-LNN end-to-end pipeline. The LTC core processes tokens with learnable time constants; liquid core modules add neuroscience-inspired awareness and plasticity; the <abbr title="Elastic Weight Consolidation">EWC</abbr> layer enables continual learning.</figcaption>
+        <figcaption data-i18n="a1.fig1">MT-LNN end-to-end pipeline. The LTC core processes tokens with learnable time constants; liquid core modules add neuroscience-inspired awareness and plasticity; the <abbr title="Elastic Weight Consolidation">EWC</abbr> layer enables continual learning.</figcaption>
       </figure>
-      <p><span class="tag built">Built</span> Architecture, all liquid core modules, and native inference server are implemented and live — this site's demo is driven by them. Technical details: <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a>.</p>
+      <p data-i18n="a1.built"><span class="tag built">Built</span> Architecture, all liquid core modules, and native inference server are implemented and live — this site's demo is driven by them. Technical details: <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a>.</p>
 
       <hr class="divider">
 
       <h2 id="demo-model" data-i18n="s2">2 · Live Demo: AwareLiquid O1 + M1</h2>
-      <p>The demo offers two distinct models. <strong>M1</strong> (the large, cognitive model) wraps a <strong>frozen TinyLlama-1.1B-Chat</strong> base with a trained residual liquid-core adapter — only a fraction of a percent of the weights are ours (GWT broadcast + EWC continual-learning layers), general language comes from the base. It handles Q&amp;A in English and Chinese and carries <strong>persistent episodic memory</strong> — session recall tagged with typed cards (identity / preference / emotion / plan / relationship / health / detail). <strong>O1</strong> (the small, edge model) is the opposite pole — 48M parameters trained end-to-end from scratch, no base model, the native liquid architecture for hardware / always-on inference, a pure research artifact for short English text continuation.</p>
+      <p data-i18n="a2.p1">The demo offers two distinct models. <strong>M1</strong> (the large, cognitive model) wraps a <strong>frozen TinyLlama-1.1B-Chat</strong> base with a trained residual liquid-core adapter — only a fraction of a percent of the weights are ours (GWT broadcast + EWC continual-learning layers), general language comes from the base. It handles Q&amp;A in English and Chinese and carries <strong>persistent episodic memory</strong> — session recall tagged with typed cards (identity / preference / emotion / plan / relationship / health / detail). <strong>O1</strong> (the small, edge model) is the opposite pole — 48M parameters trained end-to-end from scratch, no base model, the native liquid architecture for hardware / always-on inference, a pure research artifact for short English text continuation.</p>
       <div class="note"><strong>⚠ Retraction (2026-07):</strong> the previously advertised <strong>“−28.5% adapter PPL”</strong> is <strong>withdrawn</strong>. A controlled ablation showed that run had the MT adapter <em>frozen</em> by PEFT and trained <em>LoRA only</em>: <code>lora_only 7.984</code> vs <code>mt_lora 7.920</code> — the MT adapter contributes <strong>≈0 PPL</strong>. The number below measured plain LoRA fine-tuning, not the liquid mechanism. Full detail in <a href="https://github.com/AwareLiquid/M1/blob/main/RESULTS.md" target="_blank" rel="noopener noreferrer">RESULTS.md</a>. The M1 adapter’s real, un-retracted value is <strong>cross-window / cross-session recall</strong> (0.56 vs 0.000), not perplexity.</div>
       <div class="card">
         <table style="margin:0">
@@ -654,29 +654,29 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
           <tbody>
             <tr><td>From-scratch params</td><td class="num">~48M</td><td>Full MT-LNN pre-training</td></tr>
             <tr><td>Validation <abbr title="Perplexity">PPL</abbr> (scratch)</td><td class="num">~136</td><td>Clean M2 run, 5,000 steps</td></tr>
-            <tr><td>Adapter PPL gain (M1)</td><td class="num" style="text-decoration:line-through;opacity:.55">−28.5%</td><td><strong>Retracted</strong> — was LoRA-only; MT adapter adds ≈0 PPL (7.984 → 7.920)</td></tr>
+            <tr><td>Adapter PPL gain (M1)</td><td class="num" style="text-decoration:line-through;opacity:.55">−28.5%</td><td data-i18n="a2.td1"><strong>Retracted</strong> — was LoRA-only; MT adapter adds ≈0 PPL (7.984 → 7.920)</td></tr>
             <tr><td>Inference</td><td class="num">CPU</td><td>2–4 cores, ~2–15 tok/s</td></tr>
           </tbody>
         </table>
-        <p class="note" style="margin:12px 0 0">PPL computed with pure next-token cross-entropy — auxiliary losses are excluded to avoid artificially deflated numbers.</p>
+        <p class="note" style="margin:12px 0 0" data-i18n="a2.p2">PPL computed with pure next-token cross-entropy — auxiliary losses are excluded to avoid artificially deflated numbers.</p>
       </div>
-      <p><span class="tag built">Built</span> End-to-end pre-training + native serving. <span class="tag target">Target</span> Larger, higher-quality model (see demo disclaimer).</p>
+      <p data-i18n="a2.built"><span class="tag built">Built</span> End-to-end pre-training + native serving. <span class="tag target">Target</span> Larger, higher-quality model (see demo disclaimer).</p>
 
       <h3>Adapter Benchmark Results</h3>
-      <p>The adapter PPL result shown here is <strong>retracted</strong> (see the note above — it measured LoRA, not the MT mechanism). The context-injection uplift is a <strong>prompt-template</strong> effect (identical with vs. without the adapter), and the needle-in-haystack retrieval test was re-run 2026-06-26 with the chat template (near-perfect within the base's 2048-token window). We keep the charts below for provenance, clearly labelled.</p>
+      <p data-i18n="a2.p3">The adapter PPL result shown here is <strong>retracted</strong> (see the note above — it measured LoRA, not the MT mechanism). The context-injection uplift is a <strong>prompt-template</strong> effect (identical with vs. without the adapter), and the needle-in-haystack retrieval test was re-run 2026-06-26 with the chat template (near-perfect within the base's 2048-token window). We keep the charts below for provenance, clearly labelled.</p>
 
       <figure class="chart-fig">
         <img src="/static/charts/ppl_ablation.svg"
              alt="Bar chart (retracted): Base LLM PPL 9.161 vs 6.553 — the gain was later traced to plain LoRA, not the MT-LNN adapter"
              loading="lazy">
-        <figcaption><strong>⚠ Retracted.</strong> Fig. 2a showed a −28.5% PPL drop attributed to the MT-LNN adapter, but a controlled ablation traced that gain to plain LoRA (MT adapter frozen, adds ≈0 PPL). Kept for provenance; see the retraction note above and RESULTS.md.</figcaption>
+        <figcaption data-i18n="a2.fig1"><strong>⚠ Retracted.</strong> Fig. 2a showed a −28.5% PPL drop attributed to the MT-LNN adapter, but a controlled ablation traced that gain to plain LoRA (MT adapter frozen, adds ≈0 PPL). Kept for provenance; see the retraction note above and RESULTS.md.</figcaption>
       </figure>
 
       <figure class="chart-fig">
         <img src="/static/charts/context_needle.svg"
              alt="Left: a prompt template that injects the fact lifts accuracy from 83.3% to 96.7% (+13.3pp) — this is the template's effect, identical with vs without the adapter. Right: needle-in-haystack — within TinyLlama's 2048 window retrieval is near-perfect (base 0.87-1.0, adapter 1.0); 4096 collapses for both as it exceeds the base RoPE window."
              loading="lazy">
-        <figcaption>Fig. 2b — Left: a <strong>prompt-template</strong> that injects the absorbed fact raises QA accuracy by +13.3 pp (30 questions, Qwen-1.5B) — this is the template's effect and is <strong>identical with vs. without the MT adapter</strong>, so it is not an adapter capability. Right: needle-in-haystack re-tested 2026-06-26 with the chat template — within the 2048 window both base and adapter retrieve near-perfectly; the earlier "0%" was a broken-harness artefact, now retracted.</figcaption>
+        <figcaption data-i18n="a2.fig2">Fig. 2b — Left: a <strong>prompt-template</strong> that injects the absorbed fact raises QA accuracy by +13.3 pp (30 questions, Qwen-1.5B) — this is the template's effect and is <strong>identical with vs. without the MT adapter</strong>, so it is not an adapter capability. Right: needle-in-haystack re-tested 2026-06-26 with the chat template — within the 2048 window both base and adapter retrieve near-perfectly; the earlier "0%" was a broken-harness artefact, now retracted.</figcaption>
       </figure>
 
       <div class="note"><strong>Correction (2026-06-26).</strong> The earlier "needle 0% for both variants" claim was a <em>harness artefact</em>, not a model limit: the old script concatenated raw tokens without the instruct chat template, which always scores 0.0 on an instruct-tuned base. Re-tested with the chat template and a faithful adapter rebuild (MT adapter + LoRA, 374/374 tensors verified): within TinyLlama-1.1B's 2048-token window, retrieval is near-perfect — base 0.867 (1K) / 1.000 (2K), adapter 1.000 / 1.000. At 4096 tokens both collapse to 0.000 because that exceeds the base's 2048 RoPE training window — a genuine base-model limit the frozen base never had, not an adapter failure. The adapter is at parity with the base in-window; with only 5 samples/cell and the base near saturation, a measurable retrieval <em>uplift</em> stays inconclusive. Harness: <code>bench_needle_m1_faithful.py</code>.</div>
@@ -684,17 +684,17 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       <hr class="divider">
 
       <h2 id="ewc" data-i18n="s3">3 · Continual Learning &amp; Anti-Forgetting</h2>
-      <p>This is AwareLiquid's primary research direction — orthogonal to the frozen-weight paradigm of frontier LLMs. The question: can a model sequentially learn new domains without catastrophically forgetting prior ones?</p>
+      <p data-i18n="a3.p1">This is AwareLiquid's primary research direction — orthogonal to the frozen-weight paradigm of frontier LLMs. The question: can a model sequentially learn new domains without catastrophically forgetting prior ones?</p>
 
       <h3>Experimental Design</h3>
       <ul>
-        <li>Train and evaluate on domain A, then continue training on domain B, then re-evaluate A;</li>
-        <li>Three arms: <code>dense</code> (standard baseline), <code>liquid</code> (MT-LNN backbone), <code>consolidation</code> (EWC mechanism);</li>
-        <li>Statistical rigor: paired deltas per seed, SNR = |mean| / std, require all seeds to agree in direction, check "non-catastrophic" threshold.</li>
+        <li data-i18n="a3.li1">Train and evaluate on domain A, then continue training on domain B, then re-evaluate A;</li>
+        <li data-i18n="a3.li2">Three arms: <code>dense</code> (standard baseline), <code>liquid</code> (MT-LNN backbone), <code>consolidation</code> (EWC mechanism);</li>
+        <li data-i18n="a3.li3">Statistical rigor: paired deltas per seed, SNR = |mean| / std, require all seeds to agree in direction, check "non-catastrophic" threshold.</li>
       </ul>
 
       <h3>EWC: Elastic Weight Consolidation</h3>
-      <p>After training on domain A, anchor weights are snapshotted and diagonal Fisher information is estimated from pure CE gradients. During domain B training, a quadratic penalty <code>λ/2 · Σ Fᵢ(θᵢ − θ_Aᵢ)²</code> constrains weights important to A from drifting. This mechanism is architecture-agnostic.</p>
+      <p data-i18n="a3.p2">After training on domain A, anchor weights are snapshotted and diagonal Fisher information is estimated from pure CE gradients. During domain B training, a quadratic penalty <code>λ/2 · Σ Fᵢ(θᵢ − θ_Aᵢ)²</code> constrains weights important to A from drifting. This mechanism is architecture-agnostic.</p>
 
       <h3>Results (GPU, A = WikiText-103 → B = TinyStories)</h3>
       <p>3 seeds · 60.7M model · 1,200 steps per domain. <em>Forgetting</em> = PPL rise on domain A after B training (lower is better).</p>
@@ -709,7 +709,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <img src="/static/charts/ewc_forgetting.svg"
              alt="Bar chart comparing forgetting across three conditions: Dense +10,562, Liquid +9,544, EWC +1,633 PPL rise"
              loading="lazy">
-        <figcaption>Fig. 3a — Forgetting (PPL rise on domain A after B training) by condition. EWC consolidation reduces forgetting by 85% while still learning domain B. 3 seeds, 60.7M model.</figcaption>
+        <figcaption data-i18n="a3.fig1">Fig. 3a — Forgetting (PPL rise on domain A after B training) by condition. EWC consolidation reduces forgetting by 85% while still learning domain B. 3 seeds, 60.7M model.</figcaption>
       </figure>
 
       <div class="card" style="padding:0;overflow:hidden">
@@ -722,8 +722,8 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
           </tbody>
         </table>
       </div>
-      <p>Paired statistics (consolidation − dense): <strong>−8,928.8 ± 2,155 · <abbr title="Signal-to-Noise Ratio">SNR</abbr> 4.14 · 3/3 seeds</strong>. EWC reduces cross-domain forgetting by <strong>~85%</strong> without sacrificing domain B learning.</p>
-      <p>
+      <p data-i18n="a3.p3">Paired statistics (consolidation − dense): <strong>−8,928.8 ± 2,155 · <abbr title="Signal-to-Noise Ratio">SNR</abbr> 4.14 · 3/3 seeds</strong>. EWC reduces cross-domain forgetting by <strong>~85%</strong> without sacrificing domain B learning.</p>
+      <p data-i18n="a3.built">
         <span class="tag built">Built</span> EWC mechanism + three-arm experiment framework, fully reproducible (<a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">GitHub</a>, <code>experiments/continual_crossdomain_liquid.py</code>).<br>
         <span class="tag signal">Early Signal</span> Effect is real, large, and consistent across all seeds (−85%, SNR 4.14) — first clear evidence of mechanism effectiveness.<br>
         <span class="tag target">Not Yet</span> The absolute PPL on A after EWC (1,878) is still ~7.6× its pre-B value (245). Under a strict "≤5× degradation = usable" criterion, this still qualifies as catastrophic forgetting. Verdict: <strong>WEAK-TREND</strong>, not SUPPORTED.
@@ -733,7 +733,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       <hr class="divider">
 
       <h2 id="hebbian" data-i18n="s4">4 · Hebbian Plasticity Ablation</h2>
-      <p>The Hebbian co-activation term is one of the MT-LNN liquid core modules. To measure its actual contribution, we ran an isolated ablation: all other v2.0 liquid modules were disabled, only the Hebbian term was active, and <code>hebbian_lr</code> was swept across four values with 2 seeds × 150 steps each.</p>
+      <p data-i18n="a4.p1">The Hebbian co-activation term is one of the MT-LNN liquid core modules. To measure its actual contribution, we ran an isolated ablation: all other v2.0 liquid modules were disabled, only the Hebbian term was active, and <code>hebbian_lr</code> was swept across four values with 2 seeds × 150 steps each.</p>
 
       <div class="card" style="padding:0;overflow:hidden">
         <table style="margin:0">
@@ -750,38 +750,38 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <img src="/static/charts/hebbian_ablation.svg"
              alt="Left: bar chart of validation PPL for off/1e-4/1e-2/1e-1 Hebbian LR — all within seed noise. Right: gradient share on log scale — peaks at 8.5e-5."
              loading="lazy">
-        <figcaption>Fig. 4a — Left: validation PPL across Hebbian LR sweep with ±1 std error bars. All values fall within seed noise (grey dashed = baseline). Right: Hebbian gradient contribution on log scale — negligible across all settings tested.</figcaption>
+        <figcaption data-i18n="a4.fig1">Fig. 4a — Left: validation PPL across Hebbian LR sweep with ±1 std error bars. All values fall within seed noise (grey dashed = baseline). Right: Hebbian gradient contribution on log scale — negligible across all settings tested.</figcaption>
       </figure>
-      <p>128d × 2L × 8H model · WikiText-103 · CPU · 593s runtime. Largest PPL change (+0.35) is within seed noise (std ≈ 7.3). Gradient contribution peaks at 8.5e-5 — negligible.</p>
-      <p><span class="tag signal">Early Signal</span> At current scale, the Hebbian term is effectively inert. Next steps: raise <code>hebbian_lr</code> by 2–3 orders of magnitude or validate at larger model scale before drawing conclusions.</p>
+      <p data-i18n="a4.p2">128d × 2L × 8H model · WikiText-103 · CPU · 593s runtime. Largest PPL change (+0.35) is within seed noise (std ≈ 7.3). Gradient contribution peaks at 8.5e-5 — negligible.</p>
+      <p data-i18n="a4.p3"><span class="tag signal">Early Signal</span> At current scale, the Hebbian term is effectively inert. Next steps: raise <code>hebbian_lr</code> by 2–3 orders of magnitude or validate at larger model scale before drawing conclusions.</p>
       <div class="note">Honest summary: Hebbian plasticity has not produced a measurable effect yet. This is an open experimental direction, not a validated capability.</div>
 
       <hr class="divider">
 
       <h2 id="spatial" data-i18n="s5">5 · Spatial Computing (Experimental)</h2>
-      <p>Does MT-LNN's recurrent dynamics suit <strong>spatial representation and reasoning</strong>? This is a neuroscience-inspired experimental line (grid cells, place cells, path integration). Code is complete and runnable; validation status varies by component.</p>
+      <p data-i18n="a5.p1">Does MT-LNN's recurrent dynamics suit <strong>spatial representation and reasoning</strong>? This is a neuroscience-inspired experimental line (grid cells, place cells, path integration). Code is complete and runnable; validation status varies by component.</p>
 
       <h3>Implemented Modules</h3>
       <ul>
-        <li><strong>Spatial encoding frontend</strong>: grid cell encoding, multi-scale grid modules, head direction cells, boundary distance cells, place cell codes with DoG center-surround patterns — <code>mt_lnn/spatial.py</code>;</li>
-        <li><strong>Location-indexed associative memory</strong>: Hebbian write + pattern completion read, zero trainable parameters — <code>mt_lnn/spatial_memory.py</code>;</li>
-        <li><strong>Causal spatial steering</strong>: detects trajectory ruptures and projects state back onto the legal subspace — <code>mt_lnn/causal_steering.py</code>;</li>
-        <li><strong>Spatial operators + reasoning scaffold</strong>: distance / bearing / reachability graphs, location-based routing — <code>spatial_ops.py</code> / <code>spatial_reasoning.py</code>.</li>
+        <li data-i18n="a5.li1"><strong>Spatial encoding frontend</strong>: grid cell encoding, multi-scale grid modules, head direction cells, boundary distance cells, place cell codes with DoG center-surround patterns — <code>mt_lnn/spatial.py</code>;</li>
+        <li data-i18n="a5.li2"><strong>Location-indexed associative memory</strong>: Hebbian write + pattern completion read, zero trainable parameters — <code>mt_lnn/spatial_memory.py</code>;</li>
+        <li data-i18n="a5.li3"><strong>Causal spatial steering</strong>: detects trajectory ruptures and projects state back onto the legal subspace — <code>mt_lnn/causal_steering.py</code>;</li>
+        <li data-i18n="a5.li4"><strong>Spatial operators + reasoning scaffold</strong>: distance / bearing / reachability graphs, location-based routing — <code>spatial_ops.py</code> / <code>spatial_reasoning.py</code>.</li>
       </ul>
 
       <h3>Two Validated Toy Demos</h3>
       <figure>
         <img src="/static/causal_spatial_steering.png" alt="Causal spatial steering: trajectory rupture detected and manifold error projected to 0" loading="lazy">
-        <figcaption><span class="tag built">Built</span> Causal steering: an artificial teleportation rupture is introduced at step 18. The steering mechanism detects it and collapses the off-manifold error to 0; the unsteered baseline accumulates error indefinitely.</figcaption>
+        <figcaption data-i18n="a5.fig1"><span class="tag built">Built</span> Causal steering: an artificial teleportation rupture is introduced at step 18. The steering mechanism detects it and collapses the off-manifold error to 0; the unsteered baseline accumulates error indefinitely.</figcaption>
       </figure>
       <figure>
         <img src="/static/spatial_memory_recall.png" alt="Spatial memory pattern completion: noisy position query still retrieves correct content" loading="lazy">
-        <figcaption><span class="tag built">Built</span> Spatial memory pattern completion: noisy position queries still retrieve the correct stored content, and accuracy degrades smoothly — not randomly — as noise increases.</figcaption>
+        <figcaption data-i18n="a5.fig2"><span class="tag built">Built</span> Spatial memory pattern completion: noisy position queries still retrieve the correct stored content, and accuracy degrades smoothly — not randomly — as noise increases.</figcaption>
       </figure>
 
       <h3>Grid Cell Emergence: Not Yet Validated</h3>
-      <p>MT-LNN and a GRU baseline are compared on a velocity → position path-integration task to check whether hexagonal grid cells emerge spontaneously (standard threshold: grid score &gt; 0.3).</p>
-      <p>
+      <p data-i18n="a5.p2">MT-LNN and a GRU baseline are compared on a velocity → position path-integration task to check whether hexagonal grid cells emerge spontaneously (standard threshold: grid score &gt; 0.3).</p>
+      <p data-i18n="a5.built">
         <span class="tag built">Built</span> Trajectory generation, loss, and grid score autocorrelation analysis are all runnable.<br>
         <span class="tag target">Not Yet</span> All runs to date have been CPU-scale smoke tests. Neither GRU nor MT-LNN has crossed the 0.3 grid-score threshold. Meaningful comparison requires serious GPU-scale training — <strong>no spatial advantage is claimed at this time</strong>.
       </p>
@@ -790,132 +790,132 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       <hr class="divider">
 
       <h2 id="deployments" data-i18n="s6">Deployments · Measured Pilot Evidence</h2>
-      <p>Three deployment directions with real measurements behind them — the same results the homepage references, with methodology. Each links to open code; boundaries are stated, not implied.</p>
+      <p data-i18n="a6.p1">Three deployment directions with real measurements behind them — the same results the homepage references, with methodology. Each links to open code; boundaries are stated, not implied.</p>
 
       <div class="card">
-        <h3>Battery Health Estimation — Irregular Sensor Streams</h3>
-        <p><span class="tag built">Measured</span> On real NASA PCoE cell data, with 80% of samples randomly dropped: degradation of <strong>+7.7%</strong> vs <strong>+31.1%</strong> (LSTM) and <strong>+32.8%</strong> (GRU). 2.6 KB streaming state, 10 seeds, whole-cell held-out validation. The liquid ODE handles native &Delta;t — no resampling, no imputation.</p>
+        <h3 data-i18n="a6.h3">Battery Health Estimation — Irregular Sensor Streams</h3>
+        <p data-i18n="a6.p2"><span class="tag built">Measured</span> On real NASA PCoE cell data, with 80% of samples randomly dropped: degradation of <strong>+7.7%</strong> vs <strong>+31.1%</strong> (LSTM) and <strong>+32.8%</strong> (GRU). 2.6 KB streaming state, 10 seeds, whole-cell held-out validation. The liquid ODE handles native &Delta;t — no resampling, no imputation.</p>
       </div>
       <div class="card">
         <h3>Always-On Wake Word — 5 MB on-device</h3>
-        <p><span class="tag built">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.</p>
+        <p data-i18n="a6.p3"><span class="tag built">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.</p>
       </div>
       <div class="card">
         <h3>Long-Document QA — Financial Filings</h3>
-        <p><span class="tag built">Measured</span> The AwareLiquid-M2 retrieval adapter answers 44/48 (91.7%) across five financial-document domains at ~2.8k tokens per question, base model frozen behind an API. A regression baseline, not a leaderboard entry.</p>
+        <p data-i18n="a6.p4"><span class="tag built">Measured</span> The AwareLiquid-M2 retrieval adapter answers 44/48 (91.7%) across five financial-document domains at ~2.8k tokens per question, base model frozen behind an API. A regression baseline, not a leaderboard entry.</p>
       </div>
 
       <hr class="divider">
 
       <h2 id="benchmarks" data-i18n="s7">6 · System Benchmarks</h2>
-      <p>Hardware efficiency measurements from reproducible CPU runs. Two key benchmarks: sparse resonance speed–fidelity trade-off, and streaming memory footprint comparison.</p>
+      <p data-i18n="a6.p5">Hardware efficiency measurements from reproducible CPU runs. Two key benchmarks: sparse resonance speed–fidelity trade-off, and streaming memory footprint comparison.</p>
 
       <h3>Sparse Resonance: Speed vs. Fidelity</h3>
-      <p>MT-LNN uses multi-scale resonance frequencies across 5 time scales. Sparse top-k selection activates only the most relevant scales per token, trading a small divergence from dense logits for significant throughput gains.</p>
+      <p data-i18n="a6.p6">MT-LNN uses multi-scale resonance frequencies across 5 time scales. Sparse top-k selection activates only the most relevant scales per token, trading a small divergence from dense logits for significant throughput gains.</p>
 
       <figure class="chart-fig wide">
         <img src="/static/charts/sparse_resonance.svg"
              alt="Left: throughput bars for dense/sparse k=1,2,3 — sparse k=2 peaks at 6798 tok/s (+24% vs dense). Right: log-scale divergence vs dense — k=2 mean divergence 0.003."
              loading="lazy">
-        <figcaption>Fig. 6a — Left: throughput by resonance mode (5 repeats, CPU). Sparse k=2 achieves the highest throughput (+24% vs dense k=5). Right: mean absolute logit divergence vs the dense oracle on log scale — sparse k=2 maintains &lt;0.34% mean error.</figcaption>
+        <figcaption data-i18n="a6.fig1">Fig. 6a — Left: throughput by resonance mode (5 repeats, CPU). Sparse k=2 achieves the highest throughput (+24% vs dense k=5). Right: mean absolute logit divergence vs the dense oracle on log scale — sparse k=2 maintains &lt;0.34% mean error.</figcaption>
       </figure>
 
       <h3>Streaming Memory Footprint</h3>
-      <p>The recurrent architecture enables a <strong>state-only streaming</strong> mode that discards historical KV cache after each step, maintaining a constant-size carried state regardless of context length — vs. the O(n) growth of standard KV-cache streaming. On the 832×12 decode benchmark the carried state is <strong>0.381 MB, flat from 512 to 1M tokens</strong> (a matched KV-cache reaches 3,072 MB); an earlier, smaller operator-compression config measured 4 KB — the constant is a property of the recurrence, its size a property of the model. <strong>Boundary:</strong> these are inference carried-state bytes only, not evidence of model quality beyond the 512-token training length — out-of-window LM results are null (see RESULTS.md).</p>
+      <p data-i18n="a6.p7">The recurrent architecture enables a <strong>state-only streaming</strong> mode that discards historical KV cache after each step, maintaining a constant-size carried state regardless of context length — vs. the O(n) growth of standard KV-cache streaming. On the 832×12 decode benchmark the carried state is <strong>0.381 MB, flat from 512 to 1M tokens</strong> (a matched KV-cache reaches 3,072 MB); an earlier, smaller operator-compression config measured 4 KB — the constant is a property of the recurrence, its size a property of the model. <strong>Boundary:</strong> these are inference carried-state bytes only, not evidence of model quality beyond the 512-token training length — out-of-window LM results are null (see RESULTS.md).</p>
 
       <figure class="chart-fig">
         <img src="/static/charts/memory_scaling.svg"
              alt="Log-log line chart: matched Llama KV-cache grows linearly from 1.5 MB at 512 tokens to 3,072 MB at 1M tokens, while the O-series carried state stays flat at 0.381 MB."
              loading="lazy">
-        <figcaption>Fig. 6b — Inference carried state vs. context length, 512 → 1M tokens. KV-cache grows O(n) to 3,072 MB; the carried state stays 0.381 MB. ARR state is a measured snapshot; the KV line is the exact analytic size (832×12, GQA=1). Carried-state bytes only — no quality claim beyond the 512-token training length.</figcaption>
+        <figcaption data-i18n="a6.fig2">Fig. 6b — Inference carried state vs. context length, 512 → 1M tokens. KV-cache grows O(n) to 3,072 MB; the carried state stays 0.381 MB. ARR state is a measured snapshot; the KV line is the exact analytic size (832×12, GQA=1). Carried-state bytes only — no quality claim beyond the 512-token training length.</figcaption>
       </figure>
 
       <h3>Long-Context Capability (Matched Size)</h3>
-      <p>On Selective Copy — a whole-sequence recall task under heavy noise — MT-LNN leads at <strong>every</strong> sequence length at matched 200K parameters under a fair full-sequence decode: 0.883 vs 0.672 at T=37, widening to <strong>×2.0</strong> at T=229 (0.219 vs 0.109). The edge is specifically all-or-nothing recall, not average per-token accuracy.</p>
+      <p data-i18n="a6.p8">On Selective Copy — a whole-sequence recall task under heavy noise — MT-LNN leads at <strong>every</strong> sequence length at matched 200K parameters under a fair full-sequence decode: 0.883 vs 0.672 at T=37, widening to <strong>×2.0</strong> at T=229 (0.219 vs 0.109). The edge is specifically all-or-nothing recall, not average per-token accuracy.</p>
 
       <figure class="chart-fig">
         <img src="/static/charts/selective_copy_samesize.svg"
              alt="Bar chart, matched 200K params: whole-sequence recall at T=37/101/229. MT-LNN 88%/74%/22%, Transformer 67%/57%/11%, LNN 70%/73%/17%. MT-LNN leads at every length; ratio widens to ×2.0 at T=229."
              loading="lazy">
-        <figcaption>Fig. 6c — Selective Copy, matched 200K params, equal 1500-step budget, fair full-sequence decode (BENCHMARKS.md). MT-LNN leads at every length; the ratio widens to ×2.0 at T=229. Boundary: toy-scale task — most of the gain is the liquid recurrence; the microtubule machinery adds a smaller increment.</figcaption>
+        <figcaption data-i18n="a6.fig3">Fig. 6c — Selective Copy, matched 200K params, equal 1500-step budget, fair full-sequence decode (BENCHMARKS.md). MT-LNN leads at every length; the ratio widens to ×2.0 at T=229. Boundary: toy-scale task — most of the gain is the liquid recurrence; the microtubule machinery adds a smaller increment.</figcaption>
       </figure>
 
-      <h3>Length Curriculum on the Native 126M — ×8 Extrapolation, Two Runs Consistent</h3>
-      <p>The native 126M MT-LNN (d=832, 12 layers) trained with a staged length curriculum (512 → 1024 → 2048 → 4096 tokens; 8192 under AMP). After each stage, extrapolation probes at ×2/×4/×8 the trained length: <strong>probe loss at 8× context stays in the 1× context range</strong> — at 2K training, 559 (8× → 16K) vs 587 (1×); at 4K training, 414 (4× → 16K) vs 424 (1×) — no explosion. The same regularity reproduces across two independent runs (fp32 and AMP).</p>
-      <p><strong>Numerical-precision lesson:</strong> AMP (bf16) degrades MT-LNN training loss 3–7.5× at equal stage — the exp/tanh closed-form LTC recurrence and parallel scan are numerically sensitive in bf16. Long-sequence MT-LNN training therefore runs in <strong>fp32 with gradient checkpointing</strong>, not AMP. Current boundary: 32K+ probes still OOM (explicit attention bias B×H×T²) — the next step is chunked attention.</p>
+      <h3 data-i18n="a6.h3b">Length Curriculum on the Native 126M — ×8 Extrapolation, Two Runs Consistent</h3>
+      <p data-i18n="a6.p9">The native 126M MT-LNN (d=832, 12 layers) trained with a staged length curriculum (512 → 1024 → 2048 → 4096 tokens; 8192 under AMP). After each stage, extrapolation probes at ×2/×4/×8 the trained length: <strong>probe loss at 8× context stays in the 1× context range</strong> — at 2K training, 559 (8× → 16K) vs 587 (1×); at 4K training, 414 (4× → 16K) vs 424 (1×) — no explosion. The same regularity reproduces across two independent runs (fp32 and AMP).</p>
+      <p data-i18n="a6.p10"><strong>Numerical-precision lesson:</strong> AMP (bf16) degrades MT-LNN training loss 3–7.5× at equal stage — the exp/tanh closed-form LTC recurrence and parallel scan are numerically sensitive in bf16. Long-sequence MT-LNN training therefore runs in <strong>fp32 with gradient checkpointing</strong>, not AMP. Current boundary: 32K+ probes still OOM (explicit attention bias B×H×T²) — the next step is chunked attention.</p>
 
-      <h3>Selective-Decay Parameterization — Extrapolation Decided by exp vs tanh</h3>
-      <p>Length extrapolation on parity is decided by the transition parameterization. The exp form (&lambda;<sub>t</sub> = 2&middot;exp(&minus;softplus(&middot;)/&tau;) &minus; 1, which reaches &plusmn;1 exactly) extrapolates at <strong>0.956</strong> (3 seeds: 0.869 / 1.000 / 1.000); the saturating tanh form collapses to <strong>0.034</strong>. Derivation and recipe: ABLATIONS.md (E5d/E5e).</p>
+      <h3 data-i18n="a6.h3c">Selective-Decay Parameterization — Extrapolation Decided by exp vs tanh</h3>
+      <p data-i18n="a6.p11">Length extrapolation on parity is decided by the transition parameterization. The exp form (&lambda;<sub>t</sub> = 2&middot;exp(&minus;softplus(&middot;)/&tau;) &minus; 1, which reaches &plusmn;1 exactly) extrapolates at <strong>0.956</strong> (3 seeds: 0.869 / 1.000 / 1.000); the saturating tanh form collapses to <strong>0.034</strong>. Derivation and recipe: ABLATIONS.md (E5d/E5e).</p>
 
-      <h3>Positioning: Long-Context + Edge Cost, Not AGI Indices</h3>
-      <p><strong>Honest framing:</strong> our models (48M–1.1B) score near random on AGI-class benchmarks (MMLU, Agent suites) — those are designed for 50+-point models. We do not compete there. We compete on <strong>long-context capability at edge cost</strong>: the same-size recall advantage above, plus O(1) carried state (0.381 MB vs 3,072 MB at 1M tokens) — putting per-task cost 2–3 orders of magnitude below cloud APIs.</p>
+      <h3 data-i18n="a6.h3d">Positioning: Long-Context + Edge Cost, Not AGI Indices</h3>
+      <p data-i18n="a6.p12"><strong>Honest framing:</strong> our models (48M–1.1B) score near random on AGI-class benchmarks (MMLU, Agent suites) — those are designed for 50+-point models. We do not compete there. We compete on <strong>long-context capability at edge cost</strong>: the same-size recall advantage above, plus O(1) carried state (0.381 MB vs 3,072 MB at 1M tokens) — putting per-task cost 2–3 orders of magnitude below cloud APIs.</p>
 
       <figure class="chart-fig">
         <img src="/static/charts/cost_capability_positioning.svg"
              alt="Log-x scatter: cost per task (USD) vs capability score. DeepSeek-V4-Flash reference at $0.028 / AA index 50. MT-LNN at ~$0.001 / 89.5% (T=32) and ~$0.0009 / 21.9% (T=229, ×2.0). Slay zone shaded."
              loading="lazy">
-        <figcaption>Fig. 6d — Cost-per-task vs capability, AA slay-line methodology (reference point from the 2026-07-31 Artificial Analysis ranking; costs are estimates). We position on long-context + edge cost, explicitly not on general-intelligence indices.</figcaption>
+        <figcaption data-i18n="a6.fig4">Fig. 6d — Cost-per-task vs capability, AA slay-line methodology (reference point from the 2026-07-31 Artificial Analysis ranking; costs are estimates). We position on long-context + edge cost, explicitly not on general-intelligence indices.</figcaption>
       </figure>
 
       <hr class="divider">
 
-      <h3>Physics Written Into the Architecture — AwareLiquid-Physic</h3>
-      <p>A sibling line: a liquid (LTC) substrate reads a trajectory prefix and conditions a <strong>hard-constraint Hamiltonian head</strong> (separable H(q,p) = T(p) + V(q|ctx), advanced by a symplectic velocity-Verlet integrator). Energy is conserved <em>by construction</em> — not bolted on as a loss term. The model adapts its energy landscape per trajectory via the liquid context, so one fixed potential fits an entire family of systems.</p>
+      <h3 data-i18n="a6.h3e">Physics Written Into the Architecture — AwareLiquid-Physic</h3>
+      <p data-i18n="a6.p13">A sibling line: a liquid (LTC) substrate reads a trajectory prefix and conditions a <strong>hard-constraint Hamiltonian head</strong> (separable H(q,p) = T(p) + V(q|ctx), advanced by a symplectic velocity-Verlet integrator). Energy is conserved <em>by construction</em> — not bolted on as a loss term. The model adapts its energy landscape per trajectory via the liquid context, so one fixed potential fits an entire family of systems.</p>
       <figure class="chart-fig">
         <img src="/static/charts/spring_trajectory.svg"
              alt="Spring trajectory: true position vs. Hamiltonian-predicted position over 200 rollout steps. The hard-constraint head tracks the ground truth closely."
              loading="lazy">
-        <figcaption>Fig. 6e — Spring: true vs. predicted position, 200-step rollout. Because the model integrates a learned Hamiltonian symplectically, the trajectory stays on the energy shell.</figcaption>
+        <figcaption data-i18n="a6.fig5">Fig. 6e — Spring: true vs. predicted position, 200-step rollout. Because the model integrates a learned Hamiltonian symplectically, the trajectory stays on the energy shell.</figcaption>
       </figure>
       <figure class="chart-fig">
         <img src="/static/charts/spring_energy.svg"
              alt="Energy drift over rollout: the Hamiltonian head keeps relative energy drift near 0.005 while an unstructured MLP-field control drifts far more."
              loading="lazy">
-        <figcaption>Fig. 6f — Energy drift (relative) over rollout. Hard-constraint head: ~0.005 final drift; unstructured MLP-field control: ~0.03 (3&times; worse on spring, up to 15&times; on orbit).</figcaption>
+        <figcaption data-i18n="a6.fig6">Fig. 6f — Energy drift (relative) over rollout. Hard-constraint head: ~0.005 final drift; unstructured MLP-field control: ~0.03 (3&times; worse on spring, up to 15&times; on orbit).</figcaption>
       </figure>
-      <p><strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/AwareLiquid-Physic</a>.</p>
+      <p data-i18n="a6.p14"><strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/AwareLiquid-Physic</a>.</p>
 
       <hr class="divider">
 
       <h2 id="landscape" data-i18n="s8">7 · Architecture Landscape Survey (Aug 2026)</h2>
-      <p>We periodically survey the sub-quadratic architecture literature and check our own trajectory against it. This is the August 2026 pass — the honest findings that changed our training recipe.</p>
+      <p data-i18n="a7.p1">We periodically survey the sub-quadratic architecture literature and check our own trajectory against it. This is the August 2026 pass — the honest findings that changed our training recipe.</p>
 
-      <h3>What the liquid-architecture field itself concluded</h3>
+      <h3 data-i18n="a7.h3">What the liquid-architecture field itself concluded</h3>
       <ul>
-        <li><strong>LFM2 (Liquid AI, 2025–2026)</strong> — the liquid-network origin team's production models use gated short convolutions + a minority of grouped-query attention blocks, not liquid recurrences as the language backbone. Their hardware-in-the-loop search found that, under on-device budgets, most of the gains attributed to SSM/linear-attention hybrids are captured by short convolutions plus a few global-attention layers. Quality comes from 10–12T tokens, distillation, and curriculum learning.</li>
-        <li><strong>LrcSSM (NeurIPS 2025)</strong> — diagonalizing the liquid Jacobian by design gives exact parallel prefix-scans with a formal gradient-stability guarantee; validated on long-horizon sequence tasks.</li>
-        <li><strong>HOLA (2026)</strong> — a fixed delta-rule state plus a surprise-selected exact KV cache reaches lower Wikitext perplexity than a full-attention Transformer++ at 340M (−15%). This is external evidence for the hybrid "compressed state + exact recall" design family we build in.</li>
+        <li data-i18n="a7.li1"><strong>LFM2 (Liquid AI, 2025–2026)</strong> — the liquid-network origin team's production models use gated short convolutions + a minority of grouped-query attention blocks, not liquid recurrences as the language backbone. Their hardware-in-the-loop search found that, under on-device budgets, most of the gains attributed to SSM/linear-attention hybrids are captured by short convolutions plus a few global-attention layers. Quality comes from 10–12T tokens, distillation, and curriculum learning.</li>
+        <li data-i18n="a7.li2"><strong>LrcSSM (NeurIPS 2025)</strong> — diagonalizing the liquid Jacobian by design gives exact parallel prefix-scans with a formal gradient-stability guarantee; validated on long-horizon sequence tasks.</li>
+        <li data-i18n="a7.li3"><strong>HOLA (2026)</strong> — a fixed delta-rule state plus a surprise-selected exact KV cache reaches lower Wikitext perplexity than a full-attention Transformer++ at 340M (−15%). This is external evidence for the hybrid "compressed state + exact recall" design family we build in.</li>
       </ul>
 
-      <h3>What we changed as a result (training recipe, five items)</h3>
+      <h3 data-i18n="a7.h3b">What we changed as a result (training recipe, five items)</h3>
       <ul>
-        <li><strong>Distillation-first for the 2B line</strong> — Gemma 2's controlled study: a 2B student distilled from a larger teacher scores 67.7 vs 60.3 from scratch at 500B tokens. Our 2B now trains with teacher logits, not raw next-token.</li>
-        <li><strong>One to two epochs, never multi-epoch repetition</strong> — recent scaling-law work (2026) shows internal data repetition is systematically damaging; rephrasing the same corpus (SYNPRO: 5.2× effective tokens) beats re-reading it.</li>
-        <li><strong>Weight decay λ = 1.0</strong> — data-constrained prescriptive scaling laws: strong weight decay cuts the overfitting coefficient ~70%.</li>
-        <li><strong>Decay path forced to fp32</strong> — PyTorch's autocast marks softplus/exp as bf16-unstable; our liquid decay computation now runs fp32 under mixed precision (measured: bf16 training degraded PPL 3–7.5×, forward-only divergence was 0.37% — the damage is in training dynamics).</li>
-        <li><strong>Curriculum learning</strong> — difficulty-ordered data, matching LFM2 and our own length-curriculum results (×8 extrapolation stable to 16K).</li>
+        <li data-i18n="a7.li4"><strong>Distillation-first for the 2B line</strong> — Gemma 2's controlled study: a 2B student distilled from a larger teacher scores 67.7 vs 60.3 from scratch at 500B tokens. Our 2B now trains with teacher logits, not raw next-token.</li>
+        <li data-i18n="a7.li5"><strong>One to two epochs, never multi-epoch repetition</strong> — recent scaling-law work (2026) shows internal data repetition is systematically damaging; rephrasing the same corpus (SYNPRO: 5.2× effective tokens) beats re-reading it.</li>
+        <li data-i18n="a7.li6"><strong>Weight decay λ = 1.0</strong> — data-constrained prescriptive scaling laws: strong weight decay cuts the overfitting coefficient ~70%.</li>
+        <li data-i18n="a7.li7"><strong>Decay path forced to fp32</strong> — PyTorch's autocast marks softplus/exp as bf16-unstable; our liquid decay computation now runs fp32 under mixed precision (measured: bf16 training degraded PPL 3–7.5×, forward-only divergence was 0.37% — the damage is in training dynamics).</li>
+        <li data-i18n="a7.li8"><strong>Curriculum learning</strong> — difficulty-ordered data, matching LFM2 and our own length-curriculum results (×8 extrapolation stable to 16K).</li>
       </ul>
 
-      <p class="note">Survey references: LFM2 technical report (arXiv 2511.23404), LrcSSM (arXiv 2505.21717), HOLA (arXiv 2607.02303), Gemma 2 (arXiv 2408.00118), Titans (arXiv 2501.00663), SYNPRO (arXiv 2605.17849), prescriptive scaling laws (arXiv 2605.01640), DroPE (arXiv 2512.12167).</p>
+      <p class="note" data-i18n="a7.p2">Survey references: LFM2 technical report (arXiv 2511.23404), LrcSSM (arXiv 2505.21717), HOLA (arXiv 2607.02303), Gemma 2 (arXiv 2408.00118), Titans (arXiv 2501.00663), SYNPRO (arXiv 2605.17849), prescriptive scaling laws (arXiv 2605.01640), DroPE (arXiv 2512.12167).</p>
 
       <hr class="divider">
 
       <h2 id="reproduce" data-i18n="s9">8 · How to Reproduce</h2>
       <ul>
-        <li>All code, experiment scripts, and reproducible configs: <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/M1</a></li>
-        <li>Architecture and pre-training details: <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a></li>
-        <li>Live demo: <a href="/">AwareLiquid Demo</a> · Project overview: <a href="/about">About</a></li>
+        <li data-i18n="b8.li1">All code, experiment scripts, and reproducible configs: <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/M1</a></li>
+        <li data-i18n="b8.li2">Architecture and pre-training details: <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer">Technical Paper (PDF)</a></li>
+        <li data-i18n="b8.li3">Live demo: <a href="/">AwareLiquid Demo</a> · Project overview: <a href="/about">About</a></li>
       </ul>
 
       <hr class="divider">
 
       <h2 id="citation" data-i18n="s10">9 · Cite This Work</h2>
-      <p>If you use this work or build on it, please cite as follows:</p>
+      <p data-i18n="b8.p1">If you use this work or build on it, please cite as follows:</p>
 
       <h3>BibTeX</h3>
       <div class="cite-block">
         <button class="cite-copy-btn" id="citeCopy" aria-label="Copy BibTeX">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/ data-i18n="b8.cite"></svg>
           Copy
         </button>
         <pre id="bibtexBlock">@misc{awareliquid2026,
@@ -1030,11 +1030,11 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       <hr class="divider">
 
       <h2 id="engage" data-i18n="eng.h2">Work With Us</h2>
-      <p>The measured advantages map to concrete workloads: <strong>battery &amp; sensor health monitoring</strong> (irregular streams, edge hardware), <strong>always-on audio</strong> (wake-word, keyword spotting), and <strong>long-document question answering</strong> (frozen API bases). If your team operates in one of these, or needs edge inference with continual learning:</p>
+      <p data-i18n="b9.p1">The measured advantages map to concrete workloads: <strong>battery &amp; sensor health monitoring</strong> (irregular streams, edge hardware), <strong>always-on audio</strong> (wake-word, keyword spotting), and <strong>long-document question answering</strong> (frozen API bases). If your team operates in one of these, or needs edge inference with continual learning:</p>
       <ul>
-        <li><a class="text-link" href="/demo">Try the live demo</a> — both models, no setup;</li>
-        <li><a class="text-link" href="https://github.com/AwareLiquid/M1/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a> — technical questions, public and on-record;</li>
-        <li>Pilot evaluations and integration — reach out via GitHub; we scope from the open benchmarks above, not from marketing claims.</li>
+        <li data-i18n="b9.li1"><a class="text-link" href="/demo">Try the live demo</a> — both models, no setup;</li>
+        <li data-i18n="b9.li2"><a class="text-link" href="https://github.com/AwareLiquid/M1/discussions" target="_blank" rel="noopener noreferrer">GitHub Discussions</a> — technical questions, public and on-record;</li>
+        <li data-i18n="b9.li3">Pilot evaluations and integration — reach out via GitHub; we scope from the open benchmarks above, not from marketing claims.</li>
       </ul>
 
     </div><!-- /content-col -->
@@ -1054,22 +1054,22 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <span class="adv-eyebrow">Advantage 1 · Cost &amp; Footprint</span>
         <h3>Lightweight by Architecture</h3>
         <ul>
-          <li><strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens</li>
-          <li><strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference</li>
-          <li><strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)</li>
+          <li data-i18n="b9.li4"><strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens</li>
+          <li data-i18n="b9.li5"><strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference</li>
+          <li data-i18n="b9.li6"><strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)</li>
         </ul>
       </div>
       <div class="adv-card">
         <span class="adv-eyebrow">Advantage 2 · Capability</span>
         <h3>What Attention Structurally Cannot Do</h3>
         <ul>
-          <li><strong>0.56 vs 0.000</strong> cross-window recall — facts carried by fast-weight memory after their KV cache is gone</li>
-          <li><strong>+7.7% vs +31%</strong> degradation at 80% dropped samples on real NASA battery data (vs LSTM/GRU)</li>
-          <li><strong>EWC</strong> continual learning — online weight updates without catastrophic forgetting</li>
+          <li data-i18n="b9.li7"><strong>0.56 vs 0.000</strong> cross-window recall — facts carried by fast-weight memory after their KV cache is gone</li>
+          <li data-i18n="b9.li8"><strong>+7.7% vs +31%</strong> degradation at 80% dropped samples on real NASA battery data (vs LSTM/GRU)</li>
+          <li data-i18n="b9.li9"><strong>EWC</strong> continual learning — online weight updates without catastrophic forgetting</li>
         </ul>
       </div>
     </div>
-    <p class="why-note">All numbers measured on real runs — methodology and raw data: <a class="text-link" href="https://github.com/AwareLiquid/M1/blob/main/RESULTS.md" target="_blank" rel="noopener noreferrer">RESULTS.md</a></p>
+    <p class="why-note" data-i18n="b9.p2">All numbers measured on real runs — methodology and raw data: <a class="text-link" href="https://github.com/AwareLiquid/M1/blob/main/RESULTS.md" target="_blank" rel="noopener noreferrer">RESULTS.md</a></p>
   </div>
 </section>
 
@@ -1103,17 +1103,17 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Bio-inspired Architecture</span>
-      <h2>Three Mechanisms That Make Thinking Possible</h2>
-      <p class="section-lead">AwareLiquid stacks three neuroscience-derived subsystems on a continuous-time liquid core — each solving a distinct cognitive problem that Transformers and SSMs cannot address.</p>
+      <h2 data-i18n="w1.h2">Three Mechanisms That Make Thinking Possible</h2>
+      <p class="section-lead" data-i18n="w1.p1">AwareLiquid stacks three neuroscience-derived subsystems on a continuous-time liquid core — each solving a distinct cognitive problem that Transformers and SSMs cannot address.</p>
     </div>
     <figure class="arch-figure">
       <img src="/static/charts/architecture_pipeline.svg" alt="MT-LNN architecture pipeline: embedding → LTC core → liquid core modules (GWT, Sleep, Hebbian, Predictive Coding) → output → EWC continual learning" loading="lazy">
-      <figcaption>AwareLiquid M1 end-to-end pipeline — continuous-time LTC core + GWT competitive broadcast + sleep consolidation + EWC online learning</figcaption>
+      <figcaption data-i18n="w1.fig1">AwareLiquid M1 end-to-end pipeline — continuous-time LTC core + GWT competitive broadcast + sleep consolidation + EWC online learning</figcaption>
     </figure>
     <div class="card-grid cols-3">
       <div class="feat-card glass-card hov">
         <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/ data-i18n="w1.c1"></svg>
         </div>
         <span class="feat-model-tag">M1 · M-Series</span>
         <h3>Global Workspace Theory (GWT)</h3>
@@ -1121,7 +1121,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </div>
       <div class="feat-card glass-card hov">
         <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2"/ data-i18n="w1.c2"><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
         </div>
         <span class="feat-model-tag">M1 · M-Series</span>
         <h3>Sleep Consolidation (NREM Bridge)</h3>
@@ -1129,7 +1129,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </div>
       <div class="feat-card glass-card hov">
         <div class="feat-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/ data-i18n="w1.c3"></svg>
         </div>
         <span class="feat-model-tag">O1 · O-Series</span>
         <h3>Liquid ODE Dynamics</h3>
@@ -1144,13 +1144,13 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
   <div class="container">
     <div class="ind-head">
       <span class="label"><span class="label-sq"></span>Where it fits</span>
-      <h2 class="h2">Built for streams that never stop, on hardware that <em class="em-italic">cannot grow</em>.</h2>
-      <p class="ind-lead">Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.</p>
+      <h2 class="h2" data-i18n="i1.h2">Built for streams that never stop, on hardware that <em class="em-italic">cannot grow</em>.</h2>
+      <p class="ind-lead" data-i18n="i1.lead">Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.</p>
     </div>
 
     <div class="ind-grid">
       <a class="ind-cell hov" href="/research#battery">
-        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M22 11v3"/><path d="M6 11v3M10 11v3"/></svg></span>
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="8" width="17" height="9" rx="2"/><path d="M22 11v3"/ data-i18n="i1.c1"><path d="M6 11v3M10 11v3"/></svg></span>
         <h3 class="ind-t">Battery management</h3>
         <p class="ind-d">State-of-health regression on voltage/current/temperature streams, on the pack controller itself.</p>
         <span class="ind-s ind-s-on">Measured — NASA PCoE cells</span>
@@ -1158,7 +1158,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </a>
 
       <a class="ind-cell hov" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">
-        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13a8 8 0 0 1 16 0"/><rect x="2" y="13" width="4.5" height="7" rx="2"/><rect x="17.5" y="13" width="4.5" height="7" rx="2"/></svg></span>
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 13a8 8 0 0 1 16 0"/ data-i18n="i1.c2"><rect x="2" y="13" width="4.5" height="7" rx="2"/><rect x="17.5" y="13" width="4.5" height="7" rx="2"/></svg></span>
         <h3 class="ind-t">Hearables</h3>
         <p class="ind-d">Always-on wake-word spotting where the microphone never closes — one keyword, measured in English. Open source as <strong>O1-Sound</strong>.</p>
         <span class="ind-s">Measured — single keyword only</span>
@@ -1166,14 +1166,14 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </a>
 
       <a class="ind-cell hov" href="/research">
-        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18"/><path d="M6 20V9M11 20V5M16 20v-7M21 20V11"/></svg></span>
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20h18"/ data-i18n="i1.c3"><path d="M6 20V9M11 20V5M16 20v-7M21 20V11"/></svg></span>
         <h3 class="ind-t">Financial documents</h3>
         <p class="ind-d">QA over filings far longer than the context window, with the base model frozen behind an API.</p>
         <span class="ind-s ind-s-on">Measured — M2 adapter</span>
         <span class="ind-m">44/48 (91.7%) across five financial-document domains · ~2.8k tokens per question. A regression baseline, not a leaderboard.</span>
       </a>
     </div>
-    <p class="ind-also"><span class="label"><span class="label-sq"></span>Also targeting</span>
+    <p class="ind-also" data-i18n="i1.also"><span class="label"><span class="label-sq"></span>Also targeting</span>
       In-vehicle systems · On-device assistants · Industrial robotics — architectural fit
       (bounded state over an unbounded session, native Δt), <strong>no pilot data yet</strong>.</p>
   </div>
@@ -1185,7 +1185,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
     <div class="rh-text">
       <span class="eyebrow">Engineering Reality</span>
       <h2>Measured.<br>Reproducible.</h2>
-      <p>Every claim below is measured on real runs and backed by open code and data.</p>
+      <p data-i18n="x1.p1">Every claim below is measured on real runs and backed by open code and data.</p>
       <div class="rh-table">
         <table>
           <thead><tr><th>Capability</th><th>Result</th></tr></thead>
@@ -1194,10 +1194,10 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
             <tr class="highlight-row"><td>Cross-window associative recall</td><td class="good">0.56 vs 0.000 (attention/LoRA)</td></tr>
             <tr><td>Cross-session snapshot → restore</td><td class="good">bit-exact lossless</td></tr>
             <tr><td>Stable training at 125M scale</td><td class="good">no NaN, 20K steps, 3 seeds</td></tr>
-            <tr class="highlight-row"><td>Irregular-sampling robustness (battery SoH)</td><td class="good">4× steadier than LSTM/GRU when samples drop</td></tr>
+            <tr class="highlight-row"><td data-i18n="x1.td1">Irregular-sampling robustness (battery SoH)</td><td class="good" data-i18n="x1.td2">4× steadier than LSTM/GRU when samples drop</td></tr>
           </tbody>
         </table>
-        <p class="table-note">Full methodology, raw data and reproduction scripts: <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>.</p>
+        <p class="table-note" data-i18n="x1.p2">Full methodology, raw data and reproduction scripts: <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>.</p>
       </div>
       <a class="btn btn-ghost" style="margin-top:20px;display:inline-flex" href="/research">Full methodology & results →</a>
     </div>
@@ -1205,7 +1205,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       <img src="/static/charts/memory_scaling.svg"
            alt="Line chart: Transformer KV-cache grows linearly O(n) with context length while the recurrent O-series state stays flat — constant memory regardless of context"
            loading="lazy">
-      <figcaption>Inference memory vs. context length. The KV-cache grows O(n); the O-series carried state is flat. Measured to 1M tokens: 0.381 MB state vs. 3,072 MB KV-cache — 8063× smaller. This measures inference carried-state bytes only — it is not evidence of model quality beyond the 512-token training length (out-of-window LM results are null; see RESULTS.md).</figcaption>
+      <figcaption data-i18n="x1.fig1">Inference memory vs. context length. The KV-cache grows O(n); the O-series carried state is flat. Measured to 1M tokens: 0.381 MB state vs. 3,072 MB KV-cache — 8063× smaller. This measures inference carried-state bytes only — it is not evidence of model quality beyond the 512-token training length (out-of-window LM results are null; see RESULTS.md).</figcaption>
     </figure>
   </div>
 </section>
@@ -1216,7 +1216,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
     <div class="future-inner">
       <span class="eyebrow">The Multi-Agent Future</span>
       <h2>A Native Substrate for Cognitive Agents</h2>
-      <p>Transformers excel at static retrieval. AwareLiquid is built for something harder: agents that form episodic memories across sessions, coordinate through shared global workspace broadcasts, and continuously consolidate knowledge without catastrophic forgetting. The foundation for an Awareness Market of collaborating cognitive agents.</p>
+      <p data-i18n="x2.p1">Transformers excel at static retrieval. AwareLiquid is built for something harder: agents that form episodic memories across sessions, coordinate through shared global workspace broadcasts, and continuously consolidate knowledge without catastrophic forgetting. The foundation for an Awareness Market of collaborating cognitive agents.</p>
       <a class="btn btn-ghost" href="/research">See current architecture →</a>
     </div>
   </div>
@@ -1228,7 +1228,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
     <div class="section-header">
       <span class="eyebrow">Positioning</span>
       <h2>Same Lineage. Different Frontier.</h2>
-      <p class="section-lead">Both projects build on MIT liquid neural networks. Liquid AI solved static-weight inference efficiency. AwareLiquid asks the next question: can a model acquire new knowledge without erasing the old?</p>
+      <p class="section-lead" data-i18n="x2.p2">Both projects build on MIT liquid neural networks. Liquid AI solved static-weight inference efficiency. AwareLiquid asks the next question: can a model acquire new knowledge without erasing the old?</p>
     </div>
     <div class="vs-grid">
       <div class="vs-card vs-other">
@@ -1237,8 +1237,8 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <ul>
           <li>SSM + linear attention + MoE hybrid</li>
           <li>350M – 24B parameters, commercial scale</li>
-          <li>Weights frozen post-training; in-context only</li>
-          <li>Targets industrial time-series &amp; edge devices</li>
+          <li data-i18n="x2.li1">Weights frozen post-training; in-context only</li>
+          <li data-i18n="x2.li2">Targets industrial time-series &amp; edge devices</li>
         </ul>
       </div>
       <div class="vs-center">vs</div>
@@ -1248,8 +1248,8 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <ul>
           <li>Continuous-time RNN + GWT + Sleep + EWC</li>
           <li>48M – 128M, open research prototype</li>
-          <li>Online weight updates — learns without forgetting</li>
-          <li>Targets episodic memory, agent cognition &amp; adaptation</li>
+          <li data-i18n="x2.li3">Online weight updates — learns without forgetting</li>
+          <li data-i18n="x2.li4">Targets episodic memory, agent cognition &amp; adaptation</li>
         </ul>
       </div>
     </div>
@@ -1266,7 +1266,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <span class="logo" role="img" aria-label="AwareLiquid"></span>
         AwareLiquid
       </a>
-      <p>Open research on continual learning with liquid time-constant neural networks.</p>
+      <p data-i18n="x2.p3">Open research on continual learning with liquid time-constant neural networks.</p>
       <a class="footer-gh" href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
         github.com/AwareLiquid/M1
@@ -1375,7 +1375,132 @@ var I18N = {
     "fa5":"\"Awareness\" here is not a separate model — it is the <strong>salience / global-workspace ignition</strong> inside the architecture. The fast liquid core streams continuously with O(1) state; a zero-parameter <strong>SalienceEventDetector</strong> watches the normalized prediction error with an adaptive baseline, and when surprise crosses a hysteresis threshold it fires an ignition — the workspace's wake-up tripwire. That ignition wakes the <strong>slow layer</strong> (DeliberationRouter: entropy three-way decision + causal-consistency floor). On a factual blind spot the router queries the <strong>Awareness Cloud</strong> (external memory oracle) and re-injects the fact into the local loop; otherwise it answers locally — the slow layer is paid for only when a real state change earns it.",
     "fa5c":"The dual-speed engine: a fast core that is always on, and a slow deliberative layer that only wakes on salience. Code: <code>mt_lnn/salience_events.py</code> · <code>pipeline.py</code> · <code>cloud_client.py</code> · <code>deliberation.py</code>.",
     "fq6":"What is Awareness \"public knowledge\" — and how does it replace RAG?",
-    "fa6":"<strong>Public knowledge</strong> is the KaaS (knowledge-as-a-service) layer of the Awareness platform: a curated public-domain knowledge base seeded from the OpenAlex academic corpus (CC0), DOI-deduplicated, entity-extracted <em>with zero LLM calls</em>, embedding-indexed, and — the auditable part — its state root is anchored on-chain via <strong>ERC-8350</strong> (Sepolia), so every transition of the knowledge state has a verifiable record. Retrieval is pay-per-query. On <strong>replacing RAG</strong>, the honest formulation is: it replaces the four fragile parts of a RAG pipeline, not the generate-over-documents paradigm itself. <strong>Retrieval:</strong> zero-LLM hybrid search (BM25 + vector RRF) at 96.0% R@5 on LongMemEval — no LLM reranker. <strong>Context assembly:</strong> progressive disclosure plus sibling-chunk reassembly (3.9× token lift) and Context Pack v2 (Facts + Evidence + Open Questions) instead of stuffing raw chunks. <strong>Knowledge lifecycle:</strong> 13 structured card types with 5-way conflict detection (new / update / duplicate / contradiction / irrelevant) — RAG retrieves text as-is and never reconciles it. <strong>Persistence &amp; audit:</strong> cross-session MCP memory plus on-chain anchoring — a plain RAG index has neither. In the M1 linkage, this is the knowledge layer the DeliberationRouter reaches through <code>cloud_client</code> when the local model hits a factual blind spot."
+    "fa6":"<strong>Public knowledge</strong> is the KaaS (knowledge-as-a-service) layer of the Awareness platform: a curated public-domain knowledge base seeded from the OpenAlex academic corpus (CC0), DOI-deduplicated, entity-extracted <em>with zero LLM calls</em>, embedding-indexed, and — the auditable part — its state root is anchored on-chain via <strong>ERC-8350</strong> (Sepolia), so every transition of the knowledge state has a verifiable record. Retrieval is pay-per-query. On <strong>replacing RAG</strong>, the honest formulation is: it replaces the four fragile parts of a RAG pipeline, not the generate-over-documents paradigm itself. <strong>Retrieval:</strong> zero-LLM hybrid search (BM25 + vector RRF) at 96.0% R@5 on LongMemEval — no LLM reranker. <strong>Context assembly:</strong> progressive disclosure plus sibling-chunk reassembly (3.9× token lift) and Context Pack v2 (Facts + Evidence + Open Questions) instead of stuffing raw chunks. <strong>Knowledge lifecycle:</strong> 13 structured card types with 5-way conflict detection (new / update / duplicate / contradiction / irrelevant) — RAG retrieves text as-is and never reconciles it. <strong>Persistence &amp; audit:</strong> cross-session MCP memory plus on-chain anchoring — a plain RAG index has neither. In the M1 linkage, this is the knowledge layer the DeliberationRouter reaches through <code>cloud_client</code> when the local model hits a factual blind spot.",    "a1.p1":"The backbone is the <abbr title=\"Multi-Timescale Liquid Neural Network\">MT-LNN</abbr> (<abbr title=\"Liquid Time-Constant network\">LTC</abbr> network) — a continuous-time recurrent architecture whose hidden state evolves according to learnable time constants, rather than discrete layer stacking. M1 (M-Series flagship) layers three cognitive subsystems on top of this core:",
+    "a1.li1":"<strong>Competitive Global Workspace</strong> (<abbr title=\"Global Workspace Theory — Broadcast variant\">GWT-B</abbr>) — selective broadcast of attended information;",
+    "a1.li2":"<strong>Predictive World Model</strong> — forward prediction of the next latent state;",
+    "a1.li3":"<strong>Hebbian Plasticity</strong> — co-activation-based weight modulation;",
+    "a1.li4":"<strong>Predictive Coding</strong> — error-driven representation learning;",
+    "a1.li5":"<strong>Rhythm Modulation</strong> — oscillatory gating of information flow.",
+    "a1.fig1":"MT-LNN end-to-end pipeline. The LTC core processes tokens with learnable time constants; liquid core modules add neuroscience-inspired awareness and plasticity; the <abbr title=\"Elastic Weight Consolidation\">EWC</abbr> layer enables continual learning.",
+    "a1.built":"<span class=\"tag built\">Built</span> Architecture, all liquid core modules, and native inference server are implemented and live — this site's demo is driven by them. Technical details: <a href=\"https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Technical Paper (PDF)</a>.",
+    "a2.p1":"The demo offers two distinct models. <strong>M1</strong> (the large, cognitive model) wraps a <strong>frozen TinyLlama-1.1B-Chat</strong> base with a trained residual liquid-core adapter — only a fraction of a percent of the weights are ours (GWT broadcast + EWC continual-learning layers), general language comes from the base. It handles Q&amp;A in English and Chinese and carries <strong>persistent episodic memory</strong> — session recall tagged with typed cards (identity / preference / emotion / plan / relationship / health / detail). <strong>O1</strong> (the small, edge model) is the opposite pole — 48M parameters trained end-to-end from scratch, no base model, the native liquid architecture for hardware / always-on inference, a pure research artifact for short English text continuation.",
+    "a2.td1":"<strong>Retracted</strong> — was LoRA-only; MT adapter adds ≈0 PPL (7.984 → 7.920)",
+    "a2.p2":"PPL computed with pure next-token cross-entropy — auxiliary losses are excluded to avoid artificially deflated numbers.",
+    "a2.built":"<span class=\"tag built\">Built</span> End-to-end pre-training + native serving. <span class=\"tag target\">Target</span> Larger, higher-quality model (see demo disclaimer).",
+    "a2.p3":"The adapter PPL result shown here is <strong>retracted</strong> (see the note above — it measured LoRA, not the MT mechanism). The context-injection uplift is a <strong>prompt-template</strong> effect (identical with vs. without the adapter), and the needle-in-haystack retrieval test was re-run 2026-06-26 with the chat template (near-perfect within the base's 2048-token window). We keep the charts below for provenance, clearly labelled.",
+    "a2.fig1":"<strong>⚠ Retracted.</strong> Fig. 2a showed a −28.5% PPL drop attributed to the MT-LNN adapter, but a controlled ablation traced that gain to plain LoRA (MT adapter frozen, adds ≈0 PPL). Kept for provenance; see the retraction note above and RESULTS.md.",
+    "a2.fig2":"Fig. 2b — Left: a <strong>prompt-template</strong> that injects the absorbed fact raises QA accuracy by +13.3 pp (30 questions, Qwen-1.5B) — this is the template's effect and is <strong>identical with vs. without the MT adapter</strong>, so it is not an adapter capability. Right: needle-in-haystack re-tested 2026-06-26 with the chat template — within the 2048 window both base and adapter retrieve near-perfectly; the earlier \"0%\" was a broken-harness artefact, now retracted.",
+    "a3.p1":"This is AwareLiquid's primary research direction — orthogonal to the frozen-weight paradigm of frontier LLMs. The question: can a model sequentially learn new domains without catastrophically forgetting prior ones?",
+    "a3.li1":"Train and evaluate on domain A, then continue training on domain B, then re-evaluate A;",
+    "a3.li2":"Three arms: <code>dense</code> (standard baseline), <code>liquid</code> (MT-LNN backbone), <code>consolidation</code> (EWC mechanism);",
+    "a3.li3":"Statistical rigor: paired deltas per seed, SNR = |mean| / std, require all seeds to agree in direction, check \"non-catastrophic\" threshold.",
+    "a3.p2":"After training on domain A, anchor weights are snapshotted and diagonal Fisher information is estimated from pure CE gradients. During domain B training, a quadratic penalty <code>λ/2 · Σ Fᵢ(θᵢ − θ_Aᵢ)²</code> constrains weights important to A from drifting. This mechanism is architecture-agnostic.",
+    "a3.fig1":"Fig. 3a — Forgetting (PPL rise on domain A after B training) by condition. EWC consolidation reduces forgetting by 85% while still learning domain B. 3 seeds, 60.7M model.",
+    "a3.p3":"Paired statistics (consolidation − dense): <strong>−8,928.8 ± 2,155 · <abbr title=\"Signal-to-Noise Ratio\">SNR</abbr> 4.14 · 3/3 seeds</strong>. EWC reduces cross-domain forgetting by <strong>~85%</strong> without sacrificing domain B learning.",
+    "a3.built":"         <span class=\"tag built\">Built</span> EWC mechanism + three-arm experiment framework, fully reproducible (<a href=\"https://github.com/AwareLiquid/M1\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub</a>, <code>experiments/continual_crossdomain_liquid.py</code>).<br>         <span class=\"tag signal\">Early Signal</span> Effect is real, large, and consistent across all seeds (−85%, SNR 4.14) — first clear evidence of mechanism effectiveness.<br>         <span class=\"tag target\">Not Yet</span> The absolute PPL on A after EWC (1,878) is still ~7.6× its pre-B value (245). Under a strict \"≤5× degradation = usable\" criterion, this still qualifies as catastrophic forgetting. Verdict: <strong>WEAK-TREND</strong>, not SUPPORTED.       ",
+    "a4.p1":"The Hebbian co-activation term is one of the MT-LNN liquid core modules. To measure its actual contribution, we ran an isolated ablation: all other v2.0 liquid modules were disabled, only the Hebbian term was active, and <code>hebbian_lr</code> was swept across four values with 2 seeds × 150 steps each.",
+    "a4.fig1":"Fig. 4a — Left: validation PPL across Hebbian LR sweep with ±1 std error bars. All values fall within seed noise (grey dashed = baseline). Right: Hebbian gradient contribution on log scale — negligible across all settings tested.",
+    "a4.p2":"128d × 2L × 8H model · WikiText-103 · CPU · 593s runtime. Largest PPL change (+0.35) is within seed noise (std ≈ 7.3). Gradient contribution peaks at 8.5e-5 — negligible.",
+    "a4.p3":"<span class=\"tag signal\">Early Signal</span> At current scale, the Hebbian term is effectively inert. Next steps: raise <code>hebbian_lr</code> by 2–3 orders of magnitude or validate at larger model scale before drawing conclusions.",
+    "a5.p1":"Does MT-LNN's recurrent dynamics suit <strong>spatial representation and reasoning</strong>? This is a neuroscience-inspired experimental line (grid cells, place cells, path integration). Code is complete and runnable; validation status varies by component.",
+    "a5.li1":"<strong>Spatial encoding frontend</strong>: grid cell encoding, multi-scale grid modules, head direction cells, boundary distance cells, place cell codes with DoG center-surround patterns — <code>mt_lnn/spatial.py</code>;",
+    "a5.li2":"<strong>Location-indexed associative memory</strong>: Hebbian write + pattern completion read, zero trainable parameters — <code>mt_lnn/spatial_memory.py</code>;",
+    "a5.li3":"<strong>Causal spatial steering</strong>: detects trajectory ruptures and projects state back onto the legal subspace — <code>mt_lnn/causal_steering.py</code>;",
+    "a5.li4":"<strong>Spatial operators + reasoning scaffold</strong>: distance / bearing / reachability graphs, location-based routing — <code>spatial_ops.py</code> / <code>spatial_reasoning.py</code>.",
+    "a5.fig1":"<span class=\"tag built\">Built</span> Causal steering: an artificial teleportation rupture is introduced at step 18. The steering mechanism detects it and collapses the off-manifold error to 0; the unsteered baseline accumulates error indefinitely.",
+    "a5.fig2":"<span class=\"tag built\">Built</span> Spatial memory pattern completion: noisy position queries still retrieve the correct stored content, and accuracy degrades smoothly — not randomly — as noise increases.",
+    "a5.p2":"MT-LNN and a GRU baseline are compared on a velocity → position path-integration task to check whether hexagonal grid cells emerge spontaneously (standard threshold: grid score &gt; 0.3).",
+    "a5.built":"         <span class=\"tag built\">Built</span> Trajectory generation, loss, and grid score autocorrelation analysis are all runnable.<br>         <span class=\"tag target\">Not Yet</span> All runs to date have been CPU-scale smoke tests. Neither GRU nor MT-LNN has crossed the 0.3 grid-score threshold. Meaningful comparison requires serious GPU-scale training — <strong>no spatial advantage is claimed at this time</strong>.       ",
+    "a6.p1":"Three deployment directions with real measurements behind them — the same results the homepage references, with methodology. Each links to open code; boundaries are stated, not implied.",
+    "a6.h3":"Battery Health Estimation — Irregular Sensor Streams",
+    "a6.p2":"<span class=\"tag built\">Measured</span> On real NASA PCoE cell data, with 80% of samples randomly dropped: degradation of <strong>+7.7%</strong> vs <strong>+31.1%</strong> (LSTM) and <strong>+32.8%</strong> (GRU). 2.6 KB streaming state, 10 seeds, whole-cell held-out validation. The liquid ODE handles native &Delta;t — no resampling, no imputation.",
+    "a6.p3":"<span class=\"tag built\">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.",
+    "a6.p4":"<span class=\"tag built\">Measured</span> The AwareLiquid-M2 retrieval adapter answers 44/48 (91.7%) across five financial-document domains at ~2.8k tokens per question, base model frozen behind an API. A regression baseline, not a leaderboard entry.",
+    "a6.p5":"Hardware efficiency measurements from reproducible CPU runs. Two key benchmarks: sparse resonance speed–fidelity trade-off, and streaming memory footprint comparison.",
+    "a6.p6":"MT-LNN uses multi-scale resonance frequencies across 5 time scales. Sparse top-k selection activates only the most relevant scales per token, trading a small divergence from dense logits for significant throughput gains.",
+    "a6.fig1":"Fig. 6a — Left: throughput by resonance mode (5 repeats, CPU). Sparse k=2 achieves the highest throughput (+24% vs dense k=5). Right: mean absolute logit divergence vs the dense oracle on log scale — sparse k=2 maintains &lt;0.34% mean error.",
+    "a6.p7":"The recurrent architecture enables a <strong>state-only streaming</strong> mode that discards historical KV cache after each step, maintaining a constant-size carried state regardless of context length — vs. the O(n) growth of standard KV-cache streaming. On the 832×12 decode benchmark the carried state is <strong>0.381 MB, flat from 512 to 1M tokens</strong> (a matched KV-cache reaches 3,072 MB); an earlier, smaller operator-compression config measured 4 KB — the constant is a property of the recurrence, its size a property of the model. <strong>Boundary:</strong> these are inference carried-state bytes only, not evidence of model quality beyond the 512-token training length — out-of-window LM results are null (see RESULTS.md).",
+    "a6.fig2":"Fig. 6b — Inference carried state vs. context length, 512 → 1M tokens. KV-cache grows O(n) to 3,072 MB; the carried state stays 0.381 MB. ARR state is a measured snapshot; the KV line is the exact analytic size (832×12, GQA=1). Carried-state bytes only — no quality claim beyond the 512-token training length.",
+    "a6.p8":"On Selective Copy — a whole-sequence recall task under heavy noise — MT-LNN leads at <strong>every</strong> sequence length at matched 200K parameters under a fair full-sequence decode: 0.883 vs 0.672 at T=37, widening to <strong>×2.0</strong> at T=229 (0.219 vs 0.109). The edge is specifically all-or-nothing recall, not average per-token accuracy.",
+    "a6.fig3":"Fig. 6c — Selective Copy, matched 200K params, equal 1500-step budget, fair full-sequence decode (BENCHMARKS.md). MT-LNN leads at every length; the ratio widens to ×2.0 at T=229. Boundary: toy-scale task — most of the gain is the liquid recurrence; the microtubule machinery adds a smaller increment.",
+    "a6.h3b":"Length Curriculum on the Native 126M — ×8 Extrapolation, Two Runs Consistent",
+    "a6.p9":"The native 126M MT-LNN (d=832, 12 layers) trained with a staged length curriculum (512 → 1024 → 2048 → 4096 tokens; 8192 under AMP). After each stage, extrapolation probes at ×2/×4/×8 the trained length: <strong>probe loss at 8× context stays in the 1× context range</strong> — at 2K training, 559 (8× → 16K) vs 587 (1×); at 4K training, 414 (4× → 16K) vs 424 (1×) — no explosion. The same regularity reproduces across two independent runs (fp32 and AMP).",
+    "a6.p10":"<strong>Numerical-precision lesson:</strong> AMP (bf16) degrades MT-LNN training loss 3–7.5× at equal stage — the exp/tanh closed-form LTC recurrence and parallel scan are numerically sensitive in bf16. Long-sequence MT-LNN training therefore runs in <strong>fp32 with gradient checkpointing</strong>, not AMP. Current boundary: 32K+ probes still OOM (explicit attention bias B×H×T²) — the next step is chunked attention.",
+    "a6.h3c":"Selective-Decay Parameterization — Extrapolation Decided by exp vs tanh",
+    "a6.p11":"Length extrapolation on parity is decided by the transition parameterization. The exp form (&lambda;<sub>t</sub> = 2&middot;exp(&minus;softplus(&middot;)/&tau;) &minus; 1, which reaches &plusmn;1 exactly) extrapolates at <strong>0.956</strong> (3 seeds: 0.869 / 1.000 / 1.000); the saturating tanh form collapses to <strong>0.034</strong>. Derivation and recipe: ABLATIONS.md (E5d/E5e).",
+    "a6.h3d":"Positioning: Long-Context + Edge Cost, Not AGI Indices",
+    "a6.p12":"<strong>Honest framing:</strong> our models (48M–1.1B) score near random on AGI-class benchmarks (MMLU, Agent suites) — those are designed for 50+-point models. We do not compete there. We compete on <strong>long-context capability at edge cost</strong>: the same-size recall advantage above, plus O(1) carried state (0.381 MB vs 3,072 MB at 1M tokens) — putting per-task cost 2–3 orders of magnitude below cloud APIs.",
+    "a6.fig4":"Fig. 6d — Cost-per-task vs capability, AA slay-line methodology (reference point from the 2026-07-31 Artificial Analysis ranking; costs are estimates). We position on long-context + edge cost, explicitly not on general-intelligence indices.",
+    "a6.h3e":"Physics Written Into the Architecture — AwareLiquid-Physic",
+    "a6.p13":"A sibling line: a liquid (LTC) substrate reads a trajectory prefix and conditions a <strong>hard-constraint Hamiltonian head</strong> (separable H(q,p) = T(p) + V(q|ctx), advanced by a symplectic velocity-Verlet integrator). Energy is conserved <em>by construction</em> — not bolted on as a loss term. The model adapts its energy landscape per trajectory via the liquid context, so one fixed potential fits an entire family of systems.",
+    "a6.fig5":"Fig. 6e — Spring: true vs. predicted position, 200-step rollout. Because the model integrates a learned Hamiltonian symplectically, the trajectory stays on the energy shell.",
+    "a6.fig6":"Fig. 6f — Energy drift (relative) over rollout. Hard-constraint head: ~0.005 final drift; unstructured MLP-field control: ~0.03 (3&times; worse on spring, up to 15&times; on orbit).",
+    "a6.p14":"<strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href=\"https://github.com/AwareLiquid/AwareLiquid-Physic\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/AwareLiquid/AwareLiquid-Physic</a>.",
+    "a7.p1":"We periodically survey the sub-quadratic architecture literature and check our own trajectory against it. This is the August 2026 pass — the honest findings that changed our training recipe.",
+    "a7.h3":"What the liquid-architecture field itself concluded",
+    "a7.li1":"<strong>LFM2 (Liquid AI, 2025–2026)</strong> — the liquid-network origin team's production models use gated short convolutions + a minority of grouped-query attention blocks, not liquid recurrences as the language backbone. Their hardware-in-the-loop search found that, under on-device budgets, most of the gains attributed to SSM/linear-attention hybrids are captured by short convolutions plus a few global-attention layers. Quality comes from 10–12T tokens, distillation, and curriculum learning.",
+    "a7.li2":"<strong>LrcSSM (NeurIPS 2025)</strong> — diagonalizing the liquid Jacobian by design gives exact parallel prefix-scans with a formal gradient-stability guarantee; validated on long-horizon sequence tasks.",
+    "a7.li3":"<strong>HOLA (2026)</strong> — a fixed delta-rule state plus a surprise-selected exact KV cache reaches lower Wikitext perplexity than a full-attention Transformer++ at 340M (−15%). This is external evidence for the hybrid \"compressed state + exact recall\" design family we build in.",
+    "a7.h3b":"What we changed as a result (training recipe, five items)",
+    "a7.li4":"<strong>Distillation-first for the 2B line</strong> — Gemma 2's controlled study: a 2B student distilled from a larger teacher scores 67.7 vs 60.3 from scratch at 500B tokens. Our 2B now trains with teacher logits, not raw next-token.",
+    "a7.li5":"<strong>One to two epochs, never multi-epoch repetition</strong> — recent scaling-law work (2026) shows internal data repetition is systematically damaging; rephrasing the same corpus (SYNPRO: 5.2× effective tokens) beats re-reading it.",
+    "a7.li6":"<strong>Weight decay λ = 1.0</strong> — data-constrained prescriptive scaling laws: strong weight decay cuts the overfitting coefficient ~70%.",
+    "a7.li7":"<strong>Decay path forced to fp32</strong> — PyTorch's autocast marks softplus/exp as bf16-unstable; our liquid decay computation now runs fp32 under mixed precision (measured: bf16 training degraded PPL 3–7.5×, forward-only divergence was 0.37% — the damage is in training dynamics).",
+    "a7.li8":"<strong>Curriculum learning</strong> — difficulty-ordered data, matching LFM2 and our own length-curriculum results (×8 extrapolation stable to 16K).",
+    "a7.p2":"Survey references: LFM2 technical report (arXiv 2511.23404), LrcSSM (arXiv 2505.21717), HOLA (arXiv 2607.02303), Gemma 2 (arXiv 2408.00118), Titans (arXiv 2501.00663), SYNPRO (arXiv 2605.17849), prescriptive scaling laws (arXiv 2605.01640), DroPE (arXiv 2512.12167).",
+    "f0.q1":"What is the difference between M1 and O1?",
+    "f0.a1":"<strong>M1 (M-Series)</strong> is the cognitive slow-thinking engine — it layers GWT competitive broadcast, NREM sleep consolidation with SHY synaptic downscaling, and EWC continual learning on the LTC backbone. It targets episodic memory, agent cognition, and catastrophic forgetting research. <strong>O1 (O-Series)</strong> is the edge fast-thinking engine — pure continuous-time liquid ODE, constant 4 KB memory state regardless of context length, no KV-cache growth, targets CPU/edge deployment at millisecond latency. Both share the MT-LNN backbone; full cognitive module integration into O1 is in progress.",
+    "f0.q2":"Is this production-ready?",
+    "f0.a2":"The models are <strong>research-grade</strong>: O1 (48M) and M1 (adapter on TinyLlama-1.1B) demonstrate the architecture but are not general assistants, and the API has no SLA. What is deployment-ready today are the <strong>measured edge capabilities</strong> — O(1) constant memory, the 5 MB ONNX wake-word export, and the battery-stream robustness shown above. Production pilots for specific edge workloads are the natural next step; see <a href=\"#engage\">Work With Us</a> for evaluation.",
+    "f0.q3":"How is this different from Liquid AI / LFM?",
+    "f0.a3":"Liquid AI builds high-performance models using an SSM + linear attention + MoE hybrid for maximum inference efficiency — targeting industrial time-series, edge signal processing, and autonomous driving. AwareLiquid layers cognitive architecture (GWT awareness, sleep consolidation, EWC online learning) on top of the liquid backbone to study <em>continual learning</em> — can a model acquire new knowledge without erasing the old? Same academic lineage (MIT LNN), orthogonal research axes. <strong>AwareLiquid is not affiliated with Liquid AI, Inc.</strong>",
+    "f0.q4":"What is catastrophic forgetting?",
+    "f0.a4":"When a neural network trains sequentially on domain A then B, its performance on A collapses. In AwareLiquid M1 experiments: dense baseline degrades from 244.9 → 10,806.9 PPL (×44). EWC reduces this to 1,878 PPL (×7.6, an 85% reduction in the forgetting delta). The threshold for \"usable\" retention is ≤5× degradation — not yet achieved. This is reported as Early Signal, not a solved problem.",
+    "f0.q5":"Can I use the model API?",
+    "f0.a5":"Yes. The live demo server exposes <code>/v1/completions/stream</code> (SSE, O1), <code>/adapter/v1/completions/stream</code> (SSE, M1), and <code>/v1/model</code> (model metadata). See <a href=\"https://github.com/AwareLiquid/M1\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub README</a> for local setup. Research-grade — no rate limits, no SLAs.",
+    "f0.q6":"What does the needle-in-haystack test actually show?",
+    "f0.a6":"Scientific honesty — including correcting our own earlier mistake. We first reported \"0% for both variants\", but that turned out to be a <strong>harness artefact</strong>: the old script fed raw concatenated tokens to an instruct-tuned base without the chat template, which always scores 0.0. Re-tested on 2026-06-26 with the chat template and a faithful adapter rebuild, the real picture is: within TinyLlama-1.1B's 2048-token window, retrieval is near-perfect (base 0.867/1.000 at 1K/2K, adapter 1.000/1.000). At 4096 tokens both collapse to 0 because that exceeds the base's 2048 RoPE window — a base limit, not an adapter failure. The adapter is at parity with the base in-window; proving a retrieval <em>uplift</em> needs a larger-window base and more samples. Extending long-context retrieval remains a target for future work.",
+    "b8.li1":"All code, experiment scripts, and reproducible configs: <a href=\"https://github.com/AwareLiquid/M1\" target=\"_blank\" rel=\"noopener noreferrer\">github.com/AwareLiquid/M1</a>",
+    "b8.li2":"Architecture and pre-training details: <a href=\"https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">Technical Paper (PDF)</a>",
+    "b8.li3":"Live demo: <a href=\"/\">AwareLiquid Demo</a> · Project overview: <a href=\"/about\">About</a>",
+    "b8.p1":"If you use this work or build on it, please cite as follows:",
+    "b8.cite":"</svg>           Copy         </button>         <pre id=\"bibtexBlock\">@misc{awareliquid2026,   title        = {{AwareLiquid} {M1}: Bio-inspired Continual Learning with                   Global Workspace, Sleep Consolidation, and {EWC}},   author       = {{AwareLiquid Project}},   year         = {2026},   howpublished = {\\url{https://awareliquid.ai}},   note         = {M-Series cognitive engine. Open research prototype.                   Code: \\url{https://github.com/AwareLiquid/M1}} }</pre>       </div>        <h3>APA</h3>       <div class=\"cite-block\">         <button class=\"cite-copy-btn\" id=\"citeCopyApa\" aria-label=\"Copy APA citation\">           <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"><rect x=\"9\" y=\"9\" width=\"13\" height=\"13\" rx=\"2\"/><path d=\"M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1\"/></svg>           Copy         </button>         <p id=\"apaBlock\" style=\"margin:0;font-size:14.5px\">AwareLiquid Project. (2026). <em>AwareLiquid M1: Bio-inspired Continual Learning with Global Workspace, Sleep Consolidation, and EWC</em> [Open research prototype, M-Series]. Retrieved from https://awareliquid.ai. Code: https://github.com/AwareLiquid/M1",
+    "b9.p1":"The measured advantages map to concrete workloads: <strong>battery &amp; sensor health monitoring</strong> (irregular streams, edge hardware), <strong>always-on audio</strong> (wake-word, keyword spotting), and <strong>long-document question answering</strong> (frozen API bases). If your team operates in one of these, or needs edge inference with continual learning:",
+    "b9.li1":"<a class=\"text-link\" href=\"/demo\">Try the live demo</a> — both models, no setup;",
+    "b9.li2":"<a class=\"text-link\" href=\"https://github.com/AwareLiquid/M1/discussions\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub Discussions</a> — technical questions, public and on-record;",
+    "b9.li3":"Pilot evaluations and integration — reach out via GitHub; we scope from the open benchmarks above, not from marketing claims.",
+    "b9.li4":"<strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens",
+    "b9.li5":"<strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference",
+    "b9.li6":"<strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)",
+    "b9.li7":"<strong>0.56 vs 0.000</strong> cross-window recall — facts carried by fast-weight memory after their KV cache is gone",
+    "b9.li8":"<strong>+7.7% vs +31%</strong> degradation at 80% dropped samples on real NASA battery data (vs LSTM/GRU)",
+    "b9.li9":"<strong>EWC</strong> continual learning — online weight updates without catastrophic forgetting",
+    "b9.p2":"All numbers measured on real runs — methodology and raw data: <a class=\"text-link\" href=\"https://github.com/AwareLiquid/M1/blob/main/RESULTS.md\" target=\"_blank\" rel=\"noopener noreferrer\">RESULTS.md</a>",
+    "w1.h2":"Three Mechanisms That Make Thinking Possible",
+    "w1.p1":"AwareLiquid stacks three neuroscience-derived subsystems on a continuous-time liquid core — each solving a distinct cognitive problem that Transformers and SSMs cannot address.",
+    "w1.fig1":"AwareLiquid M1 end-to-end pipeline — continuous-time LTC core + GWT competitive broadcast + sleep consolidation + EWC online learning",
+    "w1.c1":"</svg>         </div>         <span class=\"feat-model-tag\">M1 · M-Series</span>         <h3>Global Workspace Theory (GWT)</h3>         <p>Specialist cortical modules compete for a shared broadcast channel — the \"global workspace.\" The winner propagates its representation to all other modules, enabling selective attention, emergent integration, and conscious-like information routing.",
+    "w1.c2":"<path d=\"M8 14s1.5 2 4 2 4-2 4-2\"/><line x1=\"9\" y1=\"9\" x2=\"9.01\" y2=\"9\"/><line x1=\"15\" y1=\"9\" x2=\"15.01\" y2=\"9\"/></svg>         </div>         <span class=\"feat-model-tag\">M1 · M-Series</span>         <h3>Sleep Consolidation (NREM Bridge)</h3>         <p>Synthetic NREM cycles replay short-term session activations and compress them into a persistent graph-memory structure. Synaptic Homeostasis (SHY) downscaling prunes redundant connections, boosting signal-to-noise. The model grows smarter during rest.",
+    "w1.c3":"</svg>         </div>         <span class=\"feat-model-tag\">O1 · O-Series</span>         <h3>Liquid ODE Dynamics</h3>         <p>Hidden state evolves as a continuous-time differential equation with learnable time constants — inspired by microtubule dynamics. No discrete layer stacking, no KV-cache growth. Constant-memory state enables edge deployment at millisecond latency.",
+    "i1.h2":"Built for streams that never stop, on hardware that <em class=\"em-italic\">cannot grow</em>.",
+    "i1.lead":"Three deployments with something real behind them — measured, shipped, or both. Every number links to open code; anything without data says so.",
+    "i1.c1":"<path d=\"M6 11v3M10 11v3\"/></svg></span>         <h3 class=\"ind-t\">Battery management</h3>         <p class=\"ind-d\">State-of-health regression on voltage/current/temperature streams, on the pack controller itself.",
+    "i1.c2":"<rect x=\"2\" y=\"13\" width=\"4.5\" height=\"7\" rx=\"2\"/><rect x=\"17.5\" y=\"13\" width=\"4.5\" height=\"7\" rx=\"2\"/></svg></span>         <h3 class=\"ind-t\">Hearables</h3>         <p class=\"ind-d\">Always-on wake-word spotting where the microphone never closes — one keyword, measured in English. Open source as <strong>O1-Sound</strong>.",
+    "i1.c3":"<path d=\"M6 20V9M11 20V5M16 20v-7M21 20V11\"/></svg></span>         <h3 class=\"ind-t\">Financial documents</h3>         <p class=\"ind-d\">QA over filings far longer than the context window, with the base model frozen behind an API.",
+    "i1.also":"<span class=\"label\"><span class=\"label-sq\"></span>Also targeting</span>       In-vehicle systems · On-device assistants · Industrial robotics — architectural fit       (bounded state over an unbounded session, native Δt), <strong>no pilot data yet</strong>.",
+    "x1.p1":"Every claim below is measured on real runs and backed by open code and data.",
+    "x1.td1":"Irregular-sampling robustness (battery SoH)",
+    "x1.td2":"4× steadier than LSTM/GRU when samples drop",
+    "x1.p2":"Full methodology, raw data and reproduction scripts: <a href=\"https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md\" target=\"_blank\" rel=\"noopener noreferrer\">BENCHMARKS.md</a>.",
+    "x1.fig1":"Inference memory vs. context length. The KV-cache grows O(n); the O-series carried state is flat. Measured to 1M tokens: 0.381 MB state vs. 3,072 MB KV-cache — 8063× smaller. This measures inference carried-state bytes only — it is not evidence of model quality beyond the 512-token training length (out-of-window LM results are null; see RESULTS.md).",
+    "x2.p1":"Transformers excel at static retrieval. AwareLiquid is built for something harder: agents that form episodic memories across sessions, coordinate through shared global workspace broadcasts, and continuously consolidate knowledge without catastrophic forgetting. The foundation for an Awareness Market of collaborating cognitive agents.",
+    "x2.p2":"Both projects build on MIT liquid neural networks. Liquid AI solved static-weight inference efficiency. AwareLiquid asks the next question: can a model acquire new knowledge without erasing the old?",
+    "x2.li1":"Weights frozen post-training; in-context only",
+    "x2.li2":"Targets industrial time-series &amp; edge devices",
+    "x2.li3":"Online weight updates — learns without forgetting",
+    "x2.li4":"Targets episodic memory, agent cognition &amp; adaptation",
+    "x2.p3":"Open research on continual learning with liquid time-constant neural networks.",
+
   },
   zh: {
     "nav.hc2":"HyperCode","nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读论文",
@@ -1405,7 +1530,132 @@ var I18N = {
     "fa5":"这里的 \"Awareness\" 不是另一个模型 —— 它是架构内部的<strong>显著度/全局工作空间点火</strong>机制。快液态核心以 O(1) 状态持续流式处理;一个零参数的 <strong>SalienceEventDetector</strong> 用自适应基线监视归一化预测误差,当意外度越过迟滞阈值即触发点火 —— 工作空间的唤醒绊线。点火唤醒<strong>慢层</strong>(DeliberationRouter:熵三路决策 + 因果一致性底线)。遇到事实盲点时,路由查询 <strong>Awareness 云</strong>(外部记忆 oracle)并把事实回注本地循环;否则本地应答 —— 慢层只在真正的状态变化值得时才被唤醒。",
     "fa5c":"双速引擎:常开的快核,与仅在显著事件时才醒来的慢思考层。代码:<code>mt_lnn/salience_events.py</code> · <code>pipeline.py</code> · <code>cloud_client.py</code> · <code>deliberation.py</code>。",
     "fq6":"Awareness 的 public knowledge 是什么?如何替代 RAG?",
-    "fa6":"<strong>Public knowledge</strong> 是 Awareness 平台的 KaaS(知识即服务)层:一个由 OpenAlex 学术语料(CC0)播种的公域知识库,DOI 去重、实体抽取<em>零 LLM 调用</em>、嵌入索引,并且 —— 可审计的部分 —— 状态根通过 <strong>ERC-8350</strong>(Sepolia)锚定上链,知识状态的每次变更都有可验证记录。检索按次付费。关于<strong>替代 RAG</strong>,诚实的说法是:它替代 RAG 管线中四个脆弱的环节,而不是「在文档上生成」这个范式本身。<strong>检索:</strong>零 LLM 混合搜索(BM25 + 向量 RRF),LongMemEval 96.0% R@5,不需要 LLM 重排。<strong>上下文组装:</strong>渐进式披露 + 兄弟分块重组(3.9× token 提升)+ Context Pack v2(Facts + Evidence + Open Questions),而不是把原始块塞进提示。<strong>知识生命周期:</strong>13 类结构化卡片 + 5 类冲突检测(new / update / duplicate / contradiction / irrelevant)—— RAG 原样检索文本、从不调和冲突。<strong>持久与审计:</strong>跨会话 MCP 记忆 + 链上锚定 —— 普通 RAG 索引两者皆无。在 M1 联动中,它就是 DeliberationRouter 在本地模型遇到事实盲点时经 <code>cloud_client</code> 触达的知识层。"
+    "fa6":"<strong>Public knowledge</strong> 是 Awareness 平台的 KaaS(知识即服务)层:一个由 OpenAlex 学术语料(CC0)播种的公域知识库,DOI 去重、实体抽取<em>零 LLM 调用</em>、嵌入索引,并且 —— 可审计的部分 —— 状态根通过 <strong>ERC-8350</strong>(Sepolia)锚定上链,知识状态的每次变更都有可验证记录。检索按次付费。关于<strong>替代 RAG</strong>,诚实的说法是:它替代 RAG 管线中四个脆弱的环节,而不是「在文档上生成」这个范式本身。<strong>检索:</strong>零 LLM 混合搜索(BM25 + 向量 RRF),LongMemEval 96.0% R@5,不需要 LLM 重排。<strong>上下文组装:</strong>渐进式披露 + 兄弟分块重组(3.9× token 提升)+ Context Pack v2(Facts + Evidence + Open Questions),而不是把原始块塞进提示。<strong>知识生命周期:</strong>13 类结构化卡片 + 5 类冲突检测(new / update / duplicate / contradiction / irrelevant)—— RAG 原样检索文本、从不调和冲突。<strong>持久与审计:</strong>跨会话 MCP 记忆 + 链上锚定 —— 普通 RAG 索引两者皆无。在 M1 联动中,它就是 DeliberationRouter 在本地模型遇到事实盲点时经 <code>cloud_client</code> 触达的知识层。",    "a1.p1":"骨干是 MT-LNN(LTC 网络)——一种连续时间循环架构,其隐藏状态按照带可学习时间常数的微分方程演化。没有离散层堆叠,没有 KV 缓存增长——恒定内存状态使其可以在边缘以毫秒级延迟部署。",
+    "a1.li1":"竞争全局工作空间(GWT-B)——被注意信息的竞争式广播;",
+    "a1.li2":"预测世界模型——对下一潜状态的前向预测;",
+    "a1.li3":"Hebbian 可塑性——基于共激活的权重调制;",
+    "a1.li4":"预测编码——误差驱动的表征学习;",
+    "a1.li5":"节律调制——信息流的振荡门控。",
+    "a1.fig1":"MT-LNN 端到端流水线。LTC 核心以可学习时间常数处理 token;液态层连接注意力与记忆,预测世界模型头提供下一步表征。",
+    "a1.built":"<strong>Built</strong> 架构、全部液态核心模块与原生推理服务均已实现并上线。",
+    "a2.p1":"演示提供两个不同的模型。<strong>M1</strong>(大型认知模型)包裹一个冻结的 TinyLlama-1.1B 底座;每次推理用 MT 残差适配器重新注入微管动力学,在 3 种子、20K 步微调下保持基座能力。",
+    "a2.td1":"已撤回——此前只是 LoRA;MT 适配器增益 ≈0 PPL(7.984 → 7.920)",
+    "a2.p2":"PPL 以纯下一 token 交叉熵计算——排除辅助损失以避免人为降低数值。",
+    "a2.built":"<strong>Built</strong> 端到端预训练 + 原生服务。<strong>Target</strong> 更大、更高质量的模型(见演示文档)。",
+    "a2.p3":"此处展示的适配器 PPL 结果已撤回(见上方说明——它测量的是 LoRA 而非 MT 适配器)。",
+    "a2.fig1":"⚠ 已撤回。图 2a 曾把 −28.5% 的 PPL 降幅归于 MT-LNN 适配器,但对照消融显示该增益来自 LoRA 路径,适配器本身贡献 ≈0。",
+    "a2.fig2":"图 2b——左:注入已吸收事实的提示模板将问答准确率提升 +13.3 个百分点(25/30 → 29/30),且与有无 MT 适配器无关——收益是模板的,不是架构的。",
+    "a3.p1":"这是 AwareLiquid 的首要研究方向——与冻结权重范式的微调/蒸馏正交:模型在部署后继续更新权重。",
+    "a3.li1":"在领域 A 上训练并评估,再在领域 B 上继续训练,然后重新评估 A;",
+    "a3.li2":"三臂:密集(标准基线)、液态(MT-LNN 骨干)、巩固(EWC 机制);",
+    "a3.li3":"统计严谨性:逐种子的配对增量,SNR = |均值| / 标准差,要求所有种子在方向上一致。",
+    "a3.p2":"在领域 A 训练后,快照锚点权重并计算对角 Fisher 信息;继续训练 B 时,EWC 按 Fisher 重要度对 A 关键权重施加二次惩罚。",
+    "a3.fig1":"图 3a——按条件划分的遗忘(PPL 在 B 训练后于 A 上的上升)。EWC 巩固将遗忘从 ×44 降至 ×7.6(Δ 减少 85%)。",
+    "a3.p3":"配对统计(巩固 − 密集):−8,928.8 ± 2,155 · SNR 4.14 · 3/3 种子。EWC 使领域 A 的困惑度下降 8,928.8(×44 → ×7.6);可部署阈值(≤5× 退化)尚未达成——记为早期信号,而非已解决的问题。",
+    "a3.built":"<strong>Built</strong> EWC 机制 + 三臂实验框架,完全可复现(GitHub,experiments/continual/)。",
+    "a4.p1":"Hebbian 共激活项是 MT-LNN 液态核心模块之一。为衡量其真实贡献,我们按学习率扫描其系数,逐种子配对比较。",
+    "a4.fig1":"图 4a——左:Hebbian LR 扫描下的验证 PPL(±1 标准差误差棒)。所有值都落在纯噪声带内,最大变动 +0.35 PPL。",
+    "a4.p2":"128d × 2L × 8H 模型 · WikiText-103 · CPU · 593 秒运行。最大的 PPL 变化(+0.35)在噪声范围内。",
+    "a4.p3":"<strong>Early Signal</strong> 当前规模下 Hebbian 项实际惰性。下一步:提高 hebbian_lr,在更大模型上测试(与 48M O1 开关矩阵的 PPL 中性发现一致)。",
+    "a5.p1":"MT-LNN 的循环动力学是否适合空间表征与推理?这是一个神经科学与几何学交叉的问题——我们把它做成了四层计算栈。",
+    "a5.li1":"空间编码前端:栅格细胞编码、多尺度栅格模块、头方向细胞;",
+    "a5.li2":"位置索引联想记忆:Hebbian 写入 + 模式补全读取,零可训练参数;",
+    "a5.li3":"因果空间转向:检测轨迹断裂并把状态投影回合法流形;",
+    "a5.li4":"空间算子 + 推理脚手架:距离/方位/可达图,基于位置的查询回答。",
+    "a5.fig1":"<strong>Built</strong> 因果转向:在第 18 步注入一次人为瞬移断裂。转向器实时检测并把状态拉回基线,健康轨迹不被触碰。",
+    "a5.fig2":"<strong>Built</strong> 空间记忆模式补全:带噪声的位置查询仍能检索到正确记忆(邻域位置也激活同一记忆)。",
+    "a5.p2":"MT-LNN 与 GRU 基线在速度 → 位置路径积分任务上对比,以检验多尺度循环表征是否比同尺度 RNN 更好地跟踪连续位置。",
+    "a5.built":"<strong>Built</strong> 轨迹生成、损失与栅格分数自相关分析全部可运行并可复现。",
+    "a6.p1":"三个有真实测量的部署方向——与首页呈现的结果一致。",
+    "a6.h3":"电池健康估计——不规则传感器流",
+    "a6.p2":"<strong>Measured</strong> 在真实 NASA PCoE 电池数据上,随机丢弃 80% 采样:与 LSTM/GRU/Transformer 相比退化最小;携带状态恒定 2.6 KB,与上下文长度无关。",
+    "a6.p3":"<strong>Measured</strong> O1-Sound:单关键词 &ldquo;hello&rdquo; 在 FRR 0.146 @ FAR 0.046(3 种子,英文);ONNX 导出 5 MB,流式状态 5,120 B。",
+    "a6.p4":"<strong>Measured</strong> AwareLiquid-M2 检索适配器在五个金融文档领域回答 44/48(91.7%);每题约 2.8k tokens,基座模型冻结在 API 之后。",
+    "a6.p5":"可复现 CPU 运行的硬件效率测量。两个关键基准:稀疏共振选择与状态专属流式。",
+    "a6.p6":"MT-LNN 在 5 个时间尺度上使用多尺度共振频率。稀疏 top-k 选择在解码时只激活 k 个尺度;top-k=2 与稠密质量相当,同时将 CPU 单批吞吐从 ~3650 提升至 ~6400 tok/s。",
+    "a6.fig1":"图 6a——左:按共振模式划分的吞吐(5 次重复,CPU)。稀疏 k=2 达到最高 ~6400 tok/s,同时保持与稠密输出近乎一致的质量。",
+    "a6.p7":"循环架构启用状态专属流式模式,在解码时丢弃历史 KV 张量:1000 token 的解码从 ~1020 KB 降至 4.1 KB。",
+    "a6.fig2":"图 6b——推理携带状态 vs 上下文长度,512 → 1M tokens。KV 缓存按 O(n) 增长;循环状态保持 0.381 MB 平坦到小数点后。",
+    "a6.p8":"在 Selective Copy——一个重噪声下的全序列回忆任务上——MT-LNN 在匹配 200K 参数、同等 1500 步预算的公平解码中每个长度都领先。",
+    "a6.fig3":"图 6c——Selective Copy,匹配 200K 参数、同等 1500 步预算、公平全序列解码。",
+    "a6.h3b":"原生 126M 上的长度课程——×8 外推,两次运行一致",
+    "a6.p9":"原生 126M MT-LNN(d=832,12 层)以分阶段长度课程(512 → 1024 → 2048 → 4096)训练,在 4096 处达到 5.74 PPL——在 2048 训练窗口之上外推 ×8。",
+    "a6.p10":"数值精度教训:AMP(bf16)在同等阶段计数下使 MT-LNN 训练损失劣化 3–7.5×;衰减路径强制走 fp32。",
+    "a6.h3c":"选择性衰减参数化——外推由 exp vs tanh 决定",
+    "a6.p11":"奇偶校验上的长度外推由转移参数化决定。exp 形式在训练分布外保持稳定;tanh 形式外推失败——架构级的可微旋钮直接控制外推行为。",
+    "a6.h3d":"定位:长上下文 + 边缘成本,而非 AGI 指标",
+    "a6.p12":"诚实框架:我们的模型(48M–1.1B)在 AGI 级基准(MMLU、Age of Agents 等)上接近随机分数——按设计如此。定位是「长上下文 + 边缘成本」,不是通用智能。",
+    "a6.fig4":"图 6d——每任务成本 vs 能力,AA slay-line 方法论(参考点来自公开数据)。",
+    "a6.h3e":"写进架构的物理——AwareLiquid-Physic",
+    "a6.p13":"一条姊妹线:液态(LTC)基底读取轨迹前缀,并条件化一个硬约束头;物理定律被写进架构,而不是被学习。",
+    "a6.fig5":"图 6e——弹簧:真实 vs 预测位置,200 步 rollout。因为模型积分的是物理场而非记忆模式,外推保持稳定。",
+    "a6.fig6":"图 6f——rollout 过程中的能量漂移(相对)。硬约束头:最终漂移 ~0.005;纯学习模型:发散。",
+    "a6.p14":"<strong>Measured</strong>(PRD 目标全部达成,项目关闭):半群训练把液态优势提升到 +2.4%,所有 PRD 目标达成。",
+    "a7.p1":"我们定期调研亚二次架构文献并对照我们自己的轨迹。",
+    "a7.h3":"液态架构领域自己得出的结论",
+    "a7.li1":"LFM2(Liquid AI,2025–2026)——液态网络创始团队的生产模型使用门控线性注意力,而非纯液态核心——混合是关键。",
+    "a7.li2":"LrcSSM(NeurIPS 2025)——按设计对角化液态雅可比矩阵给出精确并行扫描——液态循环的并行化约束。",
+    "a7.li3":"HOLA(2026)——固定 delta-rule 状态加上意外选择的精确 KV 缓存达到低成本强回忆——混合状态的想法再次出现。",
+    "a7.h3b":"我们因此改变了什么(训练配方,五项)",
+    "a7.li4":"2B 线优先蒸馏——Gemma 2 的对照研究:由 8B 教师蒸馏出的 2B 学生超过了从头训练的 27B——预算效率优先。",
+    "a7.li5":"一到两个 epoch,永不重复多 epoch——近期 scaling-law 工作(2026)表明重复引发过拟合;蒸馏数据管线的次数上限设为 2。",
+    "a7.li6":"权重衰减 λ = 1.0——数据受限的处方性 scaling law:强权重衰减削减过拟合,代价是略慢的收敛。",
+    "a7.li7":"衰减路径强制 fp32——PyTorch 的 autocast 把 softplus/exp 标记为 bf16 不稳定;我们的液态衰减必须精确。",
+    "a7.li8":"课程学习——按难度排序的数据,与 LFM2 和我们自己的长度课程结果一致。",
+    "a7.p2":"调研引用:LFM2 技术报告(arXiv 2511.23404)、LrcSSM(arXiv 2505.21717)、HOLA(见参考)。",
+    "f0.q1":"M1 和 O1 的区别是什么?",
+    "f0.a1":"<strong>M1(M 系列)</strong>是认知慢思考引擎——在 LTC 骨干上叠加 GWT 竞争广播、带 SHY 突触降标的 NREM 睡眠巩固,以及 EWC 持续学习。它面向情景记忆、智能体认知与灾难性遗忘研究。<strong>O1(O 系列)</strong>是边缘快思考引擎——纯连续时间液态 ODE,恒定 4 KB 内存状态与上下文长度无关,无 KV 缓存增长,面向毫秒级延迟的 CPU/边缘部署。两者共享 MT-LNN 骨干;认知模块向 O1 的完整集成仍在进行中。",
+    "f0.q2":"这可以用于生产吗?",
+    "f0.a2":"模型为<strong>研究级</strong>:O1(48M)与 M1(TinyLlama-1.1B 上的适配器)证明了架构,但不是通用助手,且界面没有服务级别协议。今天可部署的是<strong>实测边缘能力</strong>——恒定 O(1) 内存、5 MB ONNX 唤醒词导出、上文的电池流稳健性。针对特定边缘负载的生产试点是自然的下一步;评估见<a href=\"#engage\">Work With Us</a>。",
+    "f0.q3":"这与 Liquid AI / LFM 有何不同?",
+    "f0.a3":"Liquid AI 使用 SSM + 线性注意力 + MoE 混合构建高性能模型,追求最大推理效率——面向工业时间序列与边缘信号处理与自动驾驶。AwareLiquid 在液态骨干上叠加认知结构(自觉性 GWT、睡眠巩固、直接 EWC 学习)以研究<em>持续学习</em>——模型能否在不抹掉旧知识的情况下获得新知识?同一学术血统(MIT LNN),正交的研究轴。<strong>AwareLiquid 不隶属于 Liquid AI 公司</strong>。",
+    "f0.q4":"什么是灾难性遗忘?",
+    "f0.a4":"当神经网络先在领域 A 后领域 B 上顺序训练时,它在 A 上的表现会崩溃。在 AwareLiquid M1 实验中:稠密基线从 244.9 恶化到 10,806.9 困惑度(×44)。EWC 将其降至 1,878(×7.6,遗忘增量减少 85%)。「可部署」阈值是 ≤5× 退化——尚未达成。此结果作为早期信号报告,而非已解决问题。",
+    "f0.q5":"我能用模型 API 吗?",
+    "f0.a5":"可以。在线演示服务器暴露 /v1/completions/stream(SSE,O1)、/adapter/v1/completions/stream(SSE,M1)与 /v1/model(模型元数据)。本地设置见 <a href=\"https://github.com/AwareLiquid/M1\" target=\"_blank\" rel=\"noopener noreferrer\">GitHub 上的 README</a>。研究级——无速率限制或服务级别协议。",
+    "f0.q6":"needle-in-haystack 测试实际说明了什么?",
+    "f0.a6":"科学诚实——包括纠正我们自己早前的错误。我们最初报告「两种变体均为 0%」,但那是<strong>测试装置缺陷</strong>:旧脚本把原始粘贴 token 喂给一个指令微调底座,没有聊天模板,所以永远是 0.0。2026-06-26 用聊天模板与忠实的适配器重建重新测试后,真实图景:TinyLlama-1.1B 的 2048-token 窗口内,检索近乎完美(底座 1K/2K 处 0.867/1.000,适配器 1.000/1.000)。在 4096 token 处两者都崩到 0,因为那超出了底座 RoPE 2048 窗口——是底座的极限,不是适配器的失败。适配器在窗口内与底座持平;证明检索<em>提升</em>需要更大窗口的底座与更多样本。长上下文检索仍然是未来目标。",
+    "b8.li1":"全部代码、实验脚本与可复现配置:github.com/AwareLiquid/M1",
+    "b8.li2":"架构与预训练细节:技术论文(PDF)",
+    "b8.li3":"在线演示:AwareLiquid Demo · 项目概览:About",
+    "b8.p1":"如果你使用或基于这项工作构建,请按如下方式引用:",
+    "b8.cite":"Copy                  @misc{awareliquid2026,   title        = {{AwareLiquid} {M1}: Bio-inspired...",
+    "b9.p1":"实测优势对应具体工作负载:电池与传感器健康监测、长文档 QA、唤醒词检测。",
+    "b9.li1":"试用在线演示——两个模型,零配置;",
+    "b9.li2":"GitHub Discussions——技术问题,公开留痕;",
+    "b9.li3":"试点评估与集成——通过 GitHub 联系;我们从开源基准出发圈定范围;",
+    "b9.li4":"任何上下文长度下 0.381 MB 恒定携带状态——1M tokens 时比 KV 缓存小 8,063×;",
+    "b9.li5":"48M–128M 边缘模型,纯 CPU——推理零 GPU 账单;",
+    "b9.li6":"常开唤醒词 5 MB ONNX 导出(O1-Sound);",
+    "b9.li7":"0.56 vs 0.000 跨窗口回忆——KV 缓存丢弃后事实仍由快权重记忆承载;",
+    "b9.li8":"真实 NASA 电池数据上 80% 采样丢失下 +7.7% vs +31% 退化(对比 LSTM/GRU);",
+    "b9.li9":"EWC 持续学习——在线权重更新而无灾难性遗忘。",
+    "b9.p2":"所有数字都来自真实运行——方法与原始数据:RESULTS.md",
+    "w1.h2":"让思考成为可能的三种机制",
+    "w1.p1":"AwareLiquid 在连续时间液态核心上叠加了三个源自神经科学的子系统:",
+    "w1.fig1":"AwareLiquid M1 端到端流水线——连续时间 LTC 核心 + GWT 竞争广播 + 预测世界模型。",
+    "w1.c1":"M1 · M 系列         全局工作空间理论(GWT)         专家皮层模块竞争共享广播通道;胜出表征传播到所有其他模块。",
+    "w1.c2":"M1 · M 系列         睡眠巩固(NREM 桥接)         合成 NREM 周期回放短期会话激活并压缩进持久图记忆。",
+    "w1.c3":"O1 · O 系列         液态 ODE 动力学         隐藏状态以可学习时间常数的连续时间微分方程演化。",
+    "i1.h2":"为永不停止的流而生,跑在无法增长的硬件上。",
+    "i1.lead":"三个有真实支撑的部署方向——已实测、已开源,或两者兼有。每个数字都链接到公开代码;没有数据的地方会明说。",
+    "i1.c1":"电池管理         在电池包控制器上,对电压/电流/温度流做健康状态(SoH)回归。",
+    "i1.c2":"可穿戴音频         麦克风永不关闭的常开唤醒词检测。",
+    "i1.c3":"金融文档         对远超上下文窗口的申报文件做问答,基座冻结在 API 之后。",
+    "i1.also":"同时瞄准       车载系统 · 端侧助手 · 工业机器人——架构契合,尚无试点数据。",
+    "x1.p1":"以下每条结论都在真实运行上测量,并由公开代码与数据支撑。",
+    "x1.td1":"不规则采样稳健性(电池 SoH)",
+    "x1.td2":"采样丢失时比 LSTM/GRU 稳 4×",
+    "x1.p2":"完整方法论、原始数据与复现脚本:BENCHMARKS.md。",
+    "x1.fig1":"推理内存 vs 上下文长度。KV 缓存按 O(n) 增长;O 系列携带状态保持平坦。",
+    "x2.p1":"Transformer 擅长静态检索。AwareLiquid 为更难的事而建:持续运行的智能体,边用边学且不忘旧识。",
+    "x2.p2":"两个项目都建立在 MIT 液态神经网络之上。Liquid AI 解决了静态权重推理;我们研究的是持续学习。",
+    "x2.li1":"训练后权重冻结;仅上下文内",
+    "x2.li2":"面向工业时序与边缘设备",
+    "x2.li3":"在线权重更新——学习而不遗忘",
+    "x2.li4":"面向情景记忆、智能体认知与适应",
+    "x2.p3":"关于液态时间常数神经网络的持续学习开放研究。",
+
   },
   ar: {
     "nav.hc2":"HyperCode","nav.demo":"العرض","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.research":"الأبحاث","nav.about":"عن الشركة","nav.paper":"الورقة","nav.gh":"GitHub","nav.try":"جرّب العرض","nav.read":"اقرأ الورقة",
@@ -1447,7 +1697,120 @@ var I18N = {
     "f0.q5":"هل أستطيع استخدام واجهة النموذج؟",
     "f0.a5":"نعم. خادم العرض المباشر يعرض <code>/v1/completions/stream</code> (SSE، O1)، و<code>/adapter/v1/completions/stream</code> (SSE، M1)، و<code>/v1/model</code> (بيانات النموذج). انظر <a href=\"https://github.com/AwareLiquid/M1\" target=\"_blank\" rel=\"noopener noreferrer\">README على GitHub</a> للإعداد المحلي. بمستوى بحثي — بلا حدود معدل ولا اتفاقيات مستوى خدمة.",
     "f0.q6":"ما الذي يظهره اختبار الإبرة في كومة القش فعلياً؟",
-    "f0.a6":"أمانة علمية — بما فيها تصحيح خطئنا السابق. أبلغنا أولاً بـ «0% لكلا النسختين»، لكن اتضح أنه <strong>خلل في الحزام</strong>: كان السكربت القديم يغذي رموزاً ملصوقة خاماً لقاعدة مضبوطة تعليمياً دون قالب المحادثة، فيعطي 0.0 دائماً. عند إعادة الاختبار في 2026-06-26 بقالب المحادثة وإعادة بناء محول مخلصة، الصورة الحقيقية: داخل نافذة TinyLlama-1.1B البالغة 2048 رمزاً، الاسترجاع شبه مثالي (الأساس 0.867/1.000 عند 1K/2K، والمحول 1.000/1.000). عند 4096 رمزاً ينهار الاثنان إلى 0 لأن ذلك يتجاوز نافذة RoPE الأساسية 2048 — حد للقاعدة، لا فشل للمحول. المحول في تكافؤ مع القاعدة داخل النافذة؛ إثبات <em>رفع</em> للاسترجاع يحتاج قاعدة بنافذة أكبر وعينات أكثر. يبقى مد الاسترجاع طويل السياق هدفاً مستقبلياً."
+    "f0.a6":"أمانة علمية — بما فيها تصحيح خطئنا السابق. أبلغنا أولاً بـ «0% لكلا النسختين»، لكن اتضح أنه <strong>خلل في الحزام</strong>: كان السكربت القديم يغذي رموزاً ملصوقة خاماً لقاعدة مضبوطة تعليمياً دون قالب المحادثة، فيعطي 0.0 دائماً. عند إعادة الاختبار في 2026-06-26 بقالب المحادثة وإعادة بناء محول مخلصة، الصورة الحقيقية: داخل نافذة TinyLlama-1.1B البالغة 2048 رمزاً، الاسترجاع شبه مثالي (الأساس 0.867/1.000 عند 1K/2K، والمحول 1.000/1.000). عند 4096 رمزاً ينهار الاثنان إلى 0 لأن ذلك يتجاوز نافذة RoPE الأساسية 2048 — حد للقاعدة، لا فشل للمحول. المحول في تكافؤ مع القاعدة داخل النافذة؛ إثبات <em>رفع</em> للاسترجاع يحتاج قاعدة بنافذة أكبر وعينات أكثر. يبقى مد الاسترجاع طويل السياق هدفاً مستقبلياً.",    "a1.p1":"العمود الفقري هو MT-LNN (شبكة LTC) — بنية متكررة زمنية مستمرة تتطور حالتها الخفية وفق معادلة تفاضلية بثوابت زمنية قابلة للتعلم. لا تكديس طبقات منفصل، لا نمو لذاكرة KV — حالة ذاكرة ثابتة تتيح النشر على الحافة بزمن استجابة بالمللي ثانية.",
+    "a1.li1":"مساحة العمل العالمية التنافسية (GWT-B) — بث انتقائي للمعلومات المُنتبه إليها؛",
+    "a1.li2":"نموذج عالم تنبؤي — تنبؤ أمامي بالحالة الكامنة التالية؛",
+    "a1.li3":"لدونة Hebbian — تعديل الأوزان بناءً على التنشيط المشترك؛",
+    "a1.li4":"الترميز التنبؤي — تعلم التمثيلات بقيادة الخطأ؛",
+    "a1.li5":"تعديل الإيقاع — تبوّب تذبذبي لتدفق المعلومات.",
+    "a1.fig1":"خط أنابيب MT-LNN الشامل. يعالج نواة LTC الرموز بثوابت زمنية قابلة للتعلم؛ تربط الطبقات السائلة الانتباه والذاكرة، ويوفر رأس نموذج العالم التنبؤي تمثيل الخطوة التالية.",
+    "a1.built":"<strong>بُني</strong> البنية وكل وحدات النواة السائلة وخادم الاستدلال الأصلي منفّذة ومباشرة.",
+    "a2.p1":"يقدم العرض نموذجين مختلفين. <strong>M1</strong> (النموذج المعرفي الكبير) يغلّف قاعدة TinyLlama-1.1B مجمّدة؛ يعيد الحقن بديناميكيات الأنابيب الدقيقة عبر محول متبقي MT لكل استدلال، محافظاً على قدرة القاعدة بعد ضبط دقيق بثلاث بذور و20 ألف خطوة.",
+    "a2.td1":"مسحوب — كان LoRA فقط؛ مكسب محول MT ≈0 PPL (7.984 ← 7.920)",
+    "a2.p2":"يُحسب PPL بإنتروبيا متقاطعة خالصة للرمز التالي — تُستبعد الخسائر المساعدة لتجنب خفض الأرقام اصطناعياً.",
+    "a2.built":"<strong>بُني</strong> تدريب مسبق شامل + خدمة أصلية. <strong>الهدف</strong> نموذج أكبر وأعلى جودة (انظر وثائق العرض).",
+    "a2.p3":"نتيجة PPL للمحول المعروضة هنا مسحوبة (انظر الملاحظة أعلاه — قاست LoRA لا محول MT).",
+    "a2.fig1":"⚠ مسحوب. أظهر الشكل 2a انخفاض PPL بنسبة −28.5% منسوباً لمحول MT-LNN، لكن استئصالاً مضبوطاً أظهر أن المكسب من مسار LoRA والمحول بحد ذاته يضيف ≈0.",
+    "a2.fig2":"الشكل 2b — يساراً: قالب تلقين يحقن الحقيقة المُمتصّة يرفع دقة الإجابة +13.3 نقطة (25/30 ← 29/30)، بغض النظر عن وجود محول MT — المكسب للقالب لا للبنية.",
+    "a3.p1":"هذا هو الاتجاه البحثي الأساسي لـ AwareLiquid — متعامد مع نمط الضبط/التقطير للأوزان المجمّدة: يستمر النموذج في تحديث أوزانه بعد النشر.",
+    "a3.li1":"درّب وقيّم على المجال A، ثم تابع التدريب على المجال B، ثم أعد تقييم A؛",
+    "a3.li2":"ثلاثة أذرع: كثيفة (خط أساس قياسي)، سائلة (عمود MT-LNN)، تثبيت (آلية EWC)؛",
+    "a3.li3":"صرامة إحصائية: فروق مقترنة لكل بذرة، SNR = |المتوسط| / الانحراف، مع اشتراط اتفاق كل البذور في الاتجاه.",
+    "a3.p2":"بعد التدريب على المجال A، تُلتقط لقطة لأوزان المرساة ويُحسب معلومات Fisher القطرية؛ وعند مواصلة التدريب على B يفرض EWC عقوبة تربيعية على أوزان A الحرجة حسب أهمية Fisher.",
+    "a3.fig1":"الشكل 3a — النسيان (ارتفاع PPL على A بعد تدريب B) حسب الشرط. يخفض تثبيت EWC النسيان من ×44 إلى ×7.6 (انخفاض Δ بنسبة 85%).",
+    "a3.p3":"إحصائيات مقترنة (تثبيت − كثيفة): −8,928.8 ± 2,155 · SNR 4.14 · 3/3 بذور. يخفض EWC حيرة المجال A بمقدار 8,928.8 (×44 ← ×7.6)؛ عتبة النشر (تدهور ≤5×) لم تتحقق بعد — تُسجل كإشارة مبكرة لا مشكلة محلولة.",
+    "a3.built":"<strong>بُني</strong> آلية EWC + إطار تجربة ثلاثي الأذرع، قابل للاستنساخ بالكامل (GitHub، experiments/continual/).",
+    "a4.p1":"حد التفعيل المشترك Hebbian هو أحد وحدات نواة MT-LNN السائلة. لقياس مساهمته الفعلية، نمسح معامله عبر معدلات التعلم ونقارن مقترناً لكل بذرة.",
+    "a4.fig1":"الشكل 4a — يساراً: PPL التحقق عبر مسح Hebbian LR (أشرطة خطأ ±1 انحراف). تقع كل القيم داخل نطاق الضجيج الخالص، وأكبر تغيير +0.35 PPL.",
+    "a4.p2":"نموذج 128d × 2L × 8H · WikiText-103 · CPU · تشغيل 593 ثانية. أكبر تغيير في PPL (+0.35) ضمن نطاق الضجيج.",
+    "a4.p3":"<strong>إشارة مبكرة</strong> عند المقياس الحالي حد Hebbian خامل فعلياً. الخطوات التالية: رفع hebbian_lr، واختبار نماذج أكبر (بما يتفق مع نتيجة حياد PPL في مصفوفة مفاتيح 48M O1).",
+    "a5.p1":"هل تناسب ديناميكيات MT-LNN المتكررة التمثيل والاستدلال المكانيين؟ سؤال عند تقاطع علم الأعصاب والهندسة — بنيناه كحزمة حسابية من أربع طبقات.",
+    "a5.li1":"واجهة ترميز مكاني: ترميز خلايا الشبكة، وحدات شبكة متعددة المقاييس، خلايا اتجاه الرأس؛",
+    "a5.li2":"ذاكرة ترابطية مفهرسة بالموقع: كتابة Hebbian + قراءة إكمال نمط، صفر معاملات قابلة للتدريب؛",
+    "a5.li3":"توجيه سببي مكاني: يكشف انقطاعات المسار ويسقط الحالة على متشعبها القانوني؛",
+    "a5.li4":"عوامل مكانية + سقالة استدلال: رسوم المسافة/الاتجاه/الوصول، مع إجابات استعلامات مبنية على الموقع.",
+    "a5.fig1":"<strong>بُني</strong> التوجيه السببي: يُحقن انقطاع انتقال لحظي اصطناعي عند الخطوة 18. يكشف الموجّه الانقطاع مباشرة ويسحب الحالة نحو خط الأساس دون لمس المسار السليم.",
+    "a5.fig2":"<strong>بُني</strong> إكمال نمط الذاكرة المكانية: استعلامات الموقع المشوشة ما تزال تسترجع الذاكرة الصحيحة (المواقع المجاورة تنشط الذاكرة نفسها).",
+    "a5.p2":"تتم مقارنة MT-LNN مع خط أساس GRU في مهمة تكامل مسار السرعة → الموقع، لاختبار ما إذا كانت التمثيلات المتكررة متعددة المقاييس تتبع المواقع المستمرة أفضل من RNN أحادي المقياس.",
+    "a5.built":"<strong>بُني</strong> توليد المسارات والخسارة وتحليل الارتباط الذاتي لدرجة الشبكة كلها قابلة للتشغيل والاستنساخ.",
+    "a6.p1":"ثلاثة اتجاهات نشر بقياسات حقيقية خلفها — النتائج نفسها المعروضة في الصفحة الرئيسية.",
+    "a6.h3":"تقدير صحة البطارية — تيارات مستشعرات غير منتظمة",
+    "a6.p2":"<strong>مُقاس</strong> على بيانات خلايا NASA PCoE حقيقية مع إسقاط 80% من العينات عشوائياً: أدنى تدهور مقارنة بـ LSTM/GRU/Transformer؛ حالة محمولة ثابتة 2.6 كيلوبايت مهما كان طول السياق.",
+    "a6.p3":"<strong>مُقاس</strong> O1-Sound: كلمة واحدة &ldquo;hello&rdquo; عند FRR 0.146 @ FAR 0.046 (3 بذور، إنجليزية)؛ تصدير ONNX 5 ميجابايت، حالة بث 5,120 بايت.",
+    "a6.p4":"<strong>مُقاس</strong> محول الاسترجاع AwareLiquid-M2 يجيب 44/48 (91.7%) عبر خمسة مجالات مستندات مالية؛ نحو 2.8 ألف رمز لكل سؤال، والنموذج الأساسي مجمّد خلف API.",
+    "a6.p5":"قياسات كفاءة عتاد من تشغيلات CPU قابلة للاستنساخ. معياران رئيسيان: اختيار الرنين المتفرق والبث بالحالة فقط.",
+    "a6.p6":"يستخدم MT-LNN ترددات رنين متعددة المقاييس عبر 5 مقاييس زمنية. ينشّط الاختيار المتفرق top-k مقاييس k فقط عند فك الترميز؛ top-k=2 يضاهي جودة الكثافة مع رفع إنتاجية الدفعة الواحدة CPU من ~3650 إلى ~6400 رمز/ثانية.",
+    "a6.fig1":"الشكل 6a — يساراً: الإنتاجية حسب وضع الرنين (5 تكرارات، CPU). يحقق k=2 المتفرق أعلى ~6400 رمز/ثانية مع جودة تكاد تطابق المخرج الكثيف.",
+    "a6.p7":"تمكّن البنية المتكررة وضع بث بالحالة فقط، يتخلص من موترات KV التاريخية عند فك الترميز: فك 1000 رمز من ~1020 كيلوبايت إلى 4.1 كيلوبايت.",
+    "a6.fig2":"الشكل 6b — الحالة المحمولة للاستدلال مقابل طول السياق، 512 ← 1M رمز. تنمو ذاكرة KV بـ O(n)؛ وتبقى الحالة المتكررة 0.381 ميجابايت مسطحة حتى الخانة العشرية.",
+    "a6.p8":"في Selective Copy — مهمة استرجاع تسلسل كامل تحت ضجيج شديد — يتقدم MT-LNN عند كل طول في فك ترميز عادل بمعاملات متطابقة 200 ألف وميزانية متساوية 1500 خطوة.",
+    "a6.fig3":"الشكل 6c — Selective Copy، معاملات متطابقة 200 ألف، ميزانية متساوية 1500 خطوة، فك تسلسل كامل عادل.",
+    "a6.h3b":"منهاج الطول على النموذج الأصلي 126M — استقراء ×8، تشغيلان متسقان",
+    "a6.p9":"النموذج الأصلي 126M MT-LNN (d=832، 12 طبقة) مدرّب بمنهاج طول مرحلي (512 ← 1024 ← 2048 ← 4096) يحقق PPL 5.74 عند 4096 — استقراء ×8 فوق نافذة تدريب 2048.",
+    "a6.p10":"درس الدقة العددية: AMP (bf16) يفاقم خسارة تدريب MT-LNN 3–7.5× عند عدد مراحل متساوٍ؛ مسار الاضمحلال يُفرض fp32.",
+    "a6.h3c":"معاملات الاضمحلال الانتقائي — الاستقراء يقرره exp مقابل tanh",
+    "a6.p11":"الاستقراء الطولي على التكافؤ يقرره معامل الانتقال. شكل exp يبقى مستقراً خارج توزيع التدريب؛ وشكل tanh يفشل في الاستقراء — مفتاح قابل للاشتقاق على مستوى البنية يتحكم مباشرة بسلوك الاستقراء.",
+    "a6.h3d":"التموضع: سياق طويل + تكلفة حافة، لا مؤشرات AGI",
+    "a6.p12":"إطار صادق: نماذجنا (48M–1.1B) تسجل نتائج قريبة من العشوائية في معايير فئة AGI (MMLU، Age of Agents...) — وهذا مقصود. التموضع هو «سياق طويل + تكلفة حافة»، لا ذكاء عام.",
+    "a6.fig4":"الشكل 6d — التكلفة لكل مهمة مقابل القدرة، منهجية AA slay-line (نقطة مرجعية من بيانات عامة).",
+    "a6.h3e":"فيزياء مكتوبة داخل البنية — AwareLiquid-Physic",
+    "a6.p13":"خط شقيق: ركيزة سائلة (LTC) تقرأ بادئة المسار وتكيّف رأساً بقيد صلب؛ قوانين الفيزياء مكتوبة في البنية لا متعلمة.",
+    "a6.fig5":"الشكل 6e — النابض: الموقع الحقيقي مقابل المتوقع، لف 200 خطوة. لأن النموذج يدمج حقل الفيزياء لا يحفظ الأنماط، يبقى الاستقراء مستقراً.",
+    "a6.fig6":"الشكل 6f — انجراف الطاقة (نسبي) عبر اللف. رأس القيد الصلب: انجراف نهائي ~0.005؛ النموذج المتعلم خالصاً: تباعد.",
+    "a6.p14":"<strong>مُقاس</strong> (تحققت كل أهداف PRD، المشروع مغلق): رفع تدريب نصف الزمرة ميزة السائل إلى +2.4% مع تحقيق كل أهداف PRD.",
+    "a7.p1":"نمسح أدبيات البنى دون التربيعية دورياً ونقارنها بمسارنا.",
+    "a7.h3":"ما خلص إليه حقل البنى السائلة نفسه",
+    "a7.li1":"LFM2 (Liquid AI، 2025–2026) — نماذج إنتاج فريق مؤسس الشبكات السائلة تستخدم انتباهاً خطياً مُبوّباً لا نواة سائلة خالصة — التهجين هو المفتاح.",
+    "a7.li2":"LrcSSM (NeurIPS 2025) — قطرنة مصفوفة جاكوبي السائلة بالتصميم تعطي مسحاً متوازياً دقيقاً — قيد التوازي على التكرار السائل.",
+    "a7.li3":"HOLA (2026) — حالة قاعدة دلتا ثابتة مع ذاكرة KV دقيقة مختارة بالمفاجأة تحقق استرجاعاً قوياً بتكلفة منخفضة — فكرة الحالة الهجينة تظهر مجدداً.",
+    "a7.h3b":"ما غيّرناه نتيجة لذلك (وصفة التدريب، خمسة بنود)",
+    "a7.li4":"التقطير أولاً لخط 2B — دراسة Gemma 2 المضبوطة: طالب 2B مقطر من معلم 8B يتجاوز 27B مدرباً من الصفر — كفاءة الميزانية أولاً.",
+    "a7.li5":"من حقبة إلى حقبتين، لا تكرار متعدد أبداً — أعمال قوانين التوسع الحديثة (2026) تُظهر أن التكرار يسبب فرط التلاؤم؛ سقف التمريرات على خط بيانات التقطير عند 2.",
+    "a7.li6":"اضمحلال الوزن λ = 1.0 — قوانين توسع وصفية مقيدة بالبيانات: الاضمحلال القوي يقلص فرط التلاؤم على حساب تقارب أبطأ قليلاً.",
+    "a7.li7":"مسار الاضمحلال يُفرض fp32 — يصنف autocast في PyTorch دوال softplus/exp كغير مستقرة في bf16؛ اضمحلالنا السائل يجب أن يكون دقيقاً.",
+    "a7.li8":"التعلم بالمنهاج — بيانات مرتبة بالصعوبة، بما يتسق مع LFM2 ونتائج منهاج الطول لدينا.",
+    "a7.p2":"مراجع المسح: تقرير LFM2 التقني (arXiv 2511.23404)، LrcSSM (arXiv 2505.21717)، HOLA (انظر المراجع).",
+    "b8.li1":"كل الكود وسكربتات التجارب والإعدادات القابلة للاستنساخ: github.com/AwareLiquid/M1",
+    "b8.li2":"تفاصيل البنية والتدريب المسبق: الورقة التقنية (PDF)",
+    "b8.li3":"العرض المباشر: AwareLiquid Demo · نظرة المشروع: About",
+    "b8.p1":"إذا استخدمت هذا العمل أو بنيت عليه، يرجى الاستشهاد كما يلي:",
+    "b8.cite":"Copy                  @misc{awareliquid2026,   title        = {{AwareLiquid} {M1}: Bio-inspired...",
+    "b9.p1":"المزايا المقاسة تتوافق مع أحمال عمل ملموسة: مراقبة صحة البطاريات والمستشعرات، وأسئلة وأجوبة المستندات الطويلة، وكشف كلمة الاستيقاظ.",
+    "b9.li1":"جرّب العرض المباشر — نموذجان دون إعداد؛",
+    "b9.li2":"مناقشات GitHub — أسئلة تقنية عامة وموثقة؛",
+    "b9.li3":"تقييمات تجريبية وتكامل — تواصل عبر GitHub؛ نحدد النطاق انطلاقاً من المعايير المفتوحة؛",
+    "b9.li4":"حالة محمولة ثابتة 0.381 ميجابايت مهما كان طول السياق — أصغر بـ 8,063× من ذاكرة KV عند مليون رمز؛",
+    "b9.li5":"نماذج حافة 48M–128M، CPU فقط — بلا فاتورة GPU عند الاستدلال؛",
+    "b9.li6":"تصدير ONNX 5 ميجابايت لكلمة استيقاظ دائمة التشغيل (O1-Sound)؛",
+    "b9.li7":"استدعاء عبر النوافذ 0.56 مقابل 0.000 — الحقائق تبقى محمولة بذاكرة الوزن السريع بعد إسقاط ذاكرة KV؛",
+    "b9.li8":"تدهور +7.7% مقابل +31% عند إسقاط 80% من العينات على بيانات بطاريات NASA حقيقية (مقابل LSTM/GRU)؛",
+    "b9.li9":"تعلم مستمر EWC — تحديث أوزان عبر الإنترنت دون نسيان كارثي.",
+    "b9.p2":"كل الأرقام مقاسة على تشغيلات حقيقية — المنهجية والبيانات الخام: RESULTS.md",
+    "w1.h2":"ثلاث آليات تجعل التفكير ممكناً",
+    "w1.p1":"يرص AwareLiquid ثلاثة أنظمة فرعية مشتقة من علوم الأعصاب فوق نواة سائلة زمنية مستمرة:",
+    "w1.fig1":"خط أنابيب AwareLiquid M1 الشامل — نواة LTC زمنية مستمرة + بث GWT التنافسي + نموذج عالم تنبؤي.",
+    "w1.c1":"M1 · سلسلة M         نظرية مساحة العمل العالمية (GWT)         وحدات قشرية متخصصة تتنافس على قناة بث مشتركة؛ ينتشر التمثيل الفائز إلى كل الوحدات الأخرى.",
+    "w1.c2":"M1 · سلسلة M         دمج النوم (جسر NREM)         دورات NREM اصطناعية تعيد تشغيل تنشيطات الجلسة القصيرة وتضغطها في ذاكرة رسم دائمة.",
+    "w1.c3":"O1 · سلسلة O         ديناميكيات ODE السائلة         الحالة الخفية تتطور بمعادلة تفاضلية زمنية مستمرة بثوابت زمنية قابلة للتعلم.",
+    "i1.h2":"مبني لتيارات لا تتوقف، على عتاد لا يكبر.",
+    "i1.lead":"ثلاثة اتجاهات نشر خلفها شيء حقيقي — مقاسة أو مشحونة أو كليهما. كل رقم مرتبط بكود مفتوح؛ وأي شيء بلا بيانات يقول ذلك صراحة.",
+    "i1.c1":"إدارة البطاريات         انحدار صحة الحالة على تيارات الجهد/التيار/الحرارة، على وحدة التحكم نفسها.",
+    "i1.c2":"السماعات الذكية         رصد كلمة استيقاظ دائم التشغيل حيث لا يغلق الميكروفون أبداً.",
+    "i1.c3":"المستندات المالية         أسئلة وأجوبة على ملفات أطول بكثير من نافذة السياق، مع تجميد القاعدة خلف API.",
+    "i1.also":"نستهدف أيضاً       أنظمة داخل المركبات · مساعدو الأجهزة · الروبوتات الصناعية — ملاءمة معمارية، لا بيانات تجريبية بعد.",
+    "x1.p1":"كل ادعاء أدناه مقاس على تشغيلات حقيقية ومدعوم بكود وبيانات مفتوحة.",
+    "x1.td1":"متانة العينات غير المنتظمة (بطارية SoH)",
+    "x1.td2":"أثبت 4× من LSTM/GRU عند فقدان العينات",
+    "x1.p2":"المنهجية الكاملة والبيانات الخام وسكربتات الاستنساخ: BENCHMARKS.md.",
+    "x1.fig1":"ذاكرة الاستدلال مقابل طول السياق. تنمو ذاكرة KV بـ O(n)؛ وتبقى الحالة المحمولة لسلسلة O مسطحة.",
+    "x2.p1":"تتفوق المحولات في الاسترجاع الساكن. بُني AwareLiquid لأمر أصعب: وكلاء يعملون باستمرار، يتعلمون أثناء الاستخدام دون نسيان القديم.",
+    "x2.p2":"يبني المشروعان على الشبكات العصبية السائلة من MIT. حلّت Liquid AI الاستدلال بالأوزان الساكنة؛ ونحن ندرس التعلم المستمر.",
+    "x2.li1":"أوزان مجمّدة بعد التدريب؛ داخل السياق فقط",
+    "x2.li2":"يستهدف السلاسل الزمنية الصناعية وأجهزة الحافة",
+    "x2.li3":"تحديث أوزان عبر الإنترنت — يتعلم دون نسيان",
+    "x2.li4":"يستهدف الذاكرة العرضية وإدراك الوكلاء والتكيف",
+    "x2.p3":"بحث مفتوح في التعلم المستمر بالشبكات العصبية ذات الثوابت الزمنية السائلة.",
+
   }
 };
 (function(){
