@@ -333,14 +333,15 @@ function applyLang(lang){
   }
   var next = {en:'中文', zh:'العربية', ar:'EN'}[lang] || '中文';
   document.getElementById('langBtn').textContent = next;
-  localStorage.setItem('models_lang', lang);
+  localStorage.setItem('lang', lang);
+  localStorage.setItem('models_lang', lang); // legacy mirror
 }
 document.getElementById('langBtn').addEventListener('click', function(){
   var cur = document.documentElement.lang;
   var order = {en:'zh', zh:'ar', ar:'en'};
   applyLang(order[cur] || 'zh');
 });
-(function(){ var saved = (function(){var s=localStorage.getItem('models_lang');if(s)return s;var n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})(); applyLang(saved); })();
+(function(){ var saved = (function(){var s=localStorage.getItem('lang')||localStorage.getItem('models_lang');if(s)return s;var n=(navigator.language||'en').toLowerCase();if(n.indexOf('ar')===0)return'ar';if(n.indexOf('zh')===0)return'zh';return'en';})(); applyLang(saved); })();
 </script>
 </body>
 </html>

@@ -377,10 +377,11 @@ function applyHC(lang){
     : 'HyperCode — 最强大的 AI 编程软件与工作助手 | AwareLiquid';
   var langBtn = document.getElementById('hcLangBtn');
   if (langBtn) langBtn.textContent = lang === 'en' ? '中文' : 'EN';
-  localStorage.setItem('hc_lang', lang);
+  localStorage.setItem('lang', lang);
+  localStorage.setItem('hc_lang', lang); // legacy mirror
 }
 (function(){{
-  var saved = localStorage.getItem('hc_lang') || 'zh';
+  var saved = localStorage.getItem('lang') || localStorage.getItem('hc_lang') || 'zh';
   applyHC(saved);
 }})();
 document.getElementById('hcLangBtn').addEventListener('click', function(){{

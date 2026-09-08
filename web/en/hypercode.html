@@ -321,6 +321,8 @@
         <span class="tag">订阅</span>
         <h3><span data-i18n="pr.h3">¥59 / month</span></h3>
         <p><span data-i18n="pr.p3">¥80 credits, no key management, multi-upstream failover. Pro ¥99 with ¥180 credits.</span></p>
+        <a class="btn primary" id="subBtn" href="javascript:void(0)" style="margin-top:14px;display:none" data-i18n="sub.cta">Subscribe</a>
+        <div id="subMsg" style="margin-top:10px;font-size:13px;color:var(--muted);min-height:18px"></div>
       </div>
     </div>
     <p class="platform-note" style="text-align:center; margin-top:18px;"><span data-i18n="pr.note">Currently BYOK-first; subscriptions launch soon.</span></p>
@@ -384,6 +386,56 @@ document.getElementById('hcLangBtn').addEventListener('click', function(){{
   var cur = document.documentElement.lang === 'en' ? 'en' : 'zh-CN';
   applyHC(cur === 'en' ? 'zh' : 'en');
 }});
+
+// ── Stripe subscription checkout (billing service) ──
+(function(){
+  var subBtn = document.getElementById('subBtn');
+  if (!subBtn) return;
+  var subMsg = document.getElementById('subMsg');
+  function setMsg(t, isErr){
+    if (!subMsg) return;
+    subMsg.textContent = t;
+    subMsg.style.color = isErr ? '#e07070' : 'var(--muted)';
+  }
+  // Probe billing config: only show a live button when Stripe is configured.
+  fetch('/billing/health', { cache: 'no-store' })
+    .then(function(r){ return r.json(); })
+    .then(function(h){
+      if (h && h.configured) {
+        subBtn.style.display = 'inline-flex';
+        setMsg('');
+      } else {
+        subBtn.style.display = 'none';
+        setMsg('Subscription payments are being set up — check back soon.', false);
+      }
+    })
+    .catch(function(){
+      subBtn.style.display = 'none';
+      setMsg('Subscription payments are being set up — check back soon.', false);
+    });
+  subBtn.addEventListener('click', function(){
+    subBtn.disabled = true;
+    setMsg('Opening secure checkout…', false);
+    fetch('/billing/checkout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mode: 'subscription' }),
+    })
+      .then(function(r){ return r.json().then(function(d){ return { ok: r.ok, d: d }; }); })
+      .then(function(res){
+        if (res.ok && res.d && res.d.checkout_url) {
+          window.location.href = res.d.checkout_url;
+        } else {
+          subBtn.disabled = false;
+          setMsg('Checkout is not available yet — please try again shortly.', true);
+        }
+      })
+      .catch(function(){
+        subBtn.disabled = false;
+        setMsg('Network error — please try again.', true);
+      });
+  });
+})();
 </script>
 
 </body>
