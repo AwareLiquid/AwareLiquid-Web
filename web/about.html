@@ -752,7 +752,7 @@ var I18N = {
   applyLang(l);
   lb.addEventListener('click',()=>{
     const order={en:'zh',zh:'ar',ar:'en'};
-    applyLang(order[document.documentElement.lang]||'zh');
+    applyLang(order[(localStorage.getItem('lang')||'en')]||'zh');
   });
 })();
 </script>

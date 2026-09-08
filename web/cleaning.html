@@ -382,7 +382,7 @@ function applyLang(lang){
   localStorage.setItem('cleaning_lang', lang);
 }
 document.getElementById('langBtn').addEventListener('click', function(){
-  var cur = document.documentElement.lang;
+  var cur = localStorage.getItem('cleaning_lang') || 'en';
   var order = {en:'zh', zh:'ar', ar:'en'};
   applyLang(order[cur] || 'zh');
 });
