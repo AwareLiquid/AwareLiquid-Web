@@ -299,13 +299,12 @@ a.text-link:hover{text-decoration-color:var(--fg)}
       AwareLiquid
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="/hypercode" data-i18n="nav.hc2">HyperCode</a>
       <a href="/#demo" data-i18n="nav.demo">Demo</a>
       <a href="/#models" data-i18n="nav.models">Models</a>
       <a href="/cleaning" data-i18n="nav.cleaning">Data Cleaning</a>
       <a href="/research" data-i18n="nav.research">Research</a>
       <a href="/about" class="active" aria-current="page" data-i18n="nav.about">About</a>
-      <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer" data-i18n="nav.paper">Paper</a>
-      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="nav.gh">GitHub</a>
     </nav>
     <div class="nav-actions">
       <button class="theme-btn lang-toggle" id="langBtn" title="切换语言 / Switch language">中文</button>
@@ -645,7 +644,7 @@ themeBtn.addEventListener('click',()=>{const n=isDark()?'light':'dark';document.
 // ── lang toggle (real i18n: surface content; deep prose stays English) ──
 var I18N = {
   en: {
-    "nav.demo":"Demo","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.research":"Research","nav.about":"About","nav.paper":"Paper","nav.gh":"GitHub","nav.try":"Try Demo","nav.read":"Read Research",
+    "nav.hc2":"HyperCode","nav.demo":"Demo","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.research":"Research","nav.about":"About","nav.paper":"Paper","nav.gh":"GitHub","nav.try":"Try Demo","nav.read":"Read Research",
     "hero.eyebrow":"About","hero.h1":"About AwareLiquid",
     "hero.lead":"A bio-inspired cognitive AI framework — M-Series for slow, GWT-driven thinking; O-Series for fast, liquid-ODE edge inference. Open research exploring whether neural networks can learn continuously without forgetting.",
     "c1.h":"What This Is","c2.h":"Research Focus","c3.h":"Current Status (Honest)","c4.h":"Intellectual Lineage","c5.h":"Open Science Commitment","c6.h":"Author &amp; Contact",
@@ -660,7 +659,7 @@ var I18N = {
     "ba.u.h2":"Usage guidelines","ba.u1":"Do not stretch, rotate or recolor the logo beyond the black/white variants provided.","ba.u2":"Keep clear space around the logo equal to the height of the mark.","ba.u3":"Use black on light backgrounds, white on dark backgrounds.","ba.u4":"Do not use the AwareLiquid logo in a way that implies endorsement without written permission.","ba.u5":"For questions or special requests, contact anmuning@awareliquid.ai."
   },
   zh: {
-    "nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读研究",
+    "nav.hc2":"HyperCode","nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读研究",
     "hero.eyebrow":"关于","hero.h1":"关于 AwareLiquid",
     "hero.lead":"一个受生物启发的认知 AI 框架 —— M 系列负责 GWT 驱动的慢思考;O 系列负责液态 ODE 边缘快推理。开放研究课题:神经网络能否持续学习而不遗忘。",
     "c1.h":"这是什么","c2.h":"研究焦点","c3.h":"当前状态(诚实版)","c4.h":"学术渊源","c5.h":"开放科学承诺","c6.h":"作者与联系",
@@ -675,7 +674,7 @@ var I18N = {
     "ba.u.h2":"使用规范","ba.u1":"除提供的黑白版本外,请勿拉伸、旋转或更改 logo 颜色。","ba.u2":"logo 四周保留与图形高度相等的安全留白。","ba.u3":"浅色背景用黑色版本,深色背景用白色版本。","ba.u4":"未经书面许可,请勿以暗示背书的方式使用 AwareLiquid logo。","ba.u5":"问题或特殊需求请联系 anmuning@awareliquid.ai。"
   },
   ar: {
-    "nav.demo":"العرض","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.research":"الأبحاث","nav.about":"عن الشركة","nav.paper":"الورقة","nav.gh":"GitHub","nav.try":"جرّب العرض","nav.read":"اقرأ الأبحاث",
+    "nav.hc2":"HyperCode","nav.demo":"العرض","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.research":"الأبحاث","nav.about":"عن الشركة","nav.paper":"الورقة","nav.gh":"GitHub","nav.try":"جرّب العرض","nav.read":"اقرأ الأبحاث",
     "hero.eyebrow":"عن الشركة","hero.h1":"عن AwareLiquid",
     "hero.lead":"إطار ذكاء اصطناعي معرفي مستوحى من الأحياء —— سلسلة M للتفكير البطيء الموجّه بمساحة العمل العالمية؛ وسلسلة O للاستدلال الحافّي السريع بمعادلات سائلة. بحث مفتوح حول قدرة الشبكات العصبية على التعلم المستمر بلا نسيان.",
     "c1.h":"ما هذا","c2.h":"محور البحث","c3.h":"الحالة الراهنة (بصدق)","c4.h":"النسب الفكري","c5.h":"التزام العلم المفتوح","c6.h":"المؤلف والتواصل",

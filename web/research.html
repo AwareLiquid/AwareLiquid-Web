@@ -540,13 +540,12 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       AwareLiquid
     </a>
     <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+      <a href="/hypercode" data-i18n="nav.hc2">HyperCode</a>
       <a href="/#demo" data-i18n="nav.demo">Demo</a>
       <a href="#models" data-i18n="nav.models">Models</a>
       <a href="/cleaning" data-i18n="nav.cleaning">Data Cleaning</a>
       <a href="/research" class="active" aria-current="page" data-i18n="nav.research">Research</a>
       <a href="/about" data-i18n="nav.about">About</a>
-      <a href="https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf" target="_blank" rel="noopener noreferrer" data-i18n="nav.paper">Paper</a>
-      <a href="https://github.com/AwareLiquid/M1" target="_blank" rel="noopener noreferrer" data-i18n="nav.gh">GitHub</a>
     </nav>
     <div class="nav-actions">
       <button class="theme-btn lang-toggle" id="langBtn" title="切换语言 / Switch language">中文</button>
@@ -1349,7 +1348,7 @@ window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change',()=>{
 // experimental prose stays English) ──
 var I18N = {
   en: {
-    "nav.demo":"Demo","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.research":"Research","nav.about":"About","nav.paper":"Paper","nav.gh":"GitHub","nav.try":"Try Demo","nav.read":"Read Paper",
+    "nav.hc2":"HyperCode","nav.demo":"Demo","nav.models":"Models","nav.cleaning":"Data Cleaning","nav.research":"Research","nav.about":"About","nav.paper":"Paper","nav.gh":"GitHub","nav.try":"Try Demo","nav.read":"Read Paper",
     "hero.eyebrow":"M1 · Research","hero.h1":"Experiments &amp; Results",
     "hero.lead":"An honest record of what AwareLiquid M1 has built, what the data shows, and what remains open. Every claim is tagged, reproducible, and falsifiable.",
     "hero.built":"Code runs, results reproducible","hero.signal":"Preliminary evidence, stats not conclusive","hero.target":"Direction clear, not yet achieved",
@@ -1379,7 +1378,7 @@ var I18N = {
     "fa6":"<strong>Public knowledge</strong> is the KaaS (knowledge-as-a-service) layer of the Awareness platform: a curated public-domain knowledge base seeded from the OpenAlex academic corpus (CC0), DOI-deduplicated, entity-extracted <em>with zero LLM calls</em>, embedding-indexed, and — the auditable part — its state root is anchored on-chain via <strong>ERC-8350</strong> (Sepolia), so every transition of the knowledge state has a verifiable record. Retrieval is pay-per-query. On <strong>replacing RAG</strong>, the honest formulation is: it replaces the four fragile parts of a RAG pipeline, not the generate-over-documents paradigm itself. <strong>Retrieval:</strong> zero-LLM hybrid search (BM25 + vector RRF) at 96.0% R@5 on LongMemEval — no LLM reranker. <strong>Context assembly:</strong> progressive disclosure plus sibling-chunk reassembly (3.9× token lift) and Context Pack v2 (Facts + Evidence + Open Questions) instead of stuffing raw chunks. <strong>Knowledge lifecycle:</strong> 13 structured card types with 5-way conflict detection (new / update / duplicate / contradiction / irrelevant) — RAG retrieves text as-is and never reconciles it. <strong>Persistence &amp; audit:</strong> cross-session MCP memory plus on-chain anchoring — a plain RAG index has neither. In the M1 linkage, this is the knowledge layer the DeliberationRouter reaches through <code>cloud_client</code> when the local model hits a factual blind spot."
   },
   zh: {
-    "nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读论文",
+    "nav.hc2":"HyperCode","nav.demo":"演示","nav.models":"模型","nav.cleaning":"数据清洗","nav.research":"研究","nav.about":"关于","nav.paper":"论文","nav.gh":"GitHub","nav.try":"体验演示","nav.read":"阅读论文",
     "hero.eyebrow":"M1 · 研究","hero.h1":"实验与结果",
     "hero.lead":"一份诚实的记录：AwareLiquid M1 造了什么、数据说明了什么、还有什么悬而未决。每条结论都有标签、可复现、可证伪。",
     "hero.built":"代码可运行,结果可复现","hero.signal":"初步证据,统计尚不充分","hero.target":"方向明确,尚未达成",
@@ -1409,7 +1408,7 @@ var I18N = {
     "fa6":"<strong>Public knowledge</strong> 是 Awareness 平台的 KaaS(知识即服务)层:一个由 OpenAlex 学术语料(CC0)播种的公域知识库,DOI 去重、实体抽取<em>零 LLM 调用</em>、嵌入索引,并且 —— 可审计的部分 —— 状态根通过 <strong>ERC-8350</strong>(Sepolia)锚定上链,知识状态的每次变更都有可验证记录。检索按次付费。关于<strong>替代 RAG</strong>,诚实的说法是:它替代 RAG 管线中四个脆弱的环节,而不是「在文档上生成」这个范式本身。<strong>检索:</strong>零 LLM 混合搜索(BM25 + 向量 RRF),LongMemEval 96.0% R@5,不需要 LLM 重排。<strong>上下文组装:</strong>渐进式披露 + 兄弟分块重组(3.9× token 提升)+ Context Pack v2(Facts + Evidence + Open Questions),而不是把原始块塞进提示。<strong>知识生命周期:</strong>13 类结构化卡片 + 5 类冲突检测(new / update / duplicate / contradiction / irrelevant)—— RAG 原样检索文本、从不调和冲突。<strong>持久与审计:</strong>跨会话 MCP 记忆 + 链上锚定 —— 普通 RAG 索引两者皆无。在 M1 联动中,它就是 DeliberationRouter 在本地模型遇到事实盲点时经 <code>cloud_client</code> 触达的知识层。"
   },
   ar: {
-    "nav.demo":"العرض","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.research":"الأبحاث","nav.about":"عن الشركة","nav.paper":"الورقة","nav.gh":"GitHub","nav.try":"جرّب العرض","nav.read":"اقرأ الورقة",
+    "nav.hc2":"HyperCode","nav.demo":"العرض","nav.models":"النماذج","nav.cleaning":"تنظيف البيانات","nav.research":"الأبحاث","nav.about":"عن الشركة","nav.paper":"الورقة","nav.gh":"GitHub","nav.try":"جرّب العرض","nav.read":"اقرأ الورقة",
     "hero.eyebrow":"M1 · أبحاث","hero.h1":"التجارب والنتائج",
     "hero.lead":"سجل صادق لما بناه AwareLiquid M1، وما تظهره البيانات، وما يبقى مفتوحاً. كل ادعاء موسوم وقابل لإعادة الإنتاج وقابل للتفنيد.",
     "hero.built":"الكود يعمل والنتائج قابلة لإعادة الإنتاج","hero.signal":"دليل أولي، الإحصاءات غير حاسمة","hero.target":"الاتجاه واضح، لم يتحقق بعد",
