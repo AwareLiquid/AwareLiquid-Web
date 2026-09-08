@@ -833,6 +833,14 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         <span class="ind-s ind-s-on">Deployed — customer production</span>
         <span class="ind-m">353-param on-device LTC · 1.3 ms inference · 48 B constant state · offline alerts. Customer-reported: 229 e-buses, 92% early-failure detection, 120.8-day warning lead time.</span>
       </a>
+
+      <a class="ind-cell hov" href="/cleaning">
+        <span class="ind-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 3H6a1.5 1.5 0 0 0-1.5 1.5v15A1.5 1.5 0 0 0 6 21h12a1.5 1.5 0 0 0 1.5-1.5V8.5L14 3Z"/><path d="M14 3v5.5h5.5"/><path d="M9 14.5l1.2 1.2 2.4-2.6"/></svg></span>
+        <h3 class="ind-t">Data cleaning</h3>
+        <p class="ind-d">Scanned archives, handwritten tables and blurry reports turned into clean structured data — a commercial service on the same liquid core.</p>
+        <span class="ind-s ind-s-on">Measured — service pilot</span>
+        <span class="ind-m">100% table-digit accuracy, zero hallucination · ~1h per 189-page report. See the before/after cases on the service page.</span>
+      </a>
     </div>
     <p class="ind-also"><span class="label"><span class="label-sq"></span>Also targeting</span>
       In-vehicle systems · On-device assistants · Industrial robotics — architectural fit
@@ -1201,6 +1209,10 @@ const I18N={
     'ind.c4d':'Battery AI live at a commercial platform: the liquid core runs on the pack controller itself, alerting offline with no network round-trip.',
     'ind.c4s':'Deployed — customer production',
     'ind.c4m':'353-param on-device LTC · 1.3 ms inference · 48 B constant state · offline alerts. Customer-reported: 229 e-buses, 92% early-failure detection, 120.8-day warning lead time.',
+    'ind.c5t':'Data cleaning',
+    'ind.c5d':'Scanned archives, handwritten tables and blurry reports turned into clean structured data — a commercial service on the same liquid core.',
+    'ind.c5s':'Measured — service pilot',
+    'ind.c5m':'100% table-digit accuracy, zero hallucination · ~1h per 189-page report. See the before/after cases on the service page.',
     'ind.alsoLabel':'Also targeting',
     'ind.alsoText':'In-vehicle systems · On-device assistants · Industrial robotics — architectural fit (bounded state over an unbounded session, native Δt), <strong>no pilot data yet</strong>.',
     'rh.th1':'Capability','rh.th2':'Result',
@@ -1338,6 +1350,8 @@ const I18N={
     'ind.c3s':'مُقاس — محول M2','ind.c3m':'44/48 (91.7%) عبر خمسة مجالات مستندات مالية · ~2.8 ألف رمز لكل سؤال. خط أساس انحداري، لا متصدر قوائم.',
     'ind.c4t':'سلامة البطاريات الطرفية — قيد الإنتاج','ind.c4d':'ذكاء بطاريات يعمل على منصة تجارية: النواة السائلة تعمل على وحدة تحكم الحزمة نفسها، وتُنذر دون اتصال بالشبكة.',
     'ind.c4s':'منشور — إنتاج العميل','ind.c4m':'LTC طرفي بـ 353 معلمة · استدلال 1.3 مللي ثانية · حالة ثابتة 48 بايت · تنبيهات دون اتصال. أرقام العميل: 229 حافلة كهربائية، 92% كشف أعطال مبكر، 120.8 يوماً زمن الإنذار المبكر.',
+    'ind.c5t':'تنظيف البيانات','ind.c5d':'أرشيفات ممسوحة ضوئياً وجداول مكتوبة بخط اليد وتقارير ضبابية تتحول إلى بيانات منظمة نظيفة — خدمة تجارية على النواة السائلة نفسها.',
+    'ind.c5s':'مُقاس — خدمة تجريبية','ind.c5m':'دقة أرقام الجداول 100%، صفر هلاوس · نحو ساعة لكل تقرير من 189 صفحة. انظر حالات قبل/بعد على صفحة الخدمة.',
     'ind.alsoLabel':'نستهدف أيضاً','ind.alsoText':'أنظمة داخل المركبات · مساعدو الأجهزة · الروبوتات الصناعية — ملاءمة معمارية (حالة محدودة على جلسة غير محدودة، Δt أصلي)، <strong>لا بيانات تجريبية بعد</strong>.',
     'rh.th1':'القدرة','rh.th2':'النتيجة',
     'rh.r1c':'ذاكرة استدلال O(1) (سلسلة O)','rh.r1v':'0.381 ميجابايت مسطحة → أصغر بـ 8063× عند مليون رمز',
@@ -1483,6 +1497,10 @@ const I18N={
     'ind.c4d':'电池 AI 已在商业平台上线：液态核心直接跑在电池包控制器上，离线告警，无需网络往返。',
     'ind.c4s':'已部署 — 客户生产环境',
     'ind.c4m':'353 参数端侧 LTC · 1.3 ms 推理 · 48 B 恒定状态 · 离线告警。客户口径：229 台电动公交，92% 早期失效检出，120.8 天预警提前量。',
+    'ind.c5t':'数据清洗',
+    'ind.c5d':'扫描档案、手写表格、模糊报告 → 干净的结构化数据——基于同一液态核心的商业服务。',
+    'ind.c5s':'已实测 — 服务试点',
+    'ind.c5m':'表格数字 100% 准确、零幻觉 · 189 页报告约 1 小时。前后对比案例见服务页。',
     'ind.alsoLabel':'同时瞄准',
     'ind.alsoText':'车载系统 · 端侧助手 · 工业机器人——架构契合（无界会话下的有界状态、原生 Δt），<strong>尚无试点数据</strong>。',
     'rh.th1':'能力','rh.th2':'结果',
