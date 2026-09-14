@@ -1014,6 +1014,34 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/LLM-Visualization" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
         </div>
       </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">Spiking</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">Human Brain Simulation — Pulse + Connectome</h3>
+        <p class="mc-desc">The only line built on real brain connectomes, not metaphors. Sparse spiking SNN from the fly (165K neurons) and human H01 (16K neurons) connectomes: 96.8% vs 98.3% (MNIST) at ~105&times; lower energy; human topology +3.2 pts over random.</p>
+        <div class="mc-meta">
+          <span>connectome &middot; spiking</span><span>open experiments</span><span>MIT</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/human-brain-simulation" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">Reasoning</span>
+          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+        </div>
+        <h3 class="mc-name">M2 — Next-Generation Reasoning Engine</h3>
+        <p class="mc-desc">Closes the gap M1 doesn't cover: M1 wins on memory form-factor, M2 exists to fix reasoning. Thesis — knowledge externalized, the core only reasons; a 2B engine targets 70B on math/code reasoning, streaming memory, continual learning. Evidence-gated.</p>
+        <div class="mc-meta">
+          <span>reasoning line</span><span>2B target</span><span>MIT</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M2" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
@@ -1282,6 +1310,14 @@ const I18N={
     'mc.9.desc':'Interactive 3D visualization of the MT-LNN architecture (extended from bbycroft/llm-viz).',
     'mc.9.meta':'<span>3D explorer</span><span>web</span><span>MIT</span>',
     'mc.9.cta1':'GitHub →',
+    'mc.10.series':'Spiking','mc.10.status':'↓ Clone & run','mc.10.name':'Human Brain Simulation — Pulse + Connectome',
+    'mc.10.desc':'The only line built on real brain connectomes, not metaphors. Sparse spiking SNN from the fly (165K neurons) and human H01 (16K neurons) connectomes: 96.8% vs 98.3% (MNIST) at ~105× lower energy; human topology +3.2 pts over random.',
+    'mc.10.meta':'<span>connectome &middot; spiking</span><span>open experiments</span><span>MIT</span>',
+    'mc.10.cta1':'GitHub →',
+    'mc.11.series':'Reasoning','mc.11.status':'↓ Clone & run','mc.11.name':'M2 — Next-Generation Reasoning Engine',
+    'mc.11.desc':'Closes the gap M1 does not cover: M1 wins on memory form-factor, M2 exists to fix reasoning. Thesis — knowledge externalized, the core only reasons; a 2B engine targets 70B on math/code reasoning, streaming memory, continual learning. Evidence-gated.',
+    'mc.11.meta':'<span>reasoning line</span><span>2B target</span><span>MIT</span>',
+    'mc.11.cta1':'GitHub →',
     'why.eyebrow':'Why AwareLiquid','why.h2':'Two Advantages, Measured Not Marketed',
     'why.lead':'For teams shipping models to the edge: one advantage on cost, one on capability. Every number links to open code and data.',
     'why.c1':'<span class="adv-eyebrow">Advantage 1 · Cost &amp; Footprint</span><h3>Lightweight by Architecture</h3><ul><li><strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens</li><li><strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference</li><li><strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)</li></ul>',
@@ -1570,6 +1606,14 @@ const I18N={
     'mc.9.desc':'MT-LNN 架构的交互式 3D 可视化（扩展自 bbycroft/llm-viz）。',
     'mc.9.meta':'<span>3D 探索器</span><span>网页</span><span>MIT</span>',
     'mc.9.cta1':'GitHub →',
+    'mc.10.series':'脉冲','mc.10.status':'↓ 克隆运行','mc.10.name':'人脑模拟 — 脉冲 + 连接组',
+    'mc.10.desc':'唯一基于真实大脑连接组、而非隐喻的路线。从果蝇全脑（16.5 万神经元）和人脑皮层 H01（1.6 万神经元）连接组构建稀疏脉冲 SNN：MNIST 96.8% vs 98.3%，能耗省约 105 倍；人脑拓扑比随机高 3.2 点。',
+    'mc.10.meta':'<span>连接组 &middot; 脉冲</span><span>开放实验</span><span>MIT</span>',
+    'mc.10.cta1':'GitHub →',
+    'mc.11.series':'推理','mc.11.status':'↓ 克隆运行','mc.11.name':'M2 — 下一代推理引擎',
+    'mc.11.desc':'补上 M1 没覆盖的短板：M1 赢在记忆形态，M2 补推理能力。命题——知识外置，核心只做推理；2B 引擎在数学/代码推理、流式记忆、持续学习上对标 70B。证据门控。',
+    'mc.11.meta':'<span>推理线</span><span>2B 目标</span><span>MIT</span>',
+    'mc.11.cta1':'GitHub →',
     'why.eyebrow':'为什么选 AwareLiquid','why.h2':'两大优势，实测而非营销',
     'why.lead':'面向把模型部署到端侧的企业：一项成本优势，一项能力优势。每个数字都链接到公开代码与数据。',
     'why.c1':'<span class="adv-eyebrow">优势一 · 成本与体积</span><h3>架构级的轻量</h3><ul><li><strong>0.381 MB</strong> 恒定携带状态，与上下文长度无关——1M tokens 下比 KV 缓存<strong>小 8,063 倍</strong></li><li><strong>4800 万–1.28 亿参数</strong> 边缘模型，纯 CPU 推理——无 GPU 账单</li><li><strong>5 MB</strong> ONNX 导出，常开唤醒词（O1-Sound）</li></ul>',
