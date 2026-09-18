@@ -887,6 +887,29 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <li data-i18n="a7.li3"><strong>HOLA (2026)</strong> — a fixed delta-rule state plus a surprise-selected exact KV cache reaches lower Wikitext perplexity than a full-attention Transformer++ at 340M (−15%). This is external evidence for the hybrid "compressed state + exact recall" design family we build in.</li>
       </ul>
 
+      <h3 data-i18n="cmp.h3">Competitive research comparison</h3>
+      <p data-i18n="cmp.p1">Where the measured, citable facts place us against the adjacent routes — every number links to open code and data; anything without data says so.</p>
+      <div class="verify-table-wrap" style="margin-bottom:20px">
+        <table class="verify-table">
+          <thead>
+            <tr><th data-i18n="cmp.c1">Route</th><th data-i18n="cmp.c2">Paradigm</th><th data-i18n="cmp.c3">Memory</th><th data-i18n="cmp.c4">Scale</th><th data-i18n="cmp.c5">Edge</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>AwareLiquid</strong> M / O-series</td><td data-i18n="cmp.r1.p">Continuous-time liquid core + brain-inspired modules</td><td><strong>O(1)</strong> · 0.381 MB flat (8063× @1M)</td><td>48M – 2B</td><td>✅ native</td></tr>
+            <tr><td>Liquid AI · LFM2</td><td data-i18n="cmp.r2.p">SSM + linear attention + MoE</td><td>state + KV</td><td>350M – 24B</td><td>partial</td></tr>
+            <tr><td>Meta · JEPA family</td><td data-i18n="cmp.r3.p">Latent-space prediction (non-autoregressive)</td><td>—</td><td>80M – 2B</td><td>✗</td></tr>
+            <tr><td>MiniMind</td><td data-i18n="cmp.r4.p">Qwen3-style decoder-only</td><td>KV O(T)</td><td>26M – 198M</td><td>✅ CPU</td></tr>
+            <tr><td>Mamba / SSM family</td><td data-i18n="cmp.r5.p">Selective state space</td><td>constant state</td><td>100M – 10B+</td><td>partial</td></tr>
+            <tr><td>Modern Transformer</td><td data-i18n="cmp.r6.p">Autoregressive attention</td><td>KV O(T)</td><td>any</td><td>✗</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li data-i18n="cmp.li1"><strong>JEPA is the same route, not a competitor.</strong> Meta's V-JEPA 2 (1.2B, 1M+ h video) proves latent-space prediction on vision/robotics — zero-shot Franka pick-and-place from 62 h of robot video. We push the same route into continuous-time industrial sensing. Their stated next steps (hierarchical + multimodal JEPA) are our architecture's native shape (τ ladder + audio/sensor/physics).</li>
+        <li data-i18n="cmp.li2"><strong>Honest non-advantage, kept on the record:</strong> at convergence our 125M reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse on language modeling. The case rests on memory and efficiency, not PPL.</li>
+        <li data-i18n="cmp.li3"><strong>MiniMind proves the small-model training chain, not a paradigm.</strong> 64M from scratch in ~2 h for ~¥3 — a full pretrain→SFT→RL pipeline in readable PyTorch. It is a standard Transformer; we borrow its training discipline (and its DPO/GRPO references live in M2), not its architecture.</li>
+      </ul>
+
       <h3 data-i18n="a7.h3b">What we changed as a result (training recipe, five items)</h3>
       <ul>
         <li data-i18n="a7.li4"><strong>Distillation-first for the 2B line</strong> — Gemma 2's controlled study: a 2B student distilled from a larger teacher scores 67.7 vs 60.3 from scratch at 500B tokens. Our 2B now trains with teacher logits, not raw next-token.</li>
@@ -1448,6 +1471,22 @@ var I18N = {
     "a7.li7":"<strong>Decay path forced to fp32</strong> — PyTorch's autocast marks softplus/exp as bf16-unstable; our liquid decay computation now runs fp32 under mixed precision (measured: bf16 training degraded PPL 3–7.5×, forward-only divergence was 0.37% — the damage is in training dynamics).",
     "a7.li8":"<strong>Curriculum learning</strong> — difficulty-ordered data, matching LFM2 and our own length-curriculum results (×8 extrapolation stable to 16K).",
     "a7.p2":"Survey references: LFM2 technical report (arXiv 2511.23404), LrcSSM (arXiv 2505.21717), HOLA (arXiv 2607.02303), Gemma 2 (arXiv 2408.00118), Titans (arXiv 2501.00663), SYNPRO (arXiv 2605.17849), prescriptive scaling laws (arXiv 2605.01640), DroPE (arXiv 2512.12167).",
+    "cmp.h3":"Competitive research comparison",
+    "cmp.p1":"Where the measured, citable facts place us against the adjacent routes — every number links to open code and data; anything without data says so.",
+    "cmp.c1":"Route",
+    "cmp.c2":"Paradigm",
+    "cmp.c3":"Memory",
+    "cmp.c4":"Scale",
+    "cmp.c5":"Edge",
+    "cmp.r1.p":"Continuous-time liquid core + brain-inspired modules",
+    "cmp.r2.p":"SSM + linear attention + MoE",
+    "cmp.r3.p":"Latent-space prediction (non-autoregressive)",
+    "cmp.r4.p":"Qwen3-style decoder-only",
+    "cmp.r5.p":"Selective state space",
+    "cmp.r6.p":"Autoregressive attention",
+    "cmp.li1":"<strong>JEPA is the same route, not a competitor.</strong> Meta's V-JEPA 2 (1.2B, 1M+ h video) proves latent-space prediction on vision/robotics — zero-shot Franka pick-and-place from 62 h of robot video. We push the same route into continuous-time industrial sensing. Their stated next steps (hierarchical + multimodal JEPA) are our architecture's native shape (τ ladder + audio/sensor/physics).",
+    "cmp.li2":"<strong>Honest non-advantage, kept on the record:</strong> at convergence our 125M reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse on language modeling. The case rests on memory and efficiency, not PPL.",
+    "cmp.li3":"<strong>MiniMind proves the small-model training chain, not a paradigm.</strong> 64M from scratch in ~2 h for ~¥3 — a full pretrain→SFT→RL pipeline in readable PyTorch. It is a standard Transformer; we borrow its training discipline (and its DPO/GRPO references live in M2), not its architecture.",
     "f0.q1":"What is the difference between M1 and O1?",
     "f0.a1":"<strong>M1 (M-Series)</strong> is the cognitive slow-thinking engine — it layers GWT competitive broadcast, NREM sleep consolidation with SHY synaptic downscaling, and EWC continual learning on the LTC backbone. It targets episodic memory, agent cognition, and catastrophic forgetting research. <strong>O1 (O-Series)</strong> is the edge fast-thinking engine — pure continuous-time liquid ODE, constant 4 KB memory state regardless of context length, no KV-cache growth, targets CPU/edge deployment at millisecond latency. Both share the MT-LNN backbone; full cognitive module integration into O1 is in progress.",
     "f0.q2":"Is this production-ready?",
@@ -1603,6 +1642,22 @@ var I18N = {
     "a7.li7":"衰减路径强制 fp32——PyTorch 的 autocast 把 softplus/exp 标记为 bf16 不稳定;我们的液态衰减必须精确。",
     "a7.li8":"课程学习——按难度排序的数据,与 LFM2 和我们自己的长度课程结果一致。",
     "a7.p2":"调研引用:LFM2 技术报告(arXiv 2511.23404)、LrcSSM(arXiv 2505.21717)、HOLA(见参考)。",
+    "cmp.h3":"竞品研究对比",
+    "cmp.p1":"可测量、可引用的实测数据,把我们放在相邻技术路线的坐标系里——每个数字都链到开源代码和数据;没有数据支撑的都会明说。",
+    "cmp.c1":"技术路线",
+    "cmp.c2":"架构范式",
+    "cmp.c3":"记忆机制",
+    "cmp.c4":"规模",
+    "cmp.c5":"端侧",
+    "cmp.r1.p":"连续时间液态核 + 类脑模块",
+    "cmp.r2.p":"SSM + 线性注意力 + MoE",
+    "cmp.r3.p":"隐空间预测(非自回归)",
+    "cmp.r4.p":"Qwen3 式 decoder-only",
+    "cmp.r5.p":"选择性状态空间",
+    "cmp.r6.p":"自回归注意力",
+    "cmp.li1":"<strong>JEPA 是同一条路线,不是对手。</strong>Meta 的 V-JEPA 2(1.2B,100 万+ 小时视频)在视觉/机器人上证明了隐空间预测路线——仅用 62 小时机器人视频就实现零样本 Franka 抓取。我们把同一条路线推进到连续时间工业传感。他们声明的下一步(层级化 + 多模态 JEPA)正是我们架构的原生形态(τ 阶梯 + 音频/传感/物理)。",
+    "cmp.li2":"<strong>诚实的劣势,留在记录里:</strong>收敛时我们的 125M 达到 88.93 验证 PPL,现代 Transformer 是 78.86——语言建模差 11.3%。我们的立论基础是记忆与效率,不是 PPL。",
+    "cmp.li3":"<strong>MiniMind 证明的是小模型训练链,不是范式。</strong>64M 从零训练约 2 小时、约 ¥3——可读 PyTorch 里的完整 预训练→SFT→RL 管线。它是标准 Transformer;我们借用它的训练纪律(其 DPO/GRPO 参考实现放在 M2),不是它的架构。",
     "f0.q1":"M1 和 O1 的区别是什么?",
     "f0.a1":"<strong>M1(M 系列)</strong>是认知慢思考引擎——在 LTC 骨干上叠加 GWT 竞争广播、带 SHY 突触降标的 NREM 睡眠巩固,以及 EWC 持续学习。它面向情景记忆、智能体认知与灾难性遗忘研究。<strong>O1(O 系列)</strong>是边缘快思考引擎——纯连续时间液态 ODE,恒定 4 KB 内存状态与上下文长度无关,无 KV 缓存增长,面向毫秒级延迟的 CPU/边缘部署。两者共享 MT-LNN 骨干;认知模块向 O1 的完整集成仍在进行中。",
     "f0.q2":"这可以用于生产吗?",
@@ -1770,6 +1825,22 @@ var I18N = {
     "a7.li7":"مسار الاضمحلال يُفرض fp32 — يصنف autocast في PyTorch دوال softplus/exp كغير مستقرة في bf16؛ اضمحلالنا السائل يجب أن يكون دقيقاً.",
     "a7.li8":"التعلم بالمنهاج — بيانات مرتبة بالصعوبة، بما يتسق مع LFM2 ونتائج منهاج الطول لدينا.",
     "a7.p2":"مراجع المسح: تقرير LFM2 التقني (arXiv 2511.23404)، LrcSSM (arXiv 2505.21717)، HOLA (انظر المراجع).",
+    "cmp.h3":"مقارنة البحوث التنافسية",
+    "cmp.p1":"أين تضعنا الحقائق المقاسة القابلة للاستشهاد مقابل المسارات المجاورة — كل رقم مرتبط بكود وبيانات مفتوحة؛ وأي شيء بلا بيانات يُذكر صراحة.",
+    "cmp.c1":"المسار",
+    "cmp.c2":"النموذج",
+    "cmp.c3":"الذاكرة",
+    "cmp.c4":"الحجم",
+    "cmp.c5":"الطرفية",
+    "cmp.r1.p":"نواة سائلة زمنية مستمرة + وحدات مستوحاة من الدماغ",
+    "cmp.r2.p":"SSM + انتباه خطي + MoE",
+    "cmp.r3.p":"تنبؤ في الفضاء الكامن (غير ذاتي الانحدار)",
+    "cmp.r4.p":"فكّ تشفير فقط بأسلوب Qwen3",
+    "cmp.r5.p":"فضاء حالة انتقائي",
+    "cmp.r6.p":"انتباه ذاتي الانحدار",
+    "cmp.li1":"<strong>JEPA هو نفس المسار، وليس منافسًا.</strong> يثبت V-JEPA 2 من Meta (1.2B، أكثر من مليون ساعة فيديو) التنبؤ في الفضاء الكامن على الرؤية والروبوتات — إمساك Franka بدون أمثلة من 62 ساعة فقط من فيديو الروبوت. نحن ندفع المسار نفسه إلى الاستشعار الصناعي الزمني المستمر. خطواتهم التالية المعلنة (JEPA هرمي + متعدد الوسائط) هي الشكل الأصلي لمعماريتنا (سلم τ + الصوت والاستشعار والفيزياء).",
+    "cmp.li2":"<strong>عيب صريح، يُحفظ في السجل:</strong> عند التقارب يصل نموذجنا 125M إلى 88.93 PPL للتحقق مقابل 78.86 للمحوّل الحديث — أسوأ بنسبة 11.3% في نمذجة اللغة. الحجة تقوم على الذاكرة والكفاءة، لا على PPL.",
+    "cmp.li3":"<strong>يثبت MiniMind سلسلة تدريب النموذج الصغير، وليس النموذج.</strong> 64M من الصفر في ~ساعتين مقابل ~¥3 — خط أنابيب كامل تدريب مسبق→SFT→RL في PyTorch مقروء. إنه محوّل قياسي؛ نستعير انضباط تدريبه (وتعيش مراجعه DPO/GRPO في M2)، لا معمارياته.",
     "b8.li1":"كل الكود وسكربتات التجارب والإعدادات القابلة للاستنساخ: github.com/AwareLiquid/M1",
     "b8.li2":"تفاصيل البنية والتدريب المسبق: الورقة التقنية (PDF)",
     "b8.li3":"العرض المباشر: AwareLiquid Demo · نظرة المشروع: About",
