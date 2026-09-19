@@ -2236,4 +2236,18 @@
 
 
 
+
+  <url>
+    <loc>https://awareliquid.ai/ar/guides-hypercode-vs-cursor</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://awareliquid.ai/ar/guides-ai-coding-assistant</loc>
+    <lastmod>2026-09-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
