@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الوصول إلى API | AwareLiquid M1</title>
+<meta name="description" content="استدعِ نموذج AwareLiquid M1 المتكرر السائل عبر واجهة API متوافقة مع OpenAI.">
+<link rel="canonical" href="https://awareliquid.ai/ar/api">
+<link rel="alternate" hreflang="ar" href="https://awareliquid.ai/ar/api">
+<link rel="alternate" hreflang="ar-SA" href="https://awareliquid.ai/ar/api">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/api">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/api">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://awareliquid.ai/ar/api">
+<meta property="og:title" content="الوصول إلى API — AwareLiquid M1">
+<meta property="og:description" content="استدعِ نموذج AwareLiquid M1 المتكرر السائل عبر واجهة API متوافقة مع OpenAI.">
+<meta property="og:image" content="https://awareliquid.ai/static/og-image.png">
+<meta property="og:site_name" content="AwareLiquid">
+<meta property="og:locale" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="الوصول إلى API — AwareLiquid M1">
+<meta name="twitter:description" content="استدعِ نموذج AwareLiquid M1 المتكرر السائل عبر واجهة API متوافقة مع OpenAI.">
+<meta name="twitter:image" content="https://awareliquid.ai/static/og-image.png">
+<style>
+:root{--bg:#0e0e10;--fg:#ececf1;--muted:#9a9aa5;--card:#17171b;--border:#2a2a31;--accent:#59b0f6;--mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+  --font-serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Noto Naskh Arabic",serif;
+  --font-label:var(--mono);
+  --tracking-display:-.05em; --tracking-h2:-.023em; --tracking-h3:-.025em;
+  --tracking-label:.1em;
+  --rule:var(--border);
+  --section-gap:80px; --section-pad:128px;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.75 "Segoe UI","Tahoma","Noto Naskh Arabic",system-ui,-apple-system,sans-serif}
+.wrap{max-width:760px;margin:0 auto;padding:48px 20px 80px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+h1{font-size:28px;margin:0 0 6px}h2{font-size:19px;margin:36px 0 10px}
+p,li{color:var(--muted)}strong{color:var(--fg)}
+pre{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.55;color:var(--fg);direction:ltr;text-align:left}
+code{font-family:ui-monospace,Consolas,monospace}
+.pill{display:inline-block;background:var(--card);border:1px solid var(--border);border-radius:2px;padding:2px 12px;font-size:13px;color:var(--muted);margin-left:6px}
+.back{font-size:14px}
+table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{border:1px solid var(--border);padding:8px 10px;text-align:right}th{color:var(--fg)}td{color:var(--muted)}
+.site-footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted);line-height:1.6}
+.site-footer .entity{opacity:.7}
+h1,h2,h3,h4,.serif{font-family:var(--font-serif);font-weight:400}
+.label{font-family:var(--font-label);font-size:11px;line-height:18px;font-weight:500;text-transform:uppercase;letter-spacing:var(--tracking-label);color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="back"><a href="/">&larr; awareliquid.ai</a></p>
+  <h1>الوصول إلى API</h1>
+  <p><span class="pill">متوافق مع OpenAI</span><span class="pill">model: awareliquid-m1</span><span class="pill">streaming</span></p>
+
+  <p><strong>M1</strong> نموذج هجين بحجم 1.1B مع مُهايئ تكرار سائل MT-v2s
+  (ذاكرة عرضية سريعة الأوزان + تلاشٍ انتقائي — البنية الموثّقة في
+  <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md">القياسات</a> لدينا).
+  يمكنك استدعاؤه بأي SDK من OpenAI أو عبر HTTP مباشرة.</p>
+
+  <h2>1&nbsp;&nbsp;احصل على رمز وصول</h2>
+  <p>سجّل الدخول في <a href="https://relay.awareliquid.ai">relay.awareliquid.ai</a>
+  وأنشئ رمز API (لوحة التحكم ← Tokens). تُعرض الحصص والاستخدام لكل رمز على حدة.</p>
+
+  <h2>2&nbsp;&nbsp;استدعِ النموذج</h2>
+<pre><code>curl https://relay.awareliquid.ai/v1/chat/completions \
+  -H "Authorization: Bearer $YOUR_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "awareliquid-m1",
+    "messages": [{"role": "user", "content": "عرّف عن نفسك في جملة"}],
+    "max_tokens": 128,
+    "stream": true
+  }'</code></pre>
+
+  <p>أو باستخدام SDK بايثون الخاص بـ OpenAI:</p>
+<pre><code>from openai import OpenAI
+client = OpenAI(base_url="https://relay.awareliquid.ai/v1",
+                api_key="YOUR_TOKEN")
+r = client.chat.completions.create(
+    model="awareliquid-m1",
+    messages=[{"role": "user", "content": "Hello!"}],
+)
+print(r.choices[0].message.content)</code></pre>
+
+  <h2>المعاملات</h2>
+  <table>
+    <tr><th>الحقل</th><th>ملاحظات</th></tr>
+    <tr><td><code>model</code></td><td><code>awareliquid-m1</code></td></tr>
+    <tr><td><code>messages</code></td><td>أدوار OpenAI القياسية؛ وتُحترم رسالتك <code>system</code> كما هي</td></tr>
+    <tr><td><code>max_tokens</code></td><td>بحد أقصى 512</td></tr>
+    <tr><td><code>temperature</code>, <code>top_p</code></td><td><code>temperature: 0</code> = اختيار الجشع</td></tr>
+    <tr><td><code>stream</code></td><td>مقاطع SSE بصيغة OpenAI، وتنتهي بـ <code>[DONE]</code></td></tr>
+  </table>
+
+  <h2>ملاحظات</h2>
+  <ul>
+    <li>كل طلب يعمل بحالة تكرارية نظيفة؛ لا تستخدم الواجهة ذاكرة واجهة الدردشة الدائمة.</li>
+    <li>يُقدَّم عبر المعالج (CPU)؛ توقّع زمن استجابة بالثواني. يُنصح بتشغيل البث.</li>
+    <li>بطاقة النموذج والقياسات الصادقة والتصحيحات:
+        <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md">BENCHMARKS.md</a>.</li>
+  </ul>
+
+  <footer class="site-footer">
+    © 2026 AwareLiquid · عرض بحثي مفتوح · <a href="/privacy">الخصوصية</a> · <a href="/terms">الشروط</a><br>
+    <span class="entity">深圳三体暗源科技有限公司 Shenzhen Sansi Dark Source Technology Co., Ltd 版权所有</span>
+  </footer>
+</div>
+</body>
+</html>
