@@ -88,3 +88,29 @@
 ## 六、一句话总结
 
 **别做"大量冷邮件"——做两件事:① 用 HyperCode/Awareness 把外联做得像人一样精准且可公开;② 把公开的产品指标当成真正的融资证据(Polsia 的 live 大盘比任何 deck 都硬)。** 外联是收口,分发才是引擎。
+
+---
+
+## 七、Polsia 的"联系人"与可借鉴点(2026-10 调研)
+
+**能不能拿到 Polsia 的联系人?**
+- **私有名单/data room/客户邮箱:拿不到,也不该拿**——爬取既违法也违背本 playbook 第三节的反垃圾原则。
+- **公开的投资人(cap table):可以拿,且有用**——这是最好的"同类投资人参考名单":
+
+| 基金 | 角色 | 备注 |
+|---|---|---|
+| **Sound Ventures** | A 轮领投 | Ashton Kutcher & Guy Oseary——放大器型 |
+| **True Ventures** | pre-seed 领投 + A 轮跟投 | Tony Conrad;跨轮背书是最强尽调信号 |
+| Offline Ventures · Adjacent · Tekton Ventures · Drysdale Ventures | A 轮 | — |
+| **Vaynerfund** | A 轮 | Gary Vaynerchuk——放大器型 |
+| Ben Cera(创始人) | — | LinkedIn `in/benbroca`,X `@bencera_`,polsia.com(公开) |
+
+> 用法:**不是抄它的 cap table**,而是从中提炼"哪一类基金会投 agent/AI infra + 偏好 build-in-public"。Sound/Vaynerfund 这类"会转发你"的放大器基金,值得我们优先接触。
+
+**代码里只借鉴这 4 点(其余不管):**
+1. **`SANDBOX_MODE=true` 默认**——不真实发送,直到显式打开(= 我们 `crm.py` 的默认)。
+2. **节奏用 Celery beat**:Email Outreach 每 3h;其余按日。
+3. **数据模型**:`company / tasks(agent_type,priority,status,scheduled_date) / agent_runs(tokens,cost,duration) / activity / knowledge`。
+4. **autonomy gate + 人工闸门**。
+
+**许可证提醒**:官方 `PolsiaAI/Polsia` **无 License** → 只能读、不能复用;开源复刻 `AI-Builder-Club/open-polsia` 是 **MIT** → 可合法复用其架构。
