@@ -1,9 +1,15 @@
 {
+  "profile": "awareliquid",
   "daily_cap": 25,
   "warmup_cap_day1": 10,
   "fit_threshold": 60,
+  "fit_weights": { "thesis_overlap_per_tag": 15, "thesis_overlap_max_tags": 4, "stage_match": 20, "warm_intro": 25, "region_match": 5 },
   "unsubscribe_url": "https://awareliquid.ai/raise#unsubscribe",
   "sender": "anmuning@awareliquid.ai",
   "complaint_halt_pct": 0.1,
-  "provider_configured": false
+  "provider": "",
+  "provider_api_key": "",
+  "provider_configured": false,
+  "awareness_endpoint": "",
+  "awareness_api_key": ""
 }
