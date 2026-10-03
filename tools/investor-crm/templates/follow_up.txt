@@ -1,0 +1,11 @@
+Subject: Re: {{hook}}
+
+Hi {{partner}} — quick follow-up. Since my last note we shipped another open
+model and a new measured result (all on https://awareliquid.ai/models).
+
+No pressure; if the timing's off, a one-line "not now" is perfectly fine and
+I'll stop here.
+
+— An
+
+If you'd rather not hear from me again: {{unsubscribe_url}}

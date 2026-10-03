@@ -1,0 +1,23 @@
+Subject: {{hook}}
+
+Hi {{partner}},
+
+I run AwareLiquid — we build HyperCode, an AI agent that takes one instruction
+and works autonomously for hours, and a research line on brain-inspired edge
+models (open weights, reproducible results).
+
+I'm reaching out because {{hook}}. Two things you can verify right now:
+
+- Our 2B research checkpoint finished at 200K steps (val PPL 2.4106), byte-level.
+- A sparse spiking network derived from real connectome statistics hits near-dense
+  accuracy at an estimated ~107x lower energy.
+
+We're running our own fundraise with our own agent (sourcing, drafting, triage —
+the calls are mine). All of it is build-in-public at https://awareliquid.ai/raise.
+
+Worth a 20-minute call?
+
+— An
+AwareLiquid Pte. Ltd. (Singapore)
+
+If you'd rather not hear from me again: {{unsubscribe_url}}

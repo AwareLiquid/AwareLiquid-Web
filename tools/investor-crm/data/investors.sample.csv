@@ -1,0 +1,4 @@
+id,fund,partner,email,thesis_tags,stage,check_usd,region,warm_intro,last_touch,status,fit_note,hook
+1,Example Amplifier Capital,Jane Doe,jane@example.com,agents|developer tools|open source,pre-seed,"25000",us,yes,,"","They write publicly about agent tooling and dev-led GTM",
+2,Example Edge Fund,Sam Lee,sam@example.com,edge ai|llm,seed,"100000",sg,no,,"","Portfolio has on-device inference; no agent-memory bet yet",
+3,Example Memory Ventures,Alex Kim,alex@example.com,memory|continual learning,seed,"50000",global,no,,"","Their thesis literally lists 'agent memory' as a gap",

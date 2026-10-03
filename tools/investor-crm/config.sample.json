@@ -1,0 +1,9 @@
+{
+  "daily_cap": 25,
+  "warmup_cap_day1": 10,
+  "fit_threshold": 60,
+  "unsubscribe_url": "https://awareliquid.ai/raise#unsubscribe",
+  "sender": "anmuning@awareliquid.ai",
+  "complaint_halt_pct": 0.1,
+  "provider_configured": false
+}
