@@ -1,0 +1,49 @@
+name: deploy-awareliquid
+
+# Auto-deploy awareliquid.ai: on push to main, SSH to the Vultr server,
+# fast-forward the repo, and restart the app container. Replaces the manual
+# `cd /root/AwareLiquid-Web && git pull && docker restart echomtlnn_prod`.
+#
+# Requires repo secret VULTR_SSH_KEY = the private key whose public half is in
+# /root/.ssh/authorized_keys on 45.76.18.203.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-awareliquid
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VULTR_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Pull latest and restart the app container
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=accept-new \
+              -o ConnectTimeout=25 \
+              root@45.76.18.203 '
+            set -e
+            cd /root/AwareLiquid-Web
+            git pull --ff-only origin main
+            echo "HEAD=$(git rev-parse --short HEAD)"
+            docker restart echomtlnn_prod
+            echo DEPLOY_DONE
+          '
+
+      - name: Verify live pages
+        run: |
+          for p in / /hypercode /vibe-coding /ai-coworker /best-ai-coding-2026; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 30 "https://awareliquid.ai$p")
+            echo "$p -> $code"
+          done
