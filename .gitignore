@@ -5,3 +5,5 @@
 *.synctex.gz
 .DS_Store
 Thumbs.db
+.omo/
+.playwright-mcp/
