@@ -47,25 +47,26 @@ jobs:
           ssh -i ~/.ssh/deploy_key \
               -o StrictHostKeyChecking=accept-new \
               root@45.76.18.203 "cat > /tmp/patch_caddy.py" <<'PY'
-          import sys
+          import sys, re
           p = "/root/M1/deploy/Caddyfile"
           s = open(p).read()
-          good_header = "\t@newpages path /vibe-coding /ai-coworker /best-ai-coding-2026\n\thandle @newpages {\n"
-          bad_header = "\thandle /vibe-coding /ai-coworker /best-ai-coding-2026 {\n"
+          PATHS = "/vibe-coding /ai-coworker /best-ai-coding-2026 /raise"
+          header = "\t@newpages path " + PATHS + "\n\thandle @newpages {\n"
+          body = "\t\t@noext not path_regexp \\.(html|css|js|png|xml|ico|json|txt)$\n\t\trewrite @noext {uri}.html\n\t\troot * /web\n\t\tfile_server\n\t}\n\n"
           if "@newpages" in s:
-              print("CADDY_OK")
+              new = re.sub(r"@newpages path[^\n]*", "@newpages path " + PATHS, s)
+              if new != s:
+                  open(p, "w").write(new); print("CADDY_UPDATED")
+              else:
+                  print("CADDY_OK")
               sys.exit(0)
+          bad_header = "\thandle /vibe-coding /ai-coworker /best-ai-coding-2026 {\n"
           if bad_header in s:
-              open(p, "w").write(s.replace(bad_header, good_header, 1))
-              print("CADDY_FIXED")
-              sys.exit(0)
+              open(p, "w").write(s.replace(bad_header, header, 1)); print("CADDY_FIXED"); sys.exit(0)
           marker = "\thandle_path /adapter/* {"
           if marker not in s:
-              print("MARKER_NOT_FOUND")
-              sys.exit(1)
-          block = good_header + "\t\t@noext not path_regexp \\.(html|css|js|png|xml|ico|json|txt)$\n\t\trewrite @noext {uri}.html\n\t\troot * /web\n\t\tfile_server\n\t}\n\n"
-          open(p, "w").write(s.replace(marker, block + marker, 1))
-          print("CADDY_PATCHED")
+              print("MARKER_NOT_FOUND"); sys.exit(1)
+          open(p, "w").write(s.replace(marker, header + body + marker, 1)); print("CADDY_PATCHED")
           PY
           ssh -i ~/.ssh/deploy_key root@45.76.18.203 "python3 /tmp/patch_caddy.py"
           ssh -i ~/.ssh/deploy_key root@45.76.18.203 "docker exec caddy_prod caddy reload --config /etc/caddy/Caddyfile && echo CADDY_RELOADED"
