@@ -33,16 +33,16 @@ jobs:
               -o StrictHostKeyChecking=accept-new \
               -o ConnectTimeout=25 \
               root@45.76.18.203 '
-            set -e
+            set +e
             cd /root/AwareLiquid-Web
             git config core.autocrlf false
             git fetch origin main
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
             echo "--- caddy mounts ---"
-            docker inspect caddy_prod --format '{{json .Mounts}}'
-            echo "--- Caddyfile candidates on host ---"
-            find /root /opt /srv /etc -maxdepth 4 -iname 'Caddyfile*' 2>/dev/null | head -20
+            docker inspect caddy_prod | grep -E 'Source|Destination' | head -12
+            echo "--- Caddyfile on host ---"
+            find / -maxdepth 4 -iname Caddyfile 2>/dev/null | head
             echo "--- compose files ---"
             find /root -maxdepth 3 -iname 'docker-compose*.yml' 2>/dev/null | head
             echo DIAG_DONE
