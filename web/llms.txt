@@ -12,6 +12,7 @@
 ## Product
 - [HyperCode — AI coding & work assistant](https://awareliquid.ai/hypercode): The most powerful AI coding software and work assistant. DeepSeek-powered, 229 built-in skills, autonomous long-running tasks, cross-session memory.
 - [Valuation Tool — AI A-share stock valuation](https://awareliquid.ai/valuation): Free AI stock valuation tool. Enter a ticker to get real-time quote + DCF + Comps snapshot. Built on HyperCode.
+- [Human Brain Simulation — sparse SNN from real connectomes](https://awareliquid.ai/research#human-brain-simulation): connectome statistical laws → near-dense accuracy at ~107–112× lower energy. Weights: https://huggingface.co/AwareLiquid/Sparse-SNN
 - [Data Cleaning — scanned archive digitization](https://awareliquid.ai/cleaning): Pure scanned PDFs (typewriter text, handwritten tables, drawings) converted into clean structured HTML. Verified performance, protected internals.
 
 ## English

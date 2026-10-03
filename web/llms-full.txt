@@ -56,3 +56,12 @@
 - HyperCode vs Cursor / Claude Code / Copilot: https://awareliquid.ai/guides-hypercode-vs-cursor
 - AI coding assistant guide: https://awareliquid.ai/guides-ai-coding-assistant
 - Research: https://awareliquid.ai/research · Models: https://awareliquid.ai/models
+
+## Human Brain Simulation — Sparse SNN from real connectomes
+
+> The only line built on real brain connectomes, not metaphors. Key finding: a connectome's *static topology* gives no advantage, but its *statistical laws* transfer.
+
+- **Negative result (honest):** using the Drosophila male-CNS connectome as a fixed wiring mask gave no measurable advantage over random/structured-sparse graphs (5 experiments: classification, temporal, robustness, sample-efficiency, plasticity).
+- **What transfers:** sparsity 0.09%, scale-free degree distribution (max/mean ≈ 75), strong small-worldness (clustering 6.65× random, path length 2.39), E/I ratio 60/40.
+- **Measured:** sparse SNN (784→800→10, 5% density, LIF, surrogate-gradient) — MNIST 96.83% (dense 98.32%, −1.5pt), Fashion-MNIST 87.07% (dense 87.56%, −0.5pt). Energy ~107–112× lower (45nm-CMOS model estimate, not measured on hardware). ResNet-SNN CIFAR-10 ceiling ~85%.
+- **Links:** code https://github.com/AwareLiquid/human-brain-simulation · weights https://huggingface.co/AwareLiquid/Sparse-SNN · demo https://huggingface.co/spaces/AwareLiquid/Sparse-SNN-demo

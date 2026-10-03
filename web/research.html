@@ -784,6 +784,33 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <hr class="divider">
 
+      <hr class="divider">
+
+      <h2 id="human-brain-simulation" data-i18n="hbs.h2">5b · Human Brain Simulation — Sparse Spiking Networks from Real Connectomes</h2>
+      <p data-i18n="hbs.lead"><span class="tag built">Measured</span> The only line built on real brain connectomes, not metaphors. We asked whether the <em>structure</em> of a real brain helps a spiking network learn. The honest answer splits in two: the connectome&rsquo;s <strong>static topology</strong> does not &mdash; but its <strong>statistical laws</strong> do.</p>
+
+      <h3 data-i18n="hbs.h3a">What did not work: the topology</h3>
+      <p data-i18n="hbs.p1">Using the <em>Drosophila</em> male-CNS connectome as a fixed wiring mask gave <strong>no measurable advantage</strong> over random or structured-sparse graphs &mdash; five experiments (classification, temporal, robustness, sample-efficiency, plasticity) were all indistinguishable. We report this as a genuine negative result.</p>
+
+      <h3 data-i18n="hbs.h3b">What transferred: the statistical laws</h3>
+      <p data-i18n="hbs.p2">The laws <em>do</em> matter: <strong>0.09% sparsity</strong>, a long-tail (scale-free) degree distribution (max/mean &#8776; 75), strong <strong>small-worldness</strong> (clustering 6.65&#215; random, path length 2.39), and an <strong>E/I ratio of 60/40</strong>. A trainable sparse SNN built from these laws matches a dense MLP to within ~1 point at an estimated <strong>~107&ndash;112&#215; lower energy</strong>.</p>
+
+      <figure class="chart-fig wide">
+        <img src="/static/charts/human_brain_simulation.svg"
+             alt="Left: a sparse network following the connectome statistical laws (0.09% sparsity, scale-free degree, small-world, E/I 60/40). Right: MNIST 96.8% vs 98.3% and Fashion-MNIST 87.1% vs 87.6% for sparse SNN vs dense MLP, with a ~107-112x lower-energy estimate."
+             loading="lazy">
+        <figcaption data-i18n="hbs.fig">Fig. 5b &mdash; Sparse SNN (784&#8594;800&#8594;10, 5% density, LIF, surrogate-gradient) vs a dense MLP. The accuracy gap is small but real (&minus;1.5 pt MNIST, &minus;0.5 pt Fashion). Energy is a 45nm-CMOS model estimate (Horowitz 2014), <strong>not measured on neuromorphic hardware</strong>.</figcaption>
+      </figure>
+
+      <h3 data-i18n="hbs.h3c">Why it matters</h3>
+      <p data-i18n="hbs.p3">If a sparse spiking network can hold near-dense accuracy at two orders of magnitude lower energy, always-on inference becomes viable where a dense model cannot run at all. The finding is about <strong>structural priors</strong>: it is not &ldquo;copy the fly brain&rdquo;, it is &ldquo;borrow the statistics that evolution converged on&rdquo;. A ResNet-style SNN reaches ~85% on CIFAR-10 under this recipe &mdash; an honest ceiling, stated as one.</p>
+
+      <div class="card">
+        <h3 data-i18n="hbs.links">Reproduce &amp; download</h3>
+        <p><a href="https://github.com/AwareLiquid/human-brain-simulation" target="_blank" rel="noopener noreferrer">Code &amp; full experiment report</a> &#183; <a href="https://huggingface.co/AwareLiquid/Sparse-SNN" target="_blank" rel="noopener noreferrer">Weights on HuggingFace</a> &#183; <a href="https://huggingface.co/spaces/AwareLiquid/Sparse-SNN-demo" target="_blank" rel="noopener noreferrer">Interactive demo</a></p>
+      </div>
+
+      <hr class="divider">
       <h2 id="deployments" data-i18n="s6">Deployments · Measured Pilot Evidence</h2>
       <p data-i18n="a6.p1">Three deployment directions with real measurements behind them — the same results the homepage references, with methodology. Each links to open code; boundaries are stated, not implied.</p>
 
@@ -1437,6 +1464,16 @@ var I18N = {
     "a5.p2":"MT-LNN and a GRU baseline are compared on a velocity → position path-integration task to check whether hexagonal grid cells emerge spontaneously (standard threshold: grid score &gt; 0.3).",
     "a5.built":"         <span class=\"tag built\">Built</span> Trajectory generation, loss, and grid score autocorrelation analysis are all runnable.<br>         <span class=\"tag target\">Not Yet</span> All runs to date have been CPU-scale smoke tests. Neither GRU nor MT-LNN has crossed the 0.3 grid-score threshold. Meaningful comparison requires serious GPU-scale training — <strong>no spatial advantage is claimed at this time</strong>.       ",
     "a6.p1":"Three deployment directions with real measurements behind them — the same results the homepage references, with methodology. Each links to open code; boundaries are stated, not implied.",
+    "hbs.h2":"5b · Human Brain Simulation — Sparse Spiking Networks from Real Connectomes",
+    "hbs.lead":"<span class=\"tag built\">Measured</span> The only line built on real brain connectomes, not metaphors. We asked whether the <em>structure</em> of a real brain helps a spiking network learn. The answer splits in two: the <strong>static topology</strong> does not &mdash; but its <strong>statistical laws</strong> do.",
+    "hbs.h3a":"What did not work: the topology",
+    "hbs.p1":"Using the <em>Drosophila</em> male-CNS connectome as a fixed wiring mask gave <strong>no measurable advantage</strong> over random or sparse graphs — five experiments were indistinguishable. A genuine negative result, reported as one.",
+    "hbs.h3b":"What transferred: the statistical laws",
+    "hbs.p2":"The laws <em>do</em> matter: 0.09% sparsity, a scale-free degree distribution (max/mean ≈ 75), strong small-worldness (clustering 6.65× random), and an E/I ratio of 60/40. A sparse SNN built from them matches a dense MLP within ~1 point at an estimated ~107–112× lower energy.",
+    "hbs.fig":"Fig. 5b — Sparse SNN (784→800→10, 5% density, LIF) vs a dense MLP: small but real accuracy gap. Energy is a 45nm-CMOS model estimate, not measured on hardware.",
+    "hbs.h3c":"Why it matters",
+    "hbs.p3":"Near-dense accuracy at two orders of magnitude lower energy makes always-on inference viable where a dense model cannot run. The finding is about structural priors: not copying the fly brain, but borrowing the statistics evolution converged on. A ResNet-SNN reaches ~85% on CIFAR-10 — an honest ceiling.",
+    "hbs.links":"Reproduce & download",
     "a6.h3":"Battery Health Estimation — Irregular Sensor Streams",
     "a6.p2":"<span class=\"tag built\">Measured</span> On real NASA PCoE cell data, with 80% of samples randomly dropped: degradation of <strong>+7.7%</strong> vs <strong>+31.1%</strong> (LSTM) and <strong>+32.8%</strong> (GRU). 2.6 KB streaming state, 10 seeds, whole-cell held-out validation. The liquid ODE handles native &Delta;t — no resampling, no imputation.",
     "a6.p3":"<span class=\"tag built\">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.",
@@ -1608,6 +1645,16 @@ var I18N = {
     "a5.p2":"MT-LNN 与 GRU 基线在速度 → 位置路径积分任务上对比,以检验多尺度循环表征是否比同尺度 RNN 更好地跟踪连续位置。",
     "a5.built":"<strong>Built</strong> 轨迹生成、损失与栅格分数自相关分析全部可运行并可复现。",
     "a6.p1":"三个有真实测量的部署方向——与首页呈现的结果一致。",
+    "hbs.h2":"5b · 人脑模拟 —— 由真实连接体启发的稀疏脉冲网络",
+    "hbs.lead":"<span class=\"tag built\">实测</span> 唯一基于真实脑连接体（而非比喻）的研究线。我们问：真实大脑的<em>结构</em>能否帮助脉冲网络学习？答案一分为二：连接体的<strong>静态拓扑</strong>不行，但其<strong>统计规律</strong>可以。",
+    "hbs.h3a":"没用的：拓扑本身",
+    "hbs.p1":"把果蝇雄性中枢连接体当作固定布线掩码，相对随机/结构化稀疏图<strong>没有可测优势</strong>——五项实验（分类/时序/鲁棒/样本效率/可塑性）均无差别。这是如实的负结果。",
+    "hbs.h3b":"有效的：统计规律",
+    "hbs.p2":"规律<em>确实</em>重要：<strong>0.09% 稀疏度</strong>、无标度度分布（最大/均值 ≈ 75）、强小世界性（聚类为随机的 6.65×）、兴奋/抑制比 60/40。据此构建的稀疏 SNN 在能耗估计低约 107–112× 时，精度与稠密 MLP 仅差约 1 个百分点。",
+    "hbs.fig":"图 5b —— 稀疏 SNN（784→800→10，5% 密度，LIF）对比稠密 MLP。精度差距小但真实。能耗为 45nm CMOS 模型估算，非硬件实测。",
+    "hbs.h3c":"为什么重要",
+    "hbs.p3":"在低两个数量级的能耗下保持接近稠密的精度，让常开推理在稠密模型无法运行之处成为可能。这是关于结构先验的发现：不是复制果蝇大脑，而是借用进化收敛出的统计规律。该配方下 ResNet-SNN 在 CIFAR-10 约 85%。",
+    "hbs.links":"复现与下载",
     "a6.h3":"电池健康估计——不规则传感器流",
     "a6.p2":"<strong>Measured</strong> 在真实 NASA PCoE 电池数据上,随机丢弃 80% 采样:与 LSTM/GRU/Transformer 相比退化最小;携带状态恒定 2.6 KB,与上下文长度无关。",
     "a6.p3":"<strong>Measured</strong> O1-Sound:单关键词 &ldquo;hello&rdquo; 在 FRR 0.146 @ FAR 0.046(3 种子,英文);ONNX 导出 5 MB,流式状态 5,120 B。",
