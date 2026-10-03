@@ -1,0 +1,17 @@
+# Reference funders — STARTING POINTS, not a contact list.
+#
+# These are funds that publicly backed Polsia (public cap table) and similar
+# agent / AI-infra companies. They are listed as a PATTERN — "which kinds of
+# funds back this category" — NOT to copy anyone's cap table.
+#
+# Emails are intentionally BLANK: fill them yourself from the fund's public
+# contact page, and only contact funds you have a genuine thesis fit with.
+# Never buy or scrape a list. See ../../reports/FUNDRAISE-COLD-START-PLAYBOOK.md.
+id,fund,partner,email,thesis_tags,stage,check_usd,region,warm_intro,last_touch,status,fit_note,hook
+101,Sound Ventures,,,agents|ai infra|founder-led,seed,,us,no,,research,"Reference: led Polsia's $30M A round; amplifier fund (creator/tech audiences)","backed the same 'AI runs the company' thesis"
+102,True Ventures,Tony Conrad,,ai infra|open source|founder-led,pre-seed,,us,no,,research,"Reference: led Polsia pre-seed and rolled into the A; pattern-breaking thesis","writes publicly about backing pattern-breakers early"
+103,Offline Ventures,,,ai infra|developer tools,seed,,us,no,,research,"Reference: Polsia A round",""
+104,Adjacent,,,agents|developer tools,seed,,us,no,,research,"Reference: Polsia A round",""
+105,Tekton Ventures,,,ai infra|llm,seed,,us,no,,research,"Reference: Polsia A round",""
+106,Drysdale Ventures,,,ai infra,seed,,us,no,,research,"Reference: Polsia A round",""
+107,Vaynerfund,Gary Vaynerchuk,,founder-led|developer tools|agents,seed,,us,no,,research,"Reference: Polsia A round; amplifier fund","build-in-public distribution matches their audience"
