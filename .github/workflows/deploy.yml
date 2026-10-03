@@ -39,12 +39,12 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
-            echo "--- docker ps -a ---"
-            docker ps -a --format "{{.Names}} | {{.Status}} | {{.Image}}"
-            echo "--- mtlnn_prod last 50 log lines ---"
-            docker logs --tail 50 mtlnn_prod 2>&1 || true
-            echo "--- caddyfile ---"
-            docker exec caddy_prod cat /etc/caddy/Caddyfile 2>/dev/null || true
+            echo "--- caddy mounts ---"
+            docker inspect caddy_prod --format '{{json .Mounts}}'
+            echo "--- Caddyfile candidates on host ---"
+            find /root /opt /srv /etc -maxdepth 4 -iname 'Caddyfile*' 2>/dev/null | head -20
+            echo "--- compose files ---"
+            find /root -maxdepth 3 -iname 'docker-compose*.yml' 2>/dev/null | head
             echo DIAG_DONE
           '
 
