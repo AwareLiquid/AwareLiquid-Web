@@ -27,30 +27,53 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null
 
-      - name: Pull latest and restart the app container
+      - name: Deploy (align repo to origin)
         run: |
           ssh -i ~/.ssh/deploy_key \
               -o StrictHostKeyChecking=accept-new \
               -o ConnectTimeout=25 \
               root@45.76.18.203 '
-            set +e
+            set -e
             cd /root/AwareLiquid-Web
             git config core.autocrlf false
             git fetch origin main
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
-            echo "--- caddy mounts ---"
-            docker inspect caddy_prod | grep -E "Source|Destination" | head -12
-            echo "--- Caddyfile on host ---"
-            find / -maxdepth 4 -iname Caddyfile 2>/dev/null | head
-            echo "--- compose files ---"
-            find /root -maxdepth 3 -iname 'docker-compose*.yml' 2>/dev/null | head
-            echo DIAG_DONE
+            echo DEPLOY_OK
           '
+
+      - name: Ensure Caddy serves the new root pages
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=accept-new \
+              root@45.76.18.203 "cat > /tmp/patch_caddy.py" <<'PY'
+          import sys
+          p = "/root/M1/deploy/Caddyfile"
+          s = open(p).read()
+          if "/vibe-coding" in s:
+              print("CADDY_ALREADY")
+              sys.exit(0)
+          marker = "\thandle_path /adapter/* {"
+          if marker not in s:
+              print("MARKER_NOT_FOUND")
+              sys.exit(1)
+          block = (
+              "\thandle /vibe-coding /ai-coworker /best-ai-coding-2026 {\n"
+              "\t\t@noext not path_regexp \\.(html|css|js|png|xml|ico|json|txt)$\n"
+              "\t\trewrite @noext {uri}.html\n"
+              "\t\troot * /web\n"
+              "\t\tfile_server\n"
+              "\t}\n\n"
+          )
+          open(p, "w").write(s.replace(marker, block + marker, 1))
+          print("CADDY_PATCHED")
+          PY
+          ssh -i ~/.ssh/deploy_key root@45.76.18.203 "python3 /tmp/patch_caddy.py"
+          ssh -i ~/.ssh/deploy_key root@45.76.18.203 "docker exec caddy_prod caddy reload --config /etc/caddy/Caddyfile && echo CADDY_RELOADED"
 
       - name: Verify live pages
         run: |
-          for p in / /hypercode /vibe-coding /ai-coworker /best-ai-coding-2026; do
+          for p in / /hypercode /vibe-coding /ai-coworker /best-ai-coding-2026 /en/vibe-coding /en/ai-coworker /en/best-ai-coding-2026; do
             code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 30 "https://awareliquid.ai$p")
             echo "$p -> $code"
           done
