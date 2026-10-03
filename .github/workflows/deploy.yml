@@ -35,7 +35,12 @@ jobs:
               root@45.76.18.203 '
             set -e
             cd /root/AwareLiquid-Web
-            git pull --ff-only origin main
+            # The deploy target is not a working repo: the working tree can carry
+            # line-ending drift (checked out CRLF vs committed LF) that makes
+            # `git pull` abort. Force-align to origin instead of merging.
+            git config core.autocrlf false
+            git fetch origin main
+            git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
             docker restart echomtlnn_prod
             echo DEPLOY_DONE
