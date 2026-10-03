@@ -40,7 +40,7 @@ jobs:
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
             echo "--- caddy mounts ---"
-            docker inspect caddy_prod | grep -E 'Source|Destination' | head -12
+            docker inspect caddy_prod | grep -E "Source|Destination" | head -12
             echo "--- Caddyfile on host ---"
             find / -maxdepth 4 -iname Caddyfile 2>/dev/null | head
             echo "--- compose files ---"
