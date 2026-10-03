@@ -35,25 +35,17 @@ jobs:
               root@45.76.18.203 '
             set -e
             cd /root/AwareLiquid-Web
-            # The deploy target is not a working repo: the working tree can carry
-            # line-ending drift (checked out CRLF vs committed LF) that makes
-            # `git pull` abort. Force-align to origin instead of merging.
             git config core.autocrlf false
             git fetch origin main
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
-            echo "--- new page files present? ---"
-            ls -1 web/vibe-coding.html web/ai-coworker.html web/best-ai-coding-2026.html 2>&1 || true
-            echo "--- containers ---"
-            docker ps --format "{{.Names}} | {{.Image}}"
-            NAME=$(docker ps --format "{{.Names}}" | grep -i mtlnn | grep -vi sciqa | head -n1 || true)
-            echo "restarting [$NAME]"
-            if [ -n "$NAME" ]; then docker restart "$NAME"; fi
-            echo "--- caddy config ---"
+            echo "--- docker ps -a ---"
+            docker ps -a --format "{{.Names}} | {{.Status}} | {{.Image}}"
+            echo "--- mtlnn_prod last 50 log lines ---"
+            docker logs --tail 50 mtlnn_prod 2>&1 || true
+            echo "--- caddyfile ---"
             docker exec caddy_prod cat /etc/caddy/Caddyfile 2>/dev/null || true
-            echo "--- caddy version ---"
-            docker exec caddy_prod caddy version 2>/dev/null || true
-            echo DEPLOY_DONE
+            echo DIAG_DONE
           '
 
       - name: Verify live pages
