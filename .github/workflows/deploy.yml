@@ -42,7 +42,15 @@ jobs:
             git fetch origin main
             git reset --hard origin/main
             echo "HEAD=$(git rev-parse --short HEAD)"
-            docker restart echomtlnn_prod
+            echo "--- new page files present? ---"
+            ls -1 web/vibe-coding.html web/ai-coworker.html web/best-ai-coding-2026.html 2>&1 || true
+            echo "--- containers ---"
+            docker ps --format "{{.Names}} | {{.Image}}"
+            NAME=$(docker ps --format "{{.Names}}" | grep -i mtlnn | grep -vi sciqa | head -n1 || true)
+            echo "restarting [$NAME]"
+            if [ -n "$NAME" ]; then docker restart "$NAME"; fi
+            echo "--- caddy config ---"
+            docker exec caddy_prod sh -c 'cat /etc/caddy/Caddyfile 2>/dev/null' 2>&1 | head -80 || true
             echo DEPLOY_DONE
           '
 
