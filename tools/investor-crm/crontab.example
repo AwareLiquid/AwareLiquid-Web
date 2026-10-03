@@ -1,0 +1,19 @@
+# Investor outreach cadence — example crontab (not installed).
+#
+# Polsia runs its Email Outreach agent every 3 hours via Celery beat. This is
+# the equivalent for our skeleton. The guardrails inside crm.py (daily cap,
+# warm-up, suppression, approval gate) still apply on every run — so even if
+# this fires, nothing goes out that shouldn't.
+#
+# Install with:  crontab tools/investor-crm/crontab.example
+# (edit the path first). Nothing is sent until config.json has
+# provider_configured: true AND you passed --apply somewhere.
+
+# Every 3 hours, 09:00–18:00 on weekdays: process the approved queue.
+0 9,12,15,18 * * 1-5  cd /path/to/AwareLiquid-Web/tools/investor-crm && /usr/bin/python3 crm.py send --apply >> cron.log 2>&1
+
+# Once a day: rescore the list (thesis/eligibility can change).
+30 8 * * 1-5  cd /path/to/AwareLiquid-Web/tools/investor-crm && /usr/bin/python3 crm.py score >> cron.log 2>&1
+
+# Once a day: draw the funnel report.
+55 18 * * 1-5  cd /path/to/AwareLiquid-Web/tools/investor-crm && /usr/bin/python3 crm.py report >> cron.log 2>&1

@@ -59,3 +59,18 @@ in front of it:
 - buy or scrape lists; contact anyone on suppression; send attachments/short
   links on a first touch; exceed the cap; send from a cold domain; ever let the
   agent sign or commit to terms.
+
+## Cadence (borrowed from Polsia)
+
+Polsia's Email Outreach agent runs **every 3 hours** (Celery beat). The
+equivalent here is `crontab.example`: score daily, process the approved queue
+every 3h (09/12/15/18 on weekdays), report daily. The guardrails still apply on
+every run, so a cron fire never sends anything that shouldn't go.
+
+## Advisory mode (recommended next step)
+
+`crm.py` is the deterministic, safety-first core. To make it *agentic* — have
+HyperCode draft the one unique `hook` per investor and Awareness remember each
+touch — run the model only for the drafting step and keep the send path here.
+That way the agent proposes, and the human approves.
+
