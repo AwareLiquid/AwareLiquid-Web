@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="/static/favicon-dark.png" type="image/png">
 <title>Model Downloads — AwareLiquid</title>
-<meta name="description" content="Download AwareLiquid model weights — M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge. Open weights on GitHub Releases.">
+<meta name="description" content="Download the full AwareLiquid model family — M2-2B (1.93B byte-level, PPL 2.4106), M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge, O1-Qwen05 adapter, O1-Sound wake-word, Sparse-SNN. Open weights on HuggingFace.">
 <link rel="canonical" href="https://awareliquid.ai/models">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Model Downloads — AwareLiquid">
-<meta name="twitter:description" content="Download AwareLiquid model weights — M1-128M hybrid, M1 TinyLlama adapter, O1-48M edge. Open weights on GitHub Releases.">
+<meta name="twitter:description" content="The full AwareLiquid model family: M2-2B, M1-128M, M1 TinyLlama adapter, O1-48M, O1-Qwen05 adapter, O1-Sound, Sparse-SNN. Open weights on HuggingFace.">
 <meta name="twitter:image" content="https://awareliquid.ai/static/og-image.png">
 <meta property="og:title" content="Model Downloads — AwareLiquid">
-<meta property="og:description" content="Open model weights: M1-128M, TinyLlama + MT adapter, O1-48M. Download and run on your own hardware.">
+<meta property="og:description" content="Open model weights: M2-2B, M1-128M, TinyLlama + MT adapter, O1-48M, O1-Qwen05 adapter, O1-Sound, Sparse-SNN. Download and run on your own hardware.">
 <meta property="og:site_name" content="AwareLiquid">
 <meta property="og:locale" content="en_US">
 <meta property="og:locale:alternate" content="zh_CN">
@@ -152,18 +152,60 @@
           <span class="mc-note" data-i18n="m3.note">194MB checkpoint · gpt2 tokenizer</span>
         </div>
       </article>
-      <article class="model-card" data-status="training">
+      <article class="model-card" data-status="download">
         <div class="mc-head">
-          <span class="mc-series">M-Series</span>
-          <span class="mc-status s-tr" data-i18n="m4.status">◐ Training</span>
+          <span class="mc-series">M-Series · M2</span>
+          <span class="mc-status s-dl" data-i18n="m4.status">↓ Download</span>
         </div>
-        <h3 class="mc-name">M1-2B</h3>
-        <p class="mc-desc" data-i18n="m4.desc">1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.</p>
-        <p class="mc-use" data-i18n="m4.use"><span class="u-label">Best for</span> Stronger capability once training converges.</p>
-        <div class="mc-meta"><span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span></div>
+        <h3 class="mc-name">M2-2B</h3>
+        <p class="mc-desc" data-i18n="m4.desc">1.93B-parameter M2 preset (2080d × 34L × 16 heads), byte-level tokenizer. The baseline run <strong>completed at 200,000 steps</strong> — final val PPL 2.4106, context-flat (2.72 / 2.72 / 2.68 at 128 / 256 / 512). A language-scaling research milestone, not an instruct model.</p>
+        <p class="mc-use" data-i18n="m4.use"><span class="u-label">Best for</span> Byte-level language-scaling research.</p>
+        <div class="mc-meta"><span>1.93B params</span><span>34 layers · 2080d</span><span>byte-level · vocab 256</span><span>PPL 2.4106</span></div>
         <div class="mc-cta">
-          <span class="btn" style="cursor:default" data-i18n="m4.cta">Weights when it converges</span>
-          <span class="mc-note" data-i18n="m4.note">Training on rented A100</span>
+          <a class="btn primary" href="https://huggingface.co/AwareLiquid/M2-2B" target="_blank" rel="noopener noreferrer" data-i18n="btn.hf">Download on HuggingFace ↓</a>
+          <span class="mc-note" data-i18n="m4.note">MIT · 200K-step final · safetensors + t2b_200k.pt</span>
+        </div>
+      </article>
+      <article class="model-card" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series">O-Series</span>
+          <span class="mc-status s-dl" data-i18n="m5.status">↓ Download</span>
+        </div>
+        <h3 class="mc-name">O1-Qwen05-Adapter</h3>
+        <p class="mc-desc" data-i18n="m5.desc">MT-LNN residual adapter on a frozen Qwen2.5-0.5B-Instruct, mounted at 6 of 24 layers, with 12.4M trainable parameters (2.5%). Initialised near-identity so the base capability is preserved; a deliberately short 500-step research checkpoint, not a converged model.</p>
+        <p class="mc-use" data-i18n="m5.use"><span class="u-label">Best for</span> Research on liquid adapters over an instruct base.</p>
+        <div class="mc-meta"><span>0.5B base + 12.4M</span><span>6 adapters · every 4th layer</span><span>research</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://huggingface.co/AwareLiquid/O1-Qwen05-Adapter" target="_blank" rel="noopener noreferrer" data-i18n="btn.hf">Download on HuggingFace ↓</a>
+          <span class="mc-note" data-i18n="m5.note">MIT · 500-step checkpoint · Qwen2.5-0.5B-Instruct base</span>
+        </div>
+      </article>
+      <article class="model-card" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series">O-Series</span>
+          <span class="mc-status s-dl" data-i18n="m6.status">↓ Download</span>
+        </div>
+        <h3 class="mc-name">O1-Sound</h3>
+        <p class="mc-desc" data-i18n="m6.desc">Always-on wake-word spotter on the O-Series liquid core. Holds a constant 5,120-byte carried state no matter how long the microphone stays open, and fires on a greeting ("hello", "hola", "bonjour", "你好"). Streaming ONNX graph: 5.03 MB fp32 / 1.27 MB int8.</p>
+        <p class="mc-use" data-i18n="m6.use"><span class="u-label">Best for</span> Battery-friendly always-on keyword spotting.</p>
+        <div class="mc-meta"><span>~1.3M params</span><span>5,120 B constant state</span><span>ONNX · int8</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer" data-i18n="btn.hf">Download on HuggingFace ↓</a>
+          <a class="btn" href="https://huggingface.co/spaces/AwareLiquid/O1-Sound-demo" target="_blank" rel="noopener noreferrer" data-i18n="btn.try">Try the demo →</a>
+        </div>
+      </article>
+      <article class="model-card" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series">Research</span>
+          <span class="mc-status s-dl" data-i18n="m7.status">↓ Download</span>
+        </div>
+        <h3 class="mc-name">Sparse-SNN</h3>
+        <p class="mc-desc" data-i18n="m7.desc">Sparse spiking neural networks whose structural masks follow the statistical laws of the real Drosophila connectome (5% density, LIF neurons, surrogate-gradient training). MNIST 96.83%, Fashion-MNIST 87.07% — near-dense accuracy at an estimated ~107–112× lower energy.</p>
+        <p class="mc-use" data-i18n="m7.use"><span class="u-label">Best for</span> Energy-efficient edge classification research.</p>
+        <div class="mc-meta"><span>784→800→10</span><span>5% density</span><span>96.83% MNIST</span></div>
+        <div class="mc-cta">
+          <a class="btn primary" href="https://huggingface.co/AwareLiquid/Sparse-SNN" target="_blank" rel="noopener noreferrer" data-i18n="btn.hf">Download on HuggingFace ↓</a>
+          <a class="btn" href="https://huggingface.co/spaces/AwareLiquid/Sparse-SNN-demo" target="_blank" rel="noopener noreferrer" data-i18n="btn.try">Try the demo →</a>
         </div>
       </article>
     </div>
@@ -210,17 +252,41 @@
             <td><span class="s-dl" data-i18n="cmp.r3.status">↓ Download</span></td>
           </tr>
           <tr>
-            <td class="cmp-name">M1-2B</td>
-            <td data-i18n="cmp.r4.best">Stronger capability — training in progress</td>
-            <td class="num">1.9B</td>
+            <td class="cmp-name">M2-2B</td>
+            <td data-i18n="cmp.r4.best">Byte-level language-scaling research</td>
+            <td class="num">1.93B</td>
+            <td class="num">512 tokens</td>
+            <td class="num">—</td>
+            <td><span class="s-dl" data-i18n="cmp.r4.status">↓ Download</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">O1-Qwen05-Adapter</td>
+            <td data-i18n="cmp.r5.best">Liquid adapter on an instruct base (research)</td>
+            <td class="num">0.5B + 12.4M</td>
             <td class="num">—</td>
             <td class="num">—</td>
-            <td><span class="s-tr" data-i18n="cmp.r4.status">◐ Training</span></td>
+            <td><span class="s-dl" data-i18n="cmp.r5.status">↓ Download</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">O1-Sound</td>
+            <td data-i18n="cmp.r6.best">Always-on wake-word spotting</td>
+            <td class="num">~1.3M</td>
+            <td class="num">—</td>
+            <td class="num">5,120 B (O(1))</td>
+            <td><span class="s-dl" data-i18n="cmp.r6.status">↓ Download</span></td>
+          </tr>
+          <tr>
+            <td class="cmp-name">Sparse-SNN</td>
+            <td data-i18n="cmp.r7.best">Energy-efficient edge classification</td>
+            <td class="num">~1.6M</td>
+            <td class="num">—</td>
+            <td class="num">—</td>
+            <td><span class="s-dl" data-i18n="cmp.r7.status">↓ Download</span></td>
           </tr>
         </tbody>
       </table>
     </div>
-    <p class="cmp-note" data-i18n="cmp.note">Research family (O1-Anti, C1, O1-Sound, AwareLiquid-Physic): clone &amp; run from <a href="https://github.com/AwareLiquid" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid</a>.</p>
+    <p class="cmp-note" data-i18n="cmp.note">Weights on <a href="https://huggingface.co/AwareLiquid" target="_blank" rel="noopener noreferrer">HuggingFace (AwareLiquid)</a>. More research lines (O1-Anti, C1, AwareLiquid-Physic, human-brain-simulation): clone &amp; run from <a href="https://github.com/AwareLiquid" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid</a>.</p>
   </section>
 
   <section>
@@ -247,19 +313,28 @@ var I18N = {
     "m1.status":"● Live on site","m1.desc":"From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103. English text continuation.","m1.note":"514MB serve checkpoint · gpt2 tokenizer",
     "m2.status":"● Live on site","m2.desc":"Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese.","m2.note":"24.8MB checkpoint · replicate the live demo",
     "m3.status":"↓ Download","m3.desc":"Attention-free O-series edge model. Constant 0.381MB carried state regardless of context — the O(1) memory line. Runs on CPU.","m3.note":"194MB checkpoint · gpt2 tokenizer",
-    "m4.status":"◐ Training","m4.desc":"1.9B-parameter hybrid (2912d × 35L) in training. Learning-rate scheduling bug fixed — validation PPL falling steadily (107 → 74.75, -30%). Weights when the run converges.","m4.cta":"Weights when it converges","m4.note":"Training on rented A100",
+    "m4.status":"↓ Download","m4.desc":"1.93B-parameter M2 preset (2080d × 34L × 16 heads), byte-level tokenizer. Baseline run completed at 200,000 steps — final val PPL 2.4106, context-flat. A language-scaling research milestone, not an instruct model.","m4.note":"MIT · 200K-step final · safetensors + t2b_200k.pt",
+    "m5.status":"↓ Download","m5.desc":"MT-LNN residual adapter on a frozen Qwen2.5-0.5B-Instruct, mounted at 6 of 24 layers, 12.4M trainable (2.5%). Initialised near-identity; a short 500-step research checkpoint.","m5.note":"MIT · 500-step checkpoint · Qwen2.5-0.5B-Instruct base",
+    "m6.status":"↓ Download","m6.desc":"Always-on wake-word spotter on the O-Series liquid core. Constant 5,120-byte carried state regardless of mic uptime; fires on a greeting. ONNX: 5.03 MB fp32 / 1.27 MB int8.","m6.note":"~1.3M params · 5,120 B state · ONNX int8",
+    "m7.status":"↓ Download","m7.desc":"Sparse spiking networks with masks from the real Drosophila connectome (5% density, LIF). MNIST 96.83%, Fashion-MNIST 87.07% — near-dense accuracy at an estimated ~107–112× lower energy.","m7.note":"784→800→10 · 5% density · 96.83% MNIST",
     "m1.use":"<span class='u-label'>Best for</span> English text continuation &amp; inference-cost demos.",
     "m2.use":"<span class='u-label'>Best for</span> Bilingual conversation with cross-turn memory.",
     "m3.use":"<span class='u-label'>Best for</span> Always-on edge streaming, CPU-only inference.",
-    "m4.use":"<span class='u-label'>Best for</span> Stronger capability once training converges.",
+    "m4.use":"<span class='u-label'>Best for</span> Byte-level language-scaling research.",
+    "m5.use":"<span class='u-label'>Best for</span> Research on liquid adapters over an instruct base.",
+    "m6.use":"<span class='u-label'>Best for</span> Battery-friendly always-on keyword spotting.",
+    "m7.use":"<span class='u-label'>Best for</span> Energy-efficient edge classification research.",
     "cmp.h2":"Family comparison","cmp.lead":"One glance: what each model is for, how big it is, and where to get it.",
     "cmp.c1":"Model","cmp.c2":"Best for","cmp.c3":"Params","cmp.c4":"Window","cmp.c5":"Carried state","cmp.c6":"Status",
     "cmp.r1.best":"English text continuation","cmp.r1.status":"● Live on site",
     "cmp.r2.best":"Bilingual conversation, cross-turn memory","cmp.r2.status":"● Live on site",
     "cmp.r3.best":"Always-on edge streaming, CPU-only","cmp.r3.status":"↓ Download",
-    "cmp.r4.best":"Stronger capability — training in progress","cmp.r4.status":"◐ Training",
-    "cmp.note":"Research family (O1-Anti, C1, O1-Sound, AwareLiquid-Physic): clone &amp; run from <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a>.",
-    "btn.dl":"Download weights ↓","btn.dlAdapter":"Download adapter ↓","btn.try":"Try it live →",
+    "cmp.r4.best":"Byte-level language-scaling research","cmp.r4.status":"↓ Download",
+    "cmp.r5.best":"Liquid adapter on an instruct base (research)","cmp.r5.status":"↓ Download",
+    "cmp.r6.best":"Always-on wake-word spotting","cmp.r6.status":"↓ Download",
+    "cmp.r7.best":"Energy-efficient edge classification","cmp.r7.status":"↓ Download",
+    "cmp.note":"Weights on <a href='https://huggingface.co/AwareLiquid' target='_blank' rel='noopener noreferrer'>HuggingFace (AwareLiquid)</a>. More research lines (O1-Anti, C1, AwareLiquid-Physic, human-brain-simulation): clone &amp; run from <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a>.",
+    "btn.dl":"Download weights ↓","btn.dlAdapter":"Download adapter ↓","btn.hf":"Download on HuggingFace ↓","btn.try":"Try it live →",
     "qs.h2":"Quick start","qs.note":"All models run CPU-only. The 128M hybrid needs ~1GB RAM; the TinyLlama adapter needs ~5GB. Full instructions in the repo README.",
     "foot.research":"Research","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司 Shenzhen Sansi Dark Source Technology Co., Ltd 版权所有",
     "qs.cmd":"git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000",
@@ -272,19 +347,28 @@ var I18N = {
     "m1.status":"● متاح مباشرة","m1.desc":"نموذج هجين من الصفر —— انتباه + نواة سائلة في كل طبقة. 50 ألف خطوة على WikiText-103. إكمال نصوص إنجليزية.","m1.note":"نقطة فحص 514MB · مُرمّز gpt2",
     "m2.status":"● متاح مباشرة","m2.desc":"قاعدة TinyLlama-1.1B-Chat مجمّدة + محولات نواة سائلة مدربة + LoRA. النموذج المحادثي —— إنجليزي وصيني.","m2.note":"نقطة فحص 24.8MB · كرر العرض المباشر",
     "m3.status":"↓ تحميل","m3.desc":"نموذج حافة من سلسلة O بلا انتباه. حالة محمولة ثابتة 0.381MB بغض النظر عن طول السياق —— خط ذاكرة O(1). يعمل على المعالج.","m3.note":"نقطة فحص 194MB · مُرمّز gpt2",
-    "m4.status":"◐ قيد التدريب","m4.desc":"نموذج هجين بـ 1.9 مليار معامل (2912d × 35L) قيد التدريب. أُصلح خطأ جدولة معدل التعلم —— PPL التحقق ينخفض بثبات (107 → 74.75، -30%). الأوزان عند التقارب.","m4.cta":"الأوزان عند التقارب","m4.note":"تدريب على A100 مستأجرة",
+    "m4.status":"↓ تحميل","m4.desc":"إعداد M2 بـ 1.93 مليار معامل (2080d × 34L × 16 رأسًا)، مُرمّز على مستوى البايت. اكتمل التشغيل الأساسي عند 200,000 خطوة —— PPL النهائي 2.4106، ومستقر عبر الأطوال. معلم بحثي لتوسيع اللغة، وليس نموذج أوامر.","m4.note":"MIT · نهائي 200 ألف خطوة · safetensors + t2b_200k.pt",
+    "m5.status":"↓ تحميل","m5.desc":"محول MT-LNN متبقٍ على Qwen2.5-0.5B-Instruct مجمّد، مثبّت في 6 من 24 طبقة، بـ 12.4M معامل قابل للتدريب (2.5%). مهيّأ قرب الهوية؛ نقطة فحص بحثية قصيرة (500 خطوة).","m5.note":"MIT · 500 خطوة · قاعدة Qwen2.5-0.5B-Instruct",
+    "m6.status":"↓ تحميل","m6.desc":"كاشف كلمة تنبيه دائم على النواة السائلة O. حالة محمولة ثابتة 5,120 بايت مهما طال فتح الميكروفون؛ ينطلق عند سماع تحية. رسم ONNX: 5.03 MB fp32 / 1.27 MB int8.","m6.note":"~1.3M معامل · 5,120 بايت · ONNX int8",
+    "m7.status":"↓ تحميل","m7.desc":"شبكات نبضية متفرقة بأقنعة مشتقة من القوانين الإحصائية لدماغ ذبابة الفاكهة الحقيقية (كثافة 5%، LIF). دقة MNIST ‏96.83% وFashion-MNIST ‏87.07% —— قريبة من الكثيفة باستهلاك طاقة أقل ~107–112×.","m7.note":"784→800→10 · كثافة 5% · MNIST 96.83%",
     "m1.use":"<span class='u-label'>الأنسب لـ</span> إكمال النصوص الإنجليزية وعروض كفاءة الاستدلال.",
     "m2.use":"<span class='u-label'>الأنسب لـ</span> محادثة ثنائية اللغة مع ذاكرة بين الأدوار.",
     "m3.use":"<span class='u-label'>الأنسب لـ</span> بث دائم على الحافة، استدلال على المعالج فقط.",
-    "m4.use":"<span class='u-label'>الأنسب لـ</span> قدرة أقوى بعد تقارب التدريب.",
+    "m4.use":"<span class='u-label'>الأنسب لـ</span> بحث توسيع اللغة على مستوى البايت.",
+    "m5.use":"<span class='u-label'>الأنسب لـ</span> بحث المحولات السائلة فوق قاعدة أوامر.",
+    "m6.use":"<span class='u-label'>الأنسب لـ</span> كشف كلمات تنبيه دائم موفّر للطاقة.",
+    "m7.use":"<span class='u-label'>الأنسب لـ</span> تصنيف حافّي عالي الكفاءة الطاقية.",
     "cmp.h2":"مقارنة العائلة","cmp.lead":"نظرة واحدة: لكل نموذج غرضه وحجمه ومكان الحصول عليه.",
     "cmp.c1":"النموذج","cmp.c2":"الأنسب لـ","cmp.c3":"المعاملات","cmp.c4":"النافذة","cmp.c5":"الحالة المحمولة","cmp.c6":"الحالة",
     "cmp.r1.best":"إكمال النصوص الإنجليزية","cmp.r1.status":"● متاح مباشرة",
     "cmp.r2.best":"محادثة ثنائية اللغة، ذاكرة بين الأدوار","cmp.r2.status":"● متاح مباشرة",
     "cmp.r3.best":"بث دائم على الحافة، معالج فقط","cmp.r3.status":"↓ تحميل",
-    "cmp.r4.best":"قدرة أقوى —— التدريب جارٍ","cmp.r4.status":"◐ قيد التدريب",
+    "cmp.r4.best":"بحث توسيع اللغة على مستوى البايت","cmp.r4.status":"↓ تحميل",
+    "cmp.r5.best":"محول سائل فوق قاعدة أوامر (بحث)","cmp.r5.status":"↓ تحميل",
+    "cmp.r6.best":"كشف كلمات تنبيه دائم","cmp.r6.status":"↓ تحميل",
+    "cmp.r7.best":"تصنيف حافّي موفّر للطاقة","cmp.r7.status":"↓ تحميل",
     "cmp.note":"العائلة البحثية (O1-Anti، C1، O1-Sound، AwareLiquid-Physic): استنسخ وشغّل من <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a>.",
-    "btn.dl":"تنزيل الأوزان ↓","btn.dlAdapter":"تنزيل المحول ↓","btn.try":"جرّبه مباشرة →",
+    "btn.dl":"تنزيل الأوزان ↓","btn.dlAdapter":"تنزيل المحول ↓","btn.hf":"التنزيل على HuggingFace ↓","btn.try":"جرّبه مباشرة →",
     "qs.h2":"بداية سريعة","qs.note":"كل النماذج تعمل على المعالج فقط. الهجين 128M يحتاج ~1GB ذاكرة؛ محول TinyLlama يحتاج ~5GB. التعليمات الكاملة في README المستودع.",
     "foot.research":"الأبحاث","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司 Shenzhen Sansi Dark Source Technology Co., Ltd 版权所有",
     "qs.cmd":"git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000",
@@ -297,19 +381,28 @@ var I18N = {
     "m1.status":"● 官网在线","m1.desc":"从零训练的混合模型 —— 每层同时含注意力与液态核心。WikiText-103 上 50K 步。英文文本续写。","m1.note":"514MB 推理 checkpoint · gpt2 分词器",
     "m2.status":"● 官网在线","m2.desc":"冻结的 TinyLlama-1.1B-Chat 基座 + 训练的液态核心残差适配器 + LoRA。对话模型 —— 中英双语。","m2.note":"24.8MB checkpoint · 复现线上 demo",
     "m3.status":"↓ 可下载","m3.desc":"注意力自由的 O 系列边缘模型。0.381MB 恒定携带状态,与上下文长度无关 —— O(1) 内存路线。CPU 可跑。","m3.note":"194MB checkpoint · gpt2 分词器",
-    "m4.status":"◐ 训练中","m4.desc":"1.9B 参数混合模型 (2912d × 35L) 训练中。已修复学习率调度问题，验证 PPL 稳步下降（107 → 74.75，-30%）。收敛后发布权重。","m4.cta":"收敛后发布权重","m4.note":"租用 A100 训练中",
+    "m4.status":"↓ 可下载","m4.desc":"1.93B 参数 M2 预设（2080d × 34L × 16 头），byte-level 分词器。baseline 训练已在 200,000 步完成 —— 最终验证 PPL 2.4106，上下文平坦。属于语言规模化的研究里程碑，非 instruct 模型。","m4.note":"MIT · 20 万步最终 · safetensors + t2b_200k.pt",
+    "m5.status":"↓ 可下载","m5.desc":"冻结 Qwen2.5-0.5B-Instruct 上的 MT-LNN 残差适配器，挂载于 24 层中的 6 层，可训练 12.4M（2.5%）。以近恒等初始化，基座能力不受损；500 步的短研究 checkpoint。","m5.note":"MIT · 500 步 checkpoint · Qwen2.5-0.5B-Instruct 基座",
+    "m6.status":"↓ 可下载","m6.desc":"基于 O 系列液态核心的常开唤醒词检测器。无论麦克风开多久，携带状态恒为 5,120 字节；听到问候语即触发。流式 ONNX：5.03 MB fp32 / 1.27 MB int8。","m6.note":"约 1.3M 参数 · 5,120 B 状态 · ONNX int8",
+    "m7.status":"↓ 可下载","m7.desc":"结构掩码取自真实果蝇连接体的稀疏脉冲网络（5% 密度、LIF）。MNIST 96.83%，Fashion-MNIST 87.07% —— 接近稠密精度，能耗估计低约 107–112×。","m7.note":"784→800→10 · 5% 密度 · MNIST 96.83%",
     "m1.use":"<span class='u-label'>适用场景</span> 英文文本续写与推理成本演示。",
     "m2.use":"<span class='u-label'>适用场景</span> 带跨轮记忆的中英双语对话。",
     "m3.use":"<span class='u-label'>适用场景</span> 常开端侧流式处理，纯 CPU 推理。",
-    "m4.use":"<span class='u-label'>适用场景</span> 收敛后提供更强能力（训练中）。",
+    "m4.use":"<span class='u-label'>适用场景</span> byte-level 语言规模化研究。",
+    "m5.use":"<span class='u-label'>适用场景</span> 在 instruct 基座上加液态适配器的研究。",
+    "m6.use":"<span class='u-label'>适用场景</span> 省电的常开关键词唤醒。",
+    "m7.use":"<span class='u-label'>适用场景</span> 高能效边缘分类研究。",
     "cmp.h2":"家族对比","cmp.lead":"一眼看清每个模型的定位、规模与获取方式。",
     "cmp.c1":"模型","cmp.c2":"适用场景","cmp.c3":"参数","cmp.c4":"上下文窗口","cmp.c5":"携带状态","cmp.c6":"状态",
     "cmp.r1.best":"英文文本续写","cmp.r1.status":"● 官网在线",
     "cmp.r2.best":"中英对话、跨轮记忆","cmp.r2.status":"● 官网在线",
     "cmp.r3.best":"常开端侧流式、纯 CPU","cmp.r3.status":"↓ 可下载",
-    "cmp.r4.best":"更强能力——训练中","cmp.r4.status":"◐ 训练中",
+    "cmp.r4.best":"byte-level 语言规模化研究","cmp.r4.status":"↓ 可下载",
+    "cmp.r5.best":"instruct 基座上的液态适配器（研究）","cmp.r5.status":"↓ 可下载",
+    "cmp.r6.best":"常开唤醒词检测","cmp.r6.status":"↓ 可下载",
+    "cmp.r7.best":"高能效边缘分类","cmp.r7.status":"↓ 可下载",
     "cmp.note":"研究系列（O1-Anti、C1、O1-Sound、AwareLiquid-Physic）：从 <a href='https://github.com/AwareLiquid' target='_blank' rel='noopener noreferrer'>github.com/AwareLiquid</a> 克隆运行。",
-    "btn.dl":"下载权重 ↓","btn.dlAdapter":"下载适配器 ↓","btn.try":"在线体验 →",
+    "btn.dl":"下载权重 ↓","btn.dlAdapter":"下载适配器 ↓","btn.hf":"在 HuggingFace 下载 ↓","btn.try":"在线体验 →",
     "qs.h2":"快速开始","qs.note":"所有模型纯 CPU 可跑。128M 混合模型约需 1GB 内存;TinyLlama 适配器约需 5GB。完整说明见仓库 README。",
     "foot.research":"研究","foot.copy":"© 2026 AwareLiquid · 深圳三体暗源科技有限公司 Shenzhen Sansi Dark Source Technology Co., Ltd 版权所有",
     "qs.cmd":"git clone https://github.com/AwareLiquid/M1 &amp;&amp; cd M1<br>pip install -r requirements.txt<br># drop the downloaded .pt into checkpoints/, then:<br>CKPT_PATH=checkpoints/hybrid_125m_serve.pt TOKENIZER=gpt2 \\<br>  python -m uvicorn serve.server:app --port 8000",

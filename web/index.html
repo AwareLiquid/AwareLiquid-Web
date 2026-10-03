@@ -868,7 +868,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-primary" href="#demo" href="#demo">Try it live →</a>
-          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/m1-128m-v1" target="_blank" rel="noopener noreferrer">Download weights ↓</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-128M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
           <span class="mc-note label">Served by the native decoder on this site</span>
         </div>
       </article>
@@ -884,7 +884,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-primary" href="#demo" href="#demo">Try it live &rarr;</a>
-          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/mt-adapter-v2s-v1" target="_blank" rel="noopener noreferrer">Download adapter &darr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-TinyLlama-Adapter" target="_blank" rel="noopener noreferrer">Adapter on HuggingFace &darr;</a>
           <span class="mc-note label">24.8 MB checkpoint · replicate the live demo</span>
         </div>
       </article>
@@ -899,23 +899,37 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>48M params</span><span>attention-free</span><span>CPU-friendly</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M1/releases/tag/o1-48m-v1" target="_blank" rel="noopener noreferrer">Download weights ↓</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
           <span class="mc-note label">GitHub release · serve with server.py</span>
         </div>
       </article>
-      <article class="model-card hov" data-status="training">
+      <article class="model-card hov" data-status="download">
         <div class="mc-head">
-          <span class="mc-series label">M-Series</span>
-          <span class="mc-status s-tr">◐ Training</span>
+          <span class="mc-series label">M-Series · M2</span>
+          <span class="mc-status s-dl">↓ Download</span>
         </div>
-        <h3 class="mc-name">M1-2B</h3>
-        <p class="mc-desc">1.9B-parameter hybrid (2912d × 35L) training on A100. A learning-rate scheduling bug that stalled convergence is fixed — validation PPL is now falling steadily (107 → 74.75, -30%). Weights will be published when the run converges.</p>
+        <h3 class="mc-name">M2-2B</h3>
+        <p class="mc-desc">1.93B-parameter M2 preset (2080d × 34L × 16 heads), byte-level tokenizer. The baseline run <strong>completed at 200,000 steps</strong> — final val PPL 2.4106, context-flat. A language-scaling research milestone, not an instruct model.</p>
         <div class="mc-meta">
-          <span>1.9B params</span><span>35 layers · 2912d</span><span>converging · PPL -30%</span>
+          <span>1.93B params</span><span>34 layers · 2080d</span><span>PPL 2.4106</span>
         </div>
         <div class="mc-cta">
-          <span class="btn btn-ghost" style="cursor:default">Weights when it converges</span>
-          <span class="mc-note label">Training on rented A100</span>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M2-2B" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
+          <span class="mc-note label">MIT · 200K-step final · safetensors + t2b_200k.pt</span>
+        </div>
+      </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">↓ Download</span>
+        </div>
+        <h3 class="mc-name">O1-Qwen05-Adapter</h3>
+        <p class="mc-desc">MT-LNN residual adapter on a frozen Qwen2.5-0.5B-Instruct — 6 of 24 layers, 12.4M trainable (2.5%). A short 500-step research checkpoint, initialised near-identity so the base capability stays intact.</p>
+        <div class="mc-meta">
+          <span>0.5B base + 12.4M</span><span>6 adapters</span><span>research</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Qwen05-Adapter" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
         </div>
       </article>
     </div>
@@ -981,6 +995,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         <div class="mc-cta">
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound/releases/tag/research-2026-08-18" target="_blank" rel="noopener noreferrer">Checkpoint &darr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
         </div>
       </article>
       <article class="model-card hov" data-status="download">
@@ -1024,6 +1039,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/human-brain-simulation" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/Sparse-SNN" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
         </div>
       </article>
       <article class="model-card hov" data-status="download">
@@ -1032,12 +1048,13 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
         </div>
         <h3 class="mc-name">M2 — Next-Generation Reasoning Engine</h3>
-        <p class="mc-desc">Closes the gap M1 doesn't cover: M1 wins on memory form-factor, M2 exists to fix reasoning. Thesis — knowledge externalized, the core only reasons; a 2B engine targets 70B on math/code reasoning, streaming memory, continual learning. Evidence-gated.</p>
+        <p class="mc-desc">M2 fixes what M1 doesn't: reasoning. Knowledge externalized, the core only reasons; the <strong>2B engine's first language checkpoint is done</strong> — 200,000 steps, val PPL 2.4106 (byte-level). Reasoning targets (70B-class on math/code) remain evidence-gated.</p>
         <div class="mc-meta">
-          <span>reasoning line</span><span>2B target</span><span>MIT</span>
+          <span>reasoning line</span><span>2B checkpoint live</span><span>MIT</span>
         </div>
         <div class="mc-cta">
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/M2" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M2-2B" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
         </div>
       </article>
     </div>
