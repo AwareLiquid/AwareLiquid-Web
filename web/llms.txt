@@ -62,3 +62,5 @@
 - [Vibe Coding 是什么](https://awareliquid.ai/vibe-coding): 氛围编程与 HyperCode 的自主工作方式。
 - [AI 同事 / HyperWork](https://awareliquid.ai/ai-coworker): 承接整块工作的自主 AI。
 - [2026 最佳 AI 编程工具](https://awareliquid.ai/best-ai-coding-2026): HyperCode vs Cursor / Copilot / Claude Code。
+
+- [Building in public � live metrics & the AI-run fundraise](https://awareliquid.ai/raise): live GitHub/HuggingFace metrics; the agent does sourcing/drafting/triage, the founder does the calls. Not an offer to sell securities.

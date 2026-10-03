@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/static/favicon-dark.png" type="image/png">
+<title>Building AwareLiquid in public — live metrics &amp; the AI-run fundraise</title>
+<meta name="description" content="AwareLiquid is building in public: live product metrics (models, downloads, GitHub) and how we run our own fundraise with our own agent — sourcing, drafting and triage by HyperCode, calls by the founder. Not an offer to sell securities.">
+<link rel="canonical" href="https://awareliquid.ai/raise">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/raise">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/raise">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AwareLiquid — building in public, live metrics">
+<meta property="og:description" content="Live model/GitHub metrics and the AI-run fundraise. Not an offer to sell securities.">
+<meta property="og:url" content="https://awareliquid.ai/raise">
+<meta property="og:image" content="https://awareliquid.ai/static/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","name":"AwareLiquid — building in public","url":"https://awareliquid.ai/raise","isPartOf":{"@type":"WebSite","url":"https://awareliquid.ai"},"about":{"@id":"https://awareliquid.ai/#organization"},"description":"Live product metrics and the AI-run fundraise. Not an offer to sell securities."}
+</script>
+<style>
+  :root { --bg:#0e0e10; --bg2:#16161a; --fg:#f5f5f7; --muted:#9a9aa5; --line:#26262c; --accent:#4f9dff; --ok:#10a37f; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--fg); font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 24px; }
+  a { color:inherit; text-decoration:none; }
+  .nav { display:flex; align-items:center; justify-content:space-between; padding:20px 0; font-size:14px; }
+  .nav .brand { font-weight:700; letter-spacing:.5px; } .nav .brand span { color:var(--muted); font-weight:400; }
+  .nav a { color:var(--muted); margin-left:22px; } .nav a:hover { color:var(--fg); }
+  .hero { padding:44px 0 8px; }
+  .eyebrow { font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); }
+  .hero h1 { font-size:36px; font-weight:800; letter-spacing:-1px; margin-top:10px; max-width:820px; }
+  .hero p.sub { color:var(--muted); font-size:16px; margin-top:14px; max-width:760px; }
+  .pill { display:inline-block; font-size:11.5px; border:1px solid var(--line); border-radius:999px; padding:3px 12px; color:var(--muted); margin-top:16px; }
+  section { padding:40px 0; border-top:1px solid var(--line); }
+  h2 { font-size:24px; margin-bottom:8px; }
+  .lead { color:var(--muted); font-size:14.5px; margin-bottom:24px; max-width:820px; }
+  .metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:16px; }
+  .metric { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:22px; }
+  .metric .k { font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .metric .v { font-size:32px; font-weight:800; margin-top:6px; font-variant-numeric:tabular-nums; }
+  .metric .n { font-size:12px; color:var(--muted); margin-top:4px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; }
+  .card { background:var(--bg2); border:1px solid var(--line); border-radius:14px; padding:24px; }
+  .card h3 { font-size:16px; margin-bottom:8px; } .card p { color:var(--muted); font-size:14px; }
+  .step { display:flex; gap:14px; margin-bottom:16px; }
+  .step .idx { flex:0 0 26px; height:26px; border-radius:50%; border:1px solid var(--line); display:flex; align-items:center; justify-content:center; font-size:13px; color:var(--accent); }
+  .step .t { font-weight:600; } .step .d { color:var(--muted); font-size:13.5px; }
+  .disclaimer { background:#1a1418; border:1px solid #3a2a30; border-radius:12px; padding:18px 20px; color:#c9b7bd; font-size:12.5px; }
+  footer { border-top:1px solid var(--line); padding:28px 0 44px; text-align:center; color:var(--muted); font-size:13px; }
+  footer a { color:var(--fg); }
+  .btn { display:inline-block; padding:11px 24px; border-radius:9px; font-weight:600; font-size:14px; border:1px solid var(--line); }
+  .btn.primary { background:var(--fg); color:var(--bg); border-color:var(--fg); }
+  code { font-family:ui-monospace,Consolas,monospace; font-size:12px; color:var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a class="brand" href="/">AwareLiquid <span>· Building in public</span></a>
+    <div>
+      <a href="/hypercode">HyperCode</a>
+      <a href="/models">Models</a>
+      <a href="/research">Research</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="eyebrow">Building in public</div>
+    <h1>We run our own fundraise with our own agent.</h1>
+    <p class="sub">AwareLiquid builds HyperCode — autonomous AI coding software &amp; work assistant — and a research line on brain-inspired edge models. We're doing our cold start the way we tell our customers to: let the agent do the work, and show the results.</p>
+    <span class="pill">AwareLiquid Pte. Ltd. · Singapore</span>
+  </header>
+
+  <section>
+    <h2>Live metrics</h2>
+    <p class="lead">Pulled live from the public GitHub and HuggingFace APIs. These are the numbers a real diligence call asks for first — so we keep them in the open.</p>
+    <div class="metrics" id="metrics">
+      <div class="metric"><div class="k">GitHub stars</div><div class="v" id="m-stars">—</div><div class="n">AwareLiquid repos</div></div>
+      <div class="metric"><div class="k">Model downloads</div><div class="v" id="m-dl">—</div><div class="n">HuggingFace, all models</div></div>
+      <div class="metric"><div class="k">Open models</div><div class="v" id="m-models">—</div><div class="n">on HuggingFace</div></div>
+      <div class="metric"><div class="k">Repos</div><div class="v" id="m-repos">—</div><div class="n">public repos</div></div>
+    </div>
+    <p class="n" id="m-status" style="color:var(--muted);font-size:12px;margin-top:12px"></p>
+  </section>
+
+  <section>
+    <h2>How we run our own fundraise</h2>
+    <p class="lead">Honest version: the agent does the volume work; the founder does the human work. This is the same product we sell, applied to ourselves.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>What the agent does</h3>
+        <div class="step"><div class="idx">1</div><div><div class="t">Sourcing</div><div class="d">Builds a curated list of funds/angels that fit our thesis, stage and geography — no purchased lists.</div></div></div>
+        <div class="step"><div class="idx">2</div><div><div class="t">Personalised drafting</div><div class="d">One unique hook per investor (their recent bet ↔ one of our reproducible results). No templates.</div></div></div>
+        <div class="step"><div class="idx">3</div><div><div class="t">Reply triage</div><div class="d">Parses replies, drafts responses, schedules calls, keeps context in memory so follow-ups never repeat.</div></div></div>
+      </div>
+      <div class="card">
+        <h3>What the founder does</h3>
+        <div class="step"><div class="idx">✓</div><div><div class="t">The calls</div><div class="d">Every high-context conversation and the term sheet are human. The agent never signs anything.</div></div></div>
+        <div class="step"><div class="idx">✓</div><div><div class="t">The relationship</div><div class="d">Founder-to-investor trust is not delegated.</div></div></div>
+        <div class="step"><div class="idx">✓</div><div><div class="t">The judgement</div><div class="d">Which investors, which terms, when to walk — human decisions.</div></div></div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:20px">Anti-spam is a design rule, not an afterthought: fit-scored targets only, a warmed sending domain, one-click unsubscribe and a global suppression list, no attachments or link shorteners on a first touch, and a human spot-check before any new segment is contacted.</p>
+  </section>
+
+  <section>
+    <h2>Why build in public</h2>
+    <p class="lead">A public metric page is a stronger piece of evidence than a slide. Research results ship as open weights and reproducible scripts; the fundraise runs on the same agent we sell. If it works here, it works for a customer.</p>
+    <a class="btn primary" href="/models">See the open models</a>
+    <a class="btn" href="/research" style="margin-left:10px">See the research</a>
+  </section>
+
+  <section>
+    <h2>Contact</h2>
+    <p class="lead">For product, research, or partnership conversations: <a href="mailto:anmuning@awareliquid.ai" style="color:var(--fg)">anmuning@awareliquid.ai</a>. Entity: <strong>AwareLiquid Pte. Ltd.</strong>, Singapore.</p>
+    <div class="disclaimer">
+      <strong>Important.</strong> This page is a record of product and research activity. It is <strong>not an offer to sell, or a solicitation of an offer to buy, any security</strong>, and nothing here is investment advice. Any financing would be conducted privately and only in compliance with applicable law in the relevant jurisdictions.
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="/">← AwareLiquid</a> · <a href="mailto:anmuning@awareliquid.ai">anmuning@awareliquid.ai</a></p>
+    <p style="margin-top:10px;">© 2026 AwareLiquid Pte. Ltd. · 深圳三体暗源科技有限公司 Shenzhen Sansi Dark Source Technology Co., Ltd</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var status = document.getElementById('m-status');
+  function n(x){ return (x==null) ? '—' : Number(x).toLocaleString('en-US'); }
+  // HuggingFace: all AwareLiquid models
+  fetch('https://huggingface.co/api/models?author=AwareLiquid&full=false&limit=100')
+    .then(function(r){ return r.json(); })
+    .then(function(list){
+      var dl = 0;
+      for (var i=0;i<list.length;i++){ dl += (list[i].downloads||0); }
+      document.getElementById('m-dl').textContent = n(dl);
+      document.getElementById('m-models').textContent = n(list.length);
+    })
+    .catch(function(){ status.textContent = 'Live metrics unavailable right now — see github.com/AwareLiquid and huggingface.co/AwareLiquid.'; });
+  // GitHub org repos
+  fetch('https://api.github.com/orgs/AwareLiquid/repos?per_page=100')
+    .then(function(r){ return r.json(); })
+    .then(function(repos){
+      if (!Array.isArray(repos)) throw new Error('rate');
+      var stars = 0;
+      for (var i=0;i<repos.length;i++){ stars += (repos[i].stargazers_count||0); }
+      document.getElementById('m-stars').textContent = n(stars);
+      document.getElementById('m-repos').textContent = n(repos.length);
+    })
+    .catch(function(){ document.getElementById('m-status').textContent = 'GitHub metrics unavailable right now — see github.com/AwareLiquid.'; });
+})();
+</script>
+</body>
+</html>
