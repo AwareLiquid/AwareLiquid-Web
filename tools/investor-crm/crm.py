@@ -64,7 +64,8 @@ def load_investors():
     if not os.path.exists(INV):
         sys.exit(f"missing {INV} — copy data/investors.sample.csv to investors.csv")
     with open(INV, newline="", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        rows = [l for l in f if l.strip() and not l.lstrip().startswith("#")]
+    return list(csv.DictReader(rows))
 
 
 def save_investors(rows):
