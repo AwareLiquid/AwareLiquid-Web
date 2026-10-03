@@ -51,14 +51,13 @@
 - **Cases**: cover, 120-cell chemical table, LOI table, handwritten formula page, landscape geological profile
 - **Contact**: anmuning@awareliquid.ai (bring a sample, get a sample conversion)
 
+## Guides & comparisons
+- [Vibe coding](https://awareliquid.ai/vibe-coding): what vibe coding is and how HyperCode does it.
+- [AI coworker / HyperWork](https://awareliquid.ai/ai-coworker): autonomous AI that takes on whole tasks.
+- [Best AI coding tools 2026](https://awareliquid.ai/best-ai-coding-2026): HyperCode vs Cursor / Copilot / Claude Code.
+- [HyperCode vs Cursor guide](https://awareliquid.ai/guides-hypercode-vs-cursor): a full comparison.
 
-## العربية (Arabic)
-
-> AwareLiquid — إطار ذكاء اصطناعي معرفي مستوحى من الأحياء. سلسلة M للتفكير البطيء مع مساحة العمل العالمية، وسلسلة O للاستدلال الحافّي السريع بذاكرة ثابتة O(1).
-
-- [الرئيسية](https://awareliquid.ai/): نموذج شبيه بالدماغ خفيف الوزن للحافة — حالة محمولة 0.381 ميجابايت مهما كان طول السياق، تعمل على المعالج فقط.
-- [الأبحاث](https://awareliquid.ai/research): سجل صادق للنتائج — ذاكرة O(1) أصغر بـ 8063× عند مليون رمز، استدعاء عبر النوافذ 0.56 مقابل 0.000، وEWC (خفض النسيان 85%). كل ادعاء موسوم وقابل لإعادة الإنتاج.
-- [النماذج](https://awareliquid.ai/models): M1-128M، محول TinyLlama-1.1B، O1-48M، M1-2B قيد التدريب.
-- [تنظيف البيانات](https://awareliquid.ai/cleaning): الأرشيفات الممسوحة ضوئياً إلى بيانات منظمة — أرقام جداول 100% صحيحة (120/120)، صفر هلاوس، 189 صفحة في ~ساعة ببضعة يوانات.
-- [عن الشركة](https://awareliquid.ai/about): إطار بحثي مفتوح، موقع صادق مقابل Liquid AI — محاور متعامدة.
-- **البروز**: الاشتعال عبر مساحة العمل العالمية (كاشف صفري المعاملات) يوقظ الطبقة البطيئة؛ عند النقاط العمياء الواقعية يستعلم سحابة Awareness (KaaS، معرفة عامة مرساة على السلسلة عبر ERC-8350) ويعيد حقن الحقيقة.
+## 指南与对比 (zh-CN)
+- [Vibe Coding 是什么](https://awareliquid.ai/vibe-coding): 氛围编程与 HyperCode 的自主工作方式。
+- [AI 同事 / HyperWork](https://awareliquid.ai/ai-coworker): 承接整块工作的自主 AI。
+- [2026 最佳 AI 编程工具](https://awareliquid.ai/best-ai-coding-2026): HyperCode vs Cursor / Copilot / Claude Code。

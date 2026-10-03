@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibe Coding 是什么?氛围编程工具 HyperCode 指南 | AwareLiquid</title>
+<meta name="description" content="Vibe Coding(氛围编程)是什么?HyperCode 让一句需求自主工作数小时:检查点恢复、跨会话记忆、229 项领域技能。对比 Cursor / Copilot / Claude Code,附适用场景与 FAQ。">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/vibe-coding">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/en/vibe-coding">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/vibe-coding">
+<link rel="canonical" href="https://awareliquid.ai/vibe-coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vibe Coding 是什么?氛围编程工具 HyperCode 指南">
+<meta property="og:description" content="用一句需求驱动 AI 自主工作数小时。HyperCode 如何做 vibe coding、适合谁、与 Cursor/Copilot 的区别。">
+<meta property="og:url" content="https://awareliquid.ai/vibe-coding">
+<script type="application/ld+json">
+[
+{"@context":"https://schema.org","@type":"Article","headline":"Vibe Coding 是什么?氛围编程工具 HyperCode 指南","description":"Vibe Coding(氛围编程)是什么,HyperCode 如何支持,适合与不适合的场景,以及与 Cursor/Copilot 的对比。","inLanguage":"zh-CN","mainEntityOfPage":"https://awareliquid.ai/vibe-coding","about":{"@type":"SoftwareApplication","@id":"https://awareliquid.ai/#hypercode","name":"HyperCode"},"isPartOf":{"@type":"WebSite","url":"https://awareliquid.ai"},"publisher":{"@id":"https://awareliquid.ai/#organization"}},
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AwareLiquid","item":"https://awareliquid.ai/"},{"@type":"ListItem","position":2,"name":"Vibe Coding","item":"https://awareliquid.ai/vibe-coding"}]},
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Vibe Coding 是什么?","acceptedAnswer":{"@type":"Answer","text":"Vibe Coding(氛围编程)指用自然语言描述意图,让 AI 生成与迭代代码,开发者关注'要什么'而不是'怎么写'。HyperCode 把它推进到自主模式:一句需求,连续工作数小时直到交付。"}},
+{"@type":"Question","name":"HyperCode 适合 vibe coding 吗?","acceptedAnswer":{"@type":"Answer","text":"适合。HyperCode 是独立桌面应用,接受一个清晰任务后自主分解、开发、写测试并跑到通过;检查点恢复保证崩溃不重来,跨会话记忆让它越用越懂你的项目。"}},
+{"@type":"Question","name":"Vibe coding 有什么风险?","acceptedAnswer":{"@type":"Answer","text":"主要风险是缺少审查与验证。HyperCode 用验证闭环、检查点和本地运行缓解:代码与文档不上传云端,关键改动仍应由人复核。"}},
+{"@type":"Question","name":"HyperCode 和 Cursor 做 vibe coding 有什么区别?","acceptedAnswer":{"@type":"Answer","text":"Cursor 是编辑器内的逐次协作,你始终在循环里;HyperCode 是独立应用,把整块任务交出去,几小时后回来验收。"}}
+]}
+]
+</script>
+<style>
+  body { max-width: 760px; margin: 0 auto; padding: 24px; font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.75; color: #f5f5f7; background: #0e0e10; }
+  h1 { font-size: 30px; line-height: 1.3; }
+  h2 { margin-top: 36px; font-size: 22px; }
+  h3 { margin-top: 22px; font-size: 17px; }
+  .tablewrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; min-width: 640px; }
+  th, td { border: 1px solid #333; padding: 10px 12px; text-align: left; font-size: 14px; }
+  th { background: #1a1a1e; }
+  td.hc, th.hc { background: rgba(79,157,255,.07); }
+  a { color: #4f9dff; }
+  .cta { display: inline-block; margin-top: 24px; padding: 12px 28px; background: #f5f5f7; color: #0e0e10; text-decoration: none; border-radius: 8px; font-weight: 600; }
+  .muted { color: #9a9aa5; font-size: 14px; }
+</style>
+</head>
+<body>
+<h1>Vibe Coding 是什么?用 HyperCode 把"说需求"变成"交付"</h1>
+<p>2026 年,<strong>Vibe Coding(氛围编程)</strong>已经从一句口号变成主流开发方式:你用自然语言描述意图,AI 负责生成、调试与迭代代码。但大多数 "vibe coding 工具" 仍然要求你不断点确认。HyperCode 把这一步推得更远——<strong>一句清晰的需求,自主连续工作数小时,直到全部做完</strong>。</p>
+
+<h2>Vibe Coding(氛围编程)到底是什么</h2>
+<p>Vibe Coding 的核心是<strong>意图优先</strong>:开发者关注"要什么",而不是逐行"怎么写"。它通常包含三层:</p>
+<ul>
+<li><strong>自然语言输入</strong>:用中文或英文描述功能、修复或整块任务。</li>
+<li><strong>AI 生成与迭代</strong>:模型写代码、跑测试、按结果自我修正。</li>
+<li><strong>人做验收</strong>:你审查最终结果,而不是每一步的中间产物。</li>
+</ul>
+<p>它的价值在于降低"从想法到可运行"的摩擦;它的风险在于缺少审查与验证。选择工具时,差别往往在<strong>自主程度</strong>和<strong>验证闭环</strong>,而不只是补全速度。</p>
+
+<h2>HyperCode 如何做 Vibe Coding</h2>
+<p>HyperCode 是 AwareLiquid 出品的 AI 编程软件与工作助手。它不是编辑器插件,而是<strong>独立桌面应用</strong>(Windows / macOS),把 vibe coding 从"逐次协作"推进到"整块交付":</p>
+<ul>
+<li><strong>一个指令,连续数小时</strong>:自动分解任务、并行开发、写测试、跑到绿,直到交付可运行代码。</li>
+<li><strong>检查点恢复</strong>:崩溃或中断不从头再来,从最近的检查点继续。</li>
+<li><strong>后台压缩</strong>:长任务上下文不退化,UI 不冻结。</li>
+<li><strong>跨会话记忆</strong>:决策、踩坑、偏好跨会话累积,第二次开工它已经认识你的项目。</li>
+<li><strong>免 VPN、一键安装</strong>:自带 DeepSeek 接入,一个 key 全体代理共用;代码与文档本地运行。</li>
+</ul>
+
+<h2>Vibe Coding 适合、不适合什么</h2>
+<h3>适合</h3>
+<ul>
+<li>需求相对清晰、可以被描述成任务的功能开发与重构。</li>
+<li>有测试或可验证输出的场景——AI 能自己判断"做没做对"。</li>
+<li>需要跨多个会话推进的中长期项目。</li>
+</ul>
+<h3>要谨慎</h3>
+<ul>
+<li>安全、资金、合规等高风险逻辑——必须人工复核。</li>
+<li>需求本身模糊、反复摇摆——先想清楚再交给 AI。</li>
+<li>没有验证手段的改动——AI 会"看起来完成",但没人能证明。</li>
+</ul>
+
+<h2>HyperCode vs Cursor / Copilot / Claude Code</h2>
+<div class="tablewrap">
+<table>
+  <tr><th>维度</th><th class="hc">HyperCode</th><th>Cursor</th><th>GitHub Copilot</th><th>Claude Code</th></tr>
+  <tr><td>形态</td><td class="hc">独立桌面应用</td><td>编辑器插件</td><td>编辑器插件</td><td>终端 CLI</td></tr>
+  <tr><td>自主工作</td><td class="hc">一句需求,连续数小时</td><td>逐次交互</td><td>逐步补全</td><td>终端内自主(单会话为主)</td></tr>
+  <tr><td>领域技能</td><td class="hc">229 项(金融/法律/学术/私募)</td><td>无</td><td>无</td><td>无</td></tr>
+  <tr><td>记忆</td><td class="hc">跨会话项目记忆</td><td>会话内</td><td>会话内</td><td>项目记忆文件</td></tr>
+  <tr><td>门槛</td><td class="hc">一键安装,图形界面</td><td>需熟悉编辑器</td><td>需熟悉编辑器</td><td>需终端基础</td></tr>
+</table>
+</div>
+<p class="muted">各有所长:想自己主导每一行代码选 Cursor / Copilot;习惯终端选 Claude Code;想把整块工作交出去、几小时后验收,选 HyperCode。</p>
+
+<h2>常见问题</h2>
+<h3>Vibe coding 会取代程序员吗?</h3>
+<p>不会。它改变的是工作方式:人负责意图、约束与验收,AI 负责执行。判断力、架构与验证仍然由人掌握。</p>
+<h3>HyperCode 免费吗?</h3>
+<p>自带 DeepSeek key(BYOK)即可零成本使用;另有 7 天 × ¥30 点数试用(到期绝不自动扣费)与 $19/月订阅。</p>
+<h3>它和编辑器插件冲突吗?</h3>
+<p>不冲突。HyperCode 是独立应用,与 Cursor、Copilot、Cline 等完全共存。</p>
+
+<p><a class="cta" href="/hypercode">免费下载 HyperCode</a></p>
+<p class="muted">延伸阅读:<a href="/guides-hypercode-vs-cursor">HyperCode vs Cursor / Claude Code / Copilot 全面对比</a> · <a href="/best-ai-coding-2026">2026 最佳 AI 编程工具</a> · <a href="/ai-coworker">AI 同事 / AI coworker 是什么</a></p>
+</body>
+</html>
