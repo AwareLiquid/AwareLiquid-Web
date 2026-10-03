@@ -50,7 +50,7 @@ jobs:
             echo "restarting [$NAME]"
             if [ -n "$NAME" ]; then docker restart "$NAME"; fi
             echo "--- caddy config ---"
-            docker exec caddy_prod cat /etc/caddy/Caddyfile 2>/dev/null | head -80 || true
+            docker exec caddy_prod cat /etc/caddy/Caddyfile 2>/dev/null || true
             echo "--- caddy version ---"
             docker exec caddy_prod caddy version 2>/dev/null || true
             echo DEPLOY_DONE
