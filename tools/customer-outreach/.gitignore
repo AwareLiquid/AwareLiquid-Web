@@ -1,0 +1,5 @@
+# local config (may contain API keys) + real lists — never commit
+config.json
+data/leads.csv
+data/suppression.txt
+data/log.jsonl

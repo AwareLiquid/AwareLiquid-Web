@@ -1,0 +1,18 @@
+Subject: {{hook}}
+
+Hi {{contact_or_org}},
+
+I saw {{org}}'s work on {{stack_short}} — {{hook}}.
+
+I build HyperCode: an AI agent that takes one instruction and works autonomously
+for hours (checkpoints, cross-session memory, 229 built-in domain skills), runs
+fully locally, and needs no VPN. It's the same idea you're working on, from the
+"does the whole task" side rather than editor autocomplete.
+
+Worth a look? 30-day free trial, no card: https://awareliquid.ai/hypercode
+Happy to give you a DeepSeek trial key directly.
+
+— An
+AwareLiquid Pte. Ltd. (Singapore)
+
+Not interested? One reply and I'll stop: {{unsubscribe_url}}
