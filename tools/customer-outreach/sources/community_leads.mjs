@@ -8,7 +8,11 @@
 import { writeFileSync } from "node:fs";
 
 const HN_QUERIES = [
-  "AI coding agent", "vibe coding", "autonomous agent", "claude code", "cursor ai coding",
+  { q: "AI coding agent", tags: "ai-agent|ai-coding|coding-agent" },
+  { q: "vibe coding", tags: "vibe-coding|ai-coding" },
+  { q: "autonomous agent", tags: "autonomous|agents|agentic" },
+  { q: "claude code", tags: "claude-code|agents" },
+  { q: "cursor ai coding", tags: "ai-coding|devtools" },
 ];
 const REDDIT = [
   { sub: "LocalLLaMA", q: "coding agent" },
@@ -28,7 +32,7 @@ async function getJson(url) {
 }
 
 // --- Hacker News (Algolia, no auth) ---
-for (const q of HN_QUERIES) {
+for (const { q, tags } of HN_QUERIES) {
   try {
     const j = await getJson(`https://hn.algolia.com/api/v1/search?tags=story&query=${encodeURIComponent(q)}&hitsPerPage=30`);
     for (const h of j.hits || []) {
@@ -37,7 +41,7 @@ for (const q of HN_QUERIES) {
       seen.add(key);
       rows.push({
         id: rows.length + 1, org: h.author || "hn-user", contact: "", email: "",
-        stack: q.toLowerCase(), stage: "", source: "hackernews",
+        stack: tags, stage: "", source: "hackernews",
         source_url: `https://news.ycombinator.com/item?id=${h.objectID}`,
         stars: h.points || 0, homepage: h.url || "", warm_intro: "", last_touch: "",
         status: "research", fit_note: clean(h.title), hook: "",
