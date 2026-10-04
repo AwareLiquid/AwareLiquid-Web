@@ -79,8 +79,9 @@ def sent_today():
 
 def fit_score(lead, cfg):
     w = cfg["fit_weights"]
-    tags = {t.strip().lower() for t in (lead.get("stack") or "").replace("|", " ").split() if t.strip()}
-    overlap = len(tags & set(ICP))
+    import re as _re
+    norm = _re.sub(r"[\s\-_]+", "", (lead.get("stack") or "").lower())
+    overlap = sum(1 for t in ICP if _re.sub(r"[\s\-_]+", "", t) in norm)
     s = min(overlap, w.get("stack_overlap_max_tags", 4)) * w.get("stack_overlap_per_tag", 15)
     try:
         if int(lead.get("stars") or 0) >= 1000:
