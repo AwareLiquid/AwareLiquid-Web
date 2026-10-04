@@ -29,6 +29,19 @@ def send_email(cfg, to, subject, body):
             status, txt = _post_json("https://api.postmarkapp.com/email",
                 {"From": sender, "To": to, "Subject": subject, "TextBody": body, "MessageStream": "outbound"},
                 {"X-Postmark-Server-Token": cfg["provider_api_key"]})
+        elif provider == "smtp":
+            import smtplib, ssl
+            from email.message import EmailMessage
+            host = cfg.get("smtp_host"); port = int(cfg.get("smtp_port", 587))
+            msg = EmailMessage()
+            msg["From"] = sender; msg["To"] = to; msg["Subject"] = subject
+            msg.set_content(body)
+            with smtplib.SMTP(host, port, timeout=25) as srv:
+                srv.starttls(context=ssl.create_default_context())
+                if cfg.get("smtp_user"):
+                    srv.login(cfg["smtp_user"], cfg["provider_api_key"])
+                srv.send_message(msg)
+            return True, f"SMTP sent via {host}"
         else:
             return False, f"unknown provider {provider}"
         return (200 <= status < 300), f"HTTP {status} {txt[:160]}"
