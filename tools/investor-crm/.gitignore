@@ -1,0 +1,5 @@
+# local config (may contain API keys) — never commit
+config.json
+data/investors.csv
+data/suppression.txt
+data/log.jsonl
