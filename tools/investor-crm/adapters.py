@@ -93,7 +93,13 @@ def recall(cfg, query, top_k=5):
         status, txt = _mcp_call(cfg, "awareness_recall",
                                 {"query": query, "detail": "summary", "top_k": top_k})
         if 200 <= status < 300:
-            return txt
+            try:
+                obj = json.loads(txt)
+                content = (obj.get("result") or {}).get("content") or []
+                parts = [c.get("text", "") for c in content if isinstance(c, dict) and c.get("text")]
+                return "\n".join(parts).strip()
+            except Exception:
+                return txt
     except Exception:
         pass
     return ""
