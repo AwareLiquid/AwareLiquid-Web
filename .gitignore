@@ -7,3 +7,7 @@
 Thumbs.db
 .omo/
 .playwright-mcp/
+
+# python
+__pycache__/
+*.pyc

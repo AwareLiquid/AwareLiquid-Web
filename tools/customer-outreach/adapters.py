@@ -36,12 +36,19 @@ def send_email(cfg, to, subject, body):
             msg = EmailMessage()
             msg["From"] = sender; msg["To"] = to; msg["Subject"] = subject
             msg.set_content(body)
-            with smtplib.SMTP(host, port, timeout=25) as srv:
-                srv.starttls(context=ssl.create_default_context())
-                if cfg.get("smtp_user"):
-                    srv.login(cfg["smtp_user"], cfg["provider_api_key"])
-                srv.send_message(msg)
-            return True, f"SMTP sent via {host}"
+            ctx = ssl.create_default_context()
+            if port == 465:  # implicit SSL (e.g. Tencent Exmail)
+                with smtplib.SMTP_SSL(host, port, timeout=25, context=ctx) as srv:
+                    if cfg.get("smtp_user"):
+                        srv.login(cfg["smtp_user"], cfg["provider_api_key"])
+                    srv.send_message(msg)
+            else:  # STARTTLS (587 etc.)
+                with smtplib.SMTP(host, port, timeout=25) as srv:
+                    srv.starttls(context=ctx)
+                    if cfg.get("smtp_user"):
+                        srv.login(cfg["smtp_user"], cfg["provider_api_key"])
+                    srv.send_message(msg)
+            return True, f"SMTP sent via {host}:{port}"
         else:
             return False, f"unknown provider {provider}"
         return (200 <= status < 300), f"HTTP {status} {txt[:160]}"
