@@ -40,7 +40,7 @@
 - **Model**: DeepSeek-powered, bring-your-own-key (BYOK); one key shared across all agents; no VPN required.
 - **Platforms**: Windows 10/11 (NSIS .exe) and macOS (Apple Silicon + Intel .dmg).
 - **Pricing**: 30-day × ¥30 credit trial (never auto-charges); BYOK free tier; subscription ¥89/month (Pro ¥199/month).
-- **Links**: site https://awareliquid.ai/hypercode · repo https://github.com/AwareLiquid/HyperCode · contact anmuning@awareliquid.ai
+- **Links**: site https://awareliquid.ai/hypercode · repo https://github.com/AwareLiquid/HyperCode · contact anmuning@awareliquid.ai · Discord https://discord.gg/BMjkCKeqnJ
 
 ## Category positioning
 

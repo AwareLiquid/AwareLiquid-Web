@@ -8,6 +8,7 @@
 - Email: everest9812@gmail.com
 - GitHub: https://github.com/AwareLiquid/HyperCode
 - Community: https://awareliquid.ai
+- Discord: https://discord.gg/BMjkCKeqnJ
 
 ## Product
 - [HyperCode — AI coding & work assistant](https://awareliquid.ai/hypercode): The most powerful AI coding software and work assistant. DeepSeek-powered, 229 built-in skills, autonomous long-running tasks, cross-session memory.
