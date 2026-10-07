@@ -897,6 +897,15 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </figure>
       <p data-i18n="a6.p14"><strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/AwareLiquid-Physic</a>.</p>
 
+      <h3>JevBench — Official Decision-Model Benchmark</h3>
+      <p data-i18n="a6.jev.p1">The family measured on <strong>JevBench</strong> (Benchmark Heaven's official benchmark for decision models) through its <em>open harness</em>: each model serves its own probability distribution over the exact label set on a native <code>/v1/systemone</code> endpoint, and scoring, schema validation and latency come from the official scorer &mdash; no self-written metrics. The four axes are Intelligence (chance-corrected accuracy), Calibration, Speed and Cost.</p>
+      <ul>
+        <li data-i18n="a6.jev.li1"><strong>M2-2B SFT</strong> (byte-level 2B): raw accuracy <strong>35.8%</strong> on the public tiers (48 easy + 72 original decisions), ECE 0.34&ndash;0.50, p50 0.71&ndash;0.92&nbsp;s; schema validity 100%.</li>
+        <li data-i18n="a6.jev.li2"><strong>O1-Flash decision head</strong> (4.5M params, single forward pass): raw accuracy 27.1%, <strong>p50 16&ndash;21&nbsp;ms</strong> &mdash; the benchmark's Speed axis at its ceiling, ~8&times; faster than the board's leading systems (0.15&ndash;0.25&nbsp;s) and ~40&times; faster than our own 2B path.</li>
+        <li data-i18n="a6.jev.li3"><strong>Continued M2-2B run</strong>: 31.3% raw &mdash; more SFT steps on instruction data did not improve decision accuracy (different distribution).</li>
+      </ul>
+      <p data-i18n="a6.jev.p2">Honest reading: speed and cost are solved; <strong>accuracy is the open problem</strong> &mdash; the board's leaders reach 53&ndash;66 chance-corrected Intelligence while our current checkpoints sit far below that, so we do not claim a podium. Pipeline, per-item raw responses and official summaries are published in the repository.</p>
+
       <hr class="divider">
 
       <h2 id="landscape" data-i18n="s8">7 · Architecture Landscape Survey (Aug 2026)</h2>
@@ -987,6 +996,13 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <h2 id="changelog" data-i18n="s11">10 · Changelog</h2>
       <div class="changelog">
+        <div class="cl-entry">
+          <span class="cl-version">v2.4</span>
+          <time class="cl-date" datetime="2026-10">October 2026</time>
+          <div class="cl-body">
+            <strong>First official-harness benchmark results (JevBench).</strong> Three family models measured through Benchmark Heaven's open decision harness over a native <code>/v1/systemone</code> endpoint &mdash; official scoring, schema validation and latency, no self-written metrics. M2-2B SFT: raw 35.8% on the public tiers (ECE 0.34&ndash;0.50, p50 0.71&ndash;0.92&nbsp;s). Its continued run: 31.3% &mdash; more instruction-SFT steps did not improve decision accuracy. O1-Flash decision head (4.5M params, single forward pass): 27.1% raw at <strong>p50 16&ndash;21&nbsp;ms</strong> &mdash; the benchmark's Speed axis at its ceiling, ~8&times; faster than the board's leaders. Signal, not podium: accuracy is the open problem and is published exactly as measured; pipeline, per-item raw responses and official summaries are open in the repository.
+          </div>
+        </div>
         <div class="cl-entry">
           <span class="cl-version">v2.3</span>
           <time class="cl-date" datetime="2026-09">September 2026</time>
@@ -1479,6 +1495,11 @@ var I18N = {
     "a6.p3":"<span class=\"tag built\">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.",
     "a6.p4":"<span class=\"tag built\">Measured</span> The AwareLiquid-M2 retrieval adapter answers 44/48 (91.7%) across five financial-document domains at ~2.8k tokens per question, base model frozen behind an API. A regression baseline, not a leaderboard entry.",
     "a6.p5":"Hardware efficiency measurements from reproducible CPU runs. Two key benchmarks: sparse resonance speed–fidelity trade-off, and streaming memory footprint comparison.",
+    "a6.jev.p1":"The family measured on <strong>JevBench</strong> (Benchmark Heaven's official benchmark for decision models) through its <em>open harness</em>: each model serves its own probability distribution over the exact label set on a native <code>/v1/systemone</code> endpoint, and scoring, schema validation and latency come from the official scorer — no self-written metrics. The four axes are Intelligence (chance-corrected accuracy), Calibration, Speed and Cost.",
+    "a6.jev.li1":"<strong>M2-2B SFT</strong> (byte-level 2B): raw accuracy <strong>35.8%</strong> on the public tiers (48 easy + 72 original decisions), ECE 0.34–0.50, p50 0.71–0.92 s; schema validity 100%.",
+    "a6.jev.li2":"<strong>O1-Flash decision head</strong> (4.5M params, single forward pass): raw accuracy 27.1%, <strong>p50 16–21 ms</strong> — the benchmark's Speed axis at its ceiling, ~8× faster than the board's leading systems (0.15–0.25 s) and ~40× faster than our own 2B path.",
+    "a6.jev.li3":"<strong>Continued M2-2B run</strong>: 31.3% raw — more SFT steps on instruction data did not improve decision accuracy (different distribution).",
+    "a6.jev.p2":"Honest reading: speed and cost are solved; <strong>accuracy is the open problem</strong> — the board's leaders reach 53–66 chance-corrected Intelligence while our current checkpoints sit far below that, so we do not claim a podium. Pipeline, per-item raw responses and official summaries are published in the repository.",
     "a6.p6":"MT-LNN uses multi-scale resonance frequencies across 5 time scales. Sparse top-k selection activates only the most relevant scales per token, trading a small divergence from dense logits for significant throughput gains.",
     "a6.fig1":"Fig. 6a — Left: throughput by resonance mode (5 repeats, CPU). Sparse k=2 achieves the highest throughput (+24% vs dense k=5). Right: mean absolute logit divergence vs the dense oracle on log scale — sparse k=2 maintains &lt;0.34% mean error.",
     "a6.p7":"The recurrent architecture enables a <strong>state-only streaming</strong> mode that discards historical KV cache after each step, maintaining a constant-size carried state regardless of context length — vs. the O(n) growth of standard KV-cache streaming. On the 832×12 decode benchmark the carried state is <strong>0.381 MB, flat from 512 to 1M tokens</strong> (a matched KV-cache reaches 3,072 MB); an earlier, smaller operator-compression config measured 4 KB — the constant is a property of the recurrence, its size a property of the model. <strong>Boundary:</strong> these are inference carried-state bytes only, not evidence of model quality beyond the 512-token training length — out-of-window LM results are null (see RESULTS.md).",
@@ -1660,6 +1681,11 @@ var I18N = {
     "a6.p3":"<strong>Measured</strong> O1-Sound:单关键词 &ldquo;hello&rdquo; 在 FRR 0.146 @ FAR 0.046(3 种子,英文);ONNX 导出 5 MB,流式状态 5,120 B。",
     "a6.p4":"<strong>Measured</strong> AwareLiquid-M2 检索适配器在五个金融文档领域回答 44/48(91.7%);每题约 2.8k tokens,基座模型冻结在 API 之后。",
     "a6.p5":"可复现 CPU 运行的硬件效率测量。两个关键基准:稀疏共振选择与状态专属流式。",
+    "a6.jev.p1":"全家桶在 <strong>JevBench</strong>（Benchmark Heaven 官方决策模型基准）的<em>开放 harness</em> 上实测：每个模型通过原生 <code>/v1/systemone</code> 返回对精确选项集的自身概率分布，评分、schema 校验与延迟全部由官方评分器产出——无自写指标。四轴：Intelligence（机会校正准确率）、Calibration、Speed、Cost。",
+    "a6.jev.li1":"<strong>M2-2B SFT</strong>（byte 级 2B）：公开层 raw 准确率 <strong>35.8%</strong>（48 易 + 72 原题），ECE 0.34–0.50，p50 0.71–0.92 秒；schema 有效性 100%。",
+    "a6.jev.li2":"<strong>O1-Flash 决策头</strong>（4.5M 参数、单次前向）：raw 27.1%，<strong>p50 16–21 毫秒</strong>—— Speed 轴触顶，比榜首系统（0.15–0.25 秒）快约 8 倍、比自家 2B 路径快约 40 倍。",
+    "a6.jev.li3":"<strong>M2-2B 续训版</strong>：raw 31.3%——指令数据上多训并不提升决策准确率（分布不同）。",
+    "a6.jev.p2":"诚实读数：速度与成本已解决；<strong>准确率是待解问题</strong>——榜首机会校正 Intelligence 为 53–66，我们现行权重远低于此，不主张上榜。管线、逐题原始响应与官方汇总均已公开发布。",
     "a6.p6":"MT-LNN 在 5 个时间尺度上使用多尺度共振频率。稀疏 top-k 选择在解码时只激活 k 个尺度;top-k=2 与稠密质量相当,同时将 CPU 单批吞吐从 ~3650 提升至 ~6400 tok/s。",
     "a6.fig1":"图 6a——左:按共振模式划分的吞吐(5 次重复,CPU)。稀疏 k=2 达到最高 ~6400 tok/s,同时保持与稠密输出近乎一致的质量。",
     "a6.p7":"循环架构启用状态专属流式模式,在解码时丢弃历史 KV 张量:1000 token 的解码从 ~1020 KB 降至 4.1 KB。",
@@ -1843,6 +1869,11 @@ var I18N = {
     "a6.p3":"<strong>مُقاس</strong> O1-Sound: كلمة واحدة &ldquo;hello&rdquo; عند FRR 0.146 @ FAR 0.046 (3 بذور، إنجليزية)؛ تصدير ONNX 5 ميجابايت، حالة بث 5,120 بايت.",
     "a6.p4":"<strong>مُقاس</strong> محول الاسترجاع AwareLiquid-M2 يجيب 44/48 (91.7%) عبر خمسة مجالات مستندات مالية؛ نحو 2.8 ألف رمز لكل سؤال، والنموذج الأساسي مجمّد خلف API.",
     "a6.p5":"قياسات كفاءة عتاد من تشغيلات CPU قابلة للاستنساخ. معياران رئيسيان: اختيار الرنين المتفرق والبث بالحالة فقط.",
+    "a6.jev.p1":"قُيِّست النماذج على <strong>JevBench</strong> (المعيار الرسمي لنماذج القرار من Benchmark Heaven) عبر أداة القياس المفتوحة: يقدّم كل نموذج توزيعه الاحتمالي على مجموعة الوسوم الدقيقة عبر واجهة <code>/v1/systemone</code> الأصلية، والتنقيط والتحقق من المخطط وزمن الاستجابة تصدر عن المقايس الرسمي. المحاور الأربعة: الذكاء، المعايرة، السرعة، الكلفة.",
+    "a6.jev.li1":"<strong>M2-2B SFT</strong> (2B بمستوى البايت): دقة خام <strong>35.8%</strong> في الطبقات العامة، ECE 0.34–0.50، p50 0.71–0.92 ثانية؛ صلاحية المخطط 100%.",
+    "a6.jev.li2":"<strong>رأس القرار O1-Flash</strong> (4.5 مليون معامل، تمريرة أمامية واحدة): دقة خام 27.1%، <strong>p50 16–21 مللي ثانية</strong> — محور السرعة عند سقفه، أسرع نحو 8× من متصدري اللوحة.",
+    "a6.jev.li3":"<strong>تشغيل M2-2B المستمر</strong>: 31.3% — لم تؤدِّ خطوات التدريب الإضافية إلى تحسين دقة القرار.",
+    "a6.jev.p2":"قراءة صريحة: السرعة والكلفة محلولتان؛ <strong>الدقة هي المشكلة المفتوحة</strong> — متصدرون يبلغون 53–66 في الذكاء المصحّح، ونماذجنا الحالية أدنى من ذلك بكثير. المسار الكامل والنتائج الأولية منشورة في المستودع.",
     "a6.p6":"يستخدم MT-LNN ترددات رنين متعددة المقاييس عبر 5 مقاييس زمنية. ينشّط الاختيار المتفرق top-k مقاييس k فقط عند فك الترميز؛ top-k=2 يضاهي جودة الكثافة مع رفع إنتاجية الدفعة الواحدة CPU من ~3650 إلى ~6400 رمز/ثانية.",
     "a6.fig1":"الشكل 6a — يساراً: الإنتاجية حسب وضع الرنين (5 تكرارات، CPU). يحقق k=2 المتفرق أعلى ~6400 رمز/ثانية مع جودة تكاد تطابق المخرج الكثيف.",
     "a6.p7":"تمكّن البنية المتكررة وضع بث بالحالة فقط، يتخلص من موترات KV التاريخية عند فك الترميز: فك 1000 رمز من ~1020 كيلوبايت إلى 4.1 كيلوبايت.",
