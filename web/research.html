@@ -906,6 +906,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
         <li data-i18n="a6.jev.li3"><strong>Continued M2-2B run</strong>: 31.3% raw &mdash; more SFT steps on instruction data did not improve decision accuracy (different distribution).</li>
       </ul>
       <p data-i18n="a6.jev.p2">Honest reading: speed and cost are solved; <strong>accuracy is the open problem</strong> &mdash; the board's leaders reach 53&ndash;66 chance-corrected Intelligence while our current checkpoints sit far below that, so we do not claim a podium. Pipeline, per-item raw responses and official summaries are published in the repository.</p>
+      <p data-i18n="a6.jev.p3">Three follow-ups, three honest negatives (same official harness): a 20k-step warm-started head overfits our own distribution (train-side val 0.50&rarr;0.61 but official 36.7%&rarr;33.3%), the SFT core does not transfer better (35.0%), and swapping the corpus to real data (CLINC150+MNLI+SST-2) loses family coverage (28.5%) &mdash; the binding constraint is <strong>task-family and label-convention coverage</strong>, not step count, core, or the real-vs-synthetic axis.</p>
 
       <hr class="divider">
 
@@ -997,6 +998,13 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <h2 id="changelog" data-i18n="s11">10 · Changelog</h2>
       <div class="changelog">
+        <div class="cl-entry">
+          <span class="cl-version">v2.5</span>
+          <time class="cl-date" datetime="2026-10">October 2026</time>
+          <div class="cl-body">
+            <strong>Benchmark exploration: three follow-ups, three honest negatives.</strong> Under the same official JevBench harness: a 20k-step warm-started decision head overfits our own distribution (train-side val 0.50&rarr;0.61 but official 36.7%&rarr;33.3%); swapping in the SFT core does not transfer better (35.0%); swapping the corpus to real data (CLINC150+MNLI+SST-2, 21.8k items) loses family coverage (28.5%, with tool-selection and routing falling to 0/12). The finding: the binding constraint is <strong>task-family and label-convention coverage</strong> &mdash; not step count, core choice, or the real-vs-synthetic axis. The 2B-frozen-core + decision-head configuration (36.7% raw, ECE 0.20, p50 0.168&nbsp;s) remains the best measured; full per-item evidence and all negative results are in the repository.
+          </div>
+        </div>
         <div class="cl-entry">
           <span class="cl-version">v2.4</span>
           <time class="cl-date" datetime="2026-10">October 2026</time>
@@ -1503,6 +1511,7 @@ var I18N = {
     "a6.jev.li2":"<strong>O1-Flash decision head</strong> (4.5M params, single forward pass): raw accuracy 27.1%, <strong>p50 16–21 ms</strong> — the benchmark's Speed axis at its ceiling, ~8× faster than the board's leading systems (0.15–0.25 s) and ~40× faster than our own 2B path.",
     "a6.jev.li3":"<strong>Continued M2-2B run</strong>: 31.3% raw — more SFT steps on instruction data did not improve decision accuracy (different distribution).",
     "a6.jev.p2":"Honest reading: speed and cost are solved; <strong>accuracy is the open problem</strong> — the board's leaders reach 53–66 chance-corrected Intelligence while our current checkpoints sit far below that, so we do not claim a podium. Pipeline, per-item raw responses and official summaries are published in the repository.",
+    "a6.jev.p3":"Three follow-ups, three honest negatives (same official harness): a 20k-step warm-started head overfits our own distribution (train-side val 0.50→0.61 but official 36.7%→33.3%), the SFT core does not transfer better (35.0%), and swapping the corpus to real data (CLINC150+MNLI+SST-2) loses family coverage (28.5%) — the binding constraint is <strong>task-family and label-convention coverage</strong>, not step count, core, or the real-vs-synthetic axis.",
     "a6.p6":"MT-LNN uses multi-scale resonance frequencies across 5 time scales. Sparse top-k selection activates only the most relevant scales per token, trading a small divergence from dense logits for significant throughput gains.",
     "a6.fig1":"Fig. 6a — Left: throughput by resonance mode (5 repeats, CPU). Sparse k=2 achieves the highest throughput (+24% vs dense k=5). Right: mean absolute logit divergence vs the dense oracle on log scale — sparse k=2 maintains &lt;0.34% mean error.",
     "a6.p7":"The recurrent architecture enables a <strong>state-only streaming</strong> mode that discards historical KV cache after each step, maintaining a constant-size carried state regardless of context length — vs. the O(n) growth of standard KV-cache streaming. On the 832×12 decode benchmark the carried state is <strong>0.381 MB, flat from 512 to 1M tokens</strong> (a matched KV-cache reaches 3,072 MB); an earlier, smaller operator-compression config measured 4 KB — the constant is a property of the recurrence, its size a property of the model. <strong>Boundary:</strong> these are inference carried-state bytes only, not evidence of model quality beyond the 512-token training length — out-of-window LM results are null (see RESULTS.md).",
@@ -1691,6 +1700,7 @@ var I18N = {
     "a6.jev.li2":"<strong>O1-Flash 决策头</strong>（4.5M 参数、单次前向）：raw 27.1%，<strong>p50 16–21 毫秒</strong>—— Speed 轴触顶，比榜首系统（0.15–0.25 秒）快约 8 倍、比自家 2B 路径快约 40 倍。",
     "a6.jev.li3":"<strong>M2-2B 续训版</strong>：raw 31.3%——指令数据上多训并不提升决策准确率（分布不同）。",
     "a6.jev.p2":"诚实读数：速度与成本已解决；<strong>准确率是待解问题</strong>——榜首机会校正 Intelligence 为 53–66，我们现行权重远低于此，不主张上榜。管线、逐题原始响应与官方汇总均已公开发布。",
+    "a6.jev.p3":"三组追试、三个诚实负结果（同一官方 harness）：warm-start 20k 步过拟合自家分布（自家 val 0.50→0.61，官方 36.7%→33.3%）、换 SFT 核不赚（35.0%）、换真实语料丢覆盖（28.5%）——绑定约束是<strong>任务族与标签约定的覆盖</strong>，不是步数、核、或真实与合成之分。",
     "a6.p6":"MT-LNN 在 5 个时间尺度上使用多尺度共振频率。稀疏 top-k 选择在解码时只激活 k 个尺度;top-k=2 与稠密质量相当,同时将 CPU 单批吞吐从 ~3650 提升至 ~6400 tok/s。",
     "a6.fig1":"图 6a——左:按共振模式划分的吞吐(5 次重复,CPU)。稀疏 k=2 达到最高 ~6400 tok/s,同时保持与稠密输出近乎一致的质量。",
     "a6.p7":"循环架构启用状态专属流式模式,在解码时丢弃历史 KV 张量:1000 token 的解码从 ~1020 KB 降至 4.1 KB。",
@@ -1891,6 +1901,7 @@ var I18N = {
     "a6.jev.li2":"<strong>رأس القرار O1-Flash</strong> (4.5 مليون معامل، تمريرة أمامية واحدة): دقة خام 27.1%، <strong>p50 16–21 مللي ثانية</strong> — محور السرعة عند سقفه، أسرع نحو 8× من متصدري اللوحة.",
     "a6.jev.li3":"<strong>تشغيل M2-2B المستمر</strong>: 31.3% — لم تؤدِّ خطوات التدريب الإضافية إلى تحسين دقة القرار.",
     "a6.jev.p2":"قراءة صريحة: السرعة والكلفة محلولتان؛ <strong>الدقة هي المشكلة المفتوحة</strong> — متصدرون يبلغون 53–66 في الذكاء المصحّح، ونماذجنا الحالية أدنى من ذلك بكثير. المسار الكامل والنتائج الأولية منشورة في المستودع.",
+    "a6.jev.p3":"ثلاث محاولات وثلاث نتائج سلبية صريحة (بنفس الأداة الرسمية): التدريب الطويل يفرط في ملاءمة توزيعنا (0.50→0.61 داخلياً مقابل 36.7%→33.3% رسمياً)، والنواة المدربة تعليمات لا تتفوق، واستبدال المدونة ببيانات حقيقية يفقد التغطية (28.5%) — القيد الفعلي هو <strong>تغطية عائلات المهام واصطلاحات الوسوم</strong>.",
     "a6.p6":"يستخدم MT-LNN ترددات رنين متعددة المقاييس عبر 5 مقاييس زمنية. ينشّط الاختيار المتفرق top-k مقاييس k فقط عند فك الترميز؛ top-k=2 يضاهي جودة الكثافة مع رفع إنتاجية الدفعة الواحدة CPU من ~3650 إلى ~6400 رمز/ثانية.",
     "a6.fig1":"الشكل 6a — يساراً: الإنتاجية حسب وضع الرنين (5 تكرارات، CPU). يحقق k=2 المتفرق أعلى ~6400 رمز/ثانية مع جودة تكاد تطابق المخرج الكثيف.",
     "a6.p7":"تمكّن البنية المتكررة وضع بث بالحالة فقط، يتخلص من موترات KV التاريخية عند فك الترميز: فك 1000 رمز من ~1020 كيلوبايت إلى 4.1 كيلوبايت.",
