@@ -312,6 +312,23 @@ html[data-theme="dark"] .hov::before{background-image:linear-gradient(transparen
 .ind-m{display:block;font-size:12.5px;line-height:1.55;color:var(--muted);opacity:.8}
 .ind-also{margin-top:28px;padding-top:20px;border-top:1px solid var(--rule);font-size:13.5px;line-height:1.6;color:var(--muted)}
 .ind-also .label{margin-right:10px}
+
+/* ── BUSINESS (what we do) ── hairline grid, 2×2 in the editorial system */
+.biz-grid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--rule);margin-top:8px}
+.biz-cell{display:block;padding:36px 32px;border-bottom:1px solid var(--rule);position:relative}
+.biz-cell:nth-child(odd){padding-left:0;border-right:1px solid var(--rule)}
+.biz-cell:nth-child(even){padding-right:0}
+@media(max-width:760px){
+  .biz-grid{grid-template-columns:1fr}
+  .biz-cell{padding:28px 0}
+  .biz-cell:nth-child(odd){border-right:0}
+}
+.biz-k{display:block;margin-bottom:12px;transition:color .15s}
+.biz-cell:hover .biz-k{color:var(--fg)}
+.biz-t{font-family:var(--font-serif);font-size:22px;font-weight:400;letter-spacing:-.02em;margin-bottom:10px}
+.biz-d{font-size:14px;line-height:1.6;color:var(--muted);margin-bottom:16px;max-width:48ch}
+.biz-m{display:flex;gap:10px;flex-wrap:wrap}
+.biz-m span{font-family:var(--font-label);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:3px 9px}
 /* ── MODEL LINEUP ── hairline strip, matching the editorial system */
 .model-lineup{display:flex;align-items:stretch;justify-content:flex-start;gap:0;margin-top:0;flex-wrap:wrap;border-top:1px solid var(--rule)}
 .model-badge{display:flex;align-items:baseline;gap:10px;padding:18px 28px 18px 0;transition:none}
@@ -721,6 +738,43 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           </video>
         </div>
       </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ── BUSINESS (what we do) ── -->
+<section class="section biz-section" id="business">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What we do</span>
+      <h2>One architecture, <em class="em-italic">three ways</em> to ship it.</h2>
+      <p class="section-lead">AwareLiquid is a bio-inspired AI company built on its own MT-LNN liquid architecture. We take it to market as software, as models for hardware, and as a data service — with the research engine kept open underneath.</p>
+    </div>
+    <div class="biz-grid">
+      <a class="biz-cell hov" href="/hypercode">
+        <span class="biz-k label">Product</span>
+        <h3 class="biz-t">HyperCode</h3>
+        <p class="biz-d">An AI coding agent that works for hours on one clear instruction — 229 built-in domain skills across finance, law, academia and private equity.</p>
+        <span class="biz-m"><span>229 skills</span><span>One-click install</span><span>Windows · macOS</span></span>
+      </a>
+      <a class="biz-cell hov" href="#models">
+        <span class="biz-k label">Models</span>
+        <h3 class="biz-t">Edge AI for hardware</h3>
+        <p class="biz-d">Attention-free O-Series holds a 0.381 MB carried state at any context length and runs CPU-only — already in production battery AI on the pack controller itself.</p>
+        <span class="biz-m"><span>0.381 MB state</span><span>CPU-only</span><span>MIT weights</span></span>
+      </a>
+      <a class="biz-cell hov" href="/cleaning">
+        <span class="biz-k label">Service</span>
+        <h3 class="biz-t">Data cleaning</h3>
+        <p class="biz-d">Scanned archives, handwritten tables and blurry reports turned into clean structured data — zero hallucination, delivered as a service.</p>
+        <span class="biz-m"><span>100% table-digit accuracy</span><span>~1h / 189 pages</span></span>
+      </a>
+      <a class="biz-cell hov" href="/research">
+        <span class="biz-k label">Engine</span>
+        <h3 class="biz-t">Open research</h3>
+        <p class="biz-d">The MT-LNN architecture — continuous-time ODE, global workspace and liquid memory — with ablations, recipes and results open and reproducible.</p>
+        <span class="biz-m"><span>Open code</span><span>Reproducible</span><span>MIT</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -1309,6 +1363,13 @@ const I18N={
     'why.c1':'<span class="adv-eyebrow">Advantage 1 · Cost &amp; Footprint</span><h3>Lightweight by Architecture</h3><ul><li><strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens</li><li><strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference</li><li><strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)</li></ul>',
     'why.c2':'<span class="adv-eyebrow">Advantage 2 · Capability</span><h3>What Attention Structurally Cannot Do</h3><ul><li><strong>0.56 vs 0.000</strong> cross-window recall — facts carried by fast-weight memory after their KV cache is gone</li><li><strong>+7.7% vs +31%</strong> degradation at 80% dropped samples on real NASA battery data (vs LSTM/GRU)</li><li><strong>EWC</strong> continual learning — online weight updates without catastrophic forgetting</li></ul>',
     'why.note':'All numbers measured on real runs — methodology and raw data: ',
+    'biz.eyebrow':'What we do',
+    'biz.h2a':'One architecture, ','biz.h2b':'three ways','biz.h2c':' to ship it.',
+    'biz.lead':'AwareLiquid is a bio-inspired AI company built on its own MT-LNN liquid architecture. We take it to market as software, as models for hardware, and as a data service — with the research engine kept open underneath.',
+    'biz.c1k':'Product','biz.c1t':'HyperCode','biz.c1d':'An AI coding agent that works for hours on one clear instruction — 229 built-in domain skills across finance, law, academia and private equity.','biz.c1m':'<span>229 skills</span><span>One-click install</span><span>Windows · macOS</span>',
+    'biz.c2k':'Models','biz.c2t':'Edge AI for hardware','biz.c2d':'Attention-free O-Series holds a 0.381 MB carried state at any context length and runs CPU-only — already in production battery AI on the pack controller itself.','biz.c2m':'<span>0.381 MB state</span><span>CPU-only</span><span>MIT weights</span>',
+    'biz.c3k':'Service','biz.c3t':'Data cleaning','biz.c3d':'Scanned archives, handwritten tables and blurry reports turned into clean structured data — zero hallucination, delivered as a service.','biz.c3m':'<span>100% table-digit accuracy</span><span>~1h / 189 pages</span>',
+    'biz.c4k':'Engine','biz.c4t':'Open research','biz.c4d':'The MT-LNN architecture — continuous-time ODE, global workspace and liquid memory — with ablations, recipes and results open and reproducible.','biz.c4m':'<span>Open code</span><span>Reproducible</span><span>MIT</span>',
   },
   ar:{
     'nav.demo':'العرض','nav.models':'النماذج','nav.research':'الأبحاث','nav.about':'عن الشركة','nav.paper':'الورقة','nav.github':'GitHub',
@@ -1444,6 +1505,13 @@ const I18N={
     'why.c1':'<span class="adv-eyebrow">الميزة 1 · التكلفة والحجم</span><h3>خفيف بالبنية</h3><ul><li><strong>0.381 ميجابايت</strong> حالة محمولة ثابتة مهما كان السياق — <strong>أصغر بـ 8,063×</strong> من ذاكرة KV عند مليون رمز</li><li>نماذج حافة <strong>48M–128M</strong> على المعالج فقط — بلا فاتورة بطاقات</li><li>تصدير <strong>5 ميجابايت</strong> ONNX لكلمة استيقاظ دائمة التشغيل (O1-Sound)</li></ul>',
     'why.c2':'<span class="adv-eyebrow">الميزة 2 · القدرة</span><h3>ما لا يستطيع الانتباه فعله بنيوياً</h3><ul><li><strong>0.56 مقابل 0.000</strong> استدعاء عبر النوافذ — حقائق تحملها ذاكرة الوزن السريع بعد اختفاء ذاكرة KV</li><li><strong>‏+7.7% مقابل +31%</strong> تدهور عند فقدان 80% من العينات على بيانات بطاريات NASA حقيقية (مقابل LSTM/GRU)</li><li><strong>EWC</strong> تعلم مستمر — تحديث أوزان مباشر بلا نسيان كارثي</li></ul>',
     'why.note':'كل الأرقام مُقاسة على تشغيلات حقيقية — المنهجية والبيانات الخام: ',
+    'biz.eyebrow':'ما نقوم به',
+    'biz.h2a':'معمارية واحدة، ','biz.h2b':'ثلاث طرق','biz.h2c':' لطرحها.',
+    'biz.lead':'AwareLiquid شركة ذكاء اصطناعي مستوحاة من الأحياء، مبنية على معمارية MT-LNN السائلة الخاصة بها. نطرحها في السوق كبرمجيات، وكنماذج للعتاد، وكخدمة بيانات — مع إبقاء محرك البحث مفتوحاً في الأساس.',
+    'biz.c1k':'المنتج','biz.c1t':'HyperCode','biz.c1d':'وكيل برمجة بالذكاء الاصطناعي يعمل لساعات على تعليمة واحدة واضحة — 229 مهارة مجال مدمجة في المالية والقانون والأكاديميا والاستثمار الخاص.','biz.c1m':'<span>229 مهارة</span><span>تثبيت بنقرة</span><span>ويندوز · ماك</span>',
+    'biz.c2k':'النماذج','biz.c2t':'ذكاء حافّي للعتاد','biz.c2d':'سلسلة O بلا انتباه تحمل حالة 0.381 ميجابايت ثابتة مهما كان طول السياق وتعمل على المعالج فقط — بالفعل في إنتاج ذكاء البطاريات على وحدة التحكم نفسها.','biz.c2m':'<span>حالة 0.381 MB</span><span>CPU فقط</span><span>أوزان MIT</span>',
+    'biz.c3k':'الخدمة','biz.c3t':'تنظيف البيانات','biz.c3d':'أرشيفات ممسوحة وجداول مكتوبة بخط اليد وتقارير ضبابية تُحوَّل إلى بيانات منظمة نظيفة — بلا هلوسة، تُقدَّم كخدمة.','biz.c3m':'<span>دقة 100% للأرقام</span><span>~ساعة / 189 صفحة</span>',
+    'biz.c4k':'المحرك','biz.c4t':'بحث مفتوح','biz.c4d':'معمارية MT-LNN — ODE زمني مستمر ومساحة عمل عالمية وذاكرة سائلة — مع استئصالات ووصفات ونتائج مفتوحة وقابلة للاستنساخ.','biz.c4m':'<span>كود مفتوح</span><span>قابل للاستنساخ</span><span>MIT</span>',
   },
   zh:{
     'nav.demo':'演示','nav.models':'模型','nav.research':'研究','nav.about':'关于','nav.paper':'论文','nav.github':'GitHub',
@@ -1606,6 +1674,13 @@ const I18N={
     'why.c1':'<span class="adv-eyebrow">优势一 · 成本与体积</span><h3>架构级的轻量</h3><ul><li><strong>0.381 MB</strong> 恒定携带状态，与上下文长度无关——1M tokens 下比 KV 缓存<strong>小 8,063 倍</strong></li><li><strong>4800 万–1.28 亿参数</strong> 边缘模型，纯 CPU 推理——无 GPU 账单</li><li><strong>5 MB</strong> ONNX 导出，常开唤醒词（O1-Sound）</li></ul>',
     'why.c2':'<span class="adv-eyebrow">优势二 · 能力</span><h3>注意力结构上做不到的事</h3><ul><li><strong>0.56 vs 0.000</strong> 跨窗口召回——KV 缓存消失后，事实由 fast-weight 记忆承载</li><li><strong>+7.7% vs +31%</strong> 在 80% 采样丢失下的劣化（真实 NASA 电池数据，对比 LSTM/GRU）</li><li><strong>EWC</strong> 终身学习——在线更新权重而不灾难性遗忘</li></ul>',
     'why.note':'全部数字来自真实运行——方法论与原始数据：',
+    'biz.eyebrow':'我们做什么',
+    'biz.h2a':'一套架构，','biz.h2b':'三种方式','biz.h2c':'把它交付出去。',
+    'biz.lead':'AwareLiquid 是一家受生物启发的 AI 公司，建立在自研的 MT-LNN 液态架构之上。我们把它以软件、硬件模型和数据服务三种形态推向市场，并让底层研究引擎保持开放。',
+    'biz.c1k':'产品','biz.c1t':'HyperCode','biz.c1d':'一条清晰指令即可自主工作数小时的 AI 编程智能体——内置 229 项领域技能，覆盖金融、法律、学术与私募。','biz.c1m':'<span>229 项技能</span><span>一键安装</span><span>Windows · macOS</span>',
+    'biz.c2k':'模型','biz.c2t':'面向硬件的边缘 AI','biz.c2d':'无注意力的 O 系列在任何上下文长度下都保持 0.381 MB 恒定状态，且仅需 CPU 运行——已用于电池 AI 生产环境，直接跑在电池控制器上。','biz.c2m':'<span>0.381 MB 状态</span><span>仅 CPU</span><span>MIT 权重</span>',
+    'biz.c3k':'服务','biz.c3t':'数据清洗','biz.c3d':'扫描档案、手写表格与模糊报告转化为干净的结构化数据——零幻觉，以服务形式交付。','biz.c3m':'<span>表格数字 100% 准确</span><span>~1 小时 / 189 页</span>',
+    'biz.c4k':'引擎','biz.c4t':'开放研究','biz.c4d':'MT-LNN 架构——连续时间 ODE、全局工作空间与液态记忆——消融、配方与结果全部开放、可复现。','biz.c4m':'<span>开放代码</span><span>可复现</span><span>MIT</span>',
   }
 };
 
@@ -1637,6 +1712,8 @@ const I18N_MAP=[
   ['.nav-links a[href="/hypercode"]','nav.hypercode','text'],
   ['.rail-head a.label','rail.more','text'],
   ['.ind-lead','ind.lead','text'],
+  ['.biz-section .eyebrow','biz.eyebrow','text'],
+  ['.biz-section .section-lead','biz.lead','text'],
   ['.features-section .eyebrow','arch.eyebrow','text'],
   ['.features-section .section-header h2','arch.h2','text'],
   ['.features-section .section-lead','arch.lead','text'],
@@ -1778,6 +1855,18 @@ function applyPageLang(lang){
   });
   const indAlso=document.querySelector('.ind-also');
   if(indAlso)indAlso.innerHTML='<span class="label"><span class="label-sq"></span>'+ti('ind.alsoLabel')+'</span> '+ti('ind.alsoText');
+
+  // business section: heading carries its own <em>; each cell is a keyed offering
+  const bizH2=document.querySelector('.biz-section .section-header h2');
+  if(bizH2)bizH2.innerHTML=ti('biz.h2a')+'<em class="em-italic">'+ti('biz.h2b')+'</em>'+ti('biz.h2c');
+  document.querySelectorAll('.biz-cell').forEach((cell,i)=>{
+    const k=cell.querySelector('.biz-k'),t=cell.querySelector('.biz-t'),
+          d=cell.querySelector('.biz-d'),m=cell.querySelector('.biz-m');
+    if(k)k.textContent=ti('biz.c'+(i+1)+'k');
+    if(t)t.textContent=ti('biz.c'+(i+1)+'t');
+    if(d)d.innerHTML=ti('biz.c'+(i+1)+'d');
+    if(m)m.innerHTML=ti('biz.c'+(i+1)+'m');
+  });
 
   // engineering-reality table: headers + row cells
   document.querySelectorAll('.rh-table thead th').forEach((el,i)=>{el.textContent=ti('rh.th'+(i+1));});
