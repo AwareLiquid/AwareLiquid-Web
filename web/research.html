@@ -19,7 +19,7 @@
 <meta property="og:locale:alternate" content="zh_CN">
 <meta property="og:locale:alternate" content="ar_SA">
 <meta property="og:article:published_time" content="2026-02-01T00:00:00Z">
-<meta property="og:article:modified_time" content="2026-06-22T00:00:00Z">
+<meta property="og:article:modified_time" content="2026-10-07T00:00:00Z">
 <meta property="og:article:author" content="AwareLiquid Project">
 <meta property="og:article:section" content="Research">
 <meta property="og:article:tag" content="continual learning">
@@ -54,7 +54,7 @@
   "url": "https://github.com/AwareLiquid/M1/blob/main/mt_lnn_v2_reliable_long_pretraining_arxiv.pdf",
   "codeRepository": "https://github.com/AwareLiquid/M1",
   "datePublished": "2026-02-01",
-  "dateModified": "2026-06-25",
+  "dateModified": "2026-10-07",
   "keywords": ["continual learning","catastrophic forgetting","EWC","liquid neural networks","Hebbian plasticity","MT-LNN"],
   "isPartOf": {"@type": "WebSite", "name": "AwareLiquid", "url": "https://awareliquid.ai"},
   "author": {"@id": "https://awareliquid.ai/#author"},
@@ -897,7 +897,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </figure>
       <p data-i18n="a6.p14"><strong>Measured</strong> (all PRD targets met, project closed): semigroup training lifts the liquid advantage to <strong>66%</strong> (mean of 7 configs, 32.6%–85.6%), few-shot adaptation <strong>3.24&times;</strong>, conservation verified on six systems, N-body / non-separable / probabilistic / time-conditioned heads implemented, 43/43 tests. <em>Scope: continuous-state trajectory prediction scored on physics metrics — never perplexity; not a language model.</em> Repo: <a href="https://github.com/AwareLiquid/AwareLiquid-Physic" target="_blank" rel="noopener noreferrer">github.com/AwareLiquid/AwareLiquid-Physic</a>.</p>
 
-      <h3>JevBench — Official Decision-Model Benchmark</h3>
+      <h3 data-i18n="a6.jev.h3">JevBench — Official Decision-Model Benchmark</h3>
       <p data-i18n="a6.jev.p1">The family measured on <strong>JevBench</strong> (Benchmark Heaven's official benchmark for decision models) through its <em>open harness</em>: each model serves its own probability distribution over the exact label set on a native <code>/v1/systemone</code> endpoint, and scoring, schema validation and latency come from the official scorer &mdash; no self-written metrics. The four axes are Intelligence (chance-corrected accuracy), Calibration, Speed and Cost.</p>
       <ul>
         <li data-i18n="a6.jev.li0"><strong>2B frozen core + decision head</strong> (single forward pass): <strong>39.6%</strong> easy-tier raw accuracy, <strong>ECE 0.20</strong> (best-calibrated across our runs), p50 <strong>0.168&nbsp;s</strong> &mdash; the combination: 2B representations, ~4&times; faster than the SFT path.</li>
@@ -1496,6 +1496,7 @@ var I18N = {
     "a6.p3":"<span class=\"tag built\">Measured</span> O1-Sound: single-keyword &ldquo;hello&rdquo; at FRR 0.146 @ FAR 0.046 (3 seeds, English). ONNX export: <strong>5.03 MB fp32 / 1.27 MB int8</strong>, 5,120-byte constant state. Multi-language target under development.",
     "a6.p4":"<span class=\"tag built\">Measured</span> The AwareLiquid-M2 retrieval adapter answers 44/48 (91.7%) across five financial-document domains at ~2.8k tokens per question, base model frozen behind an API. A regression baseline, not a leaderboard entry.",
     "a6.p5":"Hardware efficiency measurements from reproducible CPU runs. Two key benchmarks: sparse resonance speed–fidelity trade-off, and streaming memory footprint comparison.",
+    "a6.jev.h3":"JevBench — Official Decision-Model Benchmark",
     "a6.jev.p1":"The family measured on <strong>JevBench</strong> (Benchmark Heaven's official benchmark for decision models) through its <em>open harness</em>: each model serves its own probability distribution over the exact label set on a native <code>/v1/systemone</code> endpoint, and scoring, schema validation and latency come from the official scorer — no self-written metrics. The four axes are Intelligence (chance-corrected accuracy), Calibration, Speed and Cost.",
     "a6.jev.li1":"<strong>M2-2B SFT</strong> (byte-level 2B): raw accuracy <strong>35.8%</strong> on the public tiers (48 easy + 72 original decisions), ECE 0.34–0.50, p50 0.71–0.92 s; schema validity 100%.",
     "a6.jev.li0":"<strong>2B frozen core + decision head</strong> (single forward pass): <strong>39.6%</strong> easy-tier raw accuracy, <strong>ECE 0.20</strong> (best-calibrated across our runs), p50 <strong>0.168 s</strong> — the combination: 2B representations, ~4× faster than the SFT path.",
@@ -1683,6 +1684,7 @@ var I18N = {
     "a6.p3":"<strong>Measured</strong> O1-Sound:单关键词 &ldquo;hello&rdquo; 在 FRR 0.146 @ FAR 0.046(3 种子,英文);ONNX 导出 5 MB,流式状态 5,120 B。",
     "a6.p4":"<strong>Measured</strong> AwareLiquid-M2 检索适配器在五个金融文档领域回答 44/48(91.7%);每题约 2.8k tokens,基座模型冻结在 API 之后。",
     "a6.p5":"可复现 CPU 运行的硬件效率测量。两个关键基准:稀疏共振选择与状态专属流式。",
+    "a6.jev.h3":"JevBench——官方决策模型基准",
     "a6.jev.p1":"全家桶在 <strong>JevBench</strong>（Benchmark Heaven 官方决策模型基准）的<em>开放 harness</em> 上实测：每个模型通过原生 <code>/v1/systemone</code> 返回对精确选项集的自身概率分布，评分、schema 校验与延迟全部由官方评分器产出——无自写指标。四轴：Intelligence（机会校正准确率）、Calibration、Speed、Cost。",
     "a6.jev.li1":"<strong>M2-2B SFT</strong>（byte 级 2B）：公开层 raw 准确率 <strong>35.8%</strong>（48 易 + 72 原题），ECE 0.34–0.50，p50 0.71–0.92 秒；schema 有效性 100%。",
     "a6.jev.li0":"<strong>2B 冻结核 + 决策头</strong>（单次前向）：easy 层 raw <strong>39.6%</strong>（各组最高）、<strong>ECE 0.20</strong>（校准最优）、p50 <strong>0.168 秒</strong>——2B 表征 + ~4 倍加速的组合形态。",
@@ -1867,11 +1869,22 @@ var I18N = {
     "a5.p2":"تتم مقارنة MT-LNN مع خط أساس GRU في مهمة تكامل مسار السرعة → الموقع، لاختبار ما إذا كانت التمثيلات المتكررة متعددة المقاييس تتبع المواقع المستمرة أفضل من RNN أحادي المقياس.",
     "a5.built":"<strong>بُني</strong> توليد المسارات والخسارة وتحليل الارتباط الذاتي لدرجة الشبكة كلها قابلة للتشغيل والاستنساخ.",
     "a6.p1":"ثلاثة اتجاهات نشر بقياسات حقيقية خلفها — النتائج نفسها المعروضة في الصفحة الرئيسية.",
+    "hbs.h2":"5b · محاكاة الدماغ البشري — شبكات نبضية متفرقة من اتصالات عصبية حقيقية",
+    "hbs.lead":"<span class=\"tag built\">مُقاس</span> الخط الوحيد المبني على اتصالات دماغية حقيقية، لا على المجاز. سألنا: هل تساعد <em>بنية</em> الدماغ الحقيقي شبكة نبضية على التعلم؟ الجواب ينقسم اثنين: <strong>الطوبولوجيا الساكنة</strong> لا تساعد &mdash; لكن <strong>قوانينها الإحصائية</strong> تفعل.",
+    "hbs.h3a":"ما لم ينجح: الطوبولوجيا",
+    "hbs.p1":"استخدام اتصال الجهاز العصبي المركزي لذكور <em>الدروسوفيلا</em> كقناع توصيل ثابت لم يمنح <strong>أي ميزة قابلة للقياس</strong> مقارنة برسوم عشوائية أو متفرقة — خمس تجارب لم تُظهر أي فرق. نتيجة سلبية حقيقية، نُبلّغ عنها كما هي.",
+    "hbs.h3b":"ما الذي انتقل: القوانين الإحصائية",
+    "hbs.p2":"القوانين <em>تُحدث</em> فرقاً: تباعد <strong>0.09%</strong>، وتوزيع درجات بلا مقياس (الأقصى/المتوسط ≈ 75)، وعالمية صغيرة قوية (التجميع 6.65× العشوائي)، ونسبة إثارة/تثبيط 60/40. شبكة SNN متفرقة مبنية عليها تضاهي MLP كثيفة بفارق ~نقطة واحدة عند طاقة أقل تقديراً بنحو 107–112×.",
+    "hbs.fig":"الشكل 5b — SNN متفرقة (784→800→10، كثافة 5%، LIF) مقابل MLP كثيفة: فارق دقة صغير لكنه حقيقي. الطاقة تقدير نموذج CMOS 45nm، لا قياس على العتاد.",
+    "hbs.h3c":"لماذا يهم ذلك",
+    "hbs.p3":"دقة قريبة من الكثيفة بطاقة أقل بمرتبتين من حيث الحجم تجعل الاستدلال الدائم ممكناً حيث لا يمكن لنموذج كثيف أن يعمل. الاكتشاف يتعلق بالمقدمات البنيوية: ليس نسخ دماغ الذبابة، بل استعارة الإحصاءات التي انتهى إليها التطور. تبلغ ResNet-SNN نحو 85% على CIFAR-10 — سقف صريح.",
+    "hbs.links":"الاستنساخ والتنزيل",
     "a6.h3":"تقدير صحة البطارية — تيارات مستشعرات غير منتظمة",
     "a6.p2":"<strong>مُقاس</strong> على بيانات خلايا NASA PCoE حقيقية مع إسقاط 80% من العينات عشوائياً: أدنى تدهور مقارنة بـ LSTM/GRU/Transformer؛ حالة محمولة ثابتة 2.6 كيلوبايت مهما كان طول السياق.",
     "a6.p3":"<strong>مُقاس</strong> O1-Sound: كلمة واحدة &ldquo;hello&rdquo; عند FRR 0.146 @ FAR 0.046 (3 بذور، إنجليزية)؛ تصدير ONNX 5 ميجابايت، حالة بث 5,120 بايت.",
     "a6.p4":"<strong>مُقاس</strong> محول الاسترجاع AwareLiquid-M2 يجيب 44/48 (91.7%) عبر خمسة مجالات مستندات مالية؛ نحو 2.8 ألف رمز لكل سؤال، والنموذج الأساسي مجمّد خلف API.",
     "a6.p5":"قياسات كفاءة عتاد من تشغيلات CPU قابلة للاستنساخ. معياران رئيسيان: اختيار الرنين المتفرق والبث بالحالة فقط.",
+    "a6.jev.h3":"JevBench — المعيار الرسمي لنماذج القرار",
     "a6.jev.p1":"قُيِّست النماذج على <strong>JevBench</strong> (المعيار الرسمي لنماذج القرار من Benchmark Heaven) عبر أداة القياس المفتوحة: يقدّم كل نموذج توزيعه الاحتمالي على مجموعة الوسوم الدقيقة عبر واجهة <code>/v1/systemone</code> الأصلية، والتنقيط والتحقق من المخطط وزمن الاستجابة تصدر عن المقايس الرسمي. المحاور الأربعة: الذكاء، المعايرة، السرعة، الكلفة.",
     "a6.jev.li1":"<strong>M2-2B SFT</strong> (2B بمستوى البايت): دقة خام <strong>35.8%</strong> في الطبقات العامة، ECE 0.34–0.50، p50 0.71–0.92 ثانية؛ صلاحية المخطط 100%.",
     "a6.jev.li0":"<strong>نواة 2B المجمّدة + رأس القرار</strong> (تمريرة واحدة): دقة خام <strong>39.6%</strong> في الطبقة السهلة، <strong>ECE 0.20</strong> (أفضل معايرة)، p50 <strong>0.168 ثانية</strong> — تمثيلات 2B مع تسريع ~4×.",
