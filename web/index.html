@@ -873,7 +873,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         <h3 class="ind-t">Hearables</h3>
         <p class="ind-d">Always-on wake-word spotting where the microphone never closes — one keyword, measured in English. Open source as <strong>O1-Sound</strong>.</p>
         <span class="ind-s">Measured — single keyword only</span>
-        <span class="ind-m">English &ldquo;hello&rdquo;: FRR 0.14 &plusmn; 0.05 at FAR 0.05 across 3 seeds. 5.03 MB fp32 / 1.27 MB int8, 5,120 B constant state. <strong>Not production grade</strong>: seed-to-seed spread is wider than any change we have tried, and the multilingual version measured worse than never firing — one binary class cannot span greetings that share no phonetics.</span>
+        <span class="ind-m">English &ldquo;hello&rdquo;: FRR 0.14 &plusmn; 0.05 at FAR 0.05 across 3 seeds; Run 9 (real negative audio) crossed the <strong>FAR &le; 1%</strong> held-out test bar (0.97% at threshold 0.9906). 5.03 MB fp32 / 1.27 MB int8, 5,120 B constant state. <strong>Not production grade</strong>: per-hour field FAR is unmeasured, and the multilingual version measured worse than never firing — one binary class cannot span greetings that share no phonetics.</span>
       </a>
 
       <a class="ind-cell hov" href="/research">
@@ -998,7 +998,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span class="mc-status s-dl">&#8595; Download</span>
         </div>
         <h3 class="mc-name">O1-Sound — Wake-Word Spotter</h3>
-        <p class="mc-desc">Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.</p>
+        <p class="mc-desc">Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated; Run 9 crossed the <strong>FAR &le; 1%</strong> held-out test bar (0.97% at threshold 0.9906). 32/32 tests.</p>
         <div class="mc-meta">
           <span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>
         </div>
@@ -1279,7 +1279,7 @@ const I18N={
     'ind.c2t':'Hearables',
     'ind.c2d':'Always-on wake-word spotting where the microphone never closes — one keyword, measured in English. Open source as <strong>O1-Sound</strong>.',
     'ind.c2s':'Measured — single keyword only',
-    'ind.c2m':'English &ldquo;hello&rdquo;: FRR 0.14 &plusmn; 0.05 at FAR 0.05 across 3 seeds. 5.03 MB fp32 / 1.27 MB int8, 5,120 B constant state. <strong>Not production grade</strong>: seed-to-seed spread is wider than any change we have tried, and the multilingual version measured worse than never firing — one binary class cannot span greetings that share no phonetics.',
+    'ind.c2m':'English &ldquo;hello&rdquo;: FRR 0.14 &plusmn; 0.05 at FAR 0.05 across 3 seeds; Run 9 (real negative audio) crossed the <strong>FAR &le; 1%</strong> held-out test bar (0.97% at threshold 0.9906). 5.03 MB fp32 / 1.27 MB int8, 5,120 B constant state. <strong>Not production grade</strong>: per-hour field FAR is unmeasured, and the multilingual version measured worse than never firing — one binary class cannot span greetings that share no phonetics.',
     'ind.c3t':'Financial documents',
     'ind.c3d':'QA over filings far longer than the context window, with the base model frozen behind an API.',
     'ind.c3s':'Measured — M2 adapter',
@@ -1342,7 +1342,7 @@ const I18N={
     'mc.4.meta':'<span>0.5B base + 12.4M</span><span>6 adapters</span><span>research</span>',
     'mc.4.cta1':'Download on HuggingFace ↓','mc.4.note':'MIT · 500-step checkpoint',
     'mc.5.series':'O-Series','mc.5.status':'↓ Download','mc.5.name':'O1-Sound — Wake-Word Spotter',
-    'mc.5.desc':'Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.',
+    'mc.5.desc':'Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated; Run 9 crossed the <strong>FAR &le; 1%</strong> held-out test bar (0.97% at threshold 0.9906). 32/32 tests.',
     'mc.5.meta':'<span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
     'mc.6.series':'O-Series','mc.6.status':'↓ Repository','mc.6.name':'O1-Anti',
@@ -1436,7 +1436,7 @@ const I18N={
     'ind.c1t':'إدارة البطاريات','ind.c1d':'انحدار صحة الحالة على تيارات الجهد/التيار/الحرارة، على وحدة التحكم نفسها.',
     'ind.c1s':'مُقاس — خلايا NASA PCoE','ind.c1m':'‏+7.7% عند فقدان 80% من العينات مقابل +31% لـ LSTM/GRU · حالة بث 2.6 كيلوبايت. 10 بذور، خلية كاملة محجوزة.',
     'ind.c2t':'السماعات الذكية','ind.c2d':'رصد كلمة استيقاظ دائم التشغيل حيث لا يغلق الميكروفون أبداً — كلمة واحدة، مُقاسة بالإنجليزية. مفتوح المصدر باسم <strong>O1-Sound</strong>.',
-    'ind.c2s':'مُقاس — كلمة واحدة فقط','ind.c2m':'الإنجليزية «hello»: FRR 0.14 ± 0.05 عند FAR 0.05 عبر 3 بذور. 5.03 ميجابايت fp32 / 1.27 int8، حالة ثابتة 5,120 بايت. <strong>غير جاهز للإنتاج</strong>: تباين بين البذور أوسع من أي تغيير جرّبناه، والنسخة متعددة اللغات قيست أسوأ من عدم الإطلاق إطلاقاً.',
+    'ind.c2s':'مُقاس — كلمة واحدة فقط','ind.c2m':'الإنجليزية «hello»: FRR 0.14 ± 0.05 عند FAR 0.05 عبر 3 بذور؛ مع Run 9 (عينات سلبية حقيقية) تجاوز حاجز <strong>FAR &le; 1%</strong> على مجموعة الاختبار (0.97% عند العتبة 0.9906). 5.03 ميجابايت fp32 / 1.27 int8، حالة ثابتة 5,120 بايت. <strong>غير جاهز للإنتاج</strong>: لم يُقس FAR الميداني لكل ساعة، والنسخة متعددة اللغات قيست أسوأ من عدم الإطلاق إطلاقاً.',
     'ind.c3t':'المستندات المالية','ind.c3d':'أسئلة وأجوبة على ملفات أطول بكثير من نافذة السياق، مع تجميد النموذج الأساسي خلف API.',
     'ind.c3s':'مُقاس — محول M2','ind.c3m':'44/48 (91.7%) عبر خمسة مجالات مستندات مالية · ~2.8 ألف رمز لكل سؤال. خط أساس انحداري، لا متصدر قوائم.',
     'ind.c4t':'سلامة البطاريات الطرفية — قيد الإنتاج','ind.c4d':'ذكاء بطاريات يعمل على منصة تجارية: النواة السائلة تعمل على وحدة تحكم الحزمة نفسها، وتُنذر دون اتصال بالشبكة.',
@@ -1484,7 +1484,7 @@ const I18N={
     'mc.4.meta':'<span>0.5B + 12.4M</span><span>6 محولات</span><span>بحث</span>',
     'mc.4.cta1':'نزّل من HuggingFace ↓','mc.4.note':'MIT · نقطة فحص 500 خطوة',
     'mc.5.series':'سلسلة O','mc.5.status':'↓ تحميل','mc.5.name':'O1-Sound — راصد كلمة الاستيقاظ',
-    'mc.5.desc':'رصد كلمات دائم التشغيل على النواة السائلة: حالة ثابتة 5,120 بايت، تصدير ONNX 5.03 ميجابايت fp32 / 1.27 int8. إنجليزية مُتحقق منها (FRR 0.146 @ FAR 0.046). 32/32 اختباراً.',
+    'mc.5.desc':'رصد كلمات دائم التشغيل على النواة السائلة: حالة ثابتة 5,120 بايت، تصدير ONNX 5.03 ميجابايت fp32 / 1.27 int8. إنجليزية مُتحقق منها؛ تجاوز Run 9 حاجز FAR &le; 1% على مجموعة الاختبار (0.97% عند العتبة 0.9906). 32/32 اختباراً.',
     'mc.5.meta':'<span>حافة · دائم التشغيل</span><span>32 اختباراً</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'نقطة الفحص ↓',
     'mc.6.series':'سلسلة O','mc.6.status':'↓ مستودع','mc.6.name':'O1-Anti',
@@ -1591,7 +1591,7 @@ const I18N={
     'ind.c2t':'可穿戴音频',
     'ind.c2d':'麦克风永不关闭的常开唤醒词检测——单个关键词，仅英文实测。已开源为 <strong>O1-Sound</strong>。',
     'ind.c2s':'已实测 — 仅单关键词',
-    'ind.c2m':'英文 &ldquo;hello&rdquo;：3 个种子下 FAR 0.05 时 FRR 0.14 &plusmn; 0.05。5.03 MB fp32 / 1.27 MB int8，5,120 B 恒定状态。<strong>非生产级</strong>：种子间波动大于我们尝试过的任何改动，多语言版本尚未达标，当前仅英文实测——单一二分类难以覆盖没有共同音素的问候语。',
+    'ind.c2m':'英文 &ldquo;hello&rdquo;：3 个种子下 FAR 0.05 时 FRR 0.14 &plusmn; 0.05；Run 9（真实负样本）在留出测试集上跨过 <strong>FAR &le; 1%</strong> 门槛（阈值 0.9906 时 0.97%）。5.03 MB fp32 / 1.27 MB int8，5,120 B 恒定状态。<strong>非生产级</strong>：每小时口径的现场 FAR 未测，多语言版本尚未达标——单一二分类难以覆盖没有共同音素的问候语。',
     'ind.c3t':'金融文档',
     'ind.c3d':'对远超上下文窗口长度的申报文件做问答，基座模型冻结在 API 之后。',
     'ind.c3s':'已实测 — M2 适配器',
@@ -1653,7 +1653,7 @@ const I18N={
     'mc.4.meta':'<span>0.5B + 12.4M</span><span>6 适配器</span><span>研究</span>',
     'mc.4.cta1':'在 HuggingFace 下载 ↓','mc.4.note':'MIT · 500 步 checkpoint',
     'mc.5.series':'O 系列','mc.5.status':'↓ 可下载','mc.5.name':'O1-Sound — 唤醒词检测',
-    'mc.5.desc':'液态核心常开关键词检测：5,120 字节恒定状态，ONNX 导出 5.03 MB fp32 / 1.27 MB int8。英文实测（FRR 0.146 @ FAR 0.046）。32/32 测试。',
+    'mc.5.desc':'液态核心常开关键词检测：5,120 字节恒定状态，ONNX 导出 5.03 MB fp32 / 1.27 MB int8。英文实测；Run 9 跨过 FAR &le; 1% 留出测试门槛（0.97% @ 阈值 0.9906）。32/32 测试。',
     'mc.5.meta':'<span>边缘 &middot; 常开</span><span>32 测试</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
     'mc.6.series':'O 系列','mc.6.status':'↓ 仓库','mc.6.name':'O1-Anti',
