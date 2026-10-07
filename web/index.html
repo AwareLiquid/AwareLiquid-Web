@@ -208,6 +208,10 @@ html:not([data-theme="light"]) .logo{background-image:url('/static/brand/mark-wh
 .btn-primary:hover{opacity:.85}
 .btn-ghost{background:transparent;color:var(--fg);border-color:var(--line);padding:8px 18px}
 .btn-ghost:hover{background:var(--card)}
+/* HuggingFace mark on the model cards' HF buttons. Drawn as a pseudo-element so
+   applyPageLang()'s textContent swap (which would drop a real child node) can't
+   wipe it. emoji here is intentional: it is HuggingFace's own brand mark. */
+.btn-hf::before{content:"🤗";font-size:14px;line-height:1;margin-right:1px}
 .btn-lg{font-size:14px;padding:10px 20px;border-radius:4px}
 .nav-toggle{display:none;background:none;border:none;cursor:pointer;color:var(--fg);padding:8px}
 
@@ -673,7 +677,10 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
 </style>
 <link rel="icon" href="/static/favicon-dark.png?v=2" media="(prefers-color-scheme: light)">
 <link rel="icon" href="/static/favicon-light.png?v=2" media="(prefers-color-scheme: dark)">
-<link rel="apple-touch-icon" href="/static/favicon-180.png?v=2"></head>
+<link rel="apple-touch-icon" href="/static/favicon-180.png?v=2"><script>/* Start fresh at the top on reload/back-forward. Without this the browser
+   restores the previous scroll position (often the demo, far down the page),
+   which reads as "the page jumps to the bottom on refresh". */if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
+</head>
 <body>
 
 <a class="skip-nav" href="#demo">Skip to demo</a>
@@ -921,7 +928,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-primary" href="#demo">Try the demo →</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-128M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/M1-128M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
           <span class="mc-note label">Served by the native decoder on this site</span>
         </div>
       </article>
@@ -937,7 +944,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-primary" href="#demo">Try the demo &rarr;</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-TinyLlama-Adapter" target="_blank" rel="noopener noreferrer">Adapter on HuggingFace &darr;</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/M1-TinyLlama-Adapter" target="_blank" rel="noopener noreferrer">Adapter on HuggingFace &darr;</a>
           <span class="mc-note label">24.8 MB checkpoint · replicate the live demo</span>
         </div>
       </article>
@@ -952,7 +959,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>48M params</span><span>attention-free</span><span>CPU-friendly</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/O1-48M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
           <span class="mc-note label">GitHub release · serve with server.py</span>
         </div>
       </article>
@@ -967,7 +974,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>1.93B params</span><span>34 layers · 2080d</span><span>PPL 2.4106</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M2-2B" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/M2-2B" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
           <span class="mc-note label">MIT · 200K-step final · safetensors + t2b_200k.pt</span>
         </div>
       </article>
@@ -982,7 +989,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>0.5B base + 12.4M</span><span>6 adapters</span><span>research</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Qwen05-Adapter" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/O1-Qwen05-Adapter" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
         </div>
       </article>
       <article class="model-card hov" data-status="download">
@@ -998,7 +1005,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         <div class="mc-cta">
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound/releases/tag/research-2026-08-18" target="_blank" rel="noopener noreferrer">Checkpoint &darr;</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
         </div>
       </article>
     </div>
@@ -1077,7 +1084,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
         <div class="mc-cta">
           <a class="btn btn-ghost" href="https://github.com/AwareLiquid/human-brain-simulation" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/Sparse-SNN" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
+          <a class="btn btn-ghost btn-hf" href="https://huggingface.co/AwareLiquid/Sparse-SNN" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
         </div>
       </article>
     </div>
