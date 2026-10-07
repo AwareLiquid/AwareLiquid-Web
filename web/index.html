@@ -850,9 +850,9 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
 <section class="section models-section" id="models">
   <div class="container">
     <div class="section-header">
-      <span class="eyebrow">Model Lineup</span>
-      <h2>Every Release, One Place</h2>
-      <p class="section-lead">Each AwareLiquid release states its status plainly: <strong>live</strong> (served on this site, try it now), <strong>download</strong> (weights published, run it yourself), or <strong>training</strong> (checkpoint exists, run not finished). No version is silently half-shipped.</p>
+      <span class="eyebrow">Models</span>
+      <h2>AwareLiquid Models</h2>
+      <p class="section-lead">Every release is labeled by status: <strong>live</strong> (served on this site), <strong>download</strong> (weights published), or <strong>training</strong> (run in progress).</p>
     </div>
     <div class="models-grid">
       <article class="model-card hov" data-status="live">
@@ -866,7 +866,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>128.6M params</span><span>12 layers · 832d</span><span>512-token window</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-primary" href="#demo" href="#demo">Try it live →</a>
+          <a class="btn btn-primary" href="#demo">Try the demo →</a>
           <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-128M" target="_blank" rel="noopener noreferrer">Weights on HuggingFace &darr;</a>
           <span class="mc-note label">Served by the native decoder on this site</span>
         </div>
@@ -882,7 +882,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span>1.1B base + 2.3M adapter</span><span>chat-capable</span><span>bilingual EN/ZH</span>
         </div>
         <div class="mc-cta">
-          <a class="btn btn-primary" href="#demo" href="#demo">Try it live &rarr;</a>
+          <a class="btn btn-primary" href="#demo">Try the demo &rarr;</a>
           <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/M1-TinyLlama-Adapter" target="_blank" rel="noopener noreferrer">Adapter on HuggingFace &darr;</a>
           <span class="mc-note label">24.8 MB checkpoint · replicate the live demo</span>
         </div>
@@ -893,7 +893,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span class="mc-status s-dl">↓ Download</span>
         </div>
         <h3 class="mc-name">O1-48M</h3>
-        <p class="mc-desc">Attention-free O-series edge model, trained from scratch. Constant 0.381 MB carried state regardless of context — the O(1) memory line. Run it on CPU.</p>
+        <p class="mc-desc">Attention-free O-series edge model, trained from scratch. Constant 0.381 MB carried state regardless of context — the O(1) memory line. Runs on CPU.</p>
         <div class="mc-meta">
           <span>48M params</span><span>attention-free</span><span>CPU-friendly</span>
         </div>
@@ -931,21 +931,37 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Qwen05-Adapter" target="_blank" rel="noopener noreferrer">Download on HuggingFace ↓</a>
         </div>
       </article>
+      <article class="model-card hov" data-status="download">
+        <div class="mc-head">
+          <span class="mc-series label">O-Series</span>
+          <span class="mc-status s-dl">&#8595; Download</span>
+        </div>
+        <h3 class="mc-name">O1-Sound — Wake-Word Spotter</h3>
+        <p class="mc-desc">Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.</p>
+        <div class="mc-meta">
+          <span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>
+        </div>
+        <div class="mc-cta">
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
+          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound/releases/tag/research-2026-08-18" target="_blank" rel="noopener noreferrer">Checkpoint &darr;</a>
+          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
+        </div>
+      </article>
     </div>
 
     <div class="section-header" style="margin-top:64px">
-      <span class="eyebrow">Research Family</span>
-      <h2>Clone &amp; Reproduce</h2>
-      <p class="section-lead">The wider family beyond the served models — each repository ships real code and a measured test suite. License: MIT.</p>
+      <span class="eyebrow">Research</span>
+      <h2>Research Projects</h2>
+      <p class="section-lead">Prototypes and tooling beyond the served models. Each repository ships code and a measured test suite, MIT licensed.</p>
     </div>
     <div class="models-grid">
       <article class="model-card hov" data-status="download">
         <div class="mc-head">
           <span class="mc-series label">O-Series</span>
-          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+          <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
-        <h3 class="mc-name">O1-Anti — The Anti-Transformer</h3>
-        <p class="mc-desc">Three pillars against Transformer costs: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.</p>
+        <h3 class="mc-name">O1-Anti</h3>
+        <p class="mc-desc">Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.</p>
         <div class="mc-meta">
           <span>efficiency line</span><span>22 tests</span><span>pip install torch</span>
         </div>
@@ -956,7 +972,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
       <article class="model-card hov" data-status="download">
         <div class="mc-head">
           <span class="mc-series label">O-Series</span>
-          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+          <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
         <h3 class="mc-name">AwareLiquid-Physic</h3>
         <p class="mc-desc">Physics written into the architecture: liquid (LTC) substrate + hard-constraint Hamiltonian head + symplectic integration. Project complete — all PRD targets met: semigroup training lifts the liquid advantage to 66% (mean of 7 configs), few-shot adaptation 3.24&times;, N-body / non-separable / probabilistic / time-conditioned heads. 43/43 tests.</p>
@@ -970,7 +986,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
       <article class="model-card hov" data-status="download">
         <div class="mc-head">
           <span class="mc-series label">Cortex</span>
-          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+          <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
         <h3 class="mc-name">C1 — Five-Layer Cognition Stack</h3>
         <p class="mc-desc">Sensory stream &rarr; O(1) memory &rarr; sparse temporal routing &rarr; predictive coding &rarr; liquid GRPO + System 1/2. E1 liquid GRPO first run (supervised arm): extrapolation 1.0&rarr;0.56 (seed0). E1&ndash;E3 auto-bootstrap dependencies from the public M1 mirror.</p>
@@ -983,39 +999,8 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
       </article>
       <article class="model-card hov" data-status="download">
         <div class="mc-head">
-          <span class="mc-series label">O-Series</span>
-          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
-        </div>
-        <h3 class="mc-name">O1-Sound — Wake-Word Spotter</h3>
-        <p class="mc-desc">Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.</p>
-        <div class="mc-meta">
-          <span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>
-        </div>
-        <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">GitHub &rarr;</a>
-          <a class="btn btn-ghost" href="https://github.com/AwareLiquid/O1-Sound/releases/tag/research-2026-08-18" target="_blank" rel="noopener noreferrer">Checkpoint &darr;</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-Sound" target="_blank" rel="noopener noreferrer">Weights on HF &rarr;</a>
-        </div>
-      </article>
-      <article class="model-card hov" data-status="download">
-        <div class="mc-head">
           <span class="mc-series label">Research</span>
-          <span class="mc-status s-dl">&#8595; Read</span>
-        </div>
-        <h3 class="mc-name">MT-LNN Technical Paper</h3>
-        <p class="mc-desc">English + 中文. Microtubule-inspired liquid network: O(1) working memory, multi-scale predictive coding, compute skipping. Empirical tables are canonical — honest verdicts included.</p>
-        <div class="mc-meta">
-          <span>EN / 中文</span><span>PDF</span><span>open science</span>
-        </div>
-        <div class="mc-cta">
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M/resolve/main/mt_lnn_arxiv.pdf" target="_blank" rel="noopener noreferrer">PDF (EN) &rarr;</a>
-          <a class="btn btn-ghost" href="https://huggingface.co/AwareLiquid/O1-48M/resolve/main/mt_lnn_arxiv_zh.pdf" target="_blank" rel="noopener noreferrer">PDF (中文) &rarr;</a>
-        </div>
-      </article>
-      <article class="model-card hov" data-status="download">
-        <div class="mc-head">
-          <span class="mc-series label">Research</span>
-          <span class="mc-status s-dl">&#8595; Explore</span>
+          <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
         <h3 class="mc-name">LLM-Visualization</h3>
         <p class="mc-desc">Interactive 3D visualization of the MT-LNN architecture (extended from bbycroft/llm-viz).</p>
@@ -1029,7 +1014,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
       <article class="model-card hov" data-status="download">
         <div class="mc-head">
           <span class="mc-series label">Spiking</span>
-          <span class="mc-status s-dl">&#8595; Clone &amp; run</span>
+          <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
         <h3 class="mc-name">Human Brain Simulation — Pulse + Connectome</h3>
         <p class="mc-desc">The only line built on real brain connectomes, not metaphors. Sparse spiking SNN from the fly (165K neurons) and human H01 (16K neurons) connectomes: 96.8% vs 98.3% (MNIST) at ~105&times; lower energy; human topology +3.2 pts over random.</p>
@@ -1042,6 +1027,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
         </div>
       </article>
     </div>
+    <p class="section-lead models-paper" style="margin-top:32px">Papers: <a href="/research">MT-LNN technical paper (EN / 中文) →</a></p>
   </div>
 </section>
 
@@ -1186,8 +1172,9 @@ const I18N={
     'rh.eyebrow':'Engineering Reality','rh.h2':'Measured.\nReproducible.',
     'rh.lead':'Every claim below is measured on real runs and backed by open code and data.',
     'rh.full':'Full methodology & results →',
-    'models.eyebrow':'Model Lineup','models.h2':'Every Release, One Place',
-    'models.lead':'Every AwareLiquid release is labeled by status: <strong>live</strong> (served on this site), <strong>download</strong> (weights published), or <strong>training</strong> (in progress).',
+    'models.eyebrow':'Models','models.h2':'AwareLiquid Models',
+    'models.paper':'Papers: <a href="/research">MT-LNN technical paper (EN / 中文) →</a>',
+    'models.lead':'Every release is labeled by status: <strong>live</strong> (served on this site), <strong>download</strong> (weights published), or <strong>training</strong> (run in progress).',
     'demo.eyebrow':'Live Demo','demo.h2':'Try Both Models in Your Browser',
     'demo.lead':'Two distinct surfaces. <strong>Science Q&amp;A</strong> grounds answers in a 1,000+ item sourced knowledge base (papers with DOIs and citation counts) &mdash; it answers only what the sources support, and says so honestly when they don&apos;t. <strong>M1-128M</strong> is the native 128M hybrid trained from scratch, no base model. Ask in English or Chinese.',
     'demo.fullpage':'Open Full-Page Demo →',
@@ -1271,56 +1258,52 @@ const I18N={
     'footer.about':'About','footer.livedemo':'Live Demo',
     'footer.modelapi':'Model API','footer.health':'Health',
     'footer.privacy2':'Privacy','footer.terms2':'Terms',
-    'models.famEyebrow':'Research Family','models.famH2':'Clone & Reproduce',
-    'models.famLead':'The wider family beyond the served models — each repository ships real code and a measured test suite. License: MIT.',
+    'models.famEyebrow':'Research','models.famH2':'Research Projects',
+    'models.famLead':'Prototypes and tooling beyond the served models. Each repository ships code and a measured test suite, MIT licensed.',
     'mc.0.series':'M-Series','mc.0.status':'● Live on site','mc.0.name':'M1-128M',
     'mc.0.desc':'From-scratch hybrid — attention + liquid core in every layer. 50K-step run on WikiText-103, English text continuation.',
     'mc.0.meta':'<span>128.6M params</span><span>12 layers · 832d</span><span>512-token window</span>',
-    'mc.0.cta1':'Try it live →','mc.0.cta2':'Download weights ↓','mc.0.note':'Served by the native decoder on this site',
+    'mc.0.cta1':'Try the demo →','mc.0.cta2':'Download weights ↓','mc.0.note':'Served by the native decoder on this site',
     'mc.1.series':'M-Series','mc.1.status':'● Live on site','mc.1.name':'M1 · TinyLlama-1.1B + MT v2s',
     'mc.1.desc':'Frozen TinyLlama-1.1B-Chat base with trained liquid-core residual adapters + LoRA. The conversational model — English and Chinese, with fast-weight memory across turns.',
     'mc.1.meta':'<span>1.1B base + 2.3M adapter</span><span>chat-capable</span><span>bilingual EN/ZH</span>',
-    'mc.1.cta1':'Try it live →','mc.1.cta2':'Download adapter ↓','mc.1.note':'24.8 MB checkpoint · replicate the live demo',
+    'mc.1.cta1':'Try the demo →','mc.1.cta2':'Download adapter ↓','mc.1.note':'24.8 MB checkpoint · replicate the live demo',
     'mc.2.series':'O-Series','mc.2.status':'↓ Download','mc.2.name':'O1-48M',
-    'mc.2.desc':'Attention-free O-series edge model, trained from scratch. Constant 0.381 MB carried state regardless of context — the O(1) memory line. Run it on CPU.',
+    'mc.2.desc':'Attention-free O-series edge model, trained from scratch. Constant 0.381 MB carried state regardless of context — the O(1) memory line. Runs on CPU.',
     'mc.2.meta':'<span>48M params</span><span>attention-free</span><span>CPU-friendly</span>',
     'mc.2.cta1':'Download weights ↓','mc.2.note':'GitHub release · serve with server.py',
     'mc.3.series':'M-Series · M2','mc.3.status':'↓ Download','mc.3.name':'M2-2B',
     'mc.3.desc':'1.93B-parameter M2 preset (2080d × 34L × 16 heads), byte-level tokenizer. The baseline run completed at 200,000 steps — final val PPL 2.4106, context-flat. A language-scaling research milestone, not an instruct model.',
     'mc.3.meta':'<span>1.93B params</span><span>34 layers · 2080d</span><span>PPL 2.4106</span>',
-    'mc.3.cta1':'Weights on HuggingFace ↓','mc.3.note':'MIT · 200K-step final · safetensors + t2b_200k.pt',
+    'mc.3.cta1':'Download on HuggingFace ↓','mc.3.note':'MIT · 200K-step final · safetensors + t2b_200k.pt',
     'mc.4.series':'O-Series','mc.4.status':'↓ Download','mc.4.name':'O1-Qwen05-Adapter',
     'mc.4.desc':'MT-LNN residual adapter on a frozen Qwen2.5-0.5B-Instruct — 6 of 24 layers, 12.4M trainable (2.5%). A short 500-step research checkpoint, initialised near-identity so the base capability stays intact.',
     'mc.4.meta':'<span>0.5B base + 12.4M</span><span>6 adapters</span><span>research</span>',
-    'mc.4.cta1':'Weights on HuggingFace ↓','mc.4.note':'MIT · 500-step checkpoint',
-    'mc.5.series':'O-Series','mc.5.status':'↓ Clone & run','mc.5.name':'O1-Anti — The Anti-Transformer',
-    'mc.5.desc':'Three pillars against Transformer costs: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.',
-    'mc.5.meta':'<span>efficiency line</span><span>22 tests</span><span>pip install torch</span>',
-    'mc.5.cta1':'GitHub →',
-    'mc.6.series':'O-Series','mc.6.status':'↓ Clone & run','mc.6.name':'AwareLiquid-Physic',
-    'mc.6.desc':'Physics written into the architecture: liquid (LTC) substrate + hard-constraint Hamiltonian head + symplectic integration. Project complete — all PRD targets met: semigroup training lifts the liquid advantage to 66% (mean of 7 configs), few-shot adaptation 3.24&times;, N-body / non-separable / probabilistic / time-conditioned heads. 43/43 tests.',
-    'mc.6.meta':'<span>physics-native</span><span>43 tests</span><span>MIT</span>',
+    'mc.4.cta1':'Download on HuggingFace ↓','mc.4.note':'MIT · 500-step checkpoint',
+    'mc.5.series':'O-Series','mc.5.status':'↓ Download','mc.5.name':'O1-Sound — Wake-Word Spotter',
+    'mc.5.desc':'Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests.',
+    'mc.5.meta':'<span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>',
+    'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
+    'mc.6.series':'O-Series','mc.6.status':'↓ Repository','mc.6.name':'O1-Anti',
+    'mc.6.desc':'Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.',
+    'mc.6.meta':'<span>efficiency line</span><span>22 tests</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
-    'mc.7.series':'Cortex','mc.7.status':'↓ Clone & run','mc.7.name':'C1 — Five-Layer Cognition Stack',
-    'mc.7.desc':'Sensory stream &rarr; O(1) memory &rarr; sparse temporal routing &rarr; predictive coding &rarr; liquid GRPO + System 1/2. E1 first run (supervised arm): extrapolation 1.0&rarr;0.56 (seed0). E1&ndash;E3 auto-bootstrap dependencies from the public M1 mirror.',
-    'mc.7.meta':'<span>pure-liquid vision</span><span>E1&ndash;E3 experiments</span><span>MIT</span>',
+    'mc.7.series':'O-Series','mc.7.status':'↓ Repository','mc.7.name':'AwareLiquid-Physic',
+    'mc.7.desc':'Physics written into the architecture: liquid (LTC) substrate + hard-constraint Hamiltonian head + symplectic integration. All PRD targets met: semigroup training lifts the liquid advantage to 66% (mean of 7 configs), few-shot adaptation 3.24&times;, N-body / non-separable / probabilistic / time-conditioned heads. 43/43 tests.',
+    'mc.7.meta':'<span>physics-native</span><span>43 tests</span><span>MIT</span>',
     'mc.7.cta1':'GitHub →',
-    'mc.8.series':'O-Series','mc.8.status':'↓ Clone & run','mc.8.name':'O1-Sound — Wake-Word Spotter',
-    'mc.8.desc':'Always-on keyword spotting on the liquid core: 5,120-byte constant state, ONNX export 5.03 MB fp32 / 1.27 MB int8. English validated (FRR 0.146 @ FAR 0.046). 32/32 tests; research checkpoint + ONNX published.',
-    'mc.8.meta':'<span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>',
-    'mc.8.cta1':'GitHub →','mc.8.cta2':'Checkpoint ↓',
-    'mc.9.series':'Research','mc.9.status':'↓ Read','mc.9.name':'MT-LNN Technical Paper',
-    'mc.9.desc':'English + 中文. Microtubule-inspired liquid network: O(1) working memory, multi-scale predictive coding, compute skipping. Empirical tables are canonical — honest verdicts included.',
-    'mc.9.meta':'<span>EN / 中文</span><span>PDF</span><span>open science</span>',
-    'mc.9.cta1':'PDF (EN) →','mc.9.cta2':'PDF (中文) →',
-    'mc.10.series':'Research','mc.10.status':'↓ Explore','mc.10.name':'LLM-Visualization',
-    'mc.10.desc':'Interactive 3D visualization of the MT-LNN architecture (extended from bbycroft/llm-viz).',
-    'mc.10.meta':'<span>3D explorer</span><span>web</span><span>MIT</span>',
+    'mc.8.series':'Cortex','mc.8.status':'↓ Repository','mc.8.name':'C1 — Five-Layer Cognition Stack',
+    'mc.8.desc':'Sensory stream &rarr; O(1) memory &rarr; sparse temporal routing &rarr; predictive coding &rarr; liquid GRPO + System 1/2. E1 first run (supervised arm): extrapolation 1.0&rarr;0.56 (seed0). E1&ndash;E3 auto-bootstrap dependencies from the public M1 mirror.',
+    'mc.8.meta':'<span>pure-liquid vision</span><span>E1&ndash;E3 experiments</span><span>MIT</span>',
+    'mc.8.cta1':'GitHub →',
+    'mc.9.series':'Research','mc.9.status':'↓ Repository','mc.9.name':'LLM-Visualization',
+    'mc.9.desc':'Interactive 3D visualization of the MT-LNN architecture (extended from bbycroft/llm-viz).',
+    'mc.9.meta':'<span>3D explorer</span><span>web</span><span>MIT</span>',
+    'mc.9.cta1':'GitHub →',
+    'mc.10.series':'Spiking','mc.10.status':'↓ Repository','mc.10.name':'Human Brain Simulation — Pulse + Connectome',
+    'mc.10.desc':'The only line built on real brain connectomes, not metaphors. Sparse spiking SNN from the fly (165K neurons) and human H01 (16K neurons) connectomes: 96.8% vs 98.3% (MNIST) at ~105× lower energy; human topology +3.2 pts over random.',
+    'mc.10.meta':'<span>connectome &middot; spiking</span><span>open experiments</span><span>MIT</span>',
     'mc.10.cta1':'GitHub →',
-    'mc.11.series':'Spiking','mc.11.status':'↓ Clone & run','mc.11.name':'Human Brain Simulation — Pulse + Connectome',
-    'mc.11.desc':'The only line built on real brain connectomes, not metaphors. Sparse spiking SNN from the fly (165K neurons) and human H01 (16K neurons) connectomes: 96.8% vs 98.3% (MNIST) at ~105× lower energy; human topology +3.2 pts over random.',
-    'mc.11.meta':'<span>connectome &middot; spiking</span><span>open experiments</span><span>MIT</span>',
-    'mc.11.cta1':'GitHub →',
     'why.eyebrow':'Why AwareLiquid','why.h2':'Two Advantages, Measured Not Marketed',
     'why.lead':'For teams shipping models to the edge: one advantage on cost, one on capability. Every number links to open code and data.',
     'why.c1':'<span class="adv-eyebrow">Advantage 1 · Cost &amp; Footprint</span><h3>Lightweight by Architecture</h3><ul><li><strong>0.381 MB</strong> constant carried state at any context length — <strong>8,063× smaller</strong> than a KV-cache at 1M tokens</li><li><strong>48M–128M</strong> edge models, CPU-only — no GPU bill at inference</li><li><strong>5 MB</strong> ONNX export for always-on wake-word (O1-Sound)</li></ul>',
@@ -1346,8 +1329,9 @@ const I18N={
     'rh.eyebrow':'واقع هندسي','rh.h2':'مُقاس.\nقابل لإعادة الإنتاج.',
     'rh.lead':'كل ادعاء أدناه مُقاس على تشغيلات حقيقية ومدعوم بكود وبيانات مفتوحة.',
     'rh.full':'المنهجية والنتائج الكاملة →',
-    'models.eyebrow':'تشكيلة النماذج','models.h2':'كل إصدار، في مكان واحد',
-    'models.lead':'كل إصدار من AwareLiquid موسوم بحالته: <strong>مباشر</strong> (يُقدَّم على هذا الموقع)، أو <strong>تحميل</strong> (أوزان منشورة)، أو <strong>تدريب</strong> (جارٍ).',
+    'models.eyebrow':'النماذج','models.h2':'نماذج AwareLiquid',
+    'models.paper':'الأوراق: <a href="/research">الورقة التقنية MT-LNN (EN / 中文) →</a>',
+    'models.lead':'كل إصدار موسوم بحالته: <strong>مباشر</strong> (يُقدَّم على هذا الموقع)، <strong>تحميل</strong> (أوزان منشورة)، أو <strong>تدريب</strong> (قيد التشغيل).',
     'demo.eyebrow':'عرض مباشر','demo.h2':'جرّب النموذجين في متصفحك',
     'demo.lead':'واجهتان مميزتان. <strong>أسئلة علمية</strong> تؤسس إجاباتها على قاعدة معرفة بأكثر من 1000 مصدر (أوراق بروابط DOI وعدد استشهادات) &mdash; تجيب فقط بما تدعمه المصادر، وتقول ذلك بصدق حين لا تدعم. <strong>M1-128M</strong> هو الهجين الأصلي 128M المدرَّب من الصفر، بلا نموذج أساسي. اسأل بالإنجليزية أو الصينية.',
     'demo.fullpage':'افتح العرض الكامل →',
@@ -1409,51 +1393,51 @@ const I18N={
     'footer.about':'عن الشركة','footer.livedemo':'العرض المباشر',
     'footer.modelapi':'واجهة النموذج','footer.health':'الصحة',
     'footer.privacy2':'الخصوصية','footer.terms2':'الشروط',
-    'models.famEyebrow':'العائلة البحثية','models.famH2':'استنسخ وكرر',
-    'models.famLead':'العائلة الأوسع أبعد من النماذج المخدومة — كل مستودع يضم كوداً حقيقياً ومجموعة اختبارات مُقاسة. الترخيص: MIT.',
+    'models.famEyebrow':'أبحاث','models.famH2':'مشاريع بحثية',
+    'models.famLead':'نماذج أولية وأدوات خارج النماذج المخدومة. كل مستودع يضم كوداً ومجموعة اختبارات مُقاسة، بترخيص MIT.',
     'mc.0.series':'سلسلة M','mc.0.status':'● متاح مباشرة','mc.0.name':'M1-128M',
     'mc.0.desc':'هجين من الصفر — انتباه + نواة سائلة في كل طبقة. 50 ألف خطوة على WikiText-103، إكمال نصوص إنجليزية.',
     'mc.0.meta':'<span>128.6M معامل</span><span>12 طبقة · 832d</span><span>نافذة 512 رمز</span>',
-    'mc.0.cta1':'جرّبه مباشرة →','mc.0.cta2':'نزّل الأوزان ↓','mc.0.note':'يُقدَّم بالمفكك الأصلي على هذا الموقع',
+    'mc.0.cta1':'جرّب العرض →','mc.0.cta2':'نزّل الأوزان ↓','mc.0.note':'يُقدَّم بالمفكك الأصلي على هذا الموقع',
     'mc.1.series':'سلسلة M','mc.1.status':'● متاح مباشرة','mc.1.name':'M1 · TinyLlama-1.1B + MT v2s',
     'mc.1.desc':'قاعدة TinyLlama-1.1B-Chat مجمّدة مع محولات نواة سائلة مدربة + LoRA. النموذج المحادثي — إنجليزي وصيني، مع ذاكرة وزن سريع بين الأدوار.',
     'mc.1.meta':'<span>قاعدة 1.1B + محول 2.3M</span><span>قادر على المحادثة</span><span>ثنائي اللغة</span>',
-    'mc.1.cta1':'جرّبه مباشرة →','mc.1.cta2':'نزّل المحول ↓','mc.1.note':'نقطة فحص 24.8 ميجابايت · كرر العرض المباشر',
+    'mc.1.cta1':'جرّب العرض →','mc.1.cta2':'نزّل المحول ↓','mc.1.note':'نقطة فحص 24.8 ميجابايت · كرر العرض المباشر',
     'mc.2.series':'سلسلة O','mc.2.status':'↓ تحميل','mc.2.name':'O1-48M',
-    'mc.2.desc':'نموذج حافة من سلسلة O بلا انتباه، مدرَّب من الصفر. حالة محمولة ثابتة 0.381 ميجابايت مهما كان السياق — خط ذاكرة O(1). شغّله على المعالج.',
+    'mc.2.desc':'نموذج حافة من سلسلة O بلا انتباه، مدرَّب من الصفر. حالة محمولة ثابتة 0.381 ميجابايت مهما كان السياق — خط ذاكرة O(1). يعمل على المعالج.',
     'mc.2.meta':'<span>48M معامل</span><span>بلا انتباه</span><span>صديق للمعالج</span>',
     'mc.2.cta1':'نزّل الأوزان ↓','mc.2.note':'إصدار GitHub · شغّله بـ server.py',
     'mc.3.series':'سلسلة M · M2','mc.3.status':'↓ تحميل','mc.3.name':'M2-2B',
     'mc.3.desc':'إعداد M2 بـ 1.93 مليار معامل (2080d × 34L × 16 رأسًا)، مُرمّز على مستوى البايت. اكتمل التشغيل الأساسي عند 200,000 خطوة — PPL النهائي 2.4106. معلم بحثي لتوسيع اللغة، ليس نموذج أوامر.',
     'mc.3.meta':'<span>1.93B معامل</span><span>34 طبقة · 2080d</span><span>PPL 2.4106</span>',
-    'mc.3.cta1':'الأوزان على HuggingFace ↓','mc.3.note':'MIT · نهائي 200 ألف خطوة',
+    'mc.3.cta1':'نزّل من HuggingFace ↓','mc.3.note':'MIT · نهائي 200 ألف خطوة',
     'mc.4.series':'سلسلة O','mc.4.status':'↓ تحميل','mc.4.name':'O1-Qwen05-Adapter',
     'mc.4.desc':'محول MT-LNN متبقٍ على Qwen2.5-0.5B-Instruct مجمّد — 6 من 24 طبقة، 12.4M قابل للتدريب (2.5%). نقطة فحص بحثية قصيرة (500 خطوة).',
     'mc.4.meta':'<span>0.5B + 12.4M</span><span>6 محولات</span><span>بحث</span>',
-    'mc.4.cta1':'الأوزان على HuggingFace ↓','mc.4.note':'MIT · نقطة فحص 500 خطوة',
-    'mc.5.series':'سلسلة O','mc.5.status':'↓ استنسخ وشغّل','mc.5.name':'O1-Anti — المحول المضاد',
-    'mc.5.desc':'ثلاث ركائز ضد تكاليف المحول: تجاور سائل عصبي (ذاكرة تخزين أصغر 8×)، رسم وحدات متفرق (27% تنشيط)، فك ترميز غير ذاتي (تمريرات أقل 3.4×). استدعاء MQAR: يتعادل مع الانتباه عند 1.000؛ Mamba 0.07-0.10. 22/22 اختباراً.',
-    'mc.5.meta':'<span>خط كفاءة</span><span>22 اختباراً</span><span>pip install torch</span>',
-    'mc.5.cta1':'GitHub →',
-    'mc.6.series':'سلسلة O','mc.6.status':'↓ استنسخ وشغّل','mc.6.name':'AwareLiquid-Physic',
-    'mc.6.desc':'فيزياء مكتوبة في البنية: ركيزة سائلة (LTC) + رأس هاميلتوني بقيود صلبة + تكامل تناظري. اكتمل المشروع — كل أهداف PRD تحققت: رفع تدريب أشباه الزمر ميزة السائل إلى 66%، تكيف قليل الأمثلة 3.24×، ورؤوس N-body وغير قابلة للفصل واحتمالية ومشروطة زمنياً. 43/43 اختباراً.',
-    'mc.6.meta':'<span>فيزياء أصلية</span><span>43 اختباراً</span><span>MIT</span>',
+    'mc.4.cta1':'نزّل من HuggingFace ↓','mc.4.note':'MIT · نقطة فحص 500 خطوة',
+    'mc.5.series':'سلسلة O','mc.5.status':'↓ تحميل','mc.5.name':'O1-Sound — راصد كلمة الاستيقاظ',
+    'mc.5.desc':'رصد كلمات دائم التشغيل على النواة السائلة: حالة ثابتة 5,120 بايت، تصدير ONNX 5.03 ميجابايت fp32 / 1.27 int8. إنجليزية مُتحقق منها (FRR 0.146 @ FAR 0.046). 32/32 اختباراً.',
+    'mc.5.meta':'<span>حافة · دائم التشغيل</span><span>32 اختباراً</span><span>ONNX 5MB</span>',
+    'mc.5.cta1':'GitHub →','mc.5.cta2':'نقطة الفحص ↓',
+    'mc.6.series':'سلسلة O','mc.6.status':'↓ مستودع','mc.6.name':'O1-Anti',
+    'mc.6.desc':'نموذج أولي من سلسلة O يركّز على الكفاءة: تجاور سائل عصبي (ذاكرة أصغر 8×)، رسم وحدات متفرق (27% تنشيط)، فك ترميز غير ذاتي (تمريرات أقل 3.4×). استدعاء MQAR (wd=0.1): يتعادل مع الانتباه عند 1.000؛ Mamba 0.07-0.10. 22/22 اختباراً.',
+    'mc.6.meta':'<span>خط كفاءة</span><span>22 اختباراً</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
-    'mc.7.series':'Cortex','mc.7.status':'↓ استنسخ وشغّل','mc.7.name':'C1 — رصة إدراك خماسية الطبقات',
-    'mc.7.desc':'تيار حسي ← ذاكرة O(1) ← توجيه زمني متفرق ← ترميز تنبؤي ← GRPO سائل + نظام 1/2. أول تشغيل لـ E1: استقراء 1.0←0.56. تجارب E1–E3 تبني تبعياتها تلقائياً من مرآة M1 العامة.',
-    'mc.7.meta':'<span>رؤية سائلة نقية</span><span>تجارب E1–E3</span><span>MIT</span>',
+    'mc.7.series':'سلسلة O','mc.7.status':'↓ مستودع','mc.7.name':'AwareLiquid-Physic',
+    'mc.7.desc':'فيزياء مكتوبة في البنية: ركيزة سائلة (LTC) + رأس هاميلتوني بقيود صلبة + تكامل تناظري. كل أهداف PRD تحققت: رفع تدريب أشباه الزمر ميزة السائل إلى 66%، تكيف قليل الأمثلة 3.24×، ورؤوس N-body وغير قابلة للفصل واحتمالية ومشروطة زمنياً. 43/43 اختباراً.',
+    'mc.7.meta':'<span>فيزياء أصلية</span><span>43 اختباراً</span><span>MIT</span>',
     'mc.7.cta1':'GitHub →',
-    'mc.8.series':'سلسلة O','mc.8.status':'↓ استنسخ وشغّل','mc.8.name':'O1-Sound — راصد كلمة الاستيقاظ',
-    'mc.8.desc':'رصد كلمات دائم التشغيل على النواة السائلة: حالة ثابتة 5,120 بايت، تصدير ONNX 5.03 ميجابايت fp32 / 1.27 int8. إنجليزية مُتحقق منها (FRR 0.146 @ FAR 0.046). 32/32 اختباراً.',
-    'mc.8.meta':'<span>حافة · دائم التشغيل</span><span>32 اختباراً</span><span>ONNX 5MB</span>',
-    'mc.8.cta1':'GitHub →','mc.8.cta2':'نقطة الفحص ↓',
-    'mc.9.series':'أبحاث','mc.9.status':'↓ اقرأ','mc.9.name':'الورقة التقنية MT-LNN',
-    'mc.9.desc':'إنجليزية + صينية. شبكة سائلة مستوحاة من الأنابيب الدقيقة: ذاكرة عمل O(1)، ترميز تنبؤي متعدد المقاييس، تخطي حوسبة. الجداول التجريبية قانونية — بأحكام صادقة.',
-    'mc.9.meta':'<span>EN / 中文</span><span>PDF</span><span>علم مفتوح</span>',
-    'mc.9.cta1':'PDF (EN) →','mc.9.cta2':'PDF (中文) →',
-    'mc.10.series':'أبحاث','mc.10.status':'↓ استكشف','mc.10.name':'تصور LLM',
-    'mc.10.desc':'تصور ثلاثي الأبعاد تفاعلي لبنية MT-LNN (ممتد من bbycroft/llm-viz).',
-    'mc.10.meta':'<span>مستكشف ثلاثي الأبعاد</span><span>ويب</span><span>MIT</span>',
+    'mc.8.series':'Cortex','mc.8.status':'↓ مستودع','mc.8.name':'C1 — رصة إدراك خماسية الطبقات',
+    'mc.8.desc':'تيار حسي ← ذاكرة O(1) ← توجيه زمني متفرق ← ترميز تنبؤي ← GRPO سائل + نظام 1/2. أول تشغيل لـ E1: استقراء 1.0←0.56. تجارب E1–E3 تبني تبعياتها تلقائياً من مرآة M1 العامة.',
+    'mc.8.meta':'<span>رؤية سائلة نقية</span><span>تجارب E1–E3</span><span>MIT</span>',
+    'mc.8.cta1':'GitHub →',
+    'mc.9.series':'أبحاث','mc.9.status':'↓ مستودع','mc.9.name':'تصور LLM',
+    'mc.9.desc':'تصور ثلاثي الأبعاد تفاعلي لبنية MT-LNN (ممتد من bbycroft/llm-viz).',
+    'mc.9.meta':'<span>مستكشف ثلاثي الأبعاد</span><span>ويب</span><span>MIT</span>',
+    'mc.9.cta1':'GitHub →',
+    'mc.10.series':'نبضي','mc.10.status':'↓ مستودع','mc.10.name':'محاكاة الدماغ البشري — نبض + اتصالات عصبية',
+    'mc.10.desc':'الخط الوحيد المبني على اتصالات دماغية حقيقية، لا على المجاز. شبكة SNN نبضية متفرقة من اتصالات ذبابة (165 ألف خلية) وH01 بشري (16 ألف خلية): 96.8% مقابل 98.3% (MNIST) بطاقة أقل ~105×؛ الطوبولوجيا البشرية +3.2 نقطة فوق العشوائي.',
+    'mc.10.meta':'<span>اتصالات · نبضي</span><span>تجارب مفتوحة</span><span>MIT</span>',
     'mc.10.cta1':'GitHub →',
     'why.eyebrow':'لماذا AwareLiquid','why.h2':'ميزتان، مقاستان لا مسوَّقتان',
     'why.lead':'للفرق التي تنشر نماذج على الحافة: ميزة تكلفة وميزة قدرة. كل رقم مرتبط بكود وبيانات مفتوحة.',
@@ -1486,8 +1470,9 @@ const I18N={
     'rh.eyebrow':'工程实验结果','rh.h2':'实测。\n可复现。',
     'rh.lead':'以下每一项均来自真实运行，并有开源代码与数据支撑。',
     'rh.full':'完整方法论与结果 →',
-    'models.eyebrow':'模型阵容','models.h2':'每个版本，一目了然',
-    'models.lead':'每个 AwareLiquid 版本均标注状态：<strong>在线</strong>（本站提供服务）、<strong>可下载</strong>（权重已发布）、<strong>训练中</strong>（进行中）。',
+    'models.eyebrow':'模型','models.h2':'AwareLiquid 模型',
+    'models.paper':'论文：<a href="/research">MT-LNN 技术论文（EN / 中文）→</a>',
+    'models.lead':'每个版本都标注状态：<strong>在线</strong>（本站提供）、<strong>可下载</strong>（权重已发布）、<strong>训练中</strong>（运行未完成）。',
     'demo.eyebrow':'在线演示','demo.h2':'在浏览器中试用两款模型',
     'demo.lead':'两种独立界面。<strong>科学问答</strong>基于 1000+ 条有来源的知识（带 DOI 和引用数的论文）——只回答来源支持的，来源不支持时诚实说明。<strong>M1-128M</strong> 是从零训练的 1.28 亿参数混合模型（注意力 + 液态核心），无基座。支持中英文提问。',
     'demo.fullpage':'打开全屏演示 →',
@@ -1570,18 +1555,18 @@ const I18N={
     'footer.spatial':'空间计算','footer.paperpdf':'论文（PDF）',
     'footer.about':'关于','footer.livedemo':'在线演示',
     'footer.modelapi':'模型 API','footer.health':'健康检查',
-    'models.famEyebrow':'研究家族','models.famH2':'克隆即复现',
-    'models.famLead':'在服模型之外的完整家族——每个仓库都是真实代码，附实测测试套件。许可：MIT。',
+    'models.famEyebrow':'研究','models.famH2':'研究项目',
+    'models.famLead':'在服模型之外的原型与工具。每个仓库都提供代码与实测测试套件，MIT 许可。',
     'mc.0.series':'M 系列','mc.0.status':'● 在线运行','mc.0.name':'M1-128M',
     'mc.0.desc':'从零训练的混合模型——每层都是注意力 + 液态核心。WikiText-103 上 50K 步训练，支持英文文本续写。',
     'mc.0.meta':'<span>1.286 亿参数</span><span>12 层 · 832d</span><span>512 token 窗口</span>',
-    'mc.0.cta1':'立即试用 →','mc.0.cta2':'下载权重 ↓','mc.0.note':'本站原生解码器提供服务',
+    'mc.0.cta1':'试用演示 →','mc.0.cta2':'下载权重 ↓','mc.0.note':'本站原生解码器提供服务',
     'mc.1.series':'M 系列','mc.1.status':'● 在线运行','mc.1.name':'M1 · TinyLlama-1.1B + MT v2s',
     'mc.1.desc':'冻结的 TinyLlama-1.1B-Chat 底座 + 训练好的液态核心残差适配器与 LoRA。对话模型——中英双语，跨轮 fast-weight 记忆。',
     'mc.1.meta':'<span>1.1B 底座 + 2.3M 适配器</span><span>可对话</span><span>中英双语</span>',
-    'mc.1.cta1':'立即试用 →','mc.1.cta2':'下载适配器 ↓','mc.1.note':'24.8 MB checkpoint · 下载可复现本站演示',
-    'mc.2.series':'O 系列','mc.2.status':'↓ 下载','mc.2.name':'O1-48M',
-    'mc.2.desc':'从零训练的无注意力 O 系列边缘模型。恒定 0.381 MB 携带状态与上下文无关——O(1) 内存路线。CPU 可跑。',
+    'mc.1.cta1':'试用演示 →','mc.1.cta2':'下载适配器 ↓','mc.1.note':'24.8 MB checkpoint · 下载可复现本站演示',
+    'mc.2.series':'O 系列','mc.2.status':'↓ 可下载','mc.2.name':'O1-48M',
+    'mc.2.desc':'从零训练的无注意力 O 系列边缘模型。恒定 0.381 MB 携带状态与上下文无关——O(1) 内存路线。CPU 可运行。',
     'mc.2.meta':'<span>4800 万参数</span><span>无注意力</span><span>CPU 友好</span>',
     'mc.2.cta1':'下载权重 ↓','mc.2.note':'GitHub Release · 用 server.py 起服务',
     'mc.3.series':'M 系列 · M2','mc.3.status':'↓ 可下载','mc.3.name':'M2-2B',
@@ -1592,35 +1577,30 @@ const I18N={
     'mc.4.desc':'冻结 Qwen2.5-0.5B-Instruct 上的 MT-LNN 残差适配器——24 层中的 6 层，可训练 12.4M（2.5%）。500 步的短研究 checkpoint，近恒等初始化。',
     'mc.4.meta':'<span>0.5B + 12.4M</span><span>6 适配器</span><span>研究</span>',
     'mc.4.cta1':'在 HuggingFace 下载 ↓','mc.4.note':'MIT · 500 步 checkpoint',
-    'mc.5.series':'O 系列','mc.5.status':'↓ 克隆运行','mc.5.name':'O1-Anti — 反 Transformer',
-    'mc.5.desc':'三支柱对抗 Transformer 成本：神经液态邻接（缓存小 8&times;）、稀疏模块图（27% 激活）、非自回归解码（前向少 3.4&times;）。MQAR 召回（wd=0.1）：与注意力同为 1.000；Mamba 0.07-0.10。22/22 测试。',
-    'mc.5.meta':'<span>效率路线</span><span>22 测试</span><span>pip install torch</span>',
-    'mc.5.cta1':'GitHub →',
-    'mc.6.series':'O 系列','mc.6.status':'↓ 克隆运行','mc.6.name':'AwareLiquid-Physic',
-    'mc.6.desc':'物理写进架构：液态（LTC）基底 + 硬约束哈密顿头 + 辛积分。项目闭环——全部 PRD 目标达成：半群训练把液态优势提到 66%（7 配置均值），few-shot 适配 3.24&times;，N-body/非可分/概率化/时间条件头。43/43 测试。',
-    'mc.6.meta':'<span>物理原生</span><span>43 测试</span><span>MIT</span>',
+    'mc.5.series':'O 系列','mc.5.status':'↓ 可下载','mc.5.name':'O1-Sound — 唤醒词检测',
+    'mc.5.desc':'液态核心常开关键词检测：5,120 字节恒定状态，ONNX 导出 5.03 MB fp32 / 1.27 MB int8。英文实测（FRR 0.146 @ FAR 0.046）。32/32 测试。',
+    'mc.5.meta':'<span>边缘 &middot; 常开</span><span>32 测试</span><span>ONNX 5MB</span>',
+    'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
+    'mc.6.series':'O 系列','mc.6.status':'↓ 仓库','mc.6.name':'O1-Anti',
+    'mc.6.desc':'面向效率的 O 系列原型：神经液态邻接（缓存小 8×）、稀疏模块图（27% 激活）、非自回归解码（前向少 3.4×）。MQAR 召回（wd=0.1）：与注意力同为 1.000；Mamba 0.07-0.10。22/22 测试。',
+    'mc.6.meta':'<span>效率路线</span><span>22 测试</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
-    'mc.7.series':'Cortex','mc.7.status':'↓ 克隆运行','mc.7.name':'C1 — 五层认知栈',
-    'mc.7.desc':'感知流 &rarr; O(1) 记忆 &rarr; 稀疏时间路由 &rarr; 预测编码 &rarr; 液态 GRPO + 系统1/2。E1 首跑（监督臂）：外推 1.0&rarr;0.56（seed0）。E1&ndash;E3 自动从公开 M1 镜像引导依赖。',
-    'mc.7.meta':'<span>纯液态愿景</span><span>E1&ndash;E3 实验</span><span>MIT</span>',
+    'mc.7.series':'O 系列','mc.7.status':'↓ 仓库','mc.7.name':'AwareLiquid-Physic',
+    'mc.7.desc':'物理写进架构：液态（LTC）基底 + 硬约束哈密顿头 + 辛积分。全部 PRD 目标达成：半群训练把液态优势提到 66%（7 配置均值），few-shot 适配 3.24×，N-body/非可分/概率化/时间条件头。43/43 测试。',
+    'mc.7.meta':'<span>物理原生</span><span>43 测试</span><span>MIT</span>',
     'mc.7.cta1':'GitHub →',
-    'mc.8.series':'O 系列','mc.8.status':'↓ 克隆运行','mc.8.name':'O1-Sound — 唤醒词检测',
-    'mc.8.desc':'液态核心常开关键词检测：5,120 字节恒定状态，ONNX 导出 5.03 MB fp32 / 1.27 MB int8。英文实测（FRR 0.146 @ FAR 0.046）。32/32 测试。',
-    'mc.8.meta':'<span>边缘 &middot; 常开</span><span>32 测试</span><span>ONNX 5MB</span>',
+    'mc.8.series':'Cortex','mc.8.status':'↓ 仓库','mc.8.name':'C1 — 五层认知栈',
+    'mc.8.desc':'感知流 → O(1) 记忆 → 稀疏时间路由 → 预测编码 → 液态 GRPO + 系统1/2。E1 首跑（监督臂）：外推 1.0→0.56（seed0）。E1–E3 自动从公开 M1 镜像引导依赖。',
+    'mc.8.meta':'<span>纯液态愿景</span><span>E1–E3 实验</span><span>MIT</span>',
     'mc.8.cta1':'GitHub →',
-    'mc.8.cta2':'Checkpoint ↓',
-    'mc.9.series':'研究','mc.9.status':'↓ 阅读','mc.9.name':'MT-LNN 技术论文',
-    'mc.9.desc':'英文 + 中文。微管启发的液态网络：O(1) 工作记忆、多尺度预测编码、计算跳过。经验表格为权威——包含诚实结论。',
-    'mc.9.meta':'<span>EN / 中文</span><span>PDF</span><span>开放科学</span>',
-    'mc.9.cta1':'PDF (EN) →','mc.9.cta2':'PDF (中文) →',
-    'mc.10.series':'研究','mc.10.status':'↓ 探索','mc.10.name':'LLM-Visualization',
-    'mc.10.desc':'MT-LNN 架构的交互式 3D 可视化（扩展自 bbycroft/llm-viz）。',
-    'mc.10.meta':'<span>3D 探索器</span><span>网页</span><span>MIT</span>',
+    'mc.9.series':'研究','mc.9.status':'↓ 仓库','mc.9.name':'LLM-Visualization',
+    'mc.9.desc':'MT-LNN 架构的交互式 3D 可视化（扩展自 bbycroft/llm-viz）。',
+    'mc.9.meta':'<span>3D 探索器</span><span>网页</span><span>MIT</span>',
+    'mc.9.cta1':'GitHub →',
+    'mc.10.series':'脉冲','mc.10.status':'↓ 仓库','mc.10.name':'人脑模拟 — 脉冲 + 连接组',
+    'mc.10.desc':'唯一基于真实大脑连接组、而非隐喻的路线。从果蝇全脑（16.5 万神经元）和人脑皮层 H01（1.6 万神经元）连接组构建稀疏脉冲 SNN：MNIST 96.8% vs 98.3%，能耗省约 105 倍；人脑拓扑比随机高 3.2 点。',
+    'mc.10.meta':'<span>连接组 &middot; 脉冲</span><span>开放实验</span><span>MIT</span>',
     'mc.10.cta1':'GitHub →',
-    'mc.11.series':'脉冲','mc.11.status':'↓ 克隆运行','mc.11.name':'人脑模拟 — 脉冲 + 连接组',
-    'mc.11.desc':'唯一基于真实大脑连接组、而非隐喻的路线。从果蝇全脑（16.5 万神经元）和人脑皮层 H01（1.6 万神经元）连接组构建稀疏脉冲 SNN：MNIST 96.8% vs 98.3%，能耗省约 105 倍；人脑拓扑比随机高 3.2 点。',
-    'mc.11.meta':'<span>连接组 &middot; 脉冲</span><span>开放实验</span><span>MIT</span>',
-    'mc.11.cta1':'GitHub →',
     'why.eyebrow':'为什么选 AwareLiquid','why.h2':'两大优势，实测而非营销',
     'why.lead':'面向把模型部署到端侧的企业：一项成本优势，一项能力优势。每个数字都链接到公开代码与数据。',
     'why.c1':'<span class="adv-eyebrow">优势一 · 成本与体积</span><h3>架构级的轻量</h3><ul><li><strong>0.381 MB</strong> 恒定携带状态，与上下文长度无关——1M tokens 下比 KV 缓存<strong>小 8,063 倍</strong></li><li><strong>4800 万–1.28 亿参数</strong> 边缘模型，纯 CPU 推理——无 GPU 账单</li><li><strong>5 MB</strong> ONNX 导出，常开唤醒词（O1-Sound）</li></ul>',
@@ -1667,6 +1647,7 @@ const I18N_MAP=[
   ['.models-section .eyebrow','models.eyebrow','text'],
   ['.models-section .section-header h2','models.h2','text'],
   ['.models-section .section-lead','models.lead','html'],
+  ['.models-paper','models.paper','html'],
   ['.demo-section .eyebrow','demo.eyebrow','text'],
   ['.demo-section .section-header h2','demo.h2','text'],
   ['.demo-section .section-lead','demo.lead','html'],
@@ -1733,17 +1714,6 @@ function applyPageLang(lang){
   if(whyCards[0])whyCards[0].innerHTML=ti('why.c1');
   if(whyCards[1])whyCards[1].innerHTML=ti('why.c2');
 
-  // model lineup tags
-  document.querySelectorAll('.model-badge').forEach((b,i)=>{
-    const tagEl=b.querySelector('.model-tag');
-    if(tagEl)tagEl.textContent=i===0?ti('m1.tag'):ti('o1.tag');
-  });
-  // model lineup tags
-  document.querySelectorAll('.model-badge').forEach((b,i)=>{
-    const tagEl=b.querySelector('.model-tag');
-    if(tagEl)tagEl.textContent=i===0?ti('m1.tag'):ti('o1.tag');
-  });
-
   // model cards (lineup + research family) — series/status/name/desc/meta/cta/note
   document.querySelectorAll('.models-grid .model-card').forEach((card,i)=>{
     const set=(sel,key,html)=>{
@@ -1764,14 +1734,6 @@ function applyPageLang(lang){
     });
     set('.mc-note','mc.'+i+'.note',false);
   });
-  // research family 子标题（models 区第二个 section-header）
-  const famHeaders=document.querySelectorAll('.models-section .section-header');
-  if(famHeaders[1]){
-    const h=famHeaders[1];
-    if(h.querySelector('.eyebrow'))h.querySelector('.eyebrow').textContent=ti('models.famEyebrow');
-    if(h.querySelector('h2'))h.querySelector('h2').textContent=ti('models.famH2');
-    if(h.querySelector('.section-lead'))h.querySelector('.section-lead').innerHTML=ti('models.famLead');
-  }
 
   // demo section clear button and placeholder
   const clrEl=document.getElementById('clearBtn');
@@ -1793,9 +1755,6 @@ function applyPageLang(lang){
     const labs=el.querySelectorAll('.label');
     if(labs[1])labs[1].textContent=ti('rail.c'+(i+1));
   });
-
-  // model lineup series captions (M-Series / O-Series)
-  document.querySelectorAll('.model-series').forEach((el,i)=>{el.textContent=ti('lineup.s'+(i+1));});
 
   // stats strip labels (contain <br>)
   document.querySelectorAll('.stat-l').forEach((el,i)=>{el.innerHTML=ti('stats.l'+(i+1));});
@@ -1856,6 +1815,17 @@ function applyPageLang(lang){
       if(type==='html')el.innerHTML=v;
       else el.textContent=v;
     });
+  }
+
+  // Research header (2nd .section-header) — applied AFTER the I18N_MAP loop above,
+  // whose .models-section selectors match both headers and would otherwise
+  // overwrite this one with the Models header copy.
+  const famHeaders=document.querySelectorAll('.models-section .section-header');
+  if(famHeaders[1]){
+    const h=famHeaders[1];
+    if(h.querySelector('.eyebrow'))h.querySelector('.eyebrow').textContent=ti('models.famEyebrow');
+    if(h.querySelector('h2'))h.querySelector('h2').textContent=ti('models.famH2');
+    if(h.querySelector('.section-lead'))h.querySelector('.section-lead').innerHTML=ti('models.famLead');
   }
 
   // re-render demo welcome
