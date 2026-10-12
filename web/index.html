@@ -1022,7 +1022,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <span class="mc-status s-dl">&#8595; Repository</span>
         </div>
         <h3 class="mc-name">O1-Anti</h3>
-        <p class="mc-desc">Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.</p>
+        <p class="mc-desc">Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1, GPU, equal budget): NLA matches attention at the 1.000 ceiling on 8 pairs (multi-seed) at a fraction of the cache; Mamba is budget-sensitive on the same probe. 22/22 tests.</p>
         <div class="mc-meta">
           <span>efficiency line</span><span>22 tests</span><span>pip install torch</span>
         </div>
@@ -1346,7 +1346,7 @@ const I18N={
     'mc.5.meta':'<span>edge &middot; always-on</span><span>32 tests</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
     'mc.6.series':'O-Series','mc.6.status':'↓ Repository','mc.6.name':'O1-Anti',
-    'mc.6.desc':'Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1): ties attention at 1.000; Mamba 0.07-0.10. 22/22 tests.',
+    'mc.6.desc':'Efficiency-focused O-series prototype: Neural Liquid Adjacency (8&times; smaller cache), sparse module graph (27% activation), non-autoregressive decode (3.4&times; fewer passes). MQAR recall (wd=0.1, GPU, equal budget): NLA matches attention at the 1.000 ceiling on 8 pairs (multi-seed) at a fraction of the cache; Mamba is budget-sensitive on the same probe. 22/22 tests.',
     'mc.6.meta':'<span>efficiency line</span><span>22 tests</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
     'mc.7.series':'O-Series','mc.7.status':'↓ Repository','mc.7.name':'AwareLiquid-Physic',
@@ -1488,7 +1488,7 @@ const I18N={
     'mc.5.meta':'<span>حافة · دائم التشغيل</span><span>32 اختباراً</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'نقطة الفحص ↓',
     'mc.6.series':'سلسلة O','mc.6.status':'↓ مستودع','mc.6.name':'O1-Anti',
-    'mc.6.desc':'نموذج أولي من سلسلة O يركّز على الكفاءة: تجاور سائل عصبي (ذاكرة أصغر 8×)، رسم وحدات متفرق (27% تنشيط)، فك ترميز غير ذاتي (تمريرات أقل 3.4×). استدعاء MQAR (wd=0.1): يتعادل مع الانتباه عند 1.000؛ Mamba 0.07-0.10. 22/22 اختباراً.',
+    'mc.6.desc':'نموذج أولي من سلسلة O يركّز على الكفاءة: تجاور سائل عصبي (ذاكرة أصغر 8×)، رسم وحدات متفرق (27% تنشيط)، فك ترميز غير ذاتي (تمريرات أقل 3.4×). استدعاء MQAR (wd=0.1، GPU، ميزانية متساوية): يتعادل NLA مع الانتباه عند سقف 1.000 على 8 أزواج (بذور متعددة) بجزء من الذاكرة؛ وMamba أكثر حساسية للميزانية على نفس الاختبار. 22/22 اختباراً.',
     'mc.6.meta':'<span>خط كفاءة</span><span>22 اختباراً</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
     'mc.7.series':'سلسلة O','mc.7.status':'↓ مستودع','mc.7.name':'AwareLiquid-Physic',
@@ -1657,7 +1657,7 @@ const I18N={
     'mc.5.meta':'<span>边缘 &middot; 常开</span><span>32 测试</span><span>ONNX 5MB</span>',
     'mc.5.cta1':'GitHub →','mc.5.cta2':'Checkpoint ↓',
     'mc.6.series':'O 系列','mc.6.status':'↓ 仓库','mc.6.name':'O1-Anti',
-    'mc.6.desc':'面向效率的 O 系列原型：神经液态邻接（缓存小 8×）、稀疏模块图（27% 激活）、非自回归解码（前向少 3.4×）。MQAR 召回（wd=0.1）：与注意力同为 1.000；Mamba 0.07-0.10。22/22 测试。',
+    'mc.6.desc':'面向效率的 O 系列原型：神经液态邻接（缓存小 8×）、稀疏模块图（27% 激活）、非自回归解码（前向少 3.4×）。MQAR 召回（wd=0.1，GPU、同等预算）：NLA 在 8 对键值上达到注意力同等 1.000 上限（多种子），而缓存小得多；Mamba 在同一探针上更吃预算。22/22 测试。',
     'mc.6.meta':'<span>效率路线</span><span>22 测试</span><span>pip install torch</span>',
     'mc.6.cta1':'GitHub →',
     'mc.7.series':'O 系列','mc.7.status':'↓ 仓库','mc.7.name':'AwareLiquid-Physic',
