@@ -120,7 +120,7 @@
     {
       "@type": "Question",
       "name": "ما المزايا الحالية لـ AwareLiquid؟",
-      "acceptedAnswer": {"@type": "Answer", "text": "ميزتان مقاستان: الاستدعاء الترابطي عبر النوافذ/الجلسات 0.56 مقابل 0.000 (الانتباه وLoRA صفر بنيوياً)، وذاكرة استدلال O(1) مع تصدير ONNX لكلمة الاستيقاظ 5 ميجابايت وتشغيل على المعالج فقط. غير الميزة الصادق: الحيرة أسوأ من المحول الحديث بـ 11.3% — الحجة تقوم على الذاكرة والكفاءة لا جودة النمذجة."}
+      "acceptedAnswer": {"@type": "Answer", "text": "ميزتان مقاستان: الاستدعاء الترابطي عبر النوافذ/الجلسات 0.56 مقابل 0.000 (الانتباه وLoRA صفر بنيوياً)، وذاكرة استدلال O(1) مع تصدير ONNX لكلمة الاستيقاظ 5 ميجابايت وتشغيل على المعالج فقط. سجل صادق: كانت الحيرة أسوأ من المحول الحديث بـ 11.3%، وقلبت الوصفات الثلاث المفعّلة افتراضياً النتيجة إلى 76.56 مقابل 78.86 (3/3 بذور) — الحجة تقوم على الذاكرة والكفاءة لا جودة النمذجة."}
     },
     {
       "@type": "Question",
@@ -588,7 +588,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 </div>
 
 <div class="container" style="padding-bottom:24px">
-    <div class="note" style="max-width:760px" data-i18n="tldr"><strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). The honest non-advantage: at convergence, perplexity trails a modern Transformer by 11.3%. Every number below links to open code and data.</div>
+    <div class="note" style="max-width:760px" data-i18n="tldr"><strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.</div>
 </div>
 
 <!-- ── MAIN CONTENT ── -->
@@ -939,7 +939,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </div>
       <ul>
         <li data-i18n="cmp.li1"><strong>JEPA is the same route, not a competitor.</strong> Meta's V-JEPA 2 (1.2B, 1M+ h video) proves latent-space prediction on vision/robotics — zero-shot Franka pick-and-place from 62 h of robot video. We push the same route into continuous-time industrial sensing. Their stated next steps (hierarchical + multimodal JEPA) are our architecture's native shape (τ ladder + audio/sensor/physics).</li>
-        <li data-i18n="cmp.li2"><strong>Honest non-advantage, kept on the record:</strong> at convergence our 125M reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse on language modeling. The case rests on memory and efficiency, not PPL.</li>
+        <li data-i18n="cmp.li2"><strong>Honest record, updated:</strong> at convergence our 125M base recipe reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse. The three modern-trunk recipes (SwiGLU gated FFN, QK-RMSNorm, depth-scaled residual init — now default-ON) close and reverse that: <strong>76.56 vs 78.86 at roughly matched parameters (149.1M vs 144.1M), 3/3 seeds better</strong>, with the over-parameterised variant at 73.97. The case still rests on memory and efficiency first — but perplexity is no longer a concession.</li>
         <li data-i18n="cmp.li3"><strong>MiniMind proves the small-model training chain, not a paradigm.</strong> 64M from scratch in ~2 h for ~¥3 — a full pretrain→SFT→RL pipeline in readable PyTorch. It is a standard Transformer; we borrow its training discipline (and its DPO/GRPO references live in M2), not its architecture.</li>
       </ul>
 
@@ -998,6 +998,13 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 
       <h2 id="changelog" data-i18n="s11">10 · Changelog</h2>
       <div class="changelog">
+        <div class="cl-entry">
+          <span class="cl-version">v2.7</span>
+          <time class="cl-date" datetime="2026-10">October 2026</time>
+          <div class="cl-body">
+            <strong>Language-modeling deficit closed and reversed.</strong> The three modern-trunk recipes (SwiGLU gated FFN, QK-RMSNorm, depth-scaled residual init) are now default-ON. At roughly matched parameters the 125M-class MT-LNN reaches <strong>76.56 val PPL</strong> vs the modern Transformer baseline's <strong>78.86</strong> (20K steps, 3 seeds, fp32; paired &Delta;PPL &minus;3.12/&minus;1.82/&minus;1.97, 3/3 seeds better) — the 11.3% deficit reported in July is closed. The over-parameterised variant reaches 73.97; the base-recipe result and the retracted 2K-step claim remain on the record. Evidence: RESULTS.md, <code>docs/MODERN_TRUNK.md</code>, decision <code>ADJ-016</code>.
+          </div>
+        </div>
         <div class="cl-entry">
           <span class="cl-version">v2.6</span>
           <time class="cl-date" datetime="2026-10">October 2026</time>
@@ -1093,7 +1100,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
       </figure>
 
       <h3 data-i18n="fq2">What are the current advantages?</h3>
-      <p data-i18n="fa2">Two measured advantages, nothing else claimed. <strong>Capability:</strong> cross-window / cross-session associative recall <strong>0.56 vs 0.000</strong> — attention and LoRA are structurally zero here; the fast-weight state <em>is</em> the memory (remove it and recall collapses to 0.008). Snapshotting the state and restoring into a fresh process is <strong>bit-exact</strong>. <strong>Cost:</strong> O(1) inference memory (O-series), 5 MB ONNX wake-word export, CPU-only inference. The honest non-advantage: <strong>perplexity</strong> — at convergence MT-LNN reaches 88.93 vs a modern Transformer's 78.86 (11.3% worse). The architecture's case rests on memory and efficiency, not language-modeling quality.</p>
+      <p data-i18n="fa2">Two measured advantages, nothing else claimed. <strong>Capability:</strong> cross-window / cross-session associative recall <strong>0.56 vs 0.000</strong> — attention and LoRA are structurally zero here; the fast-weight state <em>is</em> the memory (remove it and recall collapses to 0.008). Snapshotting the state and restoring into a fresh process is <strong>bit-exact</strong>. <strong>Cost:</strong> O(1) inference memory (O-series), 5 MB ONNX wake-word export, CPU-only inference. Language modeling, updated: the base recipe trails a modern Transformer by 11.3% (88.93 vs 78.86), but with the modern-trunk recipes now default-ON the model reaches <strong>76.56 vs 78.86</strong> at roughly matched parameters (3/3 seeds) — the deficit is closed and reversed. The architecture's case still rests first on memory and efficiency.</p>
 
       <h3 data-i18n="fq3">What tests have been run?</h3>
       <p data-i18n="fa3">The repository ships <strong>967 tests</strong>, all green, plus the benchmark suite behind every claim on this page: 20K-step 3-seed fp32 convergence on WikiText-103; cross-window recall with fast-weight ablation; the O(1) sweep to 1M tokens; the KV-frontier audit against 2-bit + GQA=8 and every non-evicted configuration; needle-in-haystack (in-window 0.867–1.000, out-of-window 0 — a base RoPE limit, reported honestly); continual learning with EWC (forgetting ×44 → ×7.6, an 85% delta reduction); 10-seed event-stream benchmarks (pre-registered Δt-span verdict: NULL); battery-health, wake-word and long-document pilots. Every number links to open code and data — no hand-copied figures.</p>
@@ -1436,7 +1443,7 @@ var I18N = {
     "hero.eyebrow":"M1 · Research","hero.h1":"Experiments &amp; Results",
     "hero.lead":"An honest record of what AwareLiquid M1 has built, what the data shows, and what remains open. Every claim is tagged, reproducible, and falsifiable.",
     "hero.built":"Code runs, results reproducible","hero.signal":"Preliminary evidence, stats not conclusive","hero.target":"Direction clear, not yet achieved",
-    "tldr":"<strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). The honest non-advantage: at convergence, perplexity trails a modern Transformer by 11.3%. Every number below links to open code and data.",
+    "tldr":"<strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.",
     "g1":"Constant carried state<br>at any context length","g2":"Smaller than a KV-cache<br>at 1M tokens","g3":"Cross-window recall<br>fast-weight vs attention","g4":"Forgetting reduction<br>with EWC (early signal)","g5":"Degradation at 80%<br>dropped samples (battery)",
     "sb.g1":"Architecture","sb.l1":"M1 Architecture","sb.l2":"Live Demo (M1)",
     "sb.g2":"Experiments","sb.l3":"Continual Learning","sb.l4":"Hebbian Ablation","sb.l5":"Spatial Computing",
@@ -1450,7 +1457,7 @@ var I18N = {
     "fa1":"The O-series replaces the attention KV cache with a constant recurrent state: <strong>0.381 MB regardless of context length</strong>. Measured across a 2048× context increase (512 → 1,048,576 tokens) with the state flat to the decimal: <strong>1008× smaller at 128k, 8063× smaller at 1M</strong> (where the KV cache alone would be ~3 GB). The audit used the <em>strongest</em> opposing compression, not just fp16: the advantage survives <strong>2-bit KV + GQA=8</strong> (8567× at 1M). Honest bounds: this is the attention-free O-series only; it is inference carried-state, not training memory; and against sink+window eviction @2-bit it is never smaller — that trade is out-of-window retrieval (0.56 vs 0.000), not bytes.",
     "fa1c":"Inference memory vs context length — the O(1) state stays flat while a KV cache grows with every token.",
     "fq2":"What are the current advantages?",
-    "fa2":"Two measured advantages, nothing else claimed. <strong>Capability:</strong> cross-window / cross-session associative recall <strong>0.56 vs 0.000</strong> — attention and LoRA are structurally zero here; the fast-weight state <em>is</em> the memory (remove it and recall collapses to 0.008). Snapshotting the state and restoring into a fresh process is <strong>bit-exact</strong>. <strong>Cost:</strong> O(1) inference memory (O-series), 5 MB ONNX wake-word export, CPU-only inference. The honest non-advantage: <strong>perplexity</strong> — at convergence MT-LNN reaches 88.93 vs a modern Transformer's 78.86 (11.3% worse). The architecture's case rests on memory and efficiency, not language-modeling quality.",
+    "fa2":"Two measured advantages, nothing else claimed. <strong>Capability:</strong> cross-window / cross-session associative recall <strong>0.56 vs 0.000</strong> — attention and LoRA are structurally zero here; the fast-weight state <em>is</em> the memory (remove it and recall collapses to 0.008). Snapshotting the state and restoring into a fresh process is <strong>bit-exact</strong>. <strong>Cost:</strong> O(1) inference memory (O-series), 5 MB ONNX wake-word export, CPU-only inference. Language modeling, updated: the base recipe trails a modern Transformer by 11.3% (88.93 vs 78.86), but with the modern-trunk recipes now default-ON the model reaches <strong>76.56 vs 78.86</strong> at roughly matched parameters (3/3 seeds) — the deficit is closed and reversed. The architecture's case still rests first on memory and efficiency.",
     "fq3":"What tests have been run?",
     "fa3":"The repository ships <strong>967 tests</strong>, all green, plus the benchmark suite behind every claim on this page: 20K-step 3-seed fp32 convergence on WikiText-103; cross-window recall with fast-weight ablation; the O(1) sweep to 1M tokens; the KV-frontier audit against 2-bit + GQA=8 and every non-evicted configuration; needle-in-haystack (in-window 0.867–1.000, out-of-window 0 — a base RoPE limit, reported honestly); continual learning with EWC (forgetting ×44 → ×7.6, an 85% delta reduction); 10-seed event-stream benchmarks (pre-registered Δt-span verdict: NULL); battery-health, wake-word and long-document pilots. Every number links to open code and data — no hand-copied figures.",
     "fq4":"What are the use cases?",
@@ -1564,7 +1571,7 @@ var I18N = {
     "cmp.r5.p":"Selective state space",
     "cmp.r6.p":"Autoregressive attention",
     "cmp.li1":"<strong>JEPA is the same route, not a competitor.</strong> Meta's V-JEPA 2 (1.2B, 1M+ h video) proves latent-space prediction on vision/robotics — zero-shot Franka pick-and-place from 62 h of robot video. We push the same route into continuous-time industrial sensing. Their stated next steps (hierarchical + multimodal JEPA) are our architecture's native shape (τ ladder + audio/sensor/physics).",
-    "cmp.li2":"<strong>Honest non-advantage, kept on the record:</strong> at convergence our 125M reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse on language modeling. The case rests on memory and efficiency, not PPL.",
+    "cmp.li2":"<strong>Honest record, updated:</strong> at convergence our 125M base recipe reaches 88.93 val PPL vs a modern Transformer's 78.86 — 11.3% worse. The three modern-trunk recipes (SwiGLU gated FFN, QK-RMSNorm, depth-scaled residual init — now default-ON) close and reverse that: <strong>76.56 vs 78.86 at roughly matched parameters (149.1M vs 144.1M), 3/3 seeds better</strong>, with the over-parameterised variant at 73.97. The case still rests on memory and efficiency first — but perplexity is no longer a concession.",
     "cmp.li3":"<strong>MiniMind proves the small-model training chain, not a paradigm.</strong> 64M from scratch in ~2 h for ~¥3 — a full pretrain→SFT→RL pipeline in readable PyTorch. It is a standard Transformer; we borrow its training discipline (and its DPO/GRPO references live in M2), not its architecture.",
     "f0.q1":"What is the difference between M1 and O1?",
     "f0.a1":"<strong>M1 (M-Series)</strong> is the cognitive slow-thinking engine — it layers GWT competitive broadcast, NREM sleep consolidation with SHY synaptic downscaling, and EWC continual learning on the LTC backbone. It targets episodic memory, agent cognition, and catastrophic forgetting research. <strong>O1 (O-Series)</strong> is the edge fast-thinking engine — pure continuous-time liquid ODE, constant 4 KB memory state regardless of context length, no KV-cache growth, targets CPU/edge deployment at millisecond latency. Both share the MT-LNN backbone; full cognitive module integration into O1 is in progress.",
@@ -1625,7 +1632,7 @@ var I18N = {
     "hero.eyebrow":"M1 · 研究","hero.h1":"实验与结果",
     "hero.lead":"一份诚实的记录：AwareLiquid M1 造了什么、数据说明了什么、还有什么悬而未决。每条结论都有标签、可复现、可证伪。",
     "hero.built":"代码可运行,结果可复现","hero.signal":"初步证据,统计尚不充分","hero.target":"方向明确,尚未达成",
-    "tldr":"<strong>TL;DR:</strong>MT-LNN 的实测立论是记忆与效率 —— O(1) 推理状态(0.381 MB,1M tokens 时比 KV 缓存小 8063×)与注意力无法表达的跨窗口回忆(0.56 vs 0.000)。诚实的非优势:收敛后困惑度比现代 Transformer 差 11.3%。以下每个数字都链接到开源代码与数据。",
+    "tldr":"<strong>TL;DR:</strong>MT-LNN 的实测立论是记忆与效率 —— O(1) 推理状态(0.381 MB,1M tokens 时比 KV 缓存小 8063×)与注意力无法表达的跨窗口回忆(0.56 vs 0.000)。语言建模:此前落后现代 Transformer 11.3% 的差距已收复并反超 —— 三项 modern-trunk 配方(现已默认开启)下,同参数级模型达到 <strong>76.56 vs 78.86</strong> 验证 PPL(3/3 种子)。以下每个数字都链接到开源代码与数据。",
     "g1":"恒定携带状态<br>与上下文长度无关","g2":"比 KV-cache 小 8,063 倍<br>(1M tokens)","g3":"跨窗口回忆<br>快权重 vs 注意力","g4":"EWC 遗忘降幅 85%<br>(早期信号)","g5":"80% 丢样本仅 +7.7% 劣化<br>(电池数据)",
     "sb.g1":"架构","sb.l1":"M1 架构","sb.l2":"在线演示 (M1)",
     "sb.g2":"实验","sb.l3":"持续学习","sb.l4":"Hebbian 消融","sb.l5":"空间计算",
@@ -1639,7 +1646,7 @@ var I18N = {
     "fa1":"O 系列用恒定递归状态替代注意力 KV 缓存:<strong>无论上下文多长,携带状态恒为 0.381 MB</strong>。实测覆盖 2048× 上下文跨度(512 → 1,048,576 tokens),状态小数点后都不变:<strong>128k 时小 1008 倍,1M 时小 8063 倍</strong>(此时光 KV 缓存就约 3 GB)。对照采用<em>最强</em>压缩而非仅 fp16:优势在 <strong>2-bit KV + GQA=8</strong> 下依然成立(1M 时 8567×)。诚实的边界:此结论仅适用于无注意力的 O 系列;是推理携带状态,不是训练内存;且面对 sink+window 逐出 @2-bit 时并非更小 —— 那一处权衡是窗口外检索(0.56 vs 0.000),不是字节数。",
     "fa1c":"推理内存 vs 上下文长度 —— O(1) 状态保持水平,而 KV 缓存随每个 token 增长。",
     "fq2":"目前的优势是什么?",
-    "fa2":"两项实测优势,其余不主张。<strong>能力:</strong>跨窗口/跨会话联想回忆 <strong>0.56 vs 0.000</strong> —— 注意力与 LoRA 在此结构上就是零;快权重状态<em>就是</em>记忆(移除它,回忆塌到 0.008)。状态快照写入磁盘、在新进程恢复,<strong>逐位无损</strong>。<strong>成本:</strong>O(1) 推理内存(O 系列)、5 MB ONNX 唤醒词导出、纯 CPU 推理。诚实的非优势:<strong>困惑度</strong> —— 收敛后 MT-LNN 88.93,现代 Transformer 78.86(差 11.3%)。架构的立论在记忆与效率,不在语言建模质量。",
+    "fa2":"两项实测优势,其余不主张。<strong>能力:</strong>跨窗口/跨会话联想回忆 <strong>0.56 vs 0.000</strong> —— 注意力与 LoRA 在此结构上就是零;快权重状态<em>就是</em>记忆(移除它,回忆塌到 0.008)。状态快照写入磁盘、在新进程恢复,<strong>逐位无损</strong>。<strong>成本:</strong>O(1) 推理内存(O 系列)、5 MB ONNX 唤醒词导出、纯 CPU 推理。语言建模(已更新):基线配方落后现代 Transformer 11.3%(88.93 vs 78.86);modern-trunk 配方现已默认开启,同参数级模型达 <strong>76.56 vs 78.86</strong>(3/3 种子)——差距已收复并反超。架构的立论仍首在记忆与效率。",
     "fq3":"跑了哪些测试?",
     "fa3":"仓库自带 <strong>967 个测试</strong>全绿,加上本页每个结论背后的基准套件:WikiText-103 上 20K 步 3 种子 fp32 收敛;跨窗口回忆(含快权重消融);O(1) 状态扫到 1M tokens;KV 前沿审计(对 2-bit + GQA=8 及每种非逐出配置);needle-in-haystack(窗口内 0.867–1.000,窗口外 0 —— 基座 RoPE 上限,如实报告);EWC 持续学习(遗忘 ×44 → ×7.6,降幅 85%);10 种子事件流基准(预注册 Δt-span 判定:NULL);电池健康、唤醒词、长文档试点。每个数字链到开源代码与数据 —— 没有手抄数字。",
     "fq4":"使用场景是什么?",
@@ -1753,7 +1760,7 @@ var I18N = {
     "cmp.r5.p":"选择性状态空间",
     "cmp.r6.p":"自回归注意力",
     "cmp.li1":"<strong>JEPA 是同一条路线,不是对手。</strong>Meta 的 V-JEPA 2(1.2B,100 万+ 小时视频)在视觉/机器人上证明了隐空间预测路线——仅用 62 小时机器人视频就实现零样本 Franka 抓取。我们把同一条路线推进到连续时间工业传感。他们声明的下一步(层级化 + 多模态 JEPA)正是我们架构的原生形态(τ 阶梯 + 音频/传感/物理)。",
-    "cmp.li2":"<strong>诚实的劣势,留在记录里:</strong>收敛时我们的 125M 达到 88.93 验证 PPL,现代 Transformer 是 78.86——语言建模差 11.3%。我们的立论基础是记忆与效率,不是 PPL。",
+    "cmp.li2":"<strong>诚实记录(已更新):</strong>收敛时我们的 125M 基线配方为 88.93 验证 PPL,现代 Transformer 是 78.86 —— 差 11.3%。三项 modern-trunk 配方(SwiGLU 门控 FFN、QK-RMSNorm、深度缩放残差初始化,现已默认开启)收复并反超:<strong>同参数级(149.1M vs 144.1M)76.56 vs 78.86,3/3 种子更优</strong>,超配版(195.1M)达 73.97。立论基础仍是记忆与效率优先,但困惑度不再是让步项。",
     "cmp.li3":"<strong>MiniMind 证明的是小模型训练链,不是范式。</strong>64M 从零训练约 2 小时、约 ¥3——可读 PyTorch 里的完整 预训练→SFT→RL 管线。它是标准 Transformer;我们借用它的训练纪律(其 DPO/GRPO 参考实现放在 M2),不是它的架构。",
     "f0.q1":"M1 和 O1 的区别是什么?",
     "f0.a1":"<strong>M1(M 系列)</strong>是认知慢思考引擎——在 LTC 骨干上叠加 GWT 竞争广播、带 SHY 突触降标的 NREM 睡眠巩固,以及 EWC 持续学习。它面向情景记忆、智能体认知与灾难性遗忘研究。<strong>O1(O 系列)</strong>是边缘快思考引擎——纯连续时间液态 ODE,恒定 4 KB 内存状态与上下文长度无关,无 KV 缓存增长,面向毫秒级延迟的 CPU/边缘部署。两者共享 MT-LNN 骨干;认知模块向 O1 的完整集成仍在进行中。",
@@ -1814,7 +1821,7 @@ var I18N = {
     "hero.eyebrow":"M1 · أبحاث","hero.h1":"التجارب والنتائج",
     "hero.lead":"سجل صادق لما بناه AwareLiquid M1، وما تظهره البيانات، وما يبقى مفتوحاً. كل ادعاء موسوم وقابل لإعادة الإنتاج وقابل للتفنيد.",
     "hero.built":"الكود يعمل والنتائج قابلة لإعادة الإنتاج","hero.signal":"دليل أولي، الإحصاءات غير حاسمة","hero.target":"الاتجاه واضح، لم يتحقق بعد",
-    "tldr":"<strong>TL;DR:</strong> حجة MT-LNN المقاسة هي الذاكرة والكفاءة — حالة استدلال O(1) (0.381 ميجابايت، أصغر بـ 8063× من ذاكرة KV عند مليون رمز) واستدعاء عبر النوافذ لا يعبّر عنه الانتباه (0.56 مقابل 0.000). غير الميزة الصادق: عند التقارب تتأخر الحيرة عن المحول الحديث بـ 11.3%. كل رقم أدناه مرتبط بكود وبيانات مفتوحة.",
+    "tldr":"<strong>TL;DR:</strong> حجة MT-LNN المقاسة هي الذاكرة والكفاءة — حالة استدلال O(1) (0.381 ميجابايت، أصغر بـ 8063× من ذاكرة KV عند مليون رمز) واستدعاء عبر النوافذ لا يعبّر عنه الانتباه (0.56 مقابل 0.000). في نمذجة اللغة: الفجوة السابقة (11.3% خلف المحوّل الحديث) أُغلقت وانعكست — مع الوصفات الثلاث (المفعّلة افتراضياً الآن) يبلغ النموذج <strong>76.56 مقابل 78.86</strong> عند معاملات مماثلة تقريباً (3/3 بذور). كل رقم أدناه مرتبط بكود وبيانات مفتوحة.",
     "g1":"حالة محمولة ثابتة<br>مهما كان طول السياق","g2":"أصغر من ذاكرة KV<br>بـ 8,063× عند مليون رمز","g3":"استدعاء عبر النوافذ<br>الوزن السريع مقابل الانتباه","g4":"خفض النسيان 85%<br>بـ EWC (إشارة مبكرة)","g5":"تدهور +7.7% فقط عند<br>فقدان 80% من العينات (بطارية)",
     "sb.g1":"البنية","sb.l1":"بنية M1","sb.l2":"العرض المباشر (M1)",
     "sb.g2":"التجارب","sb.l3":"التعلم المستمر","sb.l4":"استئصال Hebbian","sb.l5":"الحوسبة المكانية",
@@ -1828,7 +1835,7 @@ var I18N = {
     "fa1":"تستبدل سلسلة O ذاكرة انتباه KV بحالة متكررة ثابتة: <strong>0.381 ميجابايت مهما كان طول السياق</strong>. مُقاسة عبر زيادة سياق 2048× (512 → 1,048,576 رمزاً) والحالة ثابتة حتى الخانة العشرية: <strong>أصغر بـ 1008× عند 128 ألف، وأصغر بـ 8063× عند مليون</strong> (حيث تبلغ ذاكرة KV وحدها ~3 جيجابايت). استخدم التدقيق <em>أقوى</em> ضغط مضاد، لا fp16 فقط: الميزة تصمد أمام <strong>2-bit KV + GQA=8</strong> (8567× عند مليون). الحدود الصادقة: هذا خاص بسلسلة O بلا انتباه فقط؛ وهو حالة استدلال محمولة لا ذاكرة تدريب؛ ومقابل إخلاء sink+window بـ 2-bit فهو ليس أصغر أبداً — تلك المقايضة هي الاسترجاع خارج النافذة (0.56 مقابل 0.000)، لا البايتات.",
     "fa1c":"ذاكرة الاستدلال مقابل طول السياق — حالة O(1) تبقى مسطحة بينما تنمو ذاكرة KV مع كل رمز.",
     "fq2":"ما المزايا الحالية؟",
-    "fa2":"ميزتان مقاستان، لا شيء آخر مدَّعٍ. <strong>القدرة:</strong> استدعاء ترابطي عبر النوافذ/الجلسات <strong>0.56 مقابل 0.000</strong> — الانتباه وLoRA صفر بنيوياً هنا؛ حالة الوزن السريع <em>هي</em> الذاكرة (أزلها فينهار الاستدعاء إلى 0.008). لقطة الحالة والاستعادة في عملية جديدة <strong>مطابقة بتاً ببت</strong>. <strong>التكلفة:</strong> ذاكرة استدلال O(1) (سلسلة O)، تصدير ONNX لكلمة الاستيقاظ 5 ميجابايت، استدلال على المعالج فقط. غير الميزة الصادق: <strong>الحيرة</strong> — عند التقارب يبلغ MT-LNN 88.93 مقابل 78.86 للمحول الحديث (أسوأ بـ 11.3%). حجة البنية تقوم على الذاكرة والكفاءة، لا جودة نمذجة اللغة.",
+    "fa2":"ميزتان مقاستان، لا شيء آخر مدَّعٍ. <strong>القدرة:</strong> استدعاء ترابطي عبر النوافذ/الجلسات <strong>0.56 مقابل 0.000</strong> — الانتباه وLoRA صفر بنيوياً هنا؛ حالة الوزن السريع <em>هي</em> الذاكرة (أزلها فينهار الاستدعاء إلى 0.008). لقطة الحالة والاستعادة في عملية جديدة <strong>مطابقة بتاً ببت</strong>. <strong>التكلفة:</strong> ذاكرة استدلال O(1) (سلسلة O)، تصدير ONNX لكلمة الاستيقاظ 5 ميجابايت، استدلال على المعالج فقط. نمذجة اللغة، مُحدَّث: وصفة الأساس متأخرة بنسبة 11.3% (88.93 مقابل 78.86)، ومع الوصفات المفعّلة افتراضياً يبلغ النموذج <strong>76.56 مقابل 78.86</strong> عند معاملات مماثلة (3/3 بذور) — أُغلقت الفجوة وانعكست. تبقى حجة البنية أولاً على الذاكرة والكفاءة.",
     "fq3":"ما الاختبارات التي أُجريت؟",
     "fa3":"يضم المستودع <strong>967 اختباراً</strong> كلها خضراء، إضافة إلى مجموعة المعايير خلف كل ادعاء في هذه الصفحة: تقارب 20 ألف خطوة بثلاث بذور fp32 على WikiText-103؛ الاستدعاء عبر النوافذ مع استئصال الوزن السريع؛ مسح O(1) حتى مليون رمز؛ تدقيق حدود KV ضد 2-bit + GQA=8 وكل إعداد غير مخلٍ؛ الإبرة في كومة القش (داخل النافذة 0.867–1.000، خارجها 0 — حد RoPE الأساسي، أُبلغ بصدق)؛ التعلم المستمر مع EWC (النسيان ×44 → ×7.6، خفض 85%)؛ معايير تيارات الأحداث بعشر بذور (حكم Δt-span مسجل مسبقاً: NULL)؛ وتجارب صحة البطارية وكلمة الاستيقاظ والمستندات الطويلة. كل رقم مرتبط بكود وبيانات مفتوحة — لا أرقام منسوخة يدوياً.",
     "fq4":"ما حالات الاستخدام؟",
@@ -1954,7 +1961,7 @@ var I18N = {
     "cmp.r5.p":"فضاء حالة انتقائي",
     "cmp.r6.p":"انتباه ذاتي الانحدار",
     "cmp.li1":"<strong>JEPA هو نفس المسار، وليس منافسًا.</strong> يثبت V-JEPA 2 من Meta (1.2B، أكثر من مليون ساعة فيديو) التنبؤ في الفضاء الكامن على الرؤية والروبوتات — إمساك Franka بدون أمثلة من 62 ساعة فقط من فيديو الروبوت. نحن ندفع المسار نفسه إلى الاستشعار الصناعي الزمني المستمر. خطواتهم التالية المعلنة (JEPA هرمي + متعدد الوسائط) هي الشكل الأصلي لمعماريتنا (سلم τ + الصوت والاستشعار والفيزياء).",
-    "cmp.li2":"<strong>عيب صريح، يُحفظ في السجل:</strong> عند التقارب يصل نموذجنا 125M إلى 88.93 PPL للتحقق مقابل 78.86 للمحوّل الحديث — أسوأ بنسبة 11.3% في نمذجة اللغة. الحجة تقوم على الذاكرة والكفاءة، لا على PPL.",
+    "cmp.li2":"<strong>سجل صادق، مُحدَّث:</strong> عند التقارب تبلغ وصفة الأساس (125M) 88.93 PPL مقابل 78.86 للمحوّل الحديث — أسوأ بنسبة 11.3%. الوصفات الثلاث الحديثة (SwiGLU للـ FFN، QK-RMSNorm، تهيئة متبقية مُقاسة بالعمق؛ مفعّلة افتراضياً الآن) تُغلق الفجوة وتعكسها: <strong>76.56 مقابل 78.86 عند معاملات مماثلة (149.1M مقابل 144.1M)، 3/3 بذور أفضل</strong>، ونسخة فرط المعاملات تبلغ 73.97. تبقى الحجة أولاً على الذاكرة والكفاءة — لكن الحيرة لم تعد تنازلاً.",
     "cmp.li3":"<strong>يثبت MiniMind سلسلة تدريب النموذج الصغير، وليس النموذج.</strong> 64M من الصفر في ~ساعتين مقابل ~¥3 — خط أنابيب كامل تدريب مسبق→SFT→RL في PyTorch مقروء. إنه محوّل قياسي؛ نستعير انضباط تدريبه (وتعيش مراجعه DPO/GRPO في M2)، لا معمارياته.",
     "b8.li1":"كل الكود وسكربتات التجارب والإعدادات القابلة للاستنساخ: github.com/AwareLiquid/M1",
     "b8.li2":"تفاصيل البنية والتدريب المسبق: الورقة التقنية (PDF)",
