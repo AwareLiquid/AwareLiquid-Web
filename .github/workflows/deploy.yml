@@ -7,6 +7,9 @@ name: deploy-awareliquid
 # Requires repo secret VULTR_SSH_KEY = the private key whose public half is in
 # /root/.ssh/authorized_keys on 45.76.18.203.
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [main]

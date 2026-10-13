@@ -1831,7 +1831,7 @@ function applyPageLang(lang){
 
   // rh.h2 needs <br>
   const rhH2=document.querySelector('.rh-section .rh-text h2');
-  if(rhH2)rhH2.innerHTML=ti('rh.h2').replace('\n','<br>');
+  if(rhH2)rhH2.innerHTML=ti('rh.h2').replace(/\n/g,'<br>');
 
   // news rail: headline + category label (2nd label; the 1st is the date)
   document.querySelectorAll('.rail .r-title').forEach((el,i)=>{el.textContent=ti('rail.t'+(i+1));});
