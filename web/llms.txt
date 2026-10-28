@@ -1,4 +1,4 @@
-﻿# HyperCode
+# HyperCode
 
 > HyperCode is AwareLiquid's flagship AI coding software & work assistant: one clear instruction, it works autonomously for hours until everything is done. Built-in domain skills for financial research, legal and academic work. Closed-source core, open downloads.
 > HyperCode 是 AwareLiquid 的旗舰 AI 编程软件与工作助手:一个清晰的任务指令,连续工作数小时,直到全部做完。内置金融研究、法律、学术等专业技能。核心闭源,下载开放。
@@ -18,6 +18,8 @@
 
 ## English
 - [HyperCode](https://awareliquid.ai/hypercode): The most powerful AI coding software & work assistant — one clear instruction, it works for hours until everything is done.
+- [HyperCode vs Claude Code](https://awareliquid.ai/en/guides-hypercode-vs-claude-code): A desktop autonomous work platform versus a terminal coding agent — long tasks, availability and pricing compared.
+- [HyperCode vs GitHub Copilot](https://awareliquid.ai/en/guides-hypercode-vs-copilot): In-editor completion versus a long-task loop — when each one is the right tool.
 - [AI Valuation Tool](https://awareliquid.ai/valuation): Free AI-powered stock valuation. Enter a ticker, get DCF + Comps in seconds.
 - [Data Cleaning](https://awareliquid.ai/cleaning): Scanned archives into clean structured data — verified 100% table-digit accuracy.
 - [Demo](https://awareliquid.ai/demo): See HyperCode in action.
@@ -29,6 +31,8 @@
 
 ## 中文 (zh-CN)
 - [HyperCode — AI 编程软件与工作助手](https://awareliquid.ai/hypercode): 最强大的 AI 编程软件与工作助手。一个清晰的任务指令,连续工作数小时,直到全部做完。内置 229 个专业技能,DeepSeek 驱动。
+- [HyperCode vs Claude Code](https://awareliquid.ai/guides-hypercode-vs-claude-code): 桌面端自主工作平台 vs 终端编程 Agent —— 长任务、国内可用性与计费对比。
+- [HyperCode vs GitHub Copilot](https://awareliquid.ai/guides-hypercode-vs-copilot): 编辑器补全 vs 长任务闭环 —— 什么时候该用哪一个。
 - [AI 估值速查工具](https://awareliquid.ai/valuation): 免费 AI 股票估值工具。输入 A股代码,实时行情 + DCF + Comps 快照秒出。由 HyperCode 驱动。
 - [数据清洗](https://awareliquid.ai/cleaning): 扫描档案转结构化数据 —— 实测表格数字 100% 正确。
 - [每日 AI 晨报](https://awareliquid.ai/morning-notes/): 每个交易日 AI 生成的 A股晨报。
