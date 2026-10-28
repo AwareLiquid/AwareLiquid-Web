@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude account banned? A 2026 playbook (contain, appeal, re-architect) | AwareLiquid</title>
+<meta name="description" content="What to do when your Claude account is suspended: contain the damage today, appeal through the right channel, and move to an architecture that cannot be blocked by a single account.">
+<link rel="alternate" hreflang="zh-CN" href="https://awareliquid.ai/guides-claude-account-banned">
+<link rel="alternate" hreflang="en" href="https://awareliquid.ai/en/guides-claude-account-banned">
+<link rel="alternate" hreflang="x-default" href="https://awareliquid.ai/guides-claude-account-banned">
+<link rel="canonical" href="https://awareliquid.ai/en/guides-claude-account-banned">
+<meta property="og:title" content="Claude account banned? A 2026 playbook">
+<meta property="og:description" content="Contain, appeal, re-architect">
+<meta property="og:type" content="article">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Can a banned Claude account be restored?", "acceptedAnswer": {"@type": "Answer", "text": "You can appeal, but recovery is not guaranteed. Individuals go through official support; organisations go through their account manager or enterprise ticket, which is usually faster. Do not register replacement accounts while the appeal is open."}},
+    {"@type": "Question", "name": "What usually triggers a suspension?", "acceptedAnswer": {"@type": "Answer", "text": "Public cases most often involve shared accounts, unusual payment methods or regions, frequent IP changes, many people using one login, and automated traffic that trips risk controls."}},
+    {"@type": "Question", "name": "Should I just register a new account?", "acceptedAnswer": {"@type": "Answer", "text": "Not advisable. A new account on the same device, card or IP range is likely to be linked and suspended too, and it weakens your appeal. Prepare an alternative that does not depend on a single account instead."}},
+    {"@type": "Question", "name": "How do I avoid this next time?", "acceptedAnswer": {"@type": "Answer", "text": "Decouple execution from model access: run the agent locally, and reach models through a replaceable provider (a managed gateway or your own key). Then no single account can stop delivery."}}
+  ]
+}
+</script>
+<style>
+  body { max-width: 760px; margin: 0 auto; padding: 24px; font-family: -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; line-height: 1.8; background: #0e0e10; color: #f5f5f7; }
+  h1 { font-size: 32px; line-height: 1.35; }
+  h2 { margin-top: 40px; font-size: 23px; border-left: 3px solid #4f9dff; padding-left: 12px; }
+  h3 { margin-top: 24px; font-size: 18px; }
+  ol, ul { padding-left: 22px; }
+  li { margin: 8px 0; }
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+  th, td { border: 1px solid #333; padding: 10px 12px; text-align: left; font-size: 14px; vertical-align: top; }
+  th { background: #1a1a1e; }
+  a { color: #4f9dff; }
+  .cta { display: inline-block; margin-top: 24px; padding: 12px 28px; background: #f5f5f7; color: #0e0e10; text-decoration: none; border-radius: 8px; font-weight: 600; }
+  .muted { color: #9a9aa5; font-size: 14px; }
+  .note { background: #16161a; border: 1px solid #26262c; border-radius: 10px; padding: 14px 18px; margin: 18px 0; }
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AwareLiquid","item":"https://awareliquid.ai/"},{"@type":"ListItem","position":2,"name":"Claude account banned","item":"https://awareliquid.ai/en/guides-claude-account-banned"}]}
+</script>
+</head>
+<body>
+<h1>Claude account banned? A 2026 playbook</h1>
+<p>The hard part of a suspension is not losing access — it is not knowing whether, or when, it comes back. Here is the sequence that actually helps: contain the damage, appeal through the right channel, then remove the single point of failure.</p>
+
+<h2>Step 1 — Contain (same day)</h2>
+<ol>
+  <li><strong>Establish the scope.</strong> Personal notice by email; for an organisation, work out whether the whole organisation or a seat was suspended. Organisation-level suspensions need the admin and usually the business channel.</li>
+  <li><strong>Stop the automation.</strong> Find every CI job, script and agent using those credentials and revoke them, so you stop tripping risk controls.</li>
+  <li><strong>Preserve the work.</strong> Export sessions, checkpoints and uncommitted changes now; do not wait for the appeal.</li>
+  <li><strong>Do not spin up a new account immediately.</strong> Same device, same card, same IP range — it usually gets linked and suspended, and it makes the appeal look worse.</li>
+</ol>
+<div class="note">If an AI agent was mid-task, the first priority is landing its state on disk. Most tools have checkpoints; confirm they restore in a fresh environment.</div>
+
+<h2>Step 2 — Appeal (1–10 business days)</h2>
+<h3>Individual accounts</h3>
+<p>Open a ticket through official support and be specific: what you use the account for, whether it is shared, who owns the payment method. Public accounts of successful appeals suggest the quality of the reply matters more than the number of tickets.</p>
+<h3>Enterprise accounts</h3>
+<p>Go through your account manager or the enterprise ticket queue with the organisation details, affected projects and a timeline. Enterprise recovery is usually faster, but needs the admin involved.</p>
+<h3>Three rules while you wait</h3>
+<ul>
+  <li>Do not file duplicate tickets — they get merged or de-prioritised.</li>
+  <li>Do not reproduce the same usage pattern on a new account.</li>
+  <li>Keep the original notices and timestamps; you will need them.</li>
+</ul>
+
+<h2>Step 3 — Re-architect (fix it for good)</h2>
+<p>The root cause is binding execution to one account. Split the layers:</p>
+<table>
+  <tr><th>Layer</th><th>What to do</th><th>Effect</th></tr>
+  <tr><td>Execution</td><td>A local agent that reads files, runs commands and tests on your machine</td><td>A suspension does not touch your existing workspace</td></tr>
+  <tr><td>Model</td><td>A replaceable provider: managed gateway or your own key</td><td>Switching model does not mean reinstalling a tool</td></tr>
+  <tr><td>Billing</td><td>Pay by usage, or BYOK</td><td>No quota cut-off stops delivery</td></tr>
+</table>
+
+<h2>One concrete option: HyperCode</h2>
+<p>HyperCode is built around that split:</p>
+<ul>
+  <li><strong>Local execution</strong> — Windows / macOS desktop app; code and files stay on your machine.</li>
+  <li><strong>No country limits</strong> — the default model is reachable without a VPN from mainland China.</li>
+  <li><strong>No arbitrary usage cut-off</strong> — credit-based billing with top-ups, or bring your own DeepSeek key and we do not meter you at all.</li>
+  <li><strong>Graceful degradation</strong> — an expired subscription downgrades; it never locks your local workspace.</li>
+  <li><strong>No migration</strong> — it works inside your existing project.</li>
+</ul>
+<p>If you are dealing with a suspension right now, switching to BYOK mode is the fastest way to get your workflow running again.</p>
+
+<a class="cta" href="https://awareliquid.ai/en/guides-claude-alternative">See the HyperCode alternative →</a>
+
+<h2>FAQ</h2>
+<h3>Does a ban affect my existing code?</h3>
+<p>No. Your code is local; what stops is the model call. Keep execution local and swap the model provider and you can keep working.</p>
+<h3>Is the enterprise edition worth it?</h3>
+<p>If a team shares one login, or you need audit and compliance, private deployment plus SSO and audit logs removes most of this risk.</p>
+<h3>What if the appeal never gets answered?</h3>
+<p>Have a plan B ready rather than waiting. Move the workflow to something that does not depend on a single account; decide about coming back once you have an answer.</p>
+
+<p class="muted" style="margin-top:40px">AwareLiquid · Shenzhen Sansi Dark Source Technology Co., Ltd. · anmuning@awareliquid.ai</p>
+</body>
+</html>
