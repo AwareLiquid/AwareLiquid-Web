@@ -11,3 +11,5 @@ Thumbs.db
 # python
 __pycache__/
 *.pyc
+# local automation helpers, never part of the site
+/*.mjs
