@@ -32,30 +32,23 @@ jobs:
 
       - name: Diagnose
         run: |
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=25 root@45.76.18.203 '
-            set +e
-            echo "===== docker ps -a ====="
-            docker ps -a --format "{{.Names}}\t{{.Image}}\t{{.Status}}"
-            echo "===== docker stats ====="
-            docker stats --no-stream --format "{{.Name}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.CPUPerc}}"
-            echo "===== inspect ====="
-            for c in $(docker ps -a --format "{{.Names}}"); do docker inspect -f "{{.Name}} restart={{.RestartCount}} image={{.Config.Image}} started={{.State.StartedAt}}" "$c"; done
-            echo "===== container mem limit ====="
-            docker inspect -f "mem_limit={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}}" mtlnn_sciqa
-            docker exec mtlnn_sciqa sh -c "cat /sys/fs/cgroup/memory.events 2>/dev/null || cat /sys/fs/cgroup/memory/memory.failcnt 2>/dev/null || echo n/a" || true
-            echo "===== sciqa first traceback (lines 92-150) ====="
-            docker logs mtlnn_sciqa 2>&1 | sed -n "92,150p"
-            echo "===== memory ====="
-            free -m
-            echo "===== oom (dmesg) ====="
-            (dmesg 2>/dev/null | grep -iE "out of memory|oom-kill|killed process" | tail -20) || echo "(unavailable)"
-            echo "===== mtlnn_sciqa startup (first 80) ====="
-            docker logs mtlnn_sciqa 2>&1 | head -80
-            echo "===== mtlnn_sciqa error context ====="
-            docker logs mtlnn_sciqa 2>&1 | grep -nE "Traceback|Error|Exception|No response|MemoryError|Killed|RuntimeError|OOM|dtype|adapter|generator|CUDA|busy" | tail -120
-            echo "===== mtlnn_sciqa tail 120 ====="
-            docker logs --tail 120 mtlnn_sciqa 2>&1
-          '
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=25 root@45.76.18.203 'bash -s' <<'REMOTE'
+          set +e
+          echo "===== docker ps ====="
+          docker ps -a --format "{{.Names}}\t{{.Image}}\t{{.Status}}"
+          echo "===== stats ====="
+          docker stats --no-stream --format "{{.Name}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.CPUPerc}}"
+          echo "===== sciqa env (safe) ====="
+          for k in BASE_MODEL ADAPTER_CKPT SESSION_DB FW_SESSION_STORE QUANTIZE CPU_DTYPE; do echo "SCIQA $k=$(docker exec mtlnn_sciqa printenv $k 2>/dev/null)"; done
+          echo "===== prod env (safe) ====="
+          for k in CKPT_PATH TOKENIZER SESSION_DB QUANTIZE DEVICE; do echo "PROD $k=$(docker exec mtlnn_prod printenv $k 2>/dev/null)"; done
+          echo "===== sciqa checkpoints/models ====="
+          docker exec mtlnn_sciqa sh -c "ls -la /app/checkpoints 2>/dev/null; echo '--- models ---'; ls -la /app/models 2>/dev/null"
+          echo "===== prod checkpoints ====="
+          docker exec mtlnn_prod sh -c "ls -la /app/checkpoints 2>/dev/null"
+          echo "===== sciqa recent errors ====="
+          docker logs --tail 60 mtlnn_sciqa 2>&1 | tail -60
+          REMOTE
 
       - name: Restart chat container (mtlnn_sciqa)
         if: ${{ github.event.inputs.action == 'restart' }}
