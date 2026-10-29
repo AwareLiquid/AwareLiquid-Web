@@ -31,6 +31,7 @@ jobs:
           ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Diagnose
+        if: ${{ github.event.inputs.action == 'diag' }}
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=25 root@45.76.18.203 'bash -s' <<'REMOTE'
           set +e
