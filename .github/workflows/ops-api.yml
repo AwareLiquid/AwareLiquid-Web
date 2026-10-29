@@ -121,6 +121,7 @@ jobs:
             -e BASE_MODEL=/app/models/tinyllama-1.1b-chat \
             -e ADAPTER_CKPT=/app/adapter/llama_mt_adapter_003000.pt \
             -e QUANTIZE=1 \
+            -e CPU_DTYPE=float32 \
             -e FW_SESSION_STORE=1 \
             -e FW_SESSION_DB=/app/data/fw_sessions.sqlite \
             mtlnn:latest \
