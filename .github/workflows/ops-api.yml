@@ -93,13 +93,16 @@ jobs:
           docker inspect mtlnn_sciqa > /root/mtlnn_sciqa.backup.$TS.json
           cp -f /root/M1/serve/server_hf.py /root/M1/serve/server_hf.py.bak.$TS
           echo "inspect=/root/mtlnn_sciqa.backup.$TS.json  code=/root/M1/serve/server_hf.py.bak.$TS"
+          IMG=$(docker inspect -f '{{.Image}}' mtlnn_sciqa)
+          echo "image=$IMG"
           # env from the running container (keeps secrets out of logs); drop keys we override
           docker inspect -f '{{range .Config.Env}}{{println .}}{{end}}' mtlnn_sciqa \
             | grep -vE '^(ADAPTER_CKPT|FW_SESSION_STORE|FW_SESSION_DB|HOSTNAME)=' > /root/mtlnn_sciqa.env
           mkdir -p /root/fw_sessions
-          echo "== patch server_hf.py (disable BaseHTTPMiddleware that breaks SSE) =="
-          sed -i 's/^app\.add_middleware(_SecurityHeadersMiddleware)$/# disabled: BaseHTTPMiddleware breaks SSE streaming -> &/' /root/M1/serve/server_hf.py
+          echo "== patch server_hf.py (comment out BaseHTTPMiddleware add) =="
+          sed -i '/^app\.add_middleware(_SecurityHeadersMiddleware)/ s/^/# disabled BaseHTTPMiddleware SSE bug: /' /root/M1/serve/server_hf.py
           grep -n "add_middleware" /root/M1/serve/server_hf.py
+          grep -q '^# disabled BaseHTTPMiddleware' /root/M1/serve/server_hf.py || { echo "PATCH FAILED"; exit 1; }
           echo "== swap container (old kept as mtlnn_sciqa_prev) =="
           docker rm -f mtlnn_sciqa_prev 2>/dev/null || true
           docker rename mtlnn_sciqa mtlnn_sciqa_prev
@@ -116,7 +119,7 @@ jobs:
             -e ADAPTER_CKPT=/app/checkpoints/llama_mt_adapter_003000.pt \
             -e FW_SESSION_STORE=1 \
             -e FW_SESSION_DB=/app/data/fw_sessions.sqlite \
-            33aa48c0459c \
+            "$IMG" \
             uvicorn serve.server_hf:app --host 0.0.0.0 --port 8000
           echo "== wait for model load =="
           sleep 30
