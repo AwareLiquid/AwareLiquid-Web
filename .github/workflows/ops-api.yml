@@ -40,6 +40,11 @@ jobs:
             docker stats --no-stream --format "{{.Name}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.CPUPerc}}"
             echo "===== inspect ====="
             for c in $(docker ps -a --format "{{.Names}}"); do docker inspect -f "{{.Name}} restart={{.RestartCount}} image={{.Config.Image}} started={{.State.StartedAt}}" "$c"; done
+            echo "===== container mem limit ====="
+            docker inspect -f "mem_limit={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}}" mtlnn_sciqa
+            docker exec mtlnn_sciqa sh -c "cat /sys/fs/cgroup/memory.events 2>/dev/null || cat /sys/fs/cgroup/memory/memory.failcnt 2>/dev/null || echo n/a" || true
+            echo "===== sciqa first traceback (lines 92-150) ====="
+            docker logs mtlnn_sciqa 2>&1 | sed -n "92,150p"
             echo "===== memory ====="
             free -m
             echo "===== oom (dmesg) ====="
