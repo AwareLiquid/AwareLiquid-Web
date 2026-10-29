@@ -167,23 +167,17 @@ jobs:
       - name: Recover (stop thrashing container)
         if: ${{ github.event.inputs.action == 'recover' }}
         run: |
-          ssh -i ~/.ssh/deploy_key \
-              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
-              -o ConnectTimeout=240 -o ServerAliveInterval=15 -o ServerAliveCountMax=10 \
-              root@45.76.18.203 'bash -s' <<'REMOTE'
-          set +e
-          echo "== stop thrashing container =="
-          docker stop mtlnn_sciqa
-          sleep 3
-          echo "== after stop =="
-          free -m
-          docker ps -a --format "{{.Names}}\t{{.Status}}"
-          echo "== restore previous (safe) chat container =="
-          docker start mtlnn_sciqa_prev 2>/dev/null || true
-          sleep 3
-          curl -s -o /dev/null -w "health=%{http_code}\n" --max-time 10 http://127.0.0.1/health
-          docker ps --format "{{.Names}}\t{{.Status}}"
-          REMOTE
+          for i in 1 2 3 4 5 6 7 8; do
+            echo "== attempt $i =="
+            if ssh -i ~/.ssh/deploy_key \
+                 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+                 -o ConnectTimeout=45 -o ConnectionAttempts=1 -o ServerAliveInterval=10 \
+                 root@45.76.18.203 'docker stop mtlnn_sciqa; sleep 2; free -m; docker ps --format "{{.Names}} {{.Status}}"'; then
+              echo "RECOVERED_ON_ATTEMPT_$i"; exit 0
+            fi
+            sleep 12
+          done
+          echo "ALL_ATTEMPTS_FAILED"; exit 1
 
       - name: Download base model (TinyLlama-1.1B-Chat)
         if: ${{ github.event.inputs.action == 'download' }}
