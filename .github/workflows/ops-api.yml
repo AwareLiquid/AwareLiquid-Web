@@ -43,6 +43,12 @@ jobs:
             echo "===== container mem limit ====="
             docker inspect -f "mem_limit={{.HostConfig.Memory}} memswap={{.HostConfig.MemorySwap}}" mtlnn_sciqa
             docker exec mtlnn_sciqa sh -c "cat /sys/fs/cgroup/memory.events 2>/dev/null || cat /sys/fs/cgroup/memory/memory.failcnt 2>/dev/null || echo n/a" || true
+            echo "===== safe env (no secrets) ====="
+            docker exec mtlnn_sciqa sh -c 'for k in BASE_MODEL ADAPTER_CKPT SESSION_DB FW_SESSION_STORE QUANTIZE CPU_DTYPE AWARENESS_ENABLED CONV_MEMORY; do printf "SCIQA %s=%s\n" "$k" "$(printenv $k)"; done' || true
+            docker exec mtlnn_prod sh -c 'for k in CKPT_PATH TOKENIZER SESSION_DB QUANTIZE DEVICE; do printf "PROD %s=%s\n" "$k" "$(printenv $k)"; done' || true
+            echo "===== checkpoints / models ====="
+            docker exec mtlnn_sciqa sh -c 'echo "[sciqa checkpoints]"; ls -la /app/checkpoints 2>/dev/null; echo "[sciqa models]"; ls -la /app/models 2>/dev/null' || true
+            docker exec mtlnn_prod sh -c 'echo "[prod checkpoints]"; ls -la /app/checkpoints 2>/dev/null' || true
             echo "===== sciqa first traceback (lines 92-150) ====="
             docker logs mtlnn_sciqa 2>&1 | sed -n "92,150p"
             echo "===== memory ====="
