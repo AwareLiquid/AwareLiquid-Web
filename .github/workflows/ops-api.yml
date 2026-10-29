@@ -93,9 +93,9 @@ jobs:
           docker inspect mtlnn_sciqa > /root/mtlnn_sciqa.backup.$TS.json
           cp -f /root/M1/serve/server_hf.py /root/M1/serve/server_hf.py.bak.$TS
           echo "inspect=/root/mtlnn_sciqa.backup.$TS.json  code=/root/M1/serve/server_hf.py.bak.$TS"
-          IMG=$(docker inspect -f '{{.Image}}' mtlnn_sciqa)
-          echo "image=$IMG"
-          # env from the running container (keeps secrets out of logs); drop keys we override
+          mkdir -p /root/M1/adapter
+          docker cp mtlnn_sciqa:/app/checkpoints/llama_mt_adapter_003000.pt /root/M1/adapter/ 2>/dev/null || true
+          ls -la /root/M1/adapter
           docker inspect -f '{{range .Config.Env}}{{println .}}{{end}}' mtlnn_sciqa \
             | grep -vE '^(ADAPTER_CKPT|FW_SESSION_STORE|FW_SESSION_DB|HOSTNAME)=' > /root/mtlnn_sciqa.env
           mkdir -p /root/fw_sessions
@@ -115,11 +115,13 @@ jobs:
             -v /root/M1/mt_lnn:/app/mt_lnn:ro \
             -v /root/models:/app/models:ro \
             -v /root/fw_sessions:/app/data \
+            -v /root/M1/adapter:/app/adapter:ro \
             --env-file /root/mtlnn_sciqa.env \
-            -e ADAPTER_CKPT=/app/checkpoints/llama_mt_adapter_003000.pt \
+            -e ADAPTER_CKPT=/app/adapter/llama_mt_adapter_003000.pt \
+            -e QUANTIZE=1 \
             -e FW_SESSION_STORE=1 \
             -e FW_SESSION_DB=/app/data/fw_sessions.sqlite \
-            "$IMG" \
+            mtlnn:latest \
             uvicorn serve.server_hf:app --host 0.0.0.0 --port 8000
           echo "== wait for model load =="
           sleep 30
