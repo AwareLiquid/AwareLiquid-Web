@@ -46,6 +46,23 @@ jobs:
           docker exec mtlnn_sciqa sh -c "ls -la /app/checkpoints 2>/dev/null; echo '--- models ---'; ls -la /app/models 2>/dev/null"
           echo "===== prod checkpoints ====="
           docker exec mtlnn_prod sh -c "ls -la /app/checkpoints 2>/dev/null"
+          echo "===== sciqa config (no env values) ====="
+          docker inspect -f 'image={{.Config.Image}}' mtlnn_sciqa
+          docker inspect -f 'entrypoint={{json .Config.Entrypoint}}' mtlnn_sciqa
+          docker inspect -f 'cmd={{json .Config.Cmd}}' mtlnn_sciqa
+          docker inspect -f 'network={{.HostConfig.NetworkMode}}' mtlnn_sciqa
+          docker inspect -f 'ports={{json .HostConfig.PortBindings}}' mtlnn_sciqa
+          docker inspect -f 'restart={{.HostConfig.RestartPolicy.Name}}' mtlnn_sciqa
+          docker inspect -f 'mounts={{json .Mounts}}' mtlnn_sciqa
+          echo "===== /root layout ====="
+          ls -la /root
+          echo "--- /root/M1 ---"; ls -la /root/M1 2>/dev/null | head -40
+          echo "===== compose/run scripts ====="
+          find /root -maxdepth 3 \( -name "docker-compose*.yml" -o -name "compose*.yaml" -o -name "*run*.sh" \) 2>/dev/null | head -30
+          echo "===== caddy routes (adapter/sci/reverse_proxy) ====="
+          grep -nE "adapter|sci|mtlnn|reverse_proxy" /root/M1/deploy/Caddyfile 2>/dev/null | head -50
+          echo "===== backup inspect ====="
+          docker inspect mtlnn_sciqa > /root/mtlnn_sciqa.backup.json && echo "backup ok ($(wc -c < /root/mtlnn_sciqa.backup.json) bytes)"
           echo "===== sciqa recent errors ====="
           docker logs --tail 60 mtlnn_sciqa 2>&1 | tail -60
           REMOTE
