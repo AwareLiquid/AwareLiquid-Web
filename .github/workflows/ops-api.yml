@@ -1,0 +1,70 @@
+name: ops-api
+
+# Manual ops for the inference container(s): diagnose or restart.
+# Uses the same VULTR_SSH_KEY secret as deploy.yml. Read-only by default;
+# restart runs ONLY when the `restart` action is explicitly selected.
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "diag | restart"
+        required: true
+        default: "diag"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ops-api
+  cancel-in-progress: false
+
+jobs:
+  ops:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VULTR_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Diagnose
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new -o ConnectTimeout=25 root@45.76.18.203 '
+            set +e
+            echo "===== docker ps -a ====="
+            docker ps -a --format "{{.Names}}\t{{.Image}}\t{{.Status}}"
+            echo "===== memory ====="
+            free -m
+            echo "===== oom / killed (dmesg) ====="
+            (dmesg 2>/dev/null | grep -iE "out of memory|oom-kill|killed process" | tail -20) || echo "(dmesg unavailable)"
+            echo "===== api/model container logs (last 100 lines) ====="
+            for c in $(docker ps -a --format "{{.Names}}"); do
+              case "$c" in
+                *mtlnn*|*echomtlnn*|*hf*|*adapter*|*sci*|*serve*|*api*)
+                  echo "----- $c -----"
+                  docker logs --tail 100 "$c" 2>&1 | tail -100
+                  ;;
+              esac
+            done
+            echo "===== api probe from host ====="
+            curl -s -o /dev/null -w "adapter/model=%{http_code}\n" --max-time 10 http://127.0.0.1/adapter/v1/model || true
+          '
+
+      - name: Restart API container(s)
+        if: ${{ github.event.inputs.action == 'restart' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 '
+            set -e
+            echo "before:"; docker ps --format "{{.Names}}\t{{.Status}}"
+            for c in $(docker ps --format "{{.Names}}"); do
+              case "$c" in
+                *mtlnn*|*echomtlnn*|*hf*|*adapter*|*sci*|*serve*)
+                  echo "restarting $c"; docker restart "$c" || true;;
+              esac
+            done
+            sleep 5
+            echo "after:"; docker ps --format "{{.Names}}\t{{.Status}}"
+          '
