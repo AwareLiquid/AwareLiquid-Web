@@ -67,6 +67,13 @@ jobs:
           grep -nE "add_middleware|BaseHTTPMiddleware|class .*Middleware" /root/M1/serve/server_hf.py 2>/dev/null
           echo "===== server_hf.py tail 300 ====="
           tail -n 300 /root/M1/serve/server_hf.py 2>/dev/null
+          echo "===== host probes (bypass DNS) ====="
+          curl -s -o /dev/null -w "adapter_model=%{http_code}\n" --max-time 15 http://127.0.0.1:8002/v1/model || true
+          echo "-- generation --"
+          curl -s -N --max-time 60 -X POST -H "Content-Type: application/json" \
+            -d '{"prompt":"Say hello in one short sentence.","max_new_tokens":8,"do_sample":true,"temperature":0.7}' \
+            http://127.0.0.1:8002/v1/completions/stream 2>&1 | head -c 900 || true
+          echo ""
           echo "===== sciqa recent errors ====="
           docker logs --tail 60 mtlnn_sciqa 2>&1 | tail -60
           REMOTE
