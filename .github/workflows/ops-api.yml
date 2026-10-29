@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "diag | restart | rebuild | rollback"
+        description: "diag | restart | rebuild | rollback | download"
         required: true
         default: "diag"
 
@@ -117,6 +117,7 @@ jobs:
             -v /root/fw_sessions:/app/data \
             -v /root/M1/adapter:/app/adapter:ro \
             --env-file /root/mtlnn_sciqa.env \
+            -e BASE_MODEL=/app/models/tinyllama-1.1b-chat \
             -e ADAPTER_CKPT=/app/adapter/llama_mt_adapter_003000.pt \
             -e QUANTIZE=1 \
             -e FW_SESSION_STORE=1 \
@@ -142,4 +143,21 @@ jobs:
           docker start mtlnn_sciqa
           sleep 3
           docker ps --filter name=mtlnn_sciqa --format "{{.Names}}\t{{.Status}}"
+          REMOTE
+
+      - name: Download base model (TinyLlama-1.1B-Chat)
+        if: ${{ github.event.inputs.action == 'download' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'bash -s' <<'REMOTE'
+          set -e
+          echo "== disk =="
+          df -h /
+          echo "== existing models =="
+          ls -la /root/models
+          echo "== download TinyLlama-1.1B-Chat via mtlnn:latest image =="
+          docker run --rm -v /root/models:/models mtlnn:latest \
+            python -c "from huggingface_hub import snapshot_download; snapshot_download('TinyLlama/TinyLlama-1.1B-Chat-v1.0', local_dir='/models/tinyllama-1.1b-chat', local_dir_use_symlinks=False)"
+          echo "== result =="
+          ls -la /root/models/tinyllama-1.1b-chat | head -20
+          du -sh /root/models/tinyllama-1.1b-chat
           REMOTE
