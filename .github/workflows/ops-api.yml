@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "diag | restart | rebuild | rollback | download"
+        description: "diag | restart | rebuild | rollback | download | fixroute"
         required: true
         default: "diag"
 
@@ -109,6 +109,7 @@ jobs:
           docker stop mtlnn_sciqa_prev || true
           docker run -d --name mtlnn_sciqa \
             --network deploy_default \
+            --network-alias sciqa \
             -p 127.0.0.1:8002:8000 \
             --restart unless-stopped \
             -v /root/M1/serve:/app/serve:ro \
@@ -143,6 +144,16 @@ jobs:
           docker start mtlnn_sciqa
           sleep 3
           docker ps --filter name=mtlnn_sciqa --format "{{.Names}}\t{{.Status}}"
+          REMOTE
+
+      - name: Fix route alias (sciqa)
+        if: ${{ github.event.inputs.action == 'fixroute' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'bash -s' <<'REMOTE'
+          set -e
+          docker network disconnect deploy_default mtlnn_sciqa || true
+          docker network connect --alias sciqa deploy_default mtlnn_sciqa
+          docker inspect -f "{{json .NetworkSettings.Networks}}" mtlnn_sciqa
           REMOTE
 
       - name: Download base model (TinyLlama-1.1B-Chat)
