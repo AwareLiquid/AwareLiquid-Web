@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "diag | restart"
+        description: "diag | restart | rebuild | rollback"
         required: true
         default: "diag"
 
@@ -82,3 +82,59 @@ jobs:
             echo "after:"; docker ps --format "{{.Names}}\t{{.Status}}"
             docker logs --tail 40 mtlnn_sciqa 2>&1
           '
+
+      - name: Rebuild chat container (load MT adapter + disable BaseHTTP middleware)
+        if: ${{ github.event.inputs.action == 'rebuild' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'bash -s' <<'REMOTE'
+          set -e
+          TS=$(date +%s)
+          echo "== backups =="
+          docker inspect mtlnn_sciqa > /root/mtlnn_sciqa.backup.$TS.json
+          cp -f /root/M1/serve/server_hf.py /root/M1/serve/server_hf.py.bak.$TS
+          echo "inspect=/root/mtlnn_sciqa.backup.$TS.json  code=/root/M1/serve/server_hf.py.bak.$TS"
+          # env from the running container (keeps secrets out of logs); drop keys we override
+          docker inspect -f '{{range .Config.Env}}{{println .}}{{end}}' mtlnn_sciqa \
+            | grep -vE '^(ADAPTER_CKPT|FW_SESSION_STORE|FW_SESSION_DB|HOSTNAME)=' > /root/mtlnn_sciqa.env
+          mkdir -p /root/fw_sessions
+          echo "== patch server_hf.py (disable BaseHTTPMiddleware that breaks SSE) =="
+          sed -i 's/^app\.add_middleware(_SecurityHeadersMiddleware)$/# disabled: BaseHTTPMiddleware breaks SSE streaming -> &/' /root/M1/serve/server_hf.py
+          grep -n "add_middleware" /root/M1/serve/server_hf.py
+          echo "== swap container (old kept as mtlnn_sciqa_prev) =="
+          docker rm -f mtlnn_sciqa_prev 2>/dev/null || true
+          docker rename mtlnn_sciqa mtlnn_sciqa_prev
+          docker stop mtlnn_sciqa_prev || true
+          docker run -d --name mtlnn_sciqa \
+            --network deploy_default \
+            -p 127.0.0.1:8002:8000 \
+            --restart unless-stopped \
+            -v /root/M1/serve:/app/serve:ro \
+            -v /root/M1/mt_lnn:/app/mt_lnn:ro \
+            -v /root/models:/app/models:ro \
+            -v /root/fw_sessions:/app/data \
+            --env-file /root/mtlnn_sciqa.env \
+            -e ADAPTER_CKPT=/app/checkpoints/llama_mt_adapter_003000.pt \
+            -e FW_SESSION_STORE=1 \
+            -e FW_SESSION_DB=/app/data/fw_sessions.sqlite \
+            33aa48c0459c \
+            uvicorn serve.server_hf:app --host 0.0.0.0 --port 8000
+          echo "== wait for model load =="
+          sleep 30
+          docker ps --filter name=mtlnn_sciqa --format "{{.Names}}\t{{.Status}}"
+          docker logs --tail 45 mtlnn_sciqa 2>&1 | tail -45
+          echo "== probe =="
+          curl -s -o /dev/null -w "model=%{http_code}\n" --max-time 15 http://127.0.0.1:8002/v1/model || true
+          REMOTE
+
+      - name: Rollback chat container
+        if: ${{ github.event.inputs.action == 'rollback' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'bash -s' <<'REMOTE'
+          set -e
+          echo "== rollback: drop new, restore prev =="
+          docker rm -f mtlnn_sciqa || true
+          docker rename mtlnn_sciqa_prev mtlnn_sciqa
+          docker start mtlnn_sciqa
+          sleep 3
+          docker ps --filter name=mtlnn_sciqa --format "{{.Names}}\t{{.Status}}"
+          REMOTE
