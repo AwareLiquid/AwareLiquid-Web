@@ -36,35 +36,30 @@ jobs:
             set +e
             echo "===== docker ps -a ====="
             docker ps -a --format "{{.Names}}\t{{.Image}}\t{{.Status}}"
+            echo "===== docker stats ====="
+            docker stats --no-stream --format "{{.Name}}\t{{.MemUsage}}\t{{.MemPerc}}\t{{.CPUPerc}}"
+            echo "===== inspect ====="
+            for c in $(docker ps -a --format "{{.Names}}"); do docker inspect -f "{{.Name}} restart={{.RestartCount}} image={{.Config.Image}} started={{.State.StartedAt}}" "$c"; done
             echo "===== memory ====="
             free -m
-            echo "===== oom / killed (dmesg) ====="
-            (dmesg 2>/dev/null | grep -iE "out of memory|oom-kill|killed process" | tail -20) || echo "(dmesg unavailable)"
-            echo "===== api/model container logs (last 100 lines) ====="
-            for c in $(docker ps -a --format "{{.Names}}"); do
-              case "$c" in
-                *mtlnn*|*echomtlnn*|*hf*|*adapter*|*sci*|*serve*|*api*)
-                  echo "----- $c -----"
-                  docker logs --tail 100 "$c" 2>&1 | tail -100
-                  ;;
-              esac
-            done
-            echo "===== api probe from host ====="
-            curl -s -o /dev/null -w "adapter/model=%{http_code}\n" --max-time 10 http://127.0.0.1/adapter/v1/model || true
+            echo "===== oom (dmesg) ====="
+            (dmesg 2>/dev/null | grep -iE "out of memory|oom-kill|killed process" | tail -20) || echo "(unavailable)"
+            echo "===== mtlnn_sciqa startup (first 80) ====="
+            docker logs mtlnn_sciqa 2>&1 | head -80
+            echo "===== mtlnn_sciqa error context ====="
+            docker logs mtlnn_sciqa 2>&1 | grep -nE "Traceback|Error|Exception|No response|MemoryError|Killed|RuntimeError|OOM|dtype|adapter|generator|CUDA|busy" | tail -120
+            echo "===== mtlnn_sciqa tail 120 ====="
+            docker logs --tail 120 mtlnn_sciqa 2>&1
           '
 
-      - name: Restart API container(s)
+      - name: Restart chat container (mtlnn_sciqa)
         if: ${{ github.event.inputs.action == 'restart' }}
         run: |
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 '
             set -e
             echo "before:"; docker ps --format "{{.Names}}\t{{.Status}}"
-            for c in $(docker ps --format "{{.Names}}"); do
-              case "$c" in
-                *mtlnn*|*echomtlnn*|*hf*|*adapter*|*sci*|*serve*)
-                  echo "restarting $c"; docker restart "$c" || true;;
-              esac
-            done
-            sleep 5
+            docker restart mtlnn_sciqa
+            sleep 10
             echo "after:"; docker ps --format "{{.Names}}\t{{.Status}}"
+            docker logs --tail 40 mtlnn_sciqa 2>&1
           '
