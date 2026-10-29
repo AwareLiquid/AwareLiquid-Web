@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       action:
-        description: "diag | restart | rebuild | rollback | download | fixroute"
+        description: "diag | restart | rebuild | rollback | download | fixroute | recover"
         required: true
         default: "diag"
 
@@ -28,7 +28,7 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "${{ secrets.VULTR_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null
+          ssh-keyscan -H 45.76.18.203 >> ~/.ssh/known_hosts 2>/dev/null || true
 
       - name: Diagnose
         run: |
@@ -162,6 +162,27 @@ jobs:
           docker network disconnect deploy_default mtlnn_sciqa || true
           docker network connect --alias sciqa deploy_default mtlnn_sciqa
           docker inspect -f "{{json .NetworkSettings.Networks}}" mtlnn_sciqa
+          REMOTE
+
+      - name: Recover (stop thrashing container)
+        if: ${{ github.event.inputs.action == 'recover' }}
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+              -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null \
+              -o ConnectTimeout=240 -o ServerAliveInterval=15 -o ServerAliveCountMax=10 \
+              root@45.76.18.203 'bash -s' <<'REMOTE'
+          set +e
+          echo "== stop thrashing container =="
+          docker stop mtlnn_sciqa
+          sleep 3
+          echo "== after stop =="
+          free -m
+          docker ps -a --format "{{.Names}}\t{{.Status}}"
+          echo "== restore previous (safe) chat container =="
+          docker start mtlnn_sciqa_prev 2>/dev/null || true
+          sleep 3
+          curl -s -o /dev/null -w "health=%{http_code}\n" --max-time 10 http://127.0.0.1/health
+          docker ps --format "{{.Names}}\t{{.Status}}"
           REMOTE
 
       - name: Download base model (TinyLlama-1.1B-Chat)
