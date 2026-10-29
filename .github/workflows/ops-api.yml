@@ -63,6 +63,10 @@ jobs:
           grep -nE "adapter|sci|mtlnn|reverse_proxy" /root/M1/deploy/Caddyfile 2>/dev/null | head -50
           echo "===== backup inspect ====="
           docker inspect mtlnn_sciqa > /root/mtlnn_sciqa.backup.json && echo "backup ok ($(wc -c < /root/mtlnn_sciqa.backup.json) bytes)"
+          echo "===== server_hf.py middleware lines ====="
+          grep -nE "add_middleware|BaseHTTPMiddleware|class .*Middleware" /root/M1/serve/server_hf.py 2>/dev/null
+          echo "===== server_hf.py tail 300 ====="
+          tail -n 300 /root/M1/serve/server_hf.py 2>/dev/null
           echo "===== sciqa recent errors ====="
           docker logs --tail 60 mtlnn_sciqa 2>&1 | tail -60
           REMOTE
