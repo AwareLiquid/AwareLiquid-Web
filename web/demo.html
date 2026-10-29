@@ -258,7 +258,7 @@ textarea::placeholder{color:#b4b4c0}
   <div class="modelsel">
     <select id="modelSel" aria-label="Select model">
       <option value="/adapter" id="optAdapter">M1 · TinyLlama-1.1B + MT adapter</option>
-      <option value="" id="optScratch">O1 · 48M edge, from scratch</option>
+      <option value="" id="optScratch">M1 · 128M hybrid, from scratch</option>
     </select>
   </div>
   <div class="status-wrap">
@@ -565,8 +565,11 @@ async function selectModelInteractive(base){
   return false;
 }
 async function autoSelect(){
-  if(await selectModel('/adapter'))return;
+  // Prefer the native /v1 model whose generation streams; the /adapter chat
+  // server is currently erroring server-side, and /v1/model answers 200 even
+  // when generation is dead, so probe order matters.
   if(await selectModel(''))return;
+  if(await selectModel('/adapter'))return;
   live.className='live err';statusText.textContent=t('offline');
   renderWelcome('scratch');
   const note=document.createElement('div');

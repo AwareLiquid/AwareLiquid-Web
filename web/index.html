@@ -2084,8 +2084,13 @@ function showOffline(){
   retryWrap.appendChild(rb);welcome.appendChild(note);welcome.appendChild(retryWrap);
 }
 async function autoSelect(){
-  if(await selectModel('/adapter'))return;
+  // Prefer the endpoint whose GENERATION actually streams today: the native
+  // /v1 model (""). The /adapter and /sci HF chat servers currently error
+  // server-side ("No response returned"), while their /v1/model still answers
+  // 200 — so probing only /v1/model used to select a dead-for-generation
+  // endpoint and leave the demo silent. Native-first keeps the demo alive.
   if(await selectModel(''))return;
+  if(await selectModel('/sci'))return;
   showOffline();
 }
 // Cross-section model picker: the lineup cards call this to jump straight to
