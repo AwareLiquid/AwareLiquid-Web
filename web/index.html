@@ -816,7 +816,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
       <div class="demo-bar">
         <div class="modelsel">
           <select id="modelSel" aria-label="Select model">
-            <option value="/sci">Science Q&A · Qwen 1.5B + knowledge source</option>
+            <option value="/adapter">M1 · TinyLlama-1.1B + MT adapter</option>
             <option value="">M1-128M · from-scratch hybrid</option>
           </select>
         </div>
@@ -1302,7 +1302,7 @@ const I18N={
     'rh.r5c':'Irregular-sampling robustness (battery SoH)','rh.r5v':'4× steadier than LSTM/GRU when samples drop',
     'rh.note':'Full methodology, raw data and reproduction scripts: <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>.',
     'rh.chartcap':'Inference memory vs. context length. The KV-cache grows O(n); the O-series carried state is flat. Measured to 1M tokens: 0.381 MB state vs. 3,072 MB KV-cache — 8063× smaller. This measures inference carried-state bytes only — it is not evidence of model quality beyond the 512-token training length (out-of-window LM results are null; see RESULTS.md).',
-    'demo.opt1':'Science Q&A · Qwen 1.5B + knowledge source',
+    'demo.opt1':'M1 · TinyLlama-1.1B + MT adapter',
     'demo.opt2':'M1-128M · from-scratch hybrid',
     'vs.t1':'Maximum Inference<br>Efficiency',
     'vs.t2':'Cognitive Continuity<br>&amp; Lifelong Learning',
@@ -1452,7 +1452,7 @@ const I18N={
     'rh.r5c':'متانة العينات غير المنتظمة (بطارية)','rh.r5v':'أثبت 4× من LSTM/GRU عند فقدان العينات',
     'rh.note':'المنهجية الكاملة والبيانات الخام وسكربتات إعادة الإنتاج: <a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>.',
     'rh.chartcap':'ذاكرة الاستدلال مقابل طول السياق. تنمو ذاكرة KV بـ O(n)؛ حالة سلسلة O المحمولة مسطحة. مُقاسة حتى مليون رمز: حالة 0.381 ميجابايت مقابل ذاكرة KV سعة 3,072 ميجابايت — أصغر بـ 8063×. هذا يقيس بايتات حالة الاستدلال المحمولة فقط — وليس دليلاً على جودة النموذج أبعد من طول تدريب 512 رمزاً.',
-    'demo.opt1':'أسئلة علمية · Qwen 1.5B + مصدر معرفة','demo.opt2':'M1-128M · هجين من الصفر',
+    'demo.opt1':'M1 · TinyLlama-1.1B + محول MT','demo.opt2':'M1-128M · هجين من الصفر',
     'vs.t1':'أقصى كفاءة<br>استدلال','vs.t2':'استمرارية معرفية<br>&amp; تعلم مدى الحياة',
     'vs.o1':'هجين SSM + انتباه خطي + MoE','vs.o2':'350M – 24B معامل، نطاق تجاري','vs.o3':'أوزان مجمّدة بعد التدريب؛ داخل السياق فقط','vs.o4':'يستهدف سلاسل زمنية صناعية وأجهزة حافة',
     'vs.u1':'RNN زمن مستمر + GWT + نوم + EWC','vs.u2':'48M – 128M، نموذج بحث مفتوح','vs.u3':'تحديث أوزان مباشر — يتعلم بلا نسيان','vs.u4':'يستهدف الذاكرة العرضية وإدراك الوكلاء والتكيف',
@@ -1614,7 +1614,7 @@ const I18N={
     'rh.r5c':'不规则采样鲁棒性（电池 SoH）','rh.r5v':'采样丢失时比 LSTM/GRU 稳 4×',
     'rh.note':'完整方法论、原始数据与复现脚本：<a href="https://github.com/AwareLiquid/M1/blob/main/BENCHMARKS.md" target="_blank" rel="noopener noreferrer">BENCHMARKS.md</a>。',
     'rh.chartcap':'推理内存 vs. 上下文长度。KV cache 以 O(n) 增长；O 系列携带状态保持恒定。实测至 1M tokens：0.381 MB 状态 vs. 3,072 MB KV cache——小 8063×。此项仅测量推理携带状态字节数——不构成超出 512 token 训练长度之外模型质量的证据（窗口外 LM 结果为空；见 RESULTS.md）。',
-    'demo.opt1':'科学问答 · Qwen 1.5B + 知识来源',
+    'demo.opt1':'M1 · TinyLlama-1.1B + MT 适配器',
     'demo.opt2':'M1-128M · 从零训练混合模型',
     'vs.t1':'极致推理<br>效率',
     'vs.t2':'认知连续性<br>与终身学习',
@@ -2084,13 +2084,10 @@ function showOffline(){
   retryWrap.appendChild(rb);welcome.appendChild(note);welcome.appendChild(retryWrap);
 }
 async function autoSelect(){
-  // Prefer the endpoint whose GENERATION actually streams today: the native
-  // /v1 model (""). The /adapter and /sci HF chat servers currently error
-  // server-side ("No response returned"), while their /v1/model still answers
-  // 200 — so probing only /v1/model used to select a dead-for-generation
-  // endpoint and leave the demo silent. Native-first keeps the demo alive.
+  // Prefer our own M1 (TinyLlama-1.1B + MT v2s adapter) at /adapter; fall back
+  // to the native 128M /v1 model if the adapter service is down.
+  if(await selectModel('/adapter'))return;
   if(await selectModel(''))return;
-  if(await selectModel('/sci'))return;
   showOffline();
 }
 // Cross-section model picker: the lineup cards call this to jump straight to

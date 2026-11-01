@@ -565,11 +565,9 @@ async function selectModelInteractive(base){
   return false;
 }
 async function autoSelect(){
-  // Prefer the native /v1 model whose generation streams; the /adapter chat
-  // server is currently erroring server-side, and /v1/model answers 200 even
-  // when generation is dead, so probe order matters.
-  if(await selectModel(''))return;
+  // Prefer our own M1 (TinyLlama-1.1B + MT v2s adapter); fall back to native 128M.
   if(await selectModel('/adapter'))return;
+  if(await selectModel(''))return;
   live.className='live err';statusText.textContent=t('offline');
   renderWelcome('scratch');
   const note=document.createElement('div');
