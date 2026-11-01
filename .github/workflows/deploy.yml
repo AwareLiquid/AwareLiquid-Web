@@ -53,7 +53,7 @@ jobs:
           import sys, re
           p = "/root/M1/deploy/Caddyfile"
           s = open(p).read()
-          PATHS = "/vibe-coding /ai-coworker /best-ai-coding-2026 /raise"
+          PATHS = "/vibe-coding /ai-coworker /best-ai-coding-2026 /raise /memory"
           header = "\t@newpages path " + PATHS + "\n\thandle @newpages {\n"
           body = "\t\t@noext not path_regexp \\.(html|css|js|png|xml|ico|json|txt)$\n\t\trewrite @noext {uri}.html\n\t\troot * /web\n\t\tfile_server\n\t}\n\n"
           if "@newpages" in s:
@@ -76,7 +76,7 @@ jobs:
 
       - name: Verify live pages
         run: |
-          for p in / /hypercode /vibe-coding /ai-coworker /best-ai-coding-2026 /en/vibe-coding /en/ai-coworker /en/best-ai-coding-2026; do
+          for p in / /hypercode /memory /vibe-coding /ai-coworker /best-ai-coding-2026 /en/vibe-coding /en/ai-coworker /en/best-ai-coding-2026; do
             code=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 30 "https://awareliquid.ai$p")
             echo "$p -> $code"
           done
