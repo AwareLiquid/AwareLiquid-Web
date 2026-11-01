@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Why AwareLiquid is different: O(1) memory, not just text | AwareLiquid</title>
-<meta name="description" content="The measurable difference: AwareLiquid carries a constant 0.381 MB state while a Transformer's KV-cache grows with every token — 8063× smaller at 1M tokens. Interactive comparison + honest boundaries.">
+<meta name="description" content="The measurable difference: AwareLiquid carries a constant 0.381 MB state while a Transformer's KV-cache grows with every token — 8063× smaller at 1M tokens. Interactive comparison + measured tables + honest boundaries.">
 <link rel="canonical" href="https://awareliquid.ai/memory">
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Why AwareLiquid is different: O(1) memory">
-<meta property="og:description" content="0.381 MB constant state vs a KV-cache that grows to 3 GB at 1M tokens — 8063× smaller. Interactive.">
+<meta property="og:description" content="0.381 MB constant state vs a KV-cache that grows to 3 GB at 1M tokens — 8063× smaller. Interactive + measured.">
 <meta property="og:url" content="https://awareliquid.ai/memory">
 <style>
 :root{--bg:#fff;--fg:#0d0d0d;--muted:#6b6b80;--line:#e8e8ef;--card:#f9f9fb;--accent:#0a7d55;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
@@ -19,6 +19,7 @@ html[data-theme="dark"]{--bg:#0e0e10;--fg:#ebebeb;--muted:#9090a8;--line:#252530
 html[data-theme="light"]{--bg:#fff;--fg:#0d0d0d;--muted:#6b6b80;--line:#e8e8ef;--card:#f9f9fb;--accent:#0a7d55}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei",sans-serif;line-height:1.7;font-size:16px}
+html[dir="rtl"] body{font-family:"Noto Naskh Arabic","Segoe UI",Tahoma,sans-serif}
 a{color:var(--fg)}
 .container{max-width:1040px;margin:0 auto;padding:0 24px}
 .nav{position:sticky;top:0;z-index:10;height:60px;display:flex;align-items:center;border-bottom:1px solid var(--line);background:var(--bg)}
@@ -27,8 +28,9 @@ a{color:var(--fg)}
 .nav a.l{color:var(--muted);text-decoration:none;font-size:13.5px}
 .nav a.l:hover{color:var(--fg)}
 .spacer{flex:1}
-.lang{background:none;border:1px solid var(--line);border-radius:4px;color:var(--muted);font:inherit;font-size:12px;padding:4px 10px;cursor:pointer}
+.lang{background:none;border:1px solid var(--line);border-radius:4px;color:var(--muted);font:inherit;font-size:12px;padding:4px 10px;cursor:pointer;min-width:48px}
 h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.02em}
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3{letter-spacing:0}
 .hero{padding:80px 0 40px;border-bottom:1px solid var(--line)}
 .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .hero h1{font-size:clamp(30px,5vw,52px);line-height:1.1;margin:14px 0 18px;max-width:16ch}
@@ -45,19 +47,29 @@ input[type=range]{width:100%;margin:24px 0 8px;accent-color:var(--fg)}
 .track{margin:14px 0 4px}
 .track .bar{height:16px;border-radius:3px;background:var(--fg);transition:width .15s}
 .track .bar.state{background:var(--accent)}
-.track .cap{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px}
+.track .cap{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:6px;gap:12px}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:10px}
 .cell{background:var(--bg);padding:22px 18px}
 .cell .n{font-family:var(--mono);font-size:26px;letter-spacing:-.02em}
 .cell .d{font-size:12.5px;color:var(--muted);margin-top:6px;line-height:1.5}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0 6px;display:block;overflow-x:auto}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+html[dir="rtl"] th,html[dir="rtl"] td{text-align:right}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--card);font-weight:500}
+td.num{font-family:var(--mono);font-size:13px}
+.hl td{background:rgba(10,125,85,.08)}
 .note{font-size:13.5px;color:var(--muted);border-left:3px solid var(--line);padding:6px 0 6px 16px;margin-top:22px}
+html[dir="rtl"] .note{border-left:0;border-right:3px solid var(--line);padding:6px 16px 6px 0}
+ul.plain{padding-left:20px;color:var(--muted);font-size:14.5px;margin-top:6px}
+html[dir="rtl"] ul.plain{padding-left:0;padding-right:20px}
 .foot{padding:40px 0 60px;color:var(--muted);font-size:13px}
-.btn{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:var(--bg);text-decoration:none;padding:10px 18px;border-radius:6px;font-size:14px;margin-top:8px}
-.zh{display:none}
-html[data-lang="zh"] .en{display:none}
-html[data-lang="zh"] .zh{display:block}
-html[data-lang="zh"] .zh.inline{display:inline}
-@media(max-width:760px){.grid3{grid-template-columns:1fr}}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--fg);color:var(--bg);text-decoration:none;padding:10px 18px;border-radius:6px;font-size:14px;margin:8px 8px 0 0}
+html[dir="rtl"] .btn{margin:8px 0 0 8px}
+[data-lang="en"] .zh,[data-lang="en"] .ar,
+[data-lang="zh"] .en,[data-lang="zh"] .ar,
+[data-lang="ar"] .en,[data-lang="ar"] .zh{display:none!important}
+html[dir="rtl"] .ltrnum{direction:ltr;unicode-bidi:embed}
+@media(max-width:760px){.grid3{grid-template-columns:1fr}.panel{padding:20px 16px}}
 </style>
 </head>
 <body>
@@ -75,97 +87,165 @@ html[data-lang="zh"] .zh.inline{display:inline}
   <span class="eyebrow">The difference</span>
   <h1 class="en">The difference is memory, not just text.</h1>
   <h1 class="zh">区别在内存，而不只是文字。</h1>
+  <h1 class="ar">الفرق في الذاكرة، لا في النص فحسب.</h1>
   <p class="en">Most models answer well and forget instantly: their memory is a KV-cache that grows with every token. AwareLiquid's attention-free O-series carries a <strong>constant 0.381 MB state</strong> — the same size at 512 tokens and at 1,000,000. Drag the slider to see the gap.</p>
   <p class="zh">大多数模型回答得很好，但转身就忘：它们的记忆是随每个 token 增长的 KV-cache。AwareLiquid 的无注意力 O 系列只携带 <strong>恒定的 0.381 MB 状态</strong>——512 个 token 和 100 万个 token 时都一样大。拖动滑块看看差距。</p>
+  <p class="ar">معظم النماذج تجيب جيداً ثم تنسى فوراً: ذاكرتها ذاكرة KV تخزين مؤقت تنمو مع كل رمز. سلسلة O من AwareLiquid الخالية من الانتباه تحمل <strong>حالة ثابتة 0.381 ميجابايت</strong> — الحجم نفسه عند 512 رمزاً وعند مليون رمز. اسحب الشريط لترى الفرق.</p>
 </div></section>
 
 <section><div class="container">
   <h2 class="en">O(1) state vs a KV-cache that never stops growing</h2>
   <h2 class="zh">O(1) 状态 vs 永不停止增长的 KV-cache</h2>
+  <h2 class="ar">حالة O(1) مقابل ذاكرة KV لا تتوقف عن النمو</h2>
   <p class="lead en">Fp16 KV-cache, GQA=1, the 832×12 decode configuration measured in our benchmarks. AwareLiquid O-series carried state is flat to the decimal.</p>
   <p class="lead zh">fp16 KV-cache，GQA=1，即基准测试里的 832×12 解码配置。AwareLiquid O 系列的携带状态精确到小数位都是平的。</p>
+  <p class="lead ar">ذاكرة KV بدقة fp16 وGQA=1، إعداد فك الترميز 832×12 المقاس في معاييرنا. الحالة المحمولة لسلسلة O من AwareLiquid مسطّحة حتى الخانة العشرية.</p>
   <div class="panel">
     <div class="row">
-      <div><span class="lbl">Context length</span><div class="big" id="ctx">1,048,576 <span style="font-size:.5em;color:var(--muted)">tokens</span></div></div>
-      <div style="text-align:right"><span class="lbl">AwareLiquid is</span><div class="big accent" id="ratio">8063× <span style="font-size:.5em;color:var(--muted)">smaller</span></div></div>
+      <div><span class="lbl en">Context length</span><span class="lbl zh">上下文长度</span><span class="lbl ar">طول السياق</span><div class="big" id="ctx">1,048,576 <span style="font-size:.5em;color:var(--muted)">tokens</span></div></div>
+      <div style="text-align:right"><span class="lbl en">AwareLiquid is</span><span class="lbl zh">AwareLiquid 小</span><span class="lbl ar">AwareLiquid أصغر</span><div class="big accent" id="ratio">8063× <span style="font-size:.5em;color:var(--muted)">smaller</span></div></div>
     </div>
     <input type="range" id="slider" min="9" max="20" step="0.01" value="20">
-    <div class="track"><div class="bar" id="kvBar" style="width:100%"></div><div class="cap"><span>Transformer KV-cache</span><span id="kvSize">3,072 MB</span></div></div>
-    <div class="track"><div class="bar state" id="stBar" style="width:2%"></div><div class="cap"><span>AwareLiquid carried state</span><span>0.381 MB (constant)</span></div></div>
+    <div class="track"><div class="bar" id="kvBar" style="width:100%"></div><div class="cap"><span class="en">Transformer KV-cache</span><span class="zh">Transformer KV-cache</span><span class="ar">ذاكرة KV للمحول</span><span id="kvSize">3,072 MB</span></div></div>
+    <div class="track"><div class="bar state" id="stBar" style="width:2%"></div><div class="cap"><span class="en">AwareLiquid carried state</span><span class="zh">AwareLiquid 携带状态</span><span class="ar">حالة AwareLiquid المحمولة</span><span>0.381 MB</span></div></div>
     <div class="grid3">
-      <div class="cell"><div class="n" id="kv2">3,072 MB</div><div class="d en">KV-cache at this context</div><div class="d zh">当前上下文下的 KV-cache</div></div>
-      <div class="cell"><div class="n">0.381 MB</div><div class="d en">AwareLiquid state — flat</div><div class="d zh">AwareLiquid 状态——恒定</div></div>
-      <div class="cell"><div class="n accent" id="ratio2">8063×</div><div class="d en">Memory advantage</div><div class="d zh">内存优势</div></div>
+      <div class="cell"><div class="n" id="kv2">3,072 MB</div><div class="d en">KV-cache at this context</div><div class="d zh">当前上下文下的 KV-cache</div><div class="d ar">ذاكرة KV عند هذا السياق</div></div>
+      <div class="cell"><div class="n">0.381 MB</div><div class="d en">AwareLiquid state — flat</div><div class="d zh">AwareLiquid 状态——恒定</div><div class="d ar">حالة AwareLiquid — مسطّحة</div></div>
+      <div class="cell"><div class="n accent" id="ratio2">8063×</div><div class="d en">Memory advantage</div><div class="d zh">内存优势</div><div class="d ar">تفوق الذاكرة</div></div>
     </div>
     <p class="note en"><strong>Honest boundary:</strong> this is the attention-free <strong>O-series</strong> only. The M-series hybrid still has attention and is <em>not</em> O(1); its training memory is worse than a Transformer's. Numbers are inference carried-state bytes, not training memory, and not a claim about model quality.</p>
     <p class="note zh"><strong>诚实的边界：</strong>这只适用于无注意力的 <strong>O 系列</strong>。M 系列混合模型仍有注意力，<em>不是</em> O(1)；它的训练内存甚至比 Transformer 更差。这些是推理携带状态的字节数，不是训练内存，也不是对模型质量的宣称。</p>
+    <p class="note ar"><strong>حدّ صريح:</strong> هذا يخصّ <strong>سلسلة O</strong> الخالية من الانتباه فقط. هجين سلسلة M لا يزال فيه انتباه و<em>ليس</em> O(1)؛ وذاكرة تدريبه أسوأ من المحول. الأرقام هي بايتات الحالة المحمولة في الاستدلال، وليست ذاكرة تدريب، وليست ادعاءً عن جودة النموذج.</p>
   </div>
 </div></section>
 
 <section><div class="container">
   <h2 class="en">What attention structurally cannot do: cross-window recall</h2>
   <h2 class="zh">注意力结构上做不到的事：跨窗口召回</h2>
+  <h2 class="ar">ما لا يستطيعه الانتباه بنيوياً: الاستدعاء عبر النوافذ</h2>
   <p class="lead en">Drop the KV-cache and a Transformer forgets by construction. AwareLiquid's fast-weight state keeps discrete key→value bindings across windows and sessions.</p>
   <p class="lead zh">一旦丢弃 KV-cache，Transformer 在结构上就会遗忘。AwareLiquid 的 fast-weight 状态能跨窗口、跨会话保留离散的 key→value 绑定。</p>
+  <p class="lead ar">عند إسقاط ذاكرة KV ينسى المحول بنيوياً. حالة الوزن السريع في AwareLiquid تحفظ ارتباطات مفتاح→قيمة منفصلة عبر النوافذ والجلسات.</p>
   <div class="grid3">
-    <div class="cell"><div class="n accent">0.56</div><div class="d en">Cross-window recall — AwareLiquid (3 seeds: 0.62 / 0.43 / 0.62)</div><div class="d zh">跨窗口召回——AwareLiquid（3 种子：0.62 / 0.43 / 0.62）</div></div>
-    <div class="cell"><div class="n">0.000</div><div class="d en">Frozen attention &amp; LoRA — structurally zero</div><div class="d zh">冻结注意力与 LoRA——结构上为零</div></div>
-    <div class="cell"><div class="n">0.008</div><div class="d en">AwareLiquid with the fast-weight matrix removed</div><div class="d zh">去掉 fast-weight 矩阵后的 AwareLiquid</div></div>
+    <div class="cell"><div class="n accent">0.56</div><div class="d en">Cross-window recall — AwareLiquid (3 seeds: 0.62 / 0.43 / 0.62)</div><div class="d zh">跨窗口召回——AwareLiquid（3 种子：0.62 / 0.43 / 0.62）</div><div class="d ar">الاستدعاء عبر النوافذ — AwareLiquid (3 بذور: 0.62 / 0.43 / 0.62)</div></div>
+    <div class="cell"><div class="n">0.000</div><div class="d en">Frozen attention &amp; LoRA — structurally zero</div><div class="d zh">冻结注意力与 LoRA——结构上为零</div><div class="d ar">الانتباه المجمّد وLoRA — صفر بنيوياً</div></div>
+    <div class="cell"><div class="n">0.008</div><div class="d en">AwareLiquid with the fast-weight matrix removed</div><div class="d zh">去掉 fast-weight 矩阵后的 AwareLiquid</div><div class="d ar">AwareLiquid بعد إزالة مصفوفة الوزن السريع</div></div>
   </div>
   <p class="note en">Removing the fast-weight matrix collapses recall to 0.008 — the fast weight <em>is</em> the memory. Snapshotting that state and restoring it into a fresh process is bit-exact. This is a specific key→value recall task, not free-form chat memory.</p>
   <p class="note zh">去掉 fast-weight 矩阵后召回跌到 0.008——fast weight <em>就是</em>记忆。把该状态快照并恢复到新进程是位精确的。这是特定的 key→value 召回任务，不是自由聊天记忆。</p>
+  <p class="note ar">إزالة مصفوفة الوزن السريع تُسقط الاستدعاء إلى 0.008 — الوزن السريع <em>هو</em> الذاكرة. أخذ لقطة لتلك الحالة واستعادتها في عملية جديدة دقيق بالبت. هذه مهمة استدعاء مفتاح→قيمة محددة، وليست ذاكرة دردشة حرة.</p>
+</div></section>
+
+<section><div class="container">
+  <h2 class="en">Measured results</h2>
+  <h2 class="zh">实测结果</h2>
+  <h2 class="ar">النتائج المقاسة</h2>
+  <p class="lead en">Every row is from a reproducible run (RESULTS.md / BENCHMARKS.md). Inference carried-state bytes only.</p>
+  <p class="lead zh">每一行都来自可复现的运行（RESULTS.md / BENCHMARKS.md）。仅为推理携带状态的字节数。</p>
+  <p class="lead ar">كل صف من تشغيل قابل لإعادة الإنتاج (RESULTS.md / BENCHMARKS.md). بايتات حالة الاستدلال المحمولة فقط.</p>
+
+  <table>
+    <thead><tr>
+      <th><span class="en">Context</span><span class="zh">上下文</span><span class="ar">السياق</span></th>
+      <th><span class="en">KV-cache (fp16 GQA=1)</span><span class="zh">KV-cache（fp16 GQA=1）</span><span class="ar">ذاكرة KV (fp16 GQA=1)</span></th>
+      <th><span class="en">AwareLiquid state</span><span class="zh">AwareLiquid 状态</span><span class="ar">حالة AwareLiquid</span></th>
+      <th><span class="en">Advantage</span><span class="zh">优势</span><span class="ar">التفوق</span></th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="num ltrnum">128k</td><td class="num ltrnum">384 MB</td><td class="num ltrnum">0.381 MB</td><td class="num ltrnum">1008×</td></tr>
+      <tr><td class="num ltrnum">256k</td><td class="num ltrnum">768 MB</td><td class="num ltrnum">0.381 MB</td><td class="num ltrnum">2016×</td></tr>
+      <tr><td class="num ltrnum">512k</td><td class="num ltrnum">1,536 MB</td><td class="num ltrnum">0.381 MB</td><td class="num ltrnum">4027×</td></tr>
+      <tr class="hl"><td class="num ltrnum">1M</td><td class="num ltrnum">3,072 MB</td><td class="num ltrnum">0.381 MB</td><td class="num ltrnum">8063×</td></tr>
+    </tbody>
+  </table>
+  <p class="note en"><strong>Against the strongest opposing compression</strong> (2-bit KV + GQA=8), the advantage still holds: 1070.9× @128k, 8567× @1M. The state is flat from 512 to 1M tokens; the KV column is the analytic size.</p>
+  <p class="note zh"><strong>对上最强的反向压缩</strong>（2-bit KV + GQA=8）仍然成立：128k 时 1070.9×，1M 时 8567×。状态从 512 到 1M token 保持平坦；KV 一栏是解析尺寸。</p>
+  <p class="note ar"><strong>مقابل أقوى ضغط معاكس</strong> (2-bit KV + GQA=8) يظل التفوق قائماً: 1070.9× عند 128k و8567× عند 1M. الحالة مسطّحة من 512 إلى مليون رمز؛ وعمود KV هو الحجم التحليلي.</p>
+
+  <table style="margin-top:22px">
+    <thead><tr>
+      <th><span class="en">Condition</span><span class="zh">条件</span><span class="ar">الحالة</span></th>
+      <th><span class="en">Cross-window recall</span><span class="zh">跨窗口召回</span><span class="ar">الاستدعاء عبر النوافذ</span></th>
+    </tr></thead>
+    <tbody>
+      <tr class="hl"><td><span class="en">AwareLiquid (3 seeds)</span><span class="zh">AwareLiquid（3 种子）</span><span class="ar">AwareLiquid (3 بذور)</span></td><td class="num ltrnum">0.56 (0.62 / 0.43 / 0.62)</td></tr>
+      <tr><td><span class="en">Frozen attention / LoRA</span><span class="zh">冻结注意力 / LoRA</span><span class="ar">انتباه مجمّد / LoRA</span></td><td class="num ltrnum">0.000</td></tr>
+      <tr><td><span class="en">AwareLiquid minus fast-weight</span><span class="zh">AwareLiquid 去掉 fast-weight</span><span class="ar">AwareLiquid بلا وزن سريع</span></td><td class="num ltrnum">0.008</td></tr>
+    </tbody>
+  </table>
+</div></section>
+
+<section><div class="container">
+  <h2 class="en">What we do NOT claim (retracted)</h2>
+  <h2 class="zh">我们不宣称的（已撤回）</h2>
+  <h2 class="ar">ما لا ندّعيه (مسحوب)</h2>
+  <p class="lead en">Credibility is the point. These earlier headline claims are withdrawn or explicitly not claimed.</p>
+  <p class="lead zh">可信度才是重点。以下过往的标题式宣称已撤回或明确不宣称。</p>
+  <p class="lead ar">المصداقية هي المقصد. هذه الادعاءات السابقة سُحبت أو لا ندّعيها صراحةً.</p>
+  <ul class="plain">
+    <li class="en"><strong>“−28.5% adapter PPL”</strong> — retracted: that run trained LoRA only (MT adapter frozen); the MT adapter adds ≈0 PPL beyond LoRA.</li>
+    <li class="zh"><strong>“−28.5% adapter PPL”</strong>——已撤回：那次只训练了 LoRA（MT 适配器被冻结）；MT 适配器在 LoRA 之外约等于 0 PPL。</li>
+    <li class="ar"><strong>“−28.5% PPL للمحوّل”</strong> — مسحوب: ذلك التشغيل درّب LoRA فقط (محوّل MT مجمّد)؛ محوّل MT يضيف ≈0 PPL بعد LoRA.</li>
+    <li class="en"><strong>“−31% vs Transformer” at 2K steps</strong> — retracted: undertrained + weak baseline; does not survive 20K-step convergence against a modern baseline.</li>
+    <li class="zh"><strong>2000 步时“比 Transformer 好 31%”</strong>——已撤回：欠训练 + 弱基线；对现代基线跑到 2 万步就不成立。</li>
+    <li class="ar"><strong>“−31% مقابل المحوّل” عند 2000 خطوة</strong> — مسحوب: تدريب غير كافٍ وخط أساس ضعيف؛ لا يصمد عند تقارب 20 ألف خطوة أمام خط أساس حديث.</li>
+    <li class="en"><strong>Battery-pilot “irregular-sampling edge”</strong> — retracted as an architectural claim (2026-08-29); a single-domain result survives.</li>
+    <li class="zh"><strong>电池试点的“不规则采样优势”</strong>——作为架构宣称已撤回（2026-08-29）；仅剩单领域结果。</li>
+    <li class="ar"><strong>“تفوّق أخذ العينات غير المنتظم” في تجربة البطارية</strong> — مسحوب كادعاء معماري (2026-08-29)؛ تبقى نتيجة نطاق واحد.</li>
+    <li class="en"><strong>The hybrid M-series is not O(1)</strong> and gives no long-context LM gain (measured null).</li>
+    <li class="zh"><strong>混合 M 系列不是 O(1)</strong>，也没有长上下文 LM 增益（实测为零）。</li>
+    <li class="ar"><strong>هجين سلسلة M ليس O(1)</strong> ولا يمنح مكسباً في سياق طويل (مقاس: صفر).</li>
+  </ul>
 </div></section>
 
 <section><div class="container">
   <h2 class="en">See it, or read the data</h2>
   <h2 class="zh">亲自试，或看数据</h2>
+  <h2 class="ar">جرّبه أو اقرأ البيانات</h2>
   <p class="lead en">The live demo runs our own M1 (TinyLlama-1.1B + a trained MT-LNN adapter). Every number here links to open code and reproducible tables.</p>
   <p class="lead zh">在线 demo 跑的是我们自己的 M1（TinyLlama-1.1B + 训练好的 MT-LNN 适配器）。这里的每个数字都链接到公开代码与可复现的表格。</p>
-  <a class="btn" href="/demo">Open the live demo →</a>
-  <a class="btn" href="/research" style="background:transparent;color:var(--fg);border:1px solid var(--line)">Full results &amp; retractions →</a>
+  <p class="lead ar">العرض المباشر يشغّل نموذج M1 الخاص بنا (TinyLlama-1.1B + محوّل MT-LNN مدرَّب). كل رقم هنا مرتبط بكود مفتوح وجداول قابلة لإعادة الإنتاج.</p>
+  <a class="btn" href="/demo"><span class="en">Open the live demo →</span><span class="zh">打开在线 demo →</span><span class="ar">افتح العرض المباشر ←</span></a>
+  <a class="btn" href="/research" style="background:transparent;color:var(--fg);border:1px solid var(--line)"><span class="en">Full results &amp; retractions →</span><span class="zh">完整结果与撤回 →</span><span class="ar">النتائج الكاملة والسحب ←</span></a>
 </div></section>
 </main>
 
 <footer class="foot"><div class="container">
   <span class="en">© 2026 AwareLiquid · open research · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></span>
   <span class="zh">© 2026 AwareLiquid · 开放研究 · <a href="/privacy">隐私</a> · <a href="/terms">条款</a></span>
+  <span class="ar">© 2026 AwareLiquid · بحث مفتوح · <a href="/privacy">الخصوصية</a> · <a href="/terms">الشروط</a></span>
 </div></footer>
 
 <script>
-const STATE_MB = 0.381;
-const KV_TOTAL_MB = 3072;       // fp16 GQA=1 at 1,048,576 tokens
-const T_MAX = 1048576;
-const slider = document.getElementById('slider');
-const ctxEl = document.getElementById('ctx');
-const kvEl = document.getElementById('kvSize');
-const kv2 = document.getElementById('kv2');
-const ratioEl = document.getElementById('ratio');
-const ratio2 = document.getElementById('ratio2');
-const kvBar = document.getElementById('kvBar');
-const stBar = document.getElementById('stBar');
-function fmtMB(mb){ return mb >= 1024 ? (mb/1024).toFixed(mb/1024 >= 10 ? 0 : 1) + ' GB' : mb.toFixed(mb < 10 ? 1 : 0) + ' MB'; }
-function fmtNum(n){ return Math.round(n).toLocaleString('en-US'); }
+const STATE_MB=0.381,KV_TOTAL_MB=3072,T_MAX=1048576;
+const slider=document.getElementById('slider'),ctxEl=document.getElementById('ctx'),
+ kvEl=document.getElementById('kvSize'),kv2=document.getElementById('kv2'),
+ ratioEl=document.getElementById('ratio'),ratio2=document.getElementById('ratio2'),stBar=document.getElementById('stBar');
+function fmtMB(mb){return mb>=1024?(mb/1024).toFixed(mb/1024>=10?0:1)+' GB':mb.toFixed(mb<10?1:0)+' MB';}
+function fmtNum(n){return Math.round(n).toLocaleString('en-US');}
 function update(){
-  const t = Math.round(Math.pow(2, parseFloat(slider.value)));
-  const kv = KV_TOTAL_MB * t / T_MAX;
-  const ratio = kv / STATE_MB;
-  ctxEl.innerHTML = fmtNum(Math.min(t, T_MAX)) + ' <span style="font-size:.5em;color:var(--muted)">tokens</span>';
-  kvEl.textContent = fmtMB(kv);
-  kv2.textContent = fmtMB(kv);
-  const r = Math.round(ratio);
-  ratioEl.innerHTML = fmtNum(r) + '× <span style="font-size:.5em;color:var(--muted)">smaller</span>';
-  ratio2.textContent = fmtNum(r) + '×';
-  kvBar.style.width = '100%';
-  const w = Math.max(1.5, Math.min(100, (STATE_MB / kv) * 100));
-  stBar.style.width = w.toFixed(2) + '%';
+  const t=Math.round(Math.pow(2,parseFloat(slider.value)));
+  const kv=KV_TOTAL_MB*t/T_MAX,ratio=Math.round(kv/STATE_MB);
+  const lg=document.documentElement.getAttribute('data-lang');
+  const unit=lg==='zh'?'token':'tokens', small=lg==='zh'?'更小':(lg==='ar'?'أصغر':'smaller');
+  ctxEl.innerHTML=fmtNum(Math.min(t,T_MAX))+' <span style="font-size:.5em;color:var(--muted)">'+unit+'</span>';
+  kvEl.textContent=fmtMB(kv);kv2.textContent=fmtMB(kv);
+  ratioEl.innerHTML=fmtNum(ratio)+'× <span style="font-size:.5em;color:var(--muted)">'+small+'</span>';
+  ratio2.textContent=fmtNum(ratio)+'×';
+  stBar.style.width=Math.max(1.5,Math.min(100,(STATE_MB/kv)*100)).toFixed(2)+'%';
 }
-slider.addEventListener('input', update);
-update();
-// language toggle
-const LB = document.getElementById('langBtn');
-let lang = localStorage.getItem('memlang') || 'en';
-function applyLang(){ document.documentElement.setAttribute('data-lang', lang); LB.textContent = lang === 'zh' ? 'EN' : '中文'; }
-LB.addEventListener('click', () => { lang = lang === 'zh' ? 'en' : 'zh'; localStorage.setItem('memlang', lang); applyLang(); });
+slider.addEventListener('input',update);
+const LB=document.getElementById('langBtn');
+const order=['en','zh','ar'],label={en:'中文',zh:'العربية',ar:'EN'};
+let lang=localStorage.getItem('memlang')||'en';
+function applyLang(){
+  document.documentElement.setAttribute('data-lang',lang);
+  document.documentElement.setAttribute('lang',lang==='zh'?'zh-CN':lang);
+  document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+  LB.textContent=label[lang];
+  update();
+}
+LB.addEventListener('click',()=>{lang=order[(order.indexOf(lang)+1)%3];localStorage.setItem('memlang',lang);applyLang();});
 applyLang();
 </script>
 </body>
