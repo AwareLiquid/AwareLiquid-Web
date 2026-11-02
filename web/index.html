@@ -842,6 +842,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
+      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slower on CPU</label>
     </div>
     <p class="demo-note">Research-grade demo — quality is experimental. <a href="/research">What to expect →</a></p>
     <p style="text-align:center;margin-top:10px"><a href="/demo" class="btn btn-ghost" style="font-size:13.5px;display:inline-flex" id="fullpageLink">Open Full-Page Demo →</a></p>
@@ -1970,7 +1971,7 @@ const scroll=document.getElementById('scroll'),
       statusText=document.getElementById('statusText'),
       clearBtn=document.getElementById('clearBtn');
 
-const TEMP=0.8,MAXTOK=48,TOPP=0.9;
+const TEMP=0.8,MAXTOK=48,TOPP=0.9;let THINKING=false;const thinkEl=document.getElementById('think');if(thinkEl)thinkEl.addEventListener('change',()=>{THINKING=thinkEl.checked;});
 let generating=false,abortCtl=null,modelReady=false;
 
 function refresh(){
@@ -2177,7 +2178,7 @@ async function send(){
       abortCtl=new AbortController();
       const res=await fetch(`${API_BASE}/v1/completions/stream`,{
         method:'POST',headers:{'Content-Type':'application/json'},signal:abortCtl.signal,
-        body:JSON.stringify({prompt,max_new_tokens:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true})
+        body:JSON.stringify({prompt,max_new_tokens:THINKING?24:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true,think:THINKING})
       });
       if(!res.ok){errored=true;bot.classList.remove('empty');bot.textContent='[error '+res.status+'] '+await res.text();return;}
       const reader=res.body.getReader(),dec=new TextDecoder();let buf='';
