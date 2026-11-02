@@ -842,7 +842,8 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
-      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slower on CPU</label>
+      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slow / 自思考 · 慢</label>
+      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px;cursor:pointer"><input type="checkbox" id="rag"> Knowledge base (RAG) · 知识库检索</label>
     </div>
     <p class="demo-note">Research-grade demo — quality is experimental. <a href="/research">What to expect →</a></p>
     <p style="text-align:center;margin-top:10px"><a href="/demo" class="btn btn-ghost" style="font-size:13.5px;display:inline-flex" id="fullpageLink">Open Full-Page Demo →</a></p>
@@ -1239,7 +1240,7 @@ const I18N={
     'models.paper':'Papers: <a href="/research">MT-LNN technical paper (EN / 中文) →</a>',
     'models.lead':'Every release is labeled by status: <strong>live</strong> (served on this site), <strong>download</strong> (weights published), or <strong>training</strong> (run in progress).',
     'demo.eyebrow':'Live Demo','demo.h2':'Try Both Models in Your Browser',
-    'demo.lead':'Two distinct surfaces. <strong>Science Q&amp;A</strong> grounds answers in a 1,000+ item sourced knowledge base (papers with DOIs and citation counts) &mdash; it answers only what the sources support, and says so honestly when they don&apos;t. <strong>M1-128M</strong> is the native 128M hybrid trained from scratch, no base model. Ask in English or Chinese.',
+    'demo.lead':'Runs our own <strong>M1</strong> (TinyLlama-1.1B + a trained MT-LNN adapter). Optionally turn on <strong>Knowledge base (RAG)</strong> to ground answers in a sourced paper knowledge base, or <strong>Thinking</strong> for a slower self-consistency pass. Ask in English or Chinese.',
     'demo.fullpage':'Open Full-Page Demo →',
     'demo.note':'Research-grade demo — quality is experimental. ',
     'demo.notelink':'What to expect →',
@@ -1403,7 +1404,7 @@ const I18N={
     'models.paper':'الأوراق: <a href="/research">الورقة التقنية MT-LNN (EN / 中文) →</a>',
     'models.lead':'كل إصدار موسوم بحالته: <strong>مباشر</strong> (يُقدَّم على هذا الموقع)، <strong>تحميل</strong> (أوزان منشورة)، أو <strong>تدريب</strong> (قيد التشغيل).',
     'demo.eyebrow':'عرض مباشر','demo.h2':'جرّب النموذجين في متصفحك',
-    'demo.lead':'واجهتان مميزتان. <strong>أسئلة علمية</strong> تؤسس إجاباتها على قاعدة معرفة بأكثر من 1000 مصدر (أوراق بروابط DOI وعدد استشهادات) &mdash; تجيب فقط بما تدعمه المصادر، وتقول ذلك بصدق حين لا تدعم. <strong>M1-128M</strong> هو الهجين الأصلي 128M المدرَّب من الصفر، بلا نموذج أساسي. اسأل بالإنجليزية أو الصينية.',
+    'demo.lead':'يشغّل نموذج <strong>M1</strong> الخاص بنا (TinyLlama-1.1B + محوّل MT-LNN مدرَّب). اختياريًا فعّل <strong>قاعدة المعرفة (RAG)</strong> لتأسيس الإجابة على قاعدة أوراق موثّقة، أو <strong>التفكير</strong> لتمريرة اتساق ذاتي أبطأ. اسأل بالإنجليزية أو الصينية.',
     'demo.fullpage':'افتح العرض الكامل →',
     'demo.note':'عرض بمستوى بحثي — الجودة تجريبية. ',
     'demo.notelink':'ماذا تتوقع →',
@@ -1551,7 +1552,7 @@ const I18N={
     'models.paper':'论文：<a href="/research">MT-LNN 技术论文（EN / 中文）→</a>',
     'models.lead':'每个版本都标注状态：<strong>在线</strong>（本站提供）、<strong>可下载</strong>（权重已发布）、<strong>训练中</strong>（运行未完成）。',
     'demo.eyebrow':'在线演示','demo.h2':'在浏览器中试用两款模型',
-    'demo.lead':'两种独立界面。<strong>科学问答</strong>基于 1000+ 条有来源的知识（带 DOI 和引用数的论文）——只回答来源支持的，来源不支持时诚实说明。<strong>M1-128M</strong> 是从零训练的 1.28 亿参数混合模型（注意力 + 液态核心），无基座。支持中英文提问。',
+    'demo.lead':'运行我们自己的 <strong>M1</strong>（TinyLlama-1.1B + 训练好的 MT-LNN 适配器）。可勾选<strong>知识库检索(RAG)</strong>用带出处的论文知识库支撑回答，或勾选<strong>自思考</strong>做更慢的自一致性校验。支持中英文提问。',
     'demo.fullpage':'打开全屏演示 →',
     'demo.note':'研究级演示——质量处于实验阶段。',
     'demo.notelink':'了解预期效果 →',
@@ -1971,7 +1972,7 @@ const scroll=document.getElementById('scroll'),
       statusText=document.getElementById('statusText'),
       clearBtn=document.getElementById('clearBtn');
 
-const TEMP=0.8,MAXTOK=48,TOPP=0.9;let THINKING=false;const thinkEl=document.getElementById('think');if(thinkEl)thinkEl.addEventListener('change',()=>{THINKING=thinkEl.checked;});
+const TEMP=0.8,MAXTOK=48,TOPP=0.9;let THINKING=false,RAG=false;const thinkEl=document.getElementById('think');if(thinkEl)thinkEl.addEventListener('change',()=>{THINKING=thinkEl.checked;});const ragEl=document.getElementById('rag');if(ragEl)ragEl.addEventListener('change',()=>{RAG=ragEl.checked;});
 let generating=false,abortCtl=null,modelReady=false;
 
 function refresh(){
@@ -2178,7 +2179,7 @@ async function send(){
       abortCtl=new AbortController();
       const res=await fetch(`${API_BASE}/v1/completions/stream`,{
         method:'POST',headers:{'Content-Type':'application/json'},signal:abortCtl.signal,
-        body:JSON.stringify({prompt,max_new_tokens:THINKING?24:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true,think:THINKING})
+        body:JSON.stringify({prompt,max_new_tokens:THINKING?24:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true,think:THINKING,use_awareness:RAG})
       });
       if(!res.ok){errored=true;bot.classList.remove('empty');bot.textContent='[error '+res.status+'] '+await res.text();return;}
       const reader=res.body.getReader(),dec=new TextDecoder();let buf='';

@@ -301,7 +301,8 @@ textarea::placeholder{color:#b4b4c0}
 
 <!-- ── COMPOSER ── -->
 <footer class="ftr">
-  <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:0 0 8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slower on CPU</label>
+  <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:0 0 8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slow / 自思考 · 慢</label>
+  <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);margin:0 0 8px;cursor:pointer"><input type="checkbox" id="rag"> Knowledge base (RAG) · 知识库检索</label>
   <div class="composer-row">
     <button class="clear-btn" id="clearBtn" aria-label="Clear conversation">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
@@ -486,7 +487,7 @@ langBtn.addEventListener('click',()=>applyLang({en:'zh',zh:'ar',ar:'en'}[LANG]||
 })();
 
 // ── CHAT CONSTANTS ──
-const MAXTOK=48,TEMP=0.7,TOPP=0.92;let THINKING=false;const thinkEl=document.getElementById('think');if(thinkEl)thinkEl.addEventListener('change',()=>{THINKING=thinkEl.checked;});
+const MAXTOK=48,TEMP=0.7,TOPP=0.92;let THINKING=false,RAG=false;const thinkEl=document.getElementById('think');if(thinkEl)thinkEl.addEventListener('change',()=>{THINKING=thinkEl.checked;});const ragEl=document.getElementById('rag');if(ragEl)ragEl.addEventListener('change',()=>{RAG=ragEl.checked;});
 let generating=false,abortCtl=null,API_BASE='/adapter';
 
 const input=document.getElementById('input'),
@@ -630,7 +631,7 @@ async function send(){
   try{
     const res=await fetch(`${API_BASE}/v1/completions/stream`,{
       method:'POST',headers:{'Content-Type':'application/json'},signal:abortCtl.signal,
-      body:JSON.stringify({prompt,max_new_tokens:THINKING?24:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true,think:THINKING})
+      body:JSON.stringify({prompt,max_new_tokens:THINKING?24:MAXTOK,temperature:TEMP,do_sample:true,top_p:TOPP,stop_at_eos:true,think:THINKING,use_awareness:RAG})
     });
     if(!res.ok){errored=true;bot.classList.remove('empty');bot.textContent='[error '+res.status+'] '+await res.text();return;}
     const reader=res.body.getReader(),dec=new TextDecoder();let buf='';
