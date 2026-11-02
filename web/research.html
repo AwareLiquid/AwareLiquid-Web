@@ -588,7 +588,7 @@ td.good{font-family:var(--mono);font-size:13px;color:var(--fg)}
 </div>
 
 <div class="container" style="padding-bottom:24px">
-    <div class="note" style="max-width:760px" data-i18n="tldr"><strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.</div>
+    <div class="note" style="max-width:760px" data-i18n="tldr"><strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state and cross-window recall that attention cannot express (measured numbers in §6). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.</div>
 </div>
 
 <!-- ── MAIN CONTENT ── -->
@@ -1443,7 +1443,7 @@ var I18N = {
     "hero.eyebrow":"M1 · Research","hero.h1":"Experiments &amp; Results",
     "hero.lead":"An honest record of what AwareLiquid M1 has built, what the data shows, and what remains open. Every claim is tagged, reproducible, and falsifiable.",
     "hero.built":"Code runs, results reproducible","hero.signal":"Preliminary evidence, stats not conclusive","hero.target":"Direction clear, not yet achieved",
-    "tldr":"<strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state (0.381 MB, 8063× smaller than a KV-cache at 1M tokens) and cross-window recall attention cannot express (0.56 vs 0.000). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.",
+    "tldr":"<strong>TL;DR:</strong> MT-LNN's measured case is memory and efficiency — O(1) inference state and cross-window recall that attention cannot express (measured numbers in §6). Language modeling: the earlier 11.3% deficit against a modern Transformer is now closed and reversed — with the three modern-trunk recipes (default-ON) the model reaches <strong>76.56 vs 78.86</strong> val PPL at roughly matched parameters (3/3 seeds). Every number below links to open code and data.",
     "g1":"Constant carried state<br>at any context length","g2":"Smaller than a KV-cache<br>at 1M tokens","g3":"Cross-window recall<br>fast-weight vs attention","g4":"Forgetting reduction<br>with EWC (early signal)","g5":"Degradation at 80%<br>dropped samples (battery)",
     "sb.g1":"Architecture","sb.l1":"M1 Architecture","sb.l2":"Live Demo (M1)",
     "sb.g2":"Experiments","sb.l3":"Continual Learning","sb.l4":"Hebbian Ablation","sb.l5":"Spatial Computing",
