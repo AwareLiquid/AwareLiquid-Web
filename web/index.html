@@ -811,7 +811,7 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
     <div class="section-header">
       <span class="eyebrow">Live Demo</span>
       <h2>Try Both Models in Your Browser</h2>
-      <p class="section-lead">Two distinct surfaces. <strong>Science Q&A</strong> grounds answers in a 1,000+ item sourced knowledge base (papers with DOIs and citation counts) — it answers only what the sources support, and says so honestly when they don't. <strong>M1-128M</strong> is the native 128M hybrid trained from scratch with no base model. Switch between them below. Ask in English or Chinese.</p>
+      <p class="section-lead">Runs our own <strong>M1</strong> (TinyLlama-1.1B + a trained MT-LNN adapter). Optionally turn on <strong>Knowledge base (RAG)</strong> to ground answers in a sourced paper knowledge base, or <strong>Thinking</strong> for a slower self-consistency pass. Ask in English or Chinese.</p>
     </div>
     <div class="demo-widget">
       <div class="demo-bar">
@@ -842,8 +842,8 @@ html[dir="rtl"] .stat-n,html[dir="rtl"] .glance-n{direction:ltr}
           <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5l-6 6M12 5l6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
-      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slow / 自思考 · 慢</label>
-      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px;cursor:pointer"><input type="checkbox" id="rag"> Knowledge base (RAG) · 知识库检索</label>
+      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:8px;cursor:pointer"><input type="checkbox" id="think"> Thinking β · slow / 自思考 · 慢 / التفكير · بطيء</label>
+      <label class="think-row" style="display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);margin-top:6px;cursor:pointer"><input type="checkbox" id="rag"> Knowledge base (RAG) · 知识库检索 / قاعدة المعرفة</label>
     </div>
     <p class="demo-note">Research-grade demo — quality is experimental. <a href="/research">What to expect →</a></p>
     <p style="text-align:center;margin-top:10px"><a href="/demo" class="btn btn-ghost" style="font-size:13.5px;display:inline-flex" id="fullpageLink">Open Full-Page Demo →</a></p>
