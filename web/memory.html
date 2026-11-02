@@ -199,6 +199,54 @@ html[dir="rtl"] .ltrnum{direction:ltr;unicode-bidi:embed}
 </div></section>
 
 <section><div class="container">
+  <h2 class="en">Status: what works, what's limited, what's not wired yet</h2>
+  <h2 class="zh">状态：已可用 / 有局限 / 尚未打通</h2>
+  <h2 class="ar">الحالة: ما يعمل، وما هو محدود، وما لم يُوصَل بعد</h2>
+  <p class="lead en">We publish the honest state, not a finished-product story.</p>
+  <p class="lead zh">我们如实标注当前状态，而不是"已完成"的包装。</p>
+  <p class="lead ar">ننشر الحالة بصدق، لا كقصة منتج مكتمل.</p>
+
+  <h3 class="en" style="margin-top:8px">✅ Working &amp; measured</h3>
+  <h3 class="zh" style="margin-top:8px">✅ 已可用、已实测</h3>
+  <h3 class="ar" style="margin-top:8px">✅ يعمل ومُقاس</h3>
+  <ul class="plain">
+    <li class="en">O(1) constant memory (O-series), cross-window recall 0.56 vs 0.000, bit-exact snapshot/restore.</li>
+    <li class="zh">O(1) 常数内存（O 系列）、跨窗口召回 0.56 vs 0.000、位精确的快照/恢复。</li>
+    <li class="ar">ذاكرة O(1) ثابتة (سلسلة O)، استدعاء عبر النوافذ 0.56 مقابل 0.000، حفظ/استعادة دقيق بالبت.</li>
+    <li class="en">Our M1 (TinyLlama-1.1B + MT v2s adapter) is live on this site and streaming.</li>
+    <li class="zh">我们自己的 M1（TinyLlama-1.1B + MT v2s 适配器）已上线并可流式生成。</li>
+    <li class="ar">نموذج M1 (TinyLlama-1.1B + محوّل MT v2s) يعمل على الموقع ويبث.</li>
+  </ul>
+
+  <h3 class="en" style="margin-top:22px">⚠️ Limited / known issues</h3>
+  <h3 class="zh" style="margin-top:22px">⚠️ 局限 / 已知问题</h3>
+  <h3 class="ar" style="margin-top:22px">⚠️ محدود / مشكلات معروفة</h3>
+  <ul class="plain">
+    <li class="en"><strong>Free-form chat memory does not work.</strong> Ask it to remember a code, open a "new session", ask again — it does not recall it. The 0.56 figure is a specific key→value recall task, not conversational memory.</li>
+    <li class="zh"><strong>自由聊天式记忆不成立。</strong>让它记住一个 code、开"新会话"再问——它不会召回。0.56 是特定 key→value 召回任务，不是对话记忆。</li>
+    <li class="ar"><strong>ذاكرة الدردشة الحرة لا تعمل.</strong> اطلب منه تذكّر رمز، وافتح "جلسة جديدة"، واسأل مجدداً — لا يتذكّره. رقم 0.56 هو مهمة استدعاء مفتاح→قيمة محددة، لا ذاكرة محادثة.</li>
+    <li class="en">The hybrid M-series is not O(1); base-recipe LM quality trails a modern Transformer by 11.3% (the modern-trunk recipe closes it, 3/3 seeds).</li>
+    <li class="zh">混合 M 系列不是 O(1)；基础配方 LM 质量落后现代 Transformer 11.3%（modern-trunk 配方已收复，3/3 seeds）。</li>
+    <li class="ar">هجين سلسلة M ليس O(1)؛ جودة اللغة بالوصفة الأساسية تتراجع 11.3% عن محوّل حديث (وصفة modern-trunk تعالج ذلك، 3/3 بذور).</li>
+    <li class="en">CPU-only: a 1.1B model runs at a few tokens/sec — fine for a demo, not for production chat.</li>
+    <li class="zh">纯 CPU：1.1B 模型每秒只有几个 token——适合 demo，不适合生产聊天。</li>
+    <li class="ar">CPU فقط: نموذج 1.1B ينتج بضعة رموز/ثانية — مناسب للعرض لا للإنتاج.</li>
+  </ul>
+
+  <h3 class="en" style="margin-top:22px">🚧 Not wired yet</h3>
+  <h3 class="zh" style="margin-top:22px">🚧 尚未打通</h3>
+  <h3 class="ar" style="margin-top:22px">🚧 لم يُوصَل بعد</h3>
+  <ul class="plain">
+    <li class="en">The cross-session fast-weight store is enabled server-side, but the free-form "remembers you" experience is not wired into the UI (and would overclaim).</li>
+    <li class="zh">服务端已开启跨会话 fast-weight 存储，但"记住你"的自由体验尚未接进前端（也不应过度宣称）。</li>
+    <li class="ar">مخزن الوزن السريع عبر الجلسات مفعّل على الخادم، لكن تجربة "يتذكرك" الحرة غير موصولة بالواجهة (وستكون ادعاءً مبالغاً).</li>
+    <li class="en">Self-thinking decode (THINKING) is off on the demo; the Science-Q&amp;A RAG path is currently disabled.</li>
+    <li class="zh">Demo 上"自思考解码"（THINKING）关闭；科学问答的 RAG 通路当前停用。</li>
+    <li class="ar">فك الترميز بالتفكير الذاتي (THINKING) متوقف في العرض؛ ومسار RAG لأسئلة العلوم معطّل حالياً.</li>
+  </ul>
+</div></section>
+
+<section><div class="container">
   <h2 class="en">See it, or read the data</h2>
   <h2 class="zh">亲自试，或看数据</h2>
   <h2 class="ar">جرّبه أو اقرأ البيانات</h2>
