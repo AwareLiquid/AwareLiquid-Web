@@ -228,9 +228,9 @@ html[dir="rtl"] .ltrnum{direction:ltr;unicode-bidi:embed}
     <li class="en">The hybrid M-series is not O(1); base-recipe LM quality trails a modern Transformer by 11.3% (the modern-trunk recipe closes it, 3/3 seeds).</li>
     <li class="zh">混合 M 系列不是 O(1)；基础配方 LM 质量落后现代 Transformer 11.3%（modern-trunk 配方已收复，3/3 seeds）。</li>
     <li class="ar">هجين سلسلة M ليس O(1)؛ جودة اللغة بالوصفة الأساسية تتراجع 11.3% عن محوّل حديث (وصفة modern-trunk تعالج ذلك، 3/3 بذور).</li>
-    <li class="en">CPU-only: a 1.1B model runs at a few tokens/sec — fine for a demo, not for production chat.</li>
-    <li class="zh">纯 CPU：1.1B 模型每秒只有几个 token——适合 demo，不适合生产聊天。</li>
-    <li class="ar">CPU فقط: نموذج 1.1B ينتج بضعة رموز/ثانية — مناسب للعرض لا للإنتاج.</li>
+    <li class="en"><strong>CPU-only, and this box has no bf16 hardware</strong> (Intel Broadwell). Measured ~<strong>0.6 tok/s</strong> with fp32. bf16 is software-emulated here and was ~16× slower — we switched to fp32 to fix that. Fine for a short demo reply, not for production chat.</li>
+    <li class="zh"><strong>纯 CPU，且这台机器没有 bf16 硬件</strong>（Intel Broadwell）。fp32 实测约 <strong>0.6 tok/s</strong>；bf16 在此是软件模拟、慢了约 16×——我们已改用 fp32 修复。适合短回复 demo，不适合生产聊天。</li>
+    <li class="ar"><strong>CPU فقط، وهذه الآلة بلا عتاد bf16</strong> (Intel Broadwell). القياس نحو <strong>0.6 رمز/ثانية</strong> بـ fp32. bf16 هنا محاكاة برمجية وكان أبطأ ~16× — انتقلنا إلى fp32 لإصلاح ذلك. مناسب لرد قصير في عرض، لا للدردشة الإنتاجية.</li>
   </ul>
 
   <h3 class="en" style="margin-top:22px">🚧 Not wired yet</h3>
