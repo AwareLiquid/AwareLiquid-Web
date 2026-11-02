@@ -45,6 +45,16 @@ jobs:
             echo DEPLOY_OK
           '
 
+      - name: Sync legacy static root (serve/static) with web/
+        run: |
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 '
+            if [ -d /root/M1/serve/static ]; then
+              cp -a /root/AwareLiquid-Web/web/. /root/M1/serve/static/ && echo STATIC_SYNCED || echo STATIC_SYNC_SKIPPED
+            else
+              echo NO_LEGACY_STATIC
+            fi
+          '
+
       - name: Ensure Caddy serves the new root pages
         run: |
           ssh -i ~/.ssh/deploy_key \
