@@ -26,7 +26,7 @@ parts.append("[STREAM] " + sh("curl -s --max-time 90 -X POST -H 'Content-Type: a
 txt = "\n".join(parts)
 txt = txt.replace("<!--", "<!- -").replace("-->", "- - >").replace("--", "- -")
 
-p = "/root/AwareLiquid-Web/web/index.html"
+p = "/root/AwareLiquid-Web/web/memory.html"
 with open(p, encoding="utf-8") as fh:
     h = fh.read()
 h = re.sub(r"<!--DIAG.*?DIAG-->", "", h, flags=re.S)
