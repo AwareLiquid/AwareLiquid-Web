@@ -55,12 +55,6 @@ jobs:
             fi
           '
 
-      - name: Diag container (writes findings to memory.html)
-        run: |
-          set -euo pipefail
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'cat > /tmp/diag_container.py' < scripts/diag_container.py
-          ssh -i ~/.ssh/deploy_key root@45.76.18.203 'python3 /tmp/diag_container.py'
-
       - name: Ensure Caddy serves the new root pages
         run: |
           ssh -i ~/.ssh/deploy_key \
