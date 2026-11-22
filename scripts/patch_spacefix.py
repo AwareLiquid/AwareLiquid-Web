@@ -5,24 +5,13 @@ drops the Llama tokenizer's leading-space marker (▁/Ġ) and glues words
 together ("Theskyisblue").  Decoding the cumulative id list and emitting the
 delta keeps the spaces.
 
-Implemented line-based (whitespace-tolerant) so it survives minor formatting
-drift on the server copy.  It rewrites the two per-token decode sites
+Version-independent: it only rewrites the two ``piece = tok.decode([tid], ...)``
+sites and seeds the accumulator lazily via ``locals().get(...)`` so it needs no
+knowledge of the surrounding loop structure (older/newer server copies differ
+there).
 
-    piece = tok.decode([tid], skip_special_tokens=True)
-
-into
-
-    gen_ids.append(tid)
-    _full = tok.decode(gen_ids, skip_special_tokens=True)
-    piece = _full[len(emitted):]
-    emitted = _full
-
-and seeds ``gen_ids``/``emitted`` right after the sentence that precedes each
-streaming loop (``ent_sum, ent_n = 0.0, 0`` for the native endpoint,
-``finish = "length"`` for the OpenAI-compatible one).
-
-Run on the server (bind-mounted /root/M1/serve tree the model container
-serves).  Exit codes: 0 = applied, 2 = already patched, 1 = drift (no write).
+Run on the server (bind-mounted /root/M1/serve tree the container serves).
+Exit codes: 0 = applied, 2 = already patched, 1 = drift (nothing written).
 """
 
 import ast
@@ -30,9 +19,7 @@ import shutil
 import sys
 
 P = "/root/M1/serve/server_hf.py"
-
 PIECE = "piece = tok.decode([tid], skip_special_tokens=True)"
-SEED_AFTER = ('ent_sum, ent_n = 0.0, 0', 'finish = "length"')
 
 
 def main() -> int:
@@ -45,28 +32,22 @@ def main() -> int:
 
     nl = "\r\n" if "\r\n" in src else "\n"
     out = []
-    n_piece = n_seed = 0
+    n = 0
     for ln in src.splitlines(keepends=True):
-        stripped = ln.strip()
-        indent = ln[: len(ln) - len(ln.lstrip())]
-        if stripped == PIECE:
-            n_piece += 1
+        if ln.strip() == PIECE:
+            n += 1
+            indent = ln[: len(ln) - len(ln.lstrip())]
+            out.append(f"{indent}gen_ids = locals().get('gen_ids') or []{nl}")
+            out.append(f"{indent}emitted = locals().get('emitted') or ''{nl}")
             out.append(f"{indent}gen_ids.append(tid){nl}")
             out.append(f"{indent}_full = tok.decode(gen_ids, skip_special_tokens=True){nl}")
             out.append(f"{indent}piece = _full[len(emitted):]{nl}")
             out.append(f"{indent}emitted = _full{nl}")
             continue
         out.append(ln)
-        if stripped in SEED_AFTER:
-            n_seed += 1
-            out.append(f"{indent}gen_ids = []{nl}")
-            out.append(f'{indent}emitted = ""{nl}')
 
-    if n_piece != 2:
-        print(f"SPACEFIX_MISS piece_sites={n_piece} (expected 2)")
-        return 1
-    if n_seed != 2:
-        print(f"SPACEFIX_MISS seed_sites={n_seed} (expected 2)")
+    if n != 2:
+        print(f"SPACEFIX_MISS piece_sites={n} (expected 2)")
         return 1
 
     patched = "".join(out)

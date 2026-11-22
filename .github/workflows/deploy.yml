@@ -55,6 +55,27 @@ jobs:
             fi
           '
 
+      - name: Fix streaming decode spacing (patch + docker cp + restart)
+        run: |
+          set -o pipefail
+          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'cat > /tmp/patch_spacefix.py' < scripts/patch_spacefix.py
+          ssh -i ~/.ssh/deploy_key root@45.76.18.203 '
+            python3 /tmp/patch_spacefix.py; RC=$?
+            echo "SPACEFIX_RC=$RC"
+            if [ "$RC" = "0" ] || [ "$RC" = "2" ]; then
+              docker cp /root/M1/serve/server_hf.py mtlnn_sciqa:/app/serve/server_hf.py && echo COPIED
+              docker restart mtlnn_sciqa >/dev/null 2>&1 && echo RESTARTED
+              for i in $(seq 1 40); do
+                H=$(curl -fsS --max-time 60 http://127.0.0.1:8000/v1/models 2>/dev/null || true)
+                if [ -n "$H" ]; then echo MODEL_HEALTHY; break; fi
+                sleep 15
+              done
+            else
+              echo "SPACEFIX_SKIP rc=$RC"
+            fi
+            exit 0
+          '
+
       - name: Ensure Caddy serves the new root pages
         run: |
           ssh -i ~/.ssh/deploy_key \
