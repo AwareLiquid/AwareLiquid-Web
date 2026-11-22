@@ -10,8 +10,8 @@ to ``serve.server_hf:app`` -- so patch BOTH files.  Only the
 ``piece = tok.decode([tid], ...)`` lines are rewritten and the accumulator is
 seeded lazily via ``locals().get(...)``, so this is version-independent.
 
-Run on the server (/root/M1/serve).  Exit: 0 = applied or already patched,
-1 = nothing matched (drift).
+Run on the server (/root/M1/serve).  Exit: 0 = applied, 3 = already patched
+(no restart needed), 1 = nothing matched (drift).
 """
 
 import ast
@@ -65,7 +65,11 @@ def main() -> int:
         print(f"{p}: {st} sites={n}")
         applied += st == "applied"
         already += st == "already"
-    return 0 if (applied or already) else 1
+    if applied:
+        return 0
+    if already:
+        return 3
+    return 1
 
 
 if __name__ == "__main__":
