@@ -216,6 +216,9 @@ html[dir="rtl"] .ltrnum{direction:ltr;unicode-bidi:embed}
     <li class="en">Our M1 (TinyLlama-1.1B + MT v2s adapter) is live on this site and streaming.</li>
     <li class="zh">我们自己的 M1（TinyLlama-1.1B + MT v2s 适配器）已上线并可流式生成。</li>
     <li class="ar">نموذج M1 (TinyLlama-1.1B + محوّل MT v2s) يعمل على الموقع ويبث.</li>
+    <li class="en">Optional <strong>Knowledge-base RAG</strong> (awareness.market) returns sourced answers; optional <strong>Thinking</strong> pass works (slower). Both are toggleable in the demo.</li>
+    <li class="zh">可选 <strong>知识库检索 RAG</strong>（awareness.market）返回带出处的回答；可选 <strong>自思考</strong> 也可用（更慢）。两者在 demo 里都可开关。</li>
+    <li class="ar">اختياريًا <strong>RAG لقاعدة المعرفة</strong> (awareness.market) يعيد إجابات موثّقة؛ و<strong>التفكير</strong> متاح (أبطأ). كلاهما قابل للتبديل في العرض.</li>
   </ul>
 
   <h3 class="en" style="margin-top:22px">⚠️ Limited / known issues</h3>
@@ -240,9 +243,9 @@ html[dir="rtl"] .ltrnum{direction:ltr;unicode-bidi:embed}
     <li class="en">The cross-session fast-weight store is enabled server-side, but the free-form "remembers you" experience is not wired into the UI (and would overclaim).</li>
     <li class="zh">服务端已开启跨会话 fast-weight 存储，但"记住你"的自由体验尚未接进前端（也不应过度宣称）。</li>
     <li class="ar">مخزن الوزن السريع عبر الجلسات مفعّل على الخادم، لكن تجربة "يتذكرك" الحرة غير موصولة بالواجهة (وستكون ادعاءً مبالغاً).</li>
-    <li class="en">Self-thinking decode (THINKING) is off on the demo; the Science-Q&amp;A RAG path is currently disabled.</li>
-    <li class="zh">Demo 上"自思考解码"（THINKING）关闭；科学问答的 RAG 通路当前停用。</li>
-    <li class="ar">فك الترميز بالتفكير الذاتي (THINKING) متوقف في العرض؛ ومسار RAG لأسئلة العلوم معطّل حالياً.</li>
+    <li class="en">RAG depends on the external awareness.market service (up now, but can be flaky); the free-form-memory gap above is the real one.</li>
+    <li class="zh">RAG 依赖外部 awareness.market 服务（现在可用，但可能不稳定）；真正的缺口是上面的自由聊天记忆。</li>
+    <li class="ar">يعتمد RAG على خدمة awareness.market الخارجية (تعمل الآن لكن قد تتقطع)؛ والفجوة الحقيقية هي ذاكرة الدردشة الحرة أعلاه.</li>
   </ul>
 </div></section>
 
