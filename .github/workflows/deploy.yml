@@ -62,8 +62,8 @@ jobs:
           ssh -i ~/.ssh/deploy_key root@45.76.18.203 '
             python3 /tmp/patch_spacefix.py; RC=$?
             echo "SPACEFIX_RC=$RC"
-            if [ "$RC" = "0" ] || [ "$RC" = "2" ]; then
-              docker cp /root/M1/serve/server_hf.py mtlnn_sciqa:/app/serve/server_hf.py && echo COPIED
+            if [ "$RC" = "0" ]; then
+              docker cp /root/M1/serve/server.py mtlnn_sciqa:/app/serve/server.py && docker cp /root/M1/serve/server_hf.py mtlnn_sciqa:/app/serve/server_hf.py && echo COPIED
               docker restart mtlnn_sciqa >/dev/null 2>&1 && echo RESTARTED
               for i in $(seq 1 40); do
                 H=$(curl -fsS --max-time 60 http://127.0.0.1:8000/v1/models 2>/dev/null || true)
