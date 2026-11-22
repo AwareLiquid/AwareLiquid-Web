@@ -55,26 +55,6 @@ jobs:
             fi
           '
 
-      - name: Hotfix streaming decode keeps spaces (idempotent)
-        run: |
-          set -o pipefail
-          ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'cat > /tmp/patch_spacefix.py' < scripts/patch_spacefix.py
-          ssh -i ~/.ssh/deploy_key root@45.76.18.203 '
-            echo "SERVER_DECODE_LINES=$(grep -c "tok.decode(\[tid\]" /root/M1/serve/server_hf.py || true)"
-            echo "SERVER_ALREADY=$(grep -c "gen_ids.append(tid)" /root/M1/serve/server_hf.py || true)"
-            python3 /tmp/patch_spacefix.py; RC=$?
-            echo "SPACEFIX_RC=$RC"
-            if [ "$RC" = "0" ]; then
-              docker ps --format "{{.Names}}" | grep -qx mtlnn_sciqa && docker kill mtlnn_sciqa >/dev/null 2>&1 && echo SPACEFIX_KILLED
-              for i in $(seq 1 40); do
-                H=$(curl -fsS --max-time 60 http://127.0.0.1:8000/v1/models 2>/dev/null || true)
-                if [ -n "$H" ]; then echo "MODEL_HEALTHY"; break; fi
-                sleep 15
-              done
-            fi
-            if [ "$RC" = "0" ] || [ "$RC" = "2" ]; then exit 0; else exit 1; fi
-          '
-
       - name: Ensure Caddy serves the new root pages
         run: |
           ssh -i ~/.ssh/deploy_key \
