@@ -55,7 +55,7 @@ jobs:
             fi
           '
 
-      - name: Diag: locate running server module (writes to index.html)
+      - name: Diag container (writes findings to index.html)
         run: |
           set -o pipefail
           ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new root@45.76.18.203 'cat > /tmp/diag_container.py' < scripts/diag_container.py
