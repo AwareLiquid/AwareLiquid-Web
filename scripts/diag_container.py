@@ -1,6 +1,6 @@
 """One-shot diagnostic: find what the model container actually runs and whether
-the host spacefix landed.  Writes findings into the served homepage as an HTML
-comment so a client with no SSH/log access can read them via GET / ."""
+the host spacefix landed.  Writes findings into BOTH candidate served memory
+pages as an HTML comment so a client with no SSH/log access can read via GET."""
 
 import re
 import subprocess
@@ -26,14 +26,17 @@ parts.append("[STREAM] " + sh("curl -s --max-time 90 -X POST -H 'Content-Type: a
 txt = "\n".join(parts)
 txt = txt.replace("<!--", "<!- -").replace("-->", "- - >").replace("--", "- -")
 
-p = "/root/AwareLiquid-Web/web/memory.html"
-with open(p, encoding="utf-8") as fh:
-    h = fh.read()
-h = re.sub(r"<!--DIAG.*?DIAG-->", "", h, flags=re.S)
-if "</body>" in h:
-    h = h.replace("</body>", "<!--DIAG\n" + txt + "\nDIAG--></body>", 1)
-else:
-    h = h + "<!--DIAG\n" + txt + "\nDIAG-->"
-with open(p, "w", encoding="utf-8") as fh:
-    fh.write(h)
-print("DIAG_WRITTEN len=" + str(len(txt)))
+for p in ("/root/AwareLiquid-Web/web/memory.html", "/root/M1/serve/static/memory.html"):
+    try:
+        with open(p, encoding="utf-8") as fh:
+            h = fh.read()
+        h = re.sub(r"<!--DIAG.*?DIAG-->", "", h, flags=re.S)
+        if "</body>" in h:
+            h = h.replace("</body>", "<!--DIAG\n" + txt + "\nDIAG--></body>", 1)
+        else:
+            h = h + "<!--DIAG\n" + txt + "\nDIAG-->"
+        with open(p, "w", encoding="utf-8") as fh:
+            fh.write(h)
+        print("DIAG_WRITTEN " + p)
+    except Exception as e:  # noqa: BLE001
+        print("DIAG_SKIP " + p + " " + repr(e))
